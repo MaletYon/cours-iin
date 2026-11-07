@@ -1,0 +1,745 @@
+% ============================================================================
+% Fichier  : partie2/P02_C09_outils_acquisition.tex
+% Titre    : Outils et Techniques d'Acquisition
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- Juin 2026
+% ============================================================================
+
+\chapter{Outils et Techniques d'Acquisition}
+\label{chap:acq}
+
+\epigraph{%
+    « By approaching each case methodically, you can evaluate the evidence
+    thoroughly and document the chain of evidence. »%
+}{Amelia Phillips}
+
+\niveauChapitre{Intermédiaire}{%
+    Notions de systèmes de fichiers et de ligne de commande recommandées.
+    Lecture du Chapitre~\ref{chap:custody} obligatoire~: ce chapitre met
+    en \oe uvre les procédures de custody.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Maîtriser le \termecle{write blocker} matériel et logiciel~:
+          principe, activation, vérification.
+    \item Conduire une acquisition forensique complète avec FTK~Imager~:
+          formats E01, DD~; disque, RAM et mobile.
+    \item Comprendre les cinq formats d'image forensique et savoir choisir
+          le format adapté au contexte.
+    \item Extraire et analyser les données d'un téléphone Android avec ADB.
+    \item Conduire une analyse mémoire de base avec Volatility~3.
+    \item Analyser une capture réseau avec Wireshark pour identifier
+          des communications suspectes.
+    \item Appliquer la grille CRO à chaque décision technique d'acquisition.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section{Le Write Blocker~: Protection Absolue de l'Evidence}
+\label{sec:write-blocker}
+% ============================================================================
+
+\subsection{Principe et nécessité}
+
+Le \termecle{write blocker}\index{write blocker} est un dispositif (matériel ou logiciel) qui permet de lire un support numérique en
+interdisant toute écriture. Sans write blocker, le simple branchement
+d'un disque sur un PC Windows déclenche une cascade invisible de
+modifications~: création de fichiers temporaires, mise à jour de la
+base de registre, modification des horodatages d'accès NTFS. En
+quelques secondes, l'evidence est contaminée.
+
+\begin{equation}
+\text{Write blocker} \implies
+\forall\, \text{opération d'écriture} \to \texttt{DENIED}
+\quad\text{pendant toute la durée de l'acquisition}
+\label{eq:write-blocker}
+\end{equation}
+
+\subsection{Write blocker matériel}
+
+Le write blocker matériel est un boîtier physique qui s'intercale entre
+le support à acquérir et le poste d'acquisition. C'est le standard de
+référence~: indépendant du système d'exploitation, il ne peut pas être
+contourné par un bug logiciel.
+
+\begin{tableaucours}{p{3.5cm}p{3.5cm}p{5.0cm}}{%
+    \tableauHeader{Modèle de référence} &
+    \tableauHeader{Interfaces} &
+    \tableauHeader{Usage}
+}
+Tableau Forensics WiebeTech & SATA, IDE, SAS, USB, SD &
+    Standard FBI~; \textasciitilde{}~500~USD \\
+ICS Image MASSter Solo & SATA, IDE, USB &
+    Acquisition autonome sans PC \\
+Wiebetech Forensic UltraDock & SATA, USB~3.0, NVMe &
+    Portable~; adapté aux SSD modernes \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~9.1. Write blockers matériels de référence}\end{center}
+
+\subsection{Write blocker logiciel}
+
+En l'absence de write blocker matériel, situation fréquente dans les
+unités PNC camerounaises actuelles, le write blocker logiciel est une
+alternative acceptable si correctement documentée.
+
+\begin{boxoutils}{Write blocker logiciel Windows, activation registre}
+\begin{lstlisting}[language=bash_forensique]
+@ Activation
+reg add HKLM\SYSTEM\CurrentControlSet\Control\StorageDevicePolicies
+    /v WriteProtect /t REG_DWORD /d 1 /f
+
+@ Verification
+reg query HKLM\SYSTEM\CurrentControlSet\Control\StorageDevicePolicies
+@ Attendu : WriteProtect  REG_DWORD  0x1
+
+@ Test validation (doit echouer)
+echo test > D:\test_write.txt
+@ Attendu : Acces refuse
+
+@ Desactivation apres acquisition
+reg add HKLM\SYSTEM\CurrentControlSet\Control\StorageDevicePolicies
+    /v WriteProtect /t REG_DWORD /d 0 /f
+\end{lstlisting}
+\end{boxoutils}
+
+\begin{boxoutils}{Write blocker logiciel Linux}
+\begin{lstlisting}[language=bash_forensique]
+# Identifier le disque (ne JAMAIS supposer sdb)
+lsblk
+
+# Passer en lecture seule AVANT montage
+blockdev --setro /dev/sdb
+blockdev --getro /dev/sdb    # Attendu : 1
+
+# Montage en lecture seule (double protection)
+mount -o ro,noatime /dev/sdb1 /mnt/evidence
+
+# Test validation (doit echouer)
+touch /mnt/evidence/test.txt
+# Attendu : Read-only file system
+\end{lstlisting}
+\end{boxoutils}
+
+\begin{boiteRemarque}{Write blocker logiciel vs matériel}
+Le write blocker logiciel est acceptable en investigation préliminaire.
+En contexte judiciaire (comparution devant le TCS), le write blocker
+matériel est recommandé pour éviter toute contestation. Documenter
+obligatoirement~: activation + test de vérification (captures d'écran
+horodatées dans le formulaire de custody).
+\end{boiteRemarque}
+
+% ============================================================================
+\section{Formats d'Image Forensique}
+\label{sec:formats-image}
+% ============================================================================
+
+\begin{tableaucours}{p{1.8cm}p{2.0cm}p{2.2cm}p{5.5cm}}{%
+    \tableauHeader{Format} &
+    \tableauHeader{Compression} &
+    \tableauHeader{Métadonnées} &
+    \tableauHeader{Usage recommandé}
+}
+\textbf{E01} & Oui (LZX) & Riches &
+    \textbf{Standard de référence.} Autopsy, FTK, EnCase.
+    Préférer pour toute investigation. \\
+\textbf{Ex01} & Oui & Riches + AES &
+    E01 chiffré~; données sensibles \\
+\textbf{DD / Raw} & Non & Aucune &
+    Compatible \emph{tous} outils Linux~; précision absolue~;
+    taille = taille disque original \\
+\textbf{AFF4} & Oui & Très riches + signature &
+    Standard émergent~; signé cryptographiquement \\
+\textbf{VMDK / VHD} & Variable & Limitées &
+    Machines virtuelles~; Autopsy ouvre directement \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~9.2. Formats d'image forensique comparés}\end{center}
+
+\begin{boxdef}
+\textbf{Format E01}\index{E01, format}~: format d'Exterro (EnCase). Il
+segmente l'image en fichiers configurables (\texttt{.E01}, \texttt{.E02}~\ldots)
+et intègre~: hash MD5 et SHA-1 de chaque segment~; métadonnées de l'affaire
+(N°~dossier, examinateur, notes)~; vérification d'intégrité automatique
+à l'ouverture. C'est le format le plus reconnu devant les tribunaux.
+\end{boxdef}
+
+% ============================================================================
+\section{FTK Imager~: Acquisition Disque et RAM}
+\label{sec:ftk-imager}
+% ============================================================================
+
+\subsection{Procédure d'acquisition disque en 7 étapes}
+
+\begin{boxoutils}{FTK Imager, acquisition disque}
+\textbf{Étape~1~:} Activer le write blocker. Vérifier l'espace disponible
+sur le support de destination (minimum~: 110\% de la taille source).
+
+\textbf{Étape~2~:} \texttt{File~$\to$ Create Disk Image}. Type de source~:
+\begin{itemize}
+    \item \textbf{Physical Drive}~: image complète incluant l'espace
+          non alloué~; recommandé en investigation forensique.
+    \item \textbf{Logical Drive}~: partition uniquement~; plus rapide
+          mais peut manquer des artefacts.
+\end{itemize}
+
+\textbf{Étape~3~:} Format E01. Options~: segmentation 0 (pas de segmentation)~;
+compression~5~; cocher \textit{Verify images after they are created}.
+
+\textbf{Étape~4~:} Métadonnées~:
+\begin{lstlisting}[language=bash_forensique]
+Case Number    : DOS-2026-034
+Evidence Number: EV-001
+Unique Description: Dell Inspiron 15 SN-GF8T3Y2 MBONGO
+Examiner       : OPJ NKENG Eric - Matricule PNC 4471-B
+Notes          : PC allume - RAM capturee prealablement
+\end{lstlisting}
+
+\textbf{Étape~5~:} Support de destination \emph{distinct} de la source
+(jamais le même disque). Nom sans espaces~:
+\texttt{MBONGO\_EV001\_20260315.E01}.
+
+\textbf{Étape~6~:} Lancer. FTK~Imager affiche la progression, les hash
+MD5 et SHA-1 en temps réel, et les erreurs de lecture (bad sectors).
+
+\textbf{Étape~7~:} Vérifier que hash source = hash image. Reporter dans
+le formulaire de custody. Sceller l'original.
+\end{boxoutils}
+
+\begin{boxalert}
+\textbf{Erreurs fréquentes~:}
+\begin{itemize}
+    \item Acquérir sur le même disque~: l'acquisition échoue à mi-chemin.
+    \item Oublier les métadonnées~: sans Case Number, pas de valeur probatoire.
+    \item Ne pas vérifier les hash~: si source $\neq$ image, recommencer.
+    \item Format DD sur 1~To~: 1~To non compressé~; préférer E01
+          ($\approx$~50\% compression).
+\end{itemize}
+\end{boxalert}
+
+\subsection{Acquisition de la mémoire RAM}
+
+La mémoire RAM contient ce qui n'existe nulle part ailleurs~: processus
+en cours d'exécution, connexions réseau actives, mots de passe en
+mémoire, clés de chiffrement actives. Sa capture requiert que le PC soit
+allumé et constitue la \textbf{première action} sur tout système actif
+(RFC~3227~\cite{rfc3227}, rang~2).
+
+\begin{boxoutils}{FTK Imager, capture mémoire RAM}
+\begin{lstlisting}[language=bash_forensique]
+# Interface graphique FTK Imager :
+# File --> Capture Memory
+# Destination : support externe (jamais disque interne)
+# Cocher 'Include pagefile' si disponible
+# Cliquer Capture Memory
+
+# Resultat : fichier .mem de la taille de la RAM installee
+# 16 Go RAM  --> fichier ~16 Go
+# 32 Go RAM  --> fichier ~32 Go
+
+# Hash SHA-256 immediatement apres capture :
+certutil -hashfile MBONGO_RAM_20260315.mem SHA256
+# Reporter dans le formulaire de custody
+\end{lstlisting}
+\end{boxoutils}
+
+\begin{boiteRemarque}{La RAM modifie la RAM}
+La capture de la mémoire modifie légèrement la mémoire~: le processus
+FTK~Imager utilise lui-même de la RAM pendant la capture. C'est inévitable
+et documenté, un fait, pas une violation de custody. Documenter dans le
+formulaire~: \textit{``Légère modification de la RAM inhérente à l'outil,
+conformément à ACPO~\cite{acpo2012} Principe~2. Capture réalisée avant toute autre action.''}
+\end{boiteRemarque}
+
+\subsection{Acquisition Linux avec dd}
+
+Sur Kali Linux ou tout système Linux, l'outil natif \texttt{dd} permet une
+acquisition bit-à-bit sans aucun logiciel supplémentaire~:
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={Acquisition forensique dd + dcfldd}]
+# Identifier le disque (ne jamais supposer sdb)
+lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINT
+
+# Hash SHA-256 AVANT acquisition (original)
+sha256sum /dev/sdb | tee hash_source_EV001.txt
+
+# Acquisition dd
+dd if=/dev/sdb of=/mnt/evidence/EV001.dd
+   bs=65536 conv=noerror,sync status=progress
+# bs=65536 : blocs 64 Ko (optimal)
+# conv=noerror,sync : continue sur erreur, padde zeros
+
+# Alternative dcfldd (hash pendant l'acquisition)
+dcfldd if=/dev/sdb of=/mnt/evidence/EV001.dd
+   bs=65536 hash=sha256 hashwindow=10M
+   hashlog=/mnt/evidence/EV001_hashlog.txt
+
+# Hash SHA-256 APRES (image)
+sha256sum /mnt/evidence/EV001.dd | tee hash_image_EV001.txt
+
+# Comparaison (identiques = integrite OK)
+diff hash_source_EV001.txt hash_image_EV001.txt
+echo "INTEGRITE: $?"    # 0 = OK
+\end{lstlisting}
+
+% ============================================================================
+\section{Acquisition Mobile~: Android et iOS}
+\label{sec:acquisition-mobile}
+% ============================================================================
+
+\subsection{Les quatre niveaux d'acquisition mobile}
+
+\begin{tableaucours}{p{2.0cm}p{2.5cm}p{2.5cm}p{5.5cm}}{%
+    \tableauHeader{Niveau} &
+    \tableauHeader{Technique} &
+    \tableauHeader{Données accessibles} &
+    \tableauHeader{Conditions}
+}
+Niveau~1 & Manuelle (écran) & Contacts, SMS, photos visibles &
+    Téléphone déverrouillé~; documentation par photo \\
+Niveau~2 & Logique (ADB) & Système de fichiers utilisateur &
+    Android déverrouillé~; Options développeur activées \\
+Niveau~3 & Physique & Mémoire flash complète~; données supprimées &
+    Outils spécialisés (Cellebrite, GrayKey) \\
+Niveau~4 & Chip-off / JTAG & Extraction directe de la puce &
+    Matériel spécialisé~; risque destruction~; dernier recours \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~9.3. Niveaux d'acquisition mobile
+(NIST~SP~800-101~\cite{nist800101r1}r1)}\end{center}
+
+\subsection{ADB. Android Debug Bridge}
+
+\termecle{ADB}\index{ADB} (\textit{Android Debug Bridge}) est l'outil
+officiel Google pour communiquer avec un téléphone Android. En forensique,
+il constitue le niveau~2~: accès au système de fichiers utilisateur sans
+modifier les données.
+
+\textbf{Prérequis~:}
+\begin{enumerate}
+    \item Mode avion activé (obligatoire cf. Ch.~\ref{chap:custody}).
+    \item Options développeur~: \texttt{Paramètres~$\to$ À propos~$\to$
+          Numéro de build~$\to$ appuyer 7~fois.}
+    \item Débogage USB activé~: \texttt{Options développeur~$\to$
+          Débogage USB~$\to$ Activé.}
+    \item Autorisation sur le téléphone lors du premier branchement.
+\end{enumerate}
+
+\begin{boxoutils}{ADB. commandes forensiques essentielles}
+\begin{lstlisting}[language=bash_forensique]
+# Verifier la connexion
+adb devices
+# Attendu : R5CR71XXXX   device
+
+# Identifier l'appareil
+adb shell getprop ro.product.model       # Modele
+adb shell getprop ro.build.version.release  # Android version
+adb shell getprop ro.serialno            # Numero de serie
+
+# Extraction du systeme de fichiers utilisateur
+adb pull /sdcard/ ./extraction/sdcard/
+# /sdcard : photos, videos, telechargements, backups WhatsApp
+
+# Liste des applications installees
+adb shell pm list packages -f > ./extraction/applications.txt
+
+# Extraction SMS (selon version Android)
+adb shell content query --uri content://sms/
+    > ./extraction/sms.txt
+
+# Contacts
+adb shell content query --uri content://contacts/people/
+    > ./extraction/contacts.txt
+
+# Journal systeme
+adb logcat -d > ./extraction/logcat.txt
+
+# Sauvegarde complete
+adb backup -all -apk -shared -f backup_evidence.ab
+
+# Hash SHA-256 de l'extraction
+find ./extraction/ -type f -exec sha256sum {} \;
+    > hash_extraction.txt
+\end{lstlisting}
+\end{boxoutils}
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Extraction ADB complète vs ciblée}
+
+L'extraction complète (\texttt{adb pull /sdcard/}) capture tout~:
+photos personnelles, messages privés, données de santé.
+
+$\mathcal{C}$~: extraction complète = atteinte maximale à la vie privée~;
+extraction ciblée = atteinte proportionnée.
+
+$\mathcal{R}$~: extraction complète préférable pour ne pas manquer
+des preuves dans des répertoires inattendus.
+
+$\mathcal{O}$~: le principe de proportionnalité (art.~52
+\loicam{2010/012}~\cite{cameroun2010a}) exige que la saisie soit limitée au pertinent.
+
+\cro{$\downarrow$ tension à gérer}{$\uparrow$ extraction complète}{$\sim$ justification requise}
+
+\textbf{Règle pratique~:} en contexte judiciaire, documenter pourquoi
+une extraction complète était nécessaire (impossibilité de cibler~;
+risque de preuves dans des répertoires inattendus).
+\end{boxCRO}
+
+\subsection{iOS. contraintes spécifiques}
+
+\begin{itemize}
+    \item Chiffrement hardware depuis iOS~8~; pas d'équivalent ADB~;
+    \item Extraction logique via iTunes/Finder uniquement avec code PIN~;
+    \item Extraction physique~: outils commerciaux (Cellebrite UFED,
+          Magnet AXIOM)~;
+    \item Données iCloud~: réquisition à Apple
+          (\texttt{legalprocess.apple.com}).
+\end{itemize}
+
+En l'absence d'outils spécialisés~: conserver éteint ou mode avion,
+documenter l'IMEI, transmettre à un laboratoire accrédité.
+\textbf{Ne jamais tenter de brute-forcer le code PIN}~: après
+10~tentatives échouées, iOS efface les données.
+
+% ============================================================================
+\section{Volatility~3~: Analyse de la Mémoire RAM}
+\label{sec:volatility}
+% ============================================================================
+
+\subsection{Architecture et principe}
+
+\termecle{Volatility~3}\index{Volatility} est le standard mondial d'analyse
+forensique de la mémoire RAM. Il analyse le fichier \texttt{.mem} capturé
+avec FTK~Imager et révèle l'état du système \emph{au moment de la capture}~:
+processus en cours, connexions réseau, mots de passe, clés de chiffrement.
+
+La version~3 (depuis 2021) utilise une syntaxe unifiée sans profil
+obligatoire~: le profil Windows est détecté automatiquement.
+
+\begin{boxoutils}{Volatility~3, commandes essentielles}
+\begin{lstlisting}[language=bash_forensique]
+# -- IDENTIFICATION --
+python3 vol.py -f memoire.mem windows.info
+
+# -- PROCESSUS --
+# Liste complete (PID, PPID, dates)
+python3 vol.py -f memoire.mem windows.pslist
+
+# Arborescence parent-enfant
+python3 vol.py -f memoire.mem windows.pstree
+# Indicateur suspect : svchost.exe enfant de cmd.exe
+# (svchost legitime a toujours services.exe comme parent)
+
+# -- RESEAU --
+python3 vol.py -f memoire.mem windows.netscan
+# Indicateur suspect : connexion ESTABLISHED vers port 4444
+
+# -- COMMANDES EXECUTEES --
+python3 vol.py -f memoire.mem windows.cmdline
+# Indicateur suspect : PowerShell encodedcommand base64
+
+# -- FICHIERS EN MEMOIRE --
+python3 vol.py -f memoire.mem windows.filescan
+
+# Extraire un fichier depuis la memoire
+python3 vol.py -f memoire.mem windows.dumpfiles
+    --virtaddr 0xXXXXXXXX
+
+# -- HASHES MOTS DE PASSE --
+python3 vol.py -f memoire.mem windows.hashdump
+
+# -- CAPTURES D'ECRAN --
+python3 vol.py -f memoire.mem windows.screenshotss
+    -D ./screenshots/
+\end{lstlisting}
+\end{boxoutils}
+
+\subsection{Détecter un processus malveillant~: cas MVOM}
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={Analyse Volatility. Opération MVOM TRANSBOIS SA}]
+# Etape 1 : processus
+python3 vol.py -f transbois.mem windows.pslist
+# Resultat SUSPECT :
+# 4892  4891  svchost.exe   2026-03-13 02:17:44
+# 4891  4888  cmd.exe       2026-03-13 02:17:42
+# ANORMAL : svchost ne doit pas avoir cmd comme parent
+
+# Etape 2 : connexions reseau
+python3 vol.py -f transbois.mem windows.netscan | grep 4892
+# Resultat :
+# ESTABLISHED  10.0.0.15:49212  185.220.XX.XX:4444  4892
+# Connexion active vers C2 (port 4444)
+
+# Etape 3 : identifier le fichier malveillant
+python3 vol.py -f transbois.mem windows.filescan | grep enc_all
+# Resultat :
+# \Device\...\AppData\Local\Temp\enc_all.ps1
+# Preuve de l'installation au moment de la capture
+\end{lstlisting}
+
+% ============================================================================
+\section{Wireshark~: Analyse du Trafic Réseau}
+\label{sec:wireshark}
+% ============================================================================
+
+\subsection{Modes d'utilisation forensique}
+
+\termecle{Wireshark}\index{Wireshark} s'utilise en deux modes~:
+\begin{enumerate}
+    \item \textbf{Analyse de capture fournie}~: ouvrir un fichier
+          \texttt{.pcap} / \texttt{.pcapng} collecté sur la scène.
+    \item \textbf{Capture live}~: capturer en temps réel (nécessite
+          une position dans le réseau~: SPAN port, mirror, hub).
+\end{enumerate}
+
+\subsection{Filtres de référence}
+
+\begin{boxoutils}{Wireshark, filtres forensiques essentiels}
+\begin{lstlisting}[language=bash_forensique]
+# Tout le trafic d'une IP
+ip.addr == 185.220.XX.XX
+
+# Communications entre deux hotes
+ip.addr == 10.0.0.15 && ip.addr == 185.220.XX.XX
+
+# HTTP (non chiffre)
+http
+
+# Soumissions de formulaires (mots de passe)
+http.request.method == "POST"
+
+# Requetes DNS (domaines consultes)
+dns
+
+# Port suspect (Metasploit, shells inverses)
+tcp.port == 4444
+
+# Trafic email non chiffre
+smtp || pop3 || imap
+
+# Recherche textuelle dans les trames
+frame contains "password"
+frame contains "Authorization"
+
+# FONCTIONS UTILES :
+# Statistics --> Conversations : toutes les paires IP
+# Statistics --> Protocol Hierarchy : volumes par protocole
+# File --> Export Objects --> HTTP : extraire fichiers telecharges
+\end{lstlisting}
+\end{boxoutils}
+
+\begin{boxscenario}{Wireshark, cas WOURI BEC}
+La capture réseau SOTRADI.pcap est disponible. L'analyste reconstruit
+l'attaque~:
+\begin{enumerate}
+    \item Filtre \texttt{smtp}~$\to$ email entrant depuis
+          \texttt{contact@medequip-portugal.com}.
+    \item Clic droit~$\to$ \textit{Follow TCP Stream}~: les en-têtes
+          SMTP révèlent l'IP source réelle~: serveur russe.
+    \item Filtre \texttt{dns}~$\to$ chercher \texttt{medequip-portugal.com}~:
+          la résolution confirme l'enregistrement récent (12/01/2026,
+          3~jours avant le paiement).
+    \item \textit{Statistics~$\to$ Conversations}~: volumes de transfert
+          anormaux vers IPs suspectes.
+\end{enumerate}
+
+\textbf{Constatation forensique (sans interprétation)~:} ``Le paquet
+\#~14~872 (timestamp 2026-01-15~14h28) contient un email SMTP depuis
+\texttt{contact@medequip-portugal.com}, originant depuis l'IP
+\texttt{91.XXX.XX.XX} selon le champ \texttt{Received}. Le domaine
+\texttt{medequip-portugal.com} a été enregistré le 12/01/2026 selon
+les bases WHOIS.''
+\end{boxscenario}
+
+% ============================================================================
+\section{File Carving~: Récupérer les Fichiers Supprimés}
+\label{sec:file-carving}
+% ============================================================================
+
+\subsection{Principe des magic bytes}
+
+Le \termecle{file carving}\index{file carving} récupère des fichiers
+depuis les données brutes d'un disque en cherchant les
+\termecle{magic bytes}\index{magic bytes} (séquences d'octets
+caractéristiques de chaque type de fichier) sans se fier à la table
+de fichiers (qui peut être effacée ou corrompue).
+
+\begin{tableaucours}{p{2.5cm}p{3.5cm}p{5.5cm}}{%
+    \tableauHeader{Type} &
+    \tableauHeader{Magic bytes (hex)} &
+    \tableauHeader{Usage forensique}
+}
+JPEG & \texttt{FF D8 FF E0} &
+    Photos~; contient souvent les métadonnées GPS \\
+PDF & \texttt{25 50 44 46} &
+    Documents (factures, contrats, bons de commande) \\
+ZIP / Office & \texttt{50 4B 03 04} &
+    .docx, .xlsx, .pptx (format ZIP interne) \\
+PNG & \texttt{89 50 4E 47} &
+    Images~; captures d'écran \\
+EXE / DLL & \texttt{4D 5A} (``MZ'') &
+    Exécutables~; malware supprimé \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~9.4. Magic bytes des types courants}\end{center}
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={File carving avec Foremost et Scalpel}]
+# Foremost -- types cibles
+foremost -t jpg,pdf,docx,xlsx -i evidence.dd -o /output/carving/
+
+# Resultats
+ls /output/carving/
+# jpg/  pdf/  docx/  audit.txt
+
+cat /output/carving/audit.txt
+# nombre de fichiers, taille totale, positions
+
+# Scalpel -- configuration flexible
+scalpel -c /etc/scalpel/scalpel.conf evidence.dd
+    -o /output/scalpel/
+
+# Rechercher des strings dans l'espace non alloue
+strings -a evidence.dd
+    | grep -i "momo\|virement\|password\|iban"
+    > strings_suspects.txt
+\end{lstlisting}
+
+% ============================================================================
+\section{Synthèse~: Choisir ses Outils selon la Situation}
+\label{sec:choix-outils}
+% ============================================================================
+
+\begin{tableaucours}{p{4.5cm}p{3.5cm}p{4.0cm}}{%
+    \tableauHeader{Situation} &
+    \tableauHeader{Outil} &
+    \tableauHeader{Procédure}
+}
+PC allumé. capturer la RAM & FTK~Imager &
+    \texttt{File~$\to$~Capture Memory} \\
+PC éteint. image disque (Windows) & FTK~Imager &
+    \texttt{File~$\to$~Create Disk Image~$\to$~E01} \\
+PC éteint. image disque (Linux) & \texttt{dd} / \texttt{dcfldd} &
+    \texttt{dd if=/dev/sdb of=image.dd bs=65536} \\
+Android déverrouillé & ADB &
+    \texttt{adb pull /sdcard/} + backup \\
+iOS & iTunes & Sauvegarde~; réquisition Apple LEA \\
+Analyse RAM & Volatility~3 &
+    \texttt{windows.pslist}, \texttt{netscan}, \texttt{filescan} \\
+Analyse capture réseau & Wireshark &
+    Filtres \texttt{http}, \texttt{smtp}, \texttt{tcp.port} \\
+Récupérer fichiers supprimés & Foremost / Autopsy &
+    \texttt{foremost -t jpg,pdf} ou Deleted Files \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~9.5. Sélection des outils par situation}\end{center}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{Write blocker}~: activer AVANT de brancher l'evidence.
+          Matériel = gold standard~; logiciel acceptable si documenté
+          (activation + test de refus d'écriture).
+
+    \item \textbf{FTK~Imager}~: 7~étapes (write blocker~$\to$ type~$\to$
+          format E01~$\to$ métadonnées~$\to$ destination distincte~$\to$
+          lancer~$\to$ vérifier hash). RAM~: \texttt{File~$\to$~Capture
+          Memory} sur support externe.
+
+    \item \textbf{Format E01}~: standard~; compression~$\approx$~50\%~;
+          métadonnées embarquées~; vérification automatique.
+          DD~: compatible tous outils mais taille source = taille image.
+
+    \item \textbf{ADB}~: 4 prérequis (mode avion, options développeur,
+          débogage USB, autorisation). \texttt{adb pull /sdcard/} +
+          backup. Limites~: WhatsApp chiffré sans root. Gérer
+          la tension $\mathcal{C}$ vs $\mathcal{R}$ (proportionnalité).
+
+    \item \textbf{Volatility~3}~: trio de base~: \texttt{windows.pslist}
+          + \texttt{netscan} + \texttt{filescan}. Indicateurs suspects~:
+          \texttt{svchost.exe} enfant de \texttt{cmd.exe}~; connexion
+          ESTABLISHED port~4444.
+
+    \item \textbf{Wireshark}~: quatre filtres clés~: \texttt{ip.addr}
+          (isoler une IP)~; \texttt{smtp} (emails)~;
+          \texttt{http.request.method == "POST"} (formulaires)~;
+          \texttt{frame contains "password"}.
+
+    \item \textbf{File carving}~: \texttt{foremost -t jpg,pdf}~;
+          magic bytes~; utile quand la table de fichiers est corrompue
+          ou délibérément effacée.
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~9.1. Choix d'outil \niveaubase}]
+Pour chacune des situations, indiquez l'outil, la commande exacte et
+le format de sortie~:
+\begin{enumerate}[(a)]
+    \item PC Windows allumé saisi~: capturer la mémoire RAM.
+    \item SSD SATA extrait après extinction~: image forensique sous Linux.
+    \item Samsung Galaxy A32, Android~11, déverrouillé~: extraire photos
+          et liste des applications.
+    \item Image DD 500~Go~: récupérer tous les fichiers PDF supprimés.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~9.2. Analyse Volatility \niveaumoyen}]
+La sortie de \texttt{python3 vol.py -f incident.mem windows.pstree}
+donne (extrait)~:
+\begin{lstlisting}[language=bash_forensique]
+PID   PPID  Name              CreateTime
+1024  788   services.exe
+  1284 1024  svchost.exe      (7 instances normales)
+4892  4888  svchost.exe       2026-03-13 02:17:44
+  4888 4884  cmd.exe          2026-03-13 02:17:42
+    4884 4880  powershell.exe 2026-03-13 02:17:40
+      4880 4876  explorer.exe 2026-03-13 02:17:38
+\end{lstlisting}
+\begin{enumerate}[(a)]
+    \item Identifiez au moins deux anomalies dans cette arborescence.
+    \item Formulez une constatation forensique (sans interprétation)
+          pour chaque anomalie.
+    \item Quelles commandes Volatility lanceriez-vous ensuite~?
+          Dans quel ordre et pourquoi~?
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~9.3. Pipeline complet \niveauexpert}]
+Vous arrivez sur la scène MVOM~: serveur Dell PowerEdge R740,
+Windows~Server~2022, allumé, connecté au réseau. Le ransomware était
+actif il y a 20~minutes.
+\begin{enumerate}[(a)]
+    \item Rédigez le protocole d'acquisition complet dans l'ordre~:
+          chaque action, outil, commande exacte, justification forensique.
+    \item Le serveur a 128~Go de RAM. Quel support~? Durée estimée~?
+          Comment documenter la modification inévitable de la RAM~?
+    \item Appliquez la grille CRO à la décision d'effectuer une capture
+          Wireshark live de 60~minutes avant d'éteindre le serveur.
+    \item Rédigez les deux premières entrées du formulaire de custody.
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Transition.} La Partie~II est maintenant complète~: PIU
+(Ch.~\ref{chap:PIU}), Standards (Ch.~\ref{chap:meth-std}),
+Custody (Ch.~\ref{chap:custody}) et ce chapitre constituent
+le socle opérationnel de tout ce qui suit.
+
+La \textbf{Partie~III} (Chapitres~10--13) approfondit le cadre normatif~:
+normes globales ISO et Budapest, législation mondiale comparative,
+droit camerounais et africain, déontologie de l'investigateur. Elle
+n'est pas un doublon~: elle donne la \emph{légitimité juridique} qui
+confère toute leur valeur aux procédures techniques que vous maîtrisez
+maintenant.
+\end{boxinfo}

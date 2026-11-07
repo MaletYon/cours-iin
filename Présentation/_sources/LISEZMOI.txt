@@ -1,0 +1,12 @@
+Générateur des diapositives du cours IIN (SEC4031)
+
+- slides.py  : moteur de mise en page (charte UY1 / ENSPY, logos du dossier figures\logos du cours)
+- notes.py   : notes du présentateur rédigées pour chaque diapositive (visibles en mode présentation)
+- courses.py : métadonnées du cours et répartition des 30 séances de 2 heures
+- run.py     : construction ; exemples :  python run.py IIN 3   |   python run.py IIN all
+- specs/IIN/J00.py (vision globale), J01.py ... J30.py
+- check.ps1  : contrôle des débordements via PowerPoint
+
+Pied de page : « IIN · SEC4031 - maletyon@proton.me · jour i/30 · · ·   page i/N ».
+Prérequis : Python 3 avec python-pptx (pip install python-pptx).
+Les fichiers .pptx sont écrits dans le dossier Présentation du cours.

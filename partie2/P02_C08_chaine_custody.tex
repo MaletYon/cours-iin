@@ -1,0 +1,730 @@
+% ============================================================================
+% Fichier  : partie2/P02_C08_chaine_custody.tex
+% Titre    : Chaîne de Custody et Admissibilité
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- Juin 2026
+% ============================================================================
+
+\chapter{Chaîne de Custody et Admissibilité}
+\label{chap:custody}
+
+\epigraph{%
+    « La chaîne de custody ne commence pas quand vous ouvrez Autopsy.
+    Elle commence quand vous posez les yeux sur la scène de crime. »%
+}{Principe opérationnel de la forensique judiciaire}
+
+\niveauChapitre{Fondamental}{%
+    Aucun prérequis technique. Ce chapitre est essentiellement procédural
+    et juridique. Il est le plus important pour l'admissibilité des preuves
+    devant les tribunaux camerounais.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Définir la \termecle{chaîne de custody} et comprendre pourquoi
+          elle est la condition fondamentale de l'admissibilité d'une preuve.
+    \item Maîtriser le cadre légal camerounais~: articles~52--59 de la
+          \loicam{2010/012}~\cite{cameroun2010a} et leurs implications procédurales concrètes.
+    \item Remplir correctement le \termecle{formulaire de chaîne de custody}
+          pour chaque type d'evidence (PC, mobile, serveur, cloud).
+    \item Identifier et éviter les cinq erreurs de custody les plus
+          fréquentes qui provoquent le rejet des preuves à l'audience.
+    \item Appliquer le protocole de custody à chaque étape~:
+          collecte, transport, stockage, transfert, analyse, présentation.
+    \item Analyser chaque décision de custody à travers le Trilemme~CRO.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Le cas qui revient au début}
+% ============================================================================
+
+Le Prologue de ce cours s'est ouvert sur l'affaire MBONGO~: un dossier
+judiciaire complet (emails, captures d'écran, historique de navigation)
+anéanti en dix minutes d'audience parce que l'OPJ avait allumé le PC du suspect
+avant de l'acquérir. Tout le travail technique était irréprochable. La chaîne
+de custody était brisée.
+
+Ce chapitre est la réponse directe à cette affaire. Il ne s'agit pas de
+théorie~: chaque procédure décrite ici correspond à une erreur réelle qui
+a fait rejeter une preuve numérique devant un tribunal. Lire ce chapitre,
+c'est apprendre à ne pas répéter ces erreurs.
+
+\separateur
+
+% ============================================================================
+\section{Définition et Fondements de la Chaîne de Custody}
+\label{sec:custody-fondements}
+% ============================================================================
+
+\subsection{Définition formelle}
+
+\begin{boxdef}
+\textbf{Chaîne de custody}\index{chaîne de custody}
+(\textit{Chain of custody, chain of evidence}). Document chronologique
+enregistrant chaque personne ayant eu accès à une preuve, chaque action
+effectuée sur cette preuve, et chaque transfert de cette preuve entre
+deux personnes, depuis le moment de sa collecte jusqu'à sa présentation
+devant la juridiction compétente. La chaîne de custody est la condition
+nécessaire de l'\textbf{authenticité} d'une preuve~: elle permet de prouver
+que l'objet présenté à l'audience est bien celui qui a été saisi sur la
+scène de crime, sans modification.
+\end{boxdef}
+
+\subsection{Pourquoi la chaîne de custody prime sur l'analyse technique}
+
+Un rapport d'analyse de 100~pages, produit par les meilleurs outils du
+monde, avec des conclusions irréfutables sur le plan technique, perd toute
+valeur probatoire si on ne peut pas prouver que l'evidence analysée est
+bien celle saisie sur la scène de crime. Voici pourquoi~:
+
+\begin{enumerate}
+    \item \textbf{Le tribunal ne voit pas la scène de crime}~: il ne peut
+          évaluer les preuves que sur la base des documents qui lui sont
+          soumis. Si ces documents ne prouvent pas l'intégrité de la preuve,
+          la preuve n'existe pas juridiquement.
+    \item \textbf{La défense cherche la rupture}~: un avocat compétent
+          examinera systématiquement la chaîne de custody pour trouver
+          une période non documentée, un transfert non signé, un hash
+          non calculé. Une seule lacune peut suffire.
+    \item \textbf{La contamination peut être involontaire}~: dans l'affaire
+          MBONGO, l'OPJ n'avait pas l'intention de contaminer les preuves~;
+          il ne savait simplement pas que d'allumer le PC entraînerait
+          des modifications automatiques. L'ignorance ne protège pas.
+\end{enumerate}
+
+\begin{boxCRO}
+\textbf{Analyse CRO. La chaîne de custody}
+
+La chaîne de custody est le mécanisme qui maximise $\mathcal{O}$
+(opposabilité) en construisant une preuve que l'evidence n'a pas été
+altérée. Elle a un coût~: $\mathcal{R}$ peut être légèrement réduite
+(certaines preuves volatiles se perdent pendant le temps de documentation)
+et $\mathcal{C}$ est engagée (la documentation révèle qui a eu accès).
+
+Ce coût est non seulement acceptable, il est \emph{constitutif}~: une preuve
+dont la custody n'est pas documentée est une preuve qui n'existe pas
+juridiquement, quelle que soit sa valeur technique.
+
+\cro{$\downarrow$ assumé}{$\sim$ légère contrainte}{$\uparrow\uparrow$ maximisé}
+\end{boxCRO}
+
+% ============================================================================
+\section{Cadre Légal Camerounais de la Custody}
+\label{sec:custody-legal}
+% ============================================================================
+
+\subsection{Articles~52--59 de la Loi~2010/012~: les perquisitions numériques}
+
+La \loicam{2010/012} consacre ses articles~52--59 aux perquisitions et saisies
+en matière de cybersécurité. Ces articles définissent le cadre légal de la
+collecte de preuves numériques au Cameroun. Leur maîtrise est obligatoire
+pour tout OPJ intervenant sur une scène numérique.
+
+\begin{boxjuris}
+\textbf{Article~52. Autorisation de perquisition~:}
+\begin{quote}
+Les officiers de police judiciaire peuvent, dans le cadre de la recherche des
+infractions \textit{[...]} procéder à la perquisition des systèmes informatiques
+et des réseaux de communications électroniques, ainsi qu'à la saisie des données
+informatiques qui s'y trouvent, sur autorisation du procureur de la République
+ou du juge d'instruction.
+\end{quote}
+\textbf{Implication opérationnelle~:} toute perquisition numérique exige une
+autorisation préalable du procureur ou du juge. Une investigation menée sans
+cette autorisation produit des preuves irrecevables, quelles que soient leur
+qualité technique et leur pertinence.
+\end{boxjuris}
+
+\begin{boxjuris}
+\textbf{Article~53, alinéa~1. Copies en présence des parties~:}
+\begin{quote}
+Les perquisitions \textit{[...]} peuvent porter sur des copies réalisées en
+présence des personnes qui assistent à la perquisition.
+\end{quote}
+\textbf{Implication opérationnelle~:} l'acquisition forensique (création de
+l'image E01) doit être réalisée en présence du détenteur ou de son représentant.
+C'est la traduction légale du rôle DEFR d'ISO~27037~\cite{iso27037}~: l'acquisition est un
+acte public, transparent, documenté. L'absence des parties pendant l'acquisition
+peut suffire à faire contester l'authenticité.
+\end{boxjuris}
+
+\begin{boxjuris}
+\textbf{Article~55. Saisie des données~:}
+\begin{quote}
+Les données informatiques saisies sont immédiatement copiées et une copie
+est remise contre décharge au détenteur. Le support original est restitué
+après réalisation de la copie, sauf décision contraire du juge compétent.
+\end{quote}
+\textbf{Implication opérationnelle~:} en règle générale, l'OPJ acquiert une
+copie forensique (image E01) et restitue l'original. Il ne \emph{saisit}
+l'original que sur décision judiciaire. Cela signifie que le hash de
+l'original doit être calculé \emph{avant} sa restitution et conservé comme
+référence d'intégrité.
+\end{boxjuris}
+
+\begin{boxjuris}
+\textbf{Article~57. Réquisitions aux opérateurs~:}
+\begin{quote}
+Les officiers de police judiciaire peuvent requérir tout opérateur de
+communications électroniques, tout fournisseur de services de communication
+au public en ligne \textit{[...]} de lui communiquer les données techniques
+relatives à l'identification des numéros d'abonnement ou de connexion,
+les données relatives au trafic \textit{[...]}.
+\end{quote}
+\textbf{Implication opérationnelle~:} les logs d'opérateur (MTN, Orange,
+Camtel) et les données des plateformes (Meta, Google, WhatsApp) peuvent être
+obtenus par réquisition judiciaire. La réponse de l'opérateur constitue une
+preuve numérique soumise aux mêmes règles de custody que toute autre evidence.
+\end{boxjuris}
+
+\subsection{Tableau de correspondance~: Loi~2010/012 et ISO~27037}
+
+\begin{tableaucours}{p{3.2cm}p{5.5cm}p{4.0cm}}{%
+    \tableauHeader{Article Loi~2010} &
+    \tableauHeader{Exigence légale} &
+    \tableauHeader{Correspondance ISO~27037}
+}
+Art.~52 & Autorisation judiciaire préalable &
+    QG1 du PIU (mandat validé) \\
+Art.~53 al.~1 & Copie réalisée en présence des parties &
+    DEFR~: acquisition transparente et documentée \\
+Art.~55 & Copie immédiate, original restitué & Hash avant restitution~;
+    principe 3-2-1 (E5 PIU) \\
+Art.~57 & Réquisitions aux opérateurs &
+    Collection phase NIST SP~800-86~\cite{nist80086} \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~8.1. Correspondance Loi~2010/012
+et standards forensiques internationaux}
+\end{center}
+
+% ============================================================================
+\section{Le Formulaire de Chaîne de Custody~: Anatomie et Utilisation}
+\label{sec:custody-formulaire}
+% ============================================================================
+
+\subsection{Principe général~: le formulaire commence au premier contact}
+
+Le formulaire de custody ne se remplit pas après l'acquisition. Il commence
+au moment où l'OPJ ou l'investigateur numérique pose les yeux sur l'evidence, avant même de la toucher.
+La première entrée est la \textbf{description visuelle initiale}, réalisée
+sans manipulation. Toutes les entrées suivantes doivent être horodatées et
+signées à mesure qu'elles se produisent, pas reconstituées a posteriori.
+
+\subsection{Formulaire type. version académique complète}
+
+\begin{boxcustody}
+\begin{center}
+{\bfseries\color{CouleurPrimaire} FORMULAIRE DE CHAÎNE DE CUSTODY}\\[0.5ex]
+{\small République du Cameroun -- Unité de Police Judiciaire Fictive -- Direction des Investigations}
+\end{center}
+\vspace{0.5ex}
+\begin{tabular}{p{4cm}p{3.5cm}p{4cm}}
+\textbf{N° de dossier~:} & \underline{\hspace{3cm}} &
+\textbf{N° d'evidence~:} \underline{\hspace{2cm}} \\[0.6ex]
+\textbf{Affaire~:} & \multicolumn{2}{l}{\underline{\hspace{7cm}}} \\[0.6ex]
+\textbf{Date de collecte~:} & \underline{\hspace{3cm}} &
+\textbf{Heure~:} \underline{\hspace{2cm}} \\[0.6ex]
+\end{tabular}
+\vspace{0.5ex}
+\textbf{Description physique de l'evidence~:}\\
+Marque~: \underline{\hspace{3.5cm}}
+Modèle~: \underline{\hspace{3.5cm}}
+N° de série~: \underline{\hspace{3.5cm}}\\
+Couleur~: \underline{\hspace{3cm}}
+État~: \underline{\hspace{5cm}} \\[0.5ex]
+\textbf{Lieu de collecte~:} \underline{\hspace{6cm}}\\[0.5ex]
+\textbf{Collecté par~:} Nom~: \underline{\hspace{3cm}}
+Grade/matricule~: \underline{\hspace{3cm}}\\[0.5ex]
+\textbf{Hash MD5 de l'original~:}\\
+\texttt{\underline{\hspace{10cm}}}\\[0.3ex]
+\textbf{Hash SHA-256 de l'original~:}\\
+\texttt{\underline{\hspace{10cm}}}\\[0.5ex]
+\textbf{Hash MD5 de l'image forensique~:}\\
+\texttt{\underline{\hspace{10cm}}}\\[0.3ex]
+\textbf{Hash SHA-256 de l'image forensique~:}\\
+\texttt{\underline{\hspace{10cm}}}\\[0.5ex]
+\textbf{Intégrité vérifiée~:}
+$\square$~OUI: les hash correspondent
+\quad $\square$~NON: acquisition à reprendre\\[0.5ex]
+\textbf{Outil d'acquisition~:} Nom~: \underline{\hspace{3cm}}
+Version~: \underline{\hspace{2cm}}
+OS hôte~: \underline{\hspace{2.5cm}}\\[0.8ex]
+\textbf{TRANSFERTS DE CUSTODY~:}\\[0.3ex]
+\begin{tabular}{p{2.8cm}p{2.8cm}p{2.0cm}p{3.5cm}}
+De & À & Date/Heure & Raison \\
+\underline{\hspace{2.6cm}} & \underline{\hspace{2.6cm}} &
+\underline{\hspace{1.8cm}} & \underline{\hspace{3.3cm}} \\[0.4ex]
+\underline{\hspace{2.6cm}} & \underline{\hspace{2.6cm}} &
+\underline{\hspace{1.8cm}} & \underline{\hspace{3.3cm}} \\[0.4ex]
+\underline{\hspace{2.6cm}} & \underline{\hspace{2.6cm}} &
+\underline{\hspace{1.8cm}} & \underline{\hspace{3.3cm}} \\
+\end{tabular}
+\\[0.8ex]
+\textbf{Signature du collecteur~:} \underline{\hspace{5cm}}
+\quad Date~: \underline{\hspace{2.5cm}}
+\end{boxcustody}
+
+\subsection{Champ par champ~: comment remplir correctement}
+
+\begin{tableaucours}{p{3.5cm}p{8.0cm}}{%
+    \tableauHeader{Champ} &
+    \tableauHeader{Comment le remplir, erreurs fréquentes}
+}
+N° de dossier & Numéro du parquet ou de l'unité~; cohérent avec tous les
+    documents du dossier. Ne jamais laisser vide. \\
+N° d'evidence & Numérotation séquentielle dans le dossier (EV-001, EV-002~\ldots).
+    Ne jamais renuméroter un bien déjà enregistré. \\
+Description physique & Suffisamment précise pour qu'un tiers puisse
+    identifier l'objet sans l'avoir vu~: marque, modèle, numéro de série,
+    couleur, rayures visibles, caches manquants. \\
+Hash MD5 + SHA-256 & Calculer les DEUX sur l'original AVANT acquisition~;
+    puis les DEUX sur l'image APRÈS acquisition. Les conserver séparément
+    de l'image (sur papier et en fichier texte chiffré). \\
+Intégrité vérifiée & Cocher OUI uniquement si hash source = hash image.
+    Si NON~: stopper, identifier la cause, recommencer l'acquisition. \\
+Outil d'acquisition & Nom \emph{exact} + version \emph{exacte}.
+    ``FTK Imager'' n'est pas suffisant. ``FTK Imager 4.7.3.81 sur
+    Windows~11 Pro~22H2'' est correct. \\
+Transferts & Chaque transfert, même temporaire, doit être documenté~:
+    remise au laboratoire, transport au greffe, consultation par un avocat,
+    retour pour analyse complémentaire. \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~8.2. Guide de remplissage champ par champ}
+\end{center}
+
+% ============================================================================
+\section{Protocole de Custody par Type d'Evidence}
+\label{sec:custody-protocoles}
+% ============================================================================
+
+\subsection{PC allumé~: préserver avant de saisir}
+
+\begin{boxPNC}
+\textbf{Protocole. PC allumé (ordre impératif)}
+
+\begin{enumerate}
+    \item \textbf{Photographier l'écran} dans son état actuel avant tout geste.
+          Horodatage visible (barre des tâches + montre de l'OPJ ou l'investigateur numérique en main).
+    \item \textbf{Capturer la RAM}~: FTK~Imager~$\to$
+          \texttt{File~$\to$~Capture Memory}. Support de destination~:
+          clé USB distincte, \emph{jamais le disque interne}.
+    \item \textbf{Documenter les connexions réseau}~: \texttt{netstat -ano}
+          (CMD) ou \texttt{Get-NetTCPConnection} (PowerShell). Photographier.
+    \item \textbf{Éteindre proprement} via le menu Windows.
+          \emph{Exception}~: si destruction de données en cours
+          (chiffrement actif, suppression rapide), débrancher immédiatement
+          et documenter le motif.
+    \item \textbf{Activer le write blocker} logiciel~:
+          \begin{lstlisting}[language=bash_forensique]
+reg add HKLM\SYSTEM\CurrentControlSet\Control\StorageDevicePolicies
+    /v WriteProtect /t REG_DWORD /d 1 /f
+          \end{lstlisting}
+    \item \textbf{Acquérir avec FTK~Imager}~: format E01, métadonnées
+          complètes (N° dossier, N° evidence, examinateur).
+    \item \textbf{Calculer et documenter les hash} MD5 et SHA-256.
+          Remplir le formulaire. Sceller l'original.
+\end{enumerate}
+\end{boxPNC}
+
+\subsection{PC éteint~: ne pas allumer}
+
+\begin{boxPNC}
+\textbf{Protocole. PC éteint}
+
+\begin{enumerate}
+    \item \textbf{Ne pas allumer.} Appuyer sur le bouton Power contamine
+          la scène avant même que l'OS soit chargé (BIOS, UEFI, Windows
+          Write Cache~: tous modifient des données).
+    \item Photographier le matériel sous tous les angles, câbles en place.
+    \item Activer le write blocker et retirer physiquement le disque dur
+          (ou SSD) pour connexion sur le poste d'acquisition.
+    \item Acquérir, hasher, documenter. Sceller l'original.
+    \item Si le BIOS requiert un démarrage pour identifier le modèle~:
+          démarrer sur un Live CD forensique (SIFT, Kali) qui ne monte
+          pas les partitions Windows automatiquement.
+\end{enumerate}
+\end{boxPNC}
+
+\subsection{Téléphone mobile~: mode avion avant tout}
+
+\begin{boxPNC}
+\textbf{Protocole. Téléphone mobile}
+
+\begin{center}\textbf{RÈGLE~1~: MODE AVION EN PREMIER}\end{center}
+
+\begin{enumerate}
+    \item \textbf{Téléphone allumé}~: mode avion immédiat (coupe les signaux
+          sans effacer les données). Si écran inaccessible~: sac de Faraday
+          ou enveloppe d'aluminium ménager hermétique.
+    \item \textbf{Ne pas brancher sur un chargeur} avant isolation~: le
+          branchement active la synchronisation (certains appareils déclenchent
+          une sauvegarde automatique qui modifie des données).
+    \item \textbf{Documenter}~: N° IMEI (\texttt{*\#06\#} ou sous la batterie),
+          opérateur, état de l'écran, niveau de batterie estimé.
+    \item \textbf{Acquisition ADB (Android, code connu)}~:
+          \begin{lstlisting}[language=bash_forensique]
+# Vérifier connexion et droits
+adb devices
+# Extraction du système de fichiers (niveau logique)
+adb pull /sdcard/ ./extraction/sdcard/
+# Liste des applications installées
+adb shell pm list packages -f > apps_list.txt
+# Sauvegarde complète (si autorisée)
+adb backup -all -apk -shared -f backup_mbongo.ab
+          \end{lstlisting}
+    \item \textbf{Téléphone chiffré, code inconnu}~: conserver éteint,
+          transmettre à un laboratoire spécialisé. Ne pas tenter de bruteforce
+          sans autorisation judiciaire (art.~52 \loicam{2010/012}).
+\end{enumerate}
+\end{boxPNC}
+
+\subsection{Données cloud et réponses opérateurs}
+
+Les preuves obtenues par réquisition (art.~57 \loicam{2010/012}) (logs
+d'opérateur MTN, réponses Meta/Google, journaux CloudTrail) sont
+des preuves numériques soumises aux mêmes exigences de custody~:
+
+\begin{enumerate}
+    \item \textbf{Documenter la réquisition}~: numéro, date, autorité
+          émettrice, périmètre demandé.
+    \item \textbf{Documenter la réception}~: date de réception de la
+          réponse, nom du fichier, format.
+    \item \textbf{Calculer immédiatement le hash} du fichier reçu.
+    \item \textbf{Conserver la chaîne documentaire complète}~:
+          réquisition + accusé de réception + réponse + hash.
+    \item \textbf{Ne pas modifier le fichier reçu}~: travailler sur une
+          copie. Le fichier original reste en custody scellée.
+\end{enumerate}
+
+% ============================================================================
+\section{Les Cinq Erreurs Fatales de Custody}
+\label{sec:custody-erreurs}
+% ============================================================================
+
+Ces cinq erreurs sont les plus fréquentes dans les dossiers rejetés par les
+tribunaux camerounais. Chacune correspond à une règle de custody violée.
+
+\subsection{Erreur 1~: allumer le PC suspect sans acquisition préalable}
+
+\begin{boxalert}
+\textbf{L'erreur de l'affaire MBONGO.}
+
+Un OPJ allume l'ordinateur du suspect ``pour constater les faits''. Windows
+monte les partitions, crée des fichiers temporaires (\texttt{pagefile.sys},
+\texttt{hiberfil.sys}), met à jour le registre, modifie les horodatages d'accès
+NTFS. Le hash du disque avant et après allumage diffère. La preuve est
+contaminée.
+
+\textbf{Règle absolue~:} sur un PC éteint, ne jamais allumer avant d'avoir
+activé le write blocker. Sur un PC allumé, capturer la RAM en premier,
+\emph{puis} éteindre proprement, \emph{puis} acquérir le disque.
+\end{boxalert}
+
+\subsection{Erreur 2~: travailler sur l'evidence originale}
+
+\begin{boxalert}
+\textbf{Analyser directement sur le disque original ou sur l'image sans
+write blocker.}
+
+Autopsy modifie-t-il les données en les lisant~? Non, si l'image E01 est
+montée en lecture seule. Mais si l'OPJ ou l'investigateur numérique ouvre l'image avec Windows Explorer,
+il crée des fichiers \texttt{Thumbs.db} et met à jour les horodatages d'accès.
+
+\textbf{Règle~:} toute analyse doit être conduite~:
+\begin{enumerate}
+    \item sur une \emph{copie} de l'image forensique~;
+    \item montée en \emph{lecture seule} (Autopsy le fait automatiquement)~;
+    \item l'original physique est scellé et inaccessible sauf sur autorisation.
+\end{enumerate}
+\end{boxalert}
+
+\subsection{Erreur 3~: le transfert non documenté}
+
+\begin{boxalert}
+\textbf{``J'ai confié l'ordinateur à mon collègue pendant 2 heures.''}\\
+Ce transfert non documenté crée une période de custody inconnue.
+L'avocat de la défense peut arguer que l'ordinateur a été manipulé
+pendant ces deux heures.
+
+\textbf{Règle~:} tout transfert d'une evidence entre deux personnes, même
+temporaire, même entre collègues du même service, est documenté~: date,
+heure, raison, signatures des deux parties. Si le transfert a eu lieu sans
+documentation~: documenter le fait du transfert a posteriori en indiquant
+les circonstances, et re-vérifier l'intégrité par hachage avant et après.
+\end{boxalert}
+
+\subsection{Erreur 4~: oublier les versions d'outils}
+
+\begin{boxalert}
+\textbf{``Analysé avec Autopsy'' dans le rapport.}
+
+L'avocat demande~: quelle version~? Quel système d'exploitation~? Si
+l'analyste ne le sait pas, l'expert de la partie adverse peut arguer que
+la version utilisée avait un bug connu qui produisait de faux positifs sur
+ce type de fichier.
+
+\textbf{Règle~:} documenter systématiquement dans le formulaire de custody~:
+\begin{itemize}
+    \item Nom de l'outil (ex.~: FTK Imager)
+    \item Version exacte (ex.~: 4.7.3.81)
+    \item Système d'exploitation hôte (ex.~: Windows~11 Pro~22H2, build 22621)
+    \item Date d'utilisation
+\end{itemize}
+\end{boxalert}
+
+\subsection{Erreur 5~: les hash non calculés ou non conservés séparément}
+
+\begin{boxalert}
+\textbf{``Le hash est dans l'image E01.''}\\
+Insuffisant. Si l'image E01 est l'objet de la contestation, le hash qui y
+est intégré n'est pas une preuve indépendante.
+
+\textbf{Règle~: les hash doivent être conservés séparément de l'image,
+en au moins deux endroits distincts~:}
+\begin{enumerate}
+    \item Manuscrit sur le formulaire papier de custody (signé et daté)~;
+    \item Dans un fichier texte chiffré sur un support distinct~;
+    \item Optionnel niveau avancé~: horodatage blockchain ou tiers de confiance.
+\end{enumerate}
+La règle~: si demain l'image E01 disparaît, les hash doivent subsister
+ailleurs pour permettre de certifier une copie de sauvegarde.
+\end{boxalert}
+
+% ============================================================================
+\section{Custody et Scénario MBONGO~: l'Investigation Correcte}
+\label{sec:custody-mbongo}
+% ============================================================================
+
+Voici la reconstitution complète et correcte de l'affaire MBONGO du Prologue,
+avec le formulaire de custody rempli correctement.
+
+\begin{boxscenario}{Affaire MBONGO. Formulaire de custody complet}
+\textbf{Evidence EV-001. PC portable Windows de MBONGO Joseph}
+
+\begin{tabular}{p{4cm}p{3cm}p{4cm}}
+\textbf{N° dossier~:} & DOS-2026-034 &
+\textbf{N° evidence~:} EV-001 \\
+\textbf{Date collecte~:} & 15/03/2026 & \textbf{Heure~:} 14h22 \\
+\end{tabular}
+
+\textbf{Description~:} Dell Inspiron 15 3000, S/N GF8T3Y2, noir, rayure 3~cm
+sur le bord gauche, autocollant ``SONATRAV'' en bas à gauche.\\
+
+\textbf{Lieu~:} Bureau comptabilité, 3\textsuperscript{e} étage, SONATRAV SA,
+Akwa, Douala.\\
+
+\textbf{Collecté par~:} OPJ NKENG Éric, Matricule FICTIF 4471-B, DCPJ Douala.\\
+
+\textbf{État initial~:} PC allumé, déverrouillé, fenêtre navigateur Edge
+ouverte sur portail UBA.\\
+
+\textbf{Actions pré-acquisition~:}
+\begin{enumerate}
+    \item 14h22. Photographies de l'écran (8 photos, horodatées).
+    \item 14h24. Capture RAM avec FTK~Imager~4.7.3.81~:
+          fichier \texttt{MBONGO\_RAM\_20260315.mem} (16~Go).
+    \item 14h41. \texttt{netstat -ano} documenté (2~connexions ESTABLISHED).
+    \item 14h43. Arrêt propre Windows.
+    \item 14h50. Write blocker logiciel activé (registre~: WriteProtect=1).
+\end{enumerate}
+
+\textbf{Acquisition~:} FTK~Imager~4.7.3.81, Windows~11 Pro~22H2, format~E01.\\
+Durée~: 47~minutes (15h03--15h50). Support destination~: HDD externe 2~To,
+S/N WD-WXL1A89K3456.\\
+
+\hash{MD5 original}{a3f7b29c8e1d4f56a2c8b7e3d9f0a142}\\
+\hash{SHA-256 original}{3d9c8f2b7e4a1c6d5f8e2b9a7c4d3f1e6b8a2c5d7f9e1b3a4c6d8f0e2b4a6c81}\\
+\hash{MD5 image}{a3f7b29c8e1d4f56a2c8b7e3d9f0a142}\\
+\hash{SHA-256 image}{3d9c8f2b7e4a1c6d5f8e2b9a7c4d3f1e6b8a2c5d7f9e1b3a4c6d8f0e2b4a6c81}\\
+
+\textbf{Intégrité~:} $\checkmark$~OUI: hash identiques. Acquisition valide.\\
+
+\textbf{Scellé~:} sachet inviolable n°~DL-2026-0347, 15h52, signature OPJ NKENG.\\
+
+\textbf{Transfert~:} De NKENG~$\to$~Dépôt DCPJ Douala.
+Date~: 15/03/2026 17h10. Raison~: stockage sécurisé. Signatures : NKENG +
+Responsable dépôt OPJ BIYA Marie.
+\end{boxscenario}
+
+\begin{boxscenario}{Affaire MBONGO -- Evidence EV-002 -- Téléphone Android}
+\textbf{Evidence EV-002. Samsung Galaxy A53 de MBONGO Joseph}
+
+\textbf{Actions~:}
+\begin{enumerate}
+    \item 14h23. Mode avion activé (téléphone déverrouillé, écran actif).
+    \item 14h23. Photographié~: IMEI~: 357128094771034 visible sur l'écran
+          (\texttt{*\#06\#}).
+    \item 15h55. Extraction ADB~: \texttt{adb pull /sdcard/}
+          (\texttt{1~447 fichiers extraits}).
+    \item 16h10. Hash SHA-256 du répertoire d'extraction~: calculé.
+    \item 16h12. Scellé~: sachet inviolable n°~DL-2026-0348.
+\end{enumerate}
+
+L'ensemble de l'extraction est intégré au dossier avec le formulaire de
+custody EV-002 signé par OPJ NKENG.
+\end{boxscenario}
+
+% ============================================================================
+\section{Custody et Admissibilité~: le Chemin vers le Tribunal}
+\label{sec:custody-admissibilite}
+% ============================================================================
+
+\subsection{Les quatre conditions d'admissibilité revisitées}
+
+La formule d'admissibilité posée au Chapitre~\ref{chap:fond-theo} prend ici
+son sens concret~:
+
+\begin{equation}
+\mathrm{Admissible}(P) \iff
+\underbrace{\mathrm{Légale}(P)}_{\text{art.~52--59}}
+\;\wedge\;
+\underbrace{\mathrm{Intègre}(P)}_{\text{hash identiques}}
+\;\wedge\;
+\underbrace{\mathrm{Authentique}(P)}_{\text{custody continue}}
+\;\wedge\;
+\underbrace{\mathrm{Pertinente}(P)}_{\text{lien avec les faits}}
+\end{equation}
+
+\begin{tableaucours}{p{2.8cm}p{4.5cm}p{5.0cm}}{%
+    \tableauHeader{Condition} &
+    \tableauHeader{Ce que le tribunal vérifie} &
+    \tableauHeader{Document qui le prouve}
+}
+Légalité & Autorisation judiciaire préalable (art.~52)~;
+    absence d'actes coercitifs illicites &
+    Réquisition ou mandat judiciaire signé \\
+Intégrité & Hash source = hash image~;
+    aucune modification après acquisition &
+    Formulaire custody + hash conservés séparément \\
+Authenticité & Chaîne de custody continue depuis la scène~;
+    chaque transfert documenté &
+    Formulaire custody complet + signatures \\
+Pertinence & Lien démontré entre l'evidence et les faits ~;
+    rapport forensique documentant les constatations &
+    Rapport forensique (section Constatations) \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~8.3. Conditions d'admissibilité
+et documents probatoires correspondants}
+\end{center}
+
+\subsection{Ce que l'avocat de la défense cherche et comment s'y préparer}
+
+Un avocat de la défense compétent examinera systématiquement~:
+\begin{enumerate}
+    \item \textbf{L'autorisation judiciaire}~: est-elle antérieure à l'acquisition~?
+          Son périmètre couvre-t-il ce qui a été saisi~?
+    \item \textbf{Les hash}~: sont-ils calculés sur l'original avant acquisition~?
+          Sont-ils identiques entre original et image~?
+    \item \textbf{Les périodes non documentées}~: y a-t-il un moment où l'evidence
+          n'était pas en custody documentée~? Qui l'avait~? Où~?
+    \item \textbf{Les versions d'outils}~: les outils utilisés avaient-ils des
+          bugs connus sur ce type de fichier à cette date~?
+    \item \textbf{La présence des parties}~: l'acquisition a-t-elle été réalisée
+          en présence du détenteur (art.~53 al.~1)~?
+\end{enumerate}
+
+Pour chacun de ces points, la réponse est dans le formulaire de custody.
+Un formulaire complet et signé est la meilleure défense contre toutes
+ces attaques.
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item La \textbf{chaîne de custody} est la condition de l'\textbf{authenticité}~:
+          elle prouve que l'evidence présentée au tribunal est bien celle saisie
+          sur la scène, sans modification.
+
+    \item En droit camerounais~: art.~52 (\textbf{autorisation judiciaire}),
+          art.~53 al.~1 (\textbf{acquisition en présence des parties}),
+          art.~55 (\textbf{copie + restitution de l'original}),
+          art.~57 (\textbf{réquisition aux opérateurs}).
+
+    \item Le \textbf{formulaire de custody} commence au premier contact,
+          pas après l'acquisition. Champs obligatoires~: description physique,
+          hash MD5+SHA-256 (original ET image), outil+version, tous les transferts.
+
+    \item \textbf{Cinq erreurs fatales}~: allumer le PC sans write blocker~;
+          travailler sur l'original~; transfert non documenté~; version d'outil
+          non renseignée~; hash non conservés séparément de l'image.
+
+    \item \textbf{Les hash doivent être conservés séparément}~: sur le formulaire
+          papier signé ET dans un fichier texte sur support distinct~; jamais
+          seulement dans l'image E01.
+
+    \item La chaîne de custody maximise $\mathcal{O}$ (opposabilité) au coût
+          d'une légère contrainte sur $\mathcal{C}$ et $\mathcal{R}$~; ce coût
+          est non seulement acceptable mais constitutif de l'admissibilité.
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~8.1. Diagnostic de custody \niveaubase}]
+Pour chacune des situations suivantes, identifiez la violation de custody
+et son impact sur l'admissibilité~:
+\begin{enumerate}[(a)]
+    \item Un OPJ saisit un téléphone Android, le branche sur son chargeur
+          pendant 20~minutes en attendant les renforts, puis l'emballe.
+    \item Le rapport forensique indique~: \textit{``Hash SHA-256~:
+          3d9c8f2b...''}. Pas de hash MD5. Pas de hash de l'original.
+    \item L'evidence a été transportée du dépôt au laboratoire par un
+          OPJ~; aucune entrée dans le formulaire pour ce transport.
+    \item L'analyste a ouvert l'image E01 avec Windows Explorer pour
+          naviguer rapidement dans les fichiers avant d'ouvrir Autopsy.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~8.2. Remplissage de formulaire \niveaumoyen}]
+L'Opération TANGUE (Chapitre~\ref{chap:gr-affaires}) a produit les
+éléments suivants lors de l'arrestation de BELLO Armand~:
+\begin{itemize}
+    \item PC portable HP EliteBook 840, S/N CND7382741, allumé,
+          verrouillé par code PIN~;
+    \item Clé USB Kingston 16~Go bleue, S/N non visible sur l'objet,
+          branchée dans le PC~;
+    \item Téléphone Samsung Galaxy S22, allumé, déverrouillé.
+\end{itemize}
+Rédigez le formulaire de custody pour l'evidence EV-001 (PC HP) en
+détaillant~: (a)~les actions pré-acquisition dans l'ordre correct,
+(b)~les informations à remplir champ par champ, (c)~le protocole
+d'acquisition compte tenu de l'état du PC (allumé, verrouillé).
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~8.3. Défense en contre-interrogatoire \niveauexpert}]
+Vous êtes l'expert forensique dans l'affaire MVOM. L'avocat de TRANSBOIS SA
+(qui cherche à contester votre analyse pour réduire sa responsabilité)
+vous pose les questions suivantes~:
+\begin{enumerate}[(a)]
+    \item \textit{``Comment pouvez-vous prouver que l'image E01 que vous avez
+          analysée est bien celle du serveur de TRANSBOIS et non une image
+          que vous avez préparée~?''}
+    \item \textit{``Le serveur était allumé lors de la saisie. Quelle
+          modification du disque a été causée par les actions que vous avez
+          menées avant d'acquérir l'image~?''}
+    \item \textit{``Vous avez utilisé Volatility~3 pour analyser la RAM.
+          Cette version avait-elle des bugs connus en mars~2026 sur les
+          systèmes Windows~Server~2022~?''}
+\end{enumerate}
+Rédigez vos réponses telles que vous les donneriez à l'audience.
+Pour chaque réponse, identifiez le document de custody qui vous permet
+de l'étayer.
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Transition.} Le Chapitre~\ref{chap:acq} approfondit les
+\textbf{outils et techniques d'acquisition}~: FTK~Imager en détail,
+formats d'image forensique (E01, DD, AFF), write blockers matériels et
+logiciels, acquisition de mémoire RAM, et acquisition mobile avancée.
+C'est la mise en \oe uvre technique de ce que ce chapitre a établi
+sur le plan procédural.
+\end{boxinfo}

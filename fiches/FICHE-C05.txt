@@ -1,0 +1,234 @@
+NDAP SUKULU · IIN · fiche FICHE-C05
+Chapitre 5 : État de l'art et défis contemporains
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Laquelle fait partie des cinq ruptures qui reconfigurent la discipline en 2025 ?
+      a) L'entrée de l'IA dans la chaîne d'analyse
+      b) La disparition des disques durs
+      c) L'abandon du hachage
+      d) La fin de l'OSINT
+
+ 2. Quel est le bon usage de l'IA en investigation, selon le chapitre ?
+      a) Le triage et l'orientation, jamais la preuve primaire
+      b) La preuve autonome sans vérification humaine
+      c) Le remplacement complet de l'analyste
+      d) La signature des scellés
+
+ 3. Quelle approche de classification de malware est robuste à l'obfuscation mais plus lente ?
+      a) L'analyse dynamique, fondée sur le comportement
+      b) L'analyse statique seule
+      c) Le simple calcul d'un hash
+      d) La lecture du nom de fichier
+
+ 4. Qu'est-ce que la crise d'opposabilité de l'IA forensique ?
+      a) Une conclusion issue d'un modèle opaque est difficile à défendre devant un tribunal
+      b) L'IA est trop lente
+      c) L'IA coûte trop cher
+      d) L'IA ne détecte aucun malware
+
+ 5. Que désigne le voice cloning ?
+      a) La reproduction convaincante de la voix d'une personne à partir d'un court échantillon
+      b) Le chiffrement de la voix
+      c) La compression audio
+      d) La suppression du bruit
+
+ 6. Que révèle l'analyse spectrale (FFT) d'une image générée par GAN ?
+      a) Des signatures en croix ou en échiquier dans le domaine fréquentiel
+      b) Le nom de l'auteur
+      c) Les coordonnées GPS
+      d) Le mot de passe
+
+ 7. Que propose le standard C2PA face aux deepfakes ?
+      a) Une signature cryptographique de provenance apposée à la capture
+      b) Un antivirus
+      c) Un pare-feu
+      d) Un algorithme de compression
+
+ 8. L'EXIF d'une photo prétendue originale indique Software GIMP. Comment lire cet élément ?
+
+      a) Un signe de retouche possible, à investiguer
+      b) Une preuve d'authenticité
+      c) Une donnée sans intérêt
+      d) La localisation de la photo
+
+ 9. Que désigne le défi de multitenancy en forensique cloud ?
+      a) Les données d'un client sont colocalisées avec celles d'autres clients
+      b) Les instances durent plusieurs années
+      c) Une seule juridiction s'applique
+      d) Le client contrôle toute la rotation des logs
+
+10. Pourquoi l'éphémérité complique-t-elle la forensique cloud ?
+      a) Les instances et les logs disparaissent selon des rotations non contrôlées par l'investigateur
+      b) Les instances sont éternelles
+      c) Les logs sont toujours conservés
+      d) Le cloud n'a pas de logs
+
+11. Quel texte américain de 2018 donne aux autorités US un accès aux données hébergées à l'étranger ?
+      a) Le CLOUD Act
+      b) Le RGPD
+      c) La Convention de Budapest
+      d) La loi 2010/012
+
+12. Quel outil OSINT recherche un pseudonyme sur de nombreuses plateformes ?
+      a) Sherlock
+      b) Volatility
+      c) FTK Imager
+      d) Wireshark
+
+13. Quel outil sert à cartographier les connexions entre entités d'une enquête OSINT ?
+      a) Maltego
+      b) Autopsy
+      c) ssdeep
+      d) dnstwist
+
+14. Que désignent les lettres du framework DICES ?
+      a) Doctrine, Infrastructure, Capacités, Écosystème, Stratégie
+      b) Données, Images, Cloud, Emails, Serveurs
+      c) Détection, Investigation, Collecte, Expertise, Scellement
+      d) Disque, Internet, Code, Entropie, Sécurité
+
+15. Lequel est cité comme un atout réel du Cameroun ?
+      a) Un cadre législatif complet et récent, avec les lois 2010/012 et 2024/017
+      b) Un laboratoire forensique accrédité au niveau national
+      c) Une jurisprudence numérique abondante
+      d) Un partage mature de threat intelligence
+
+16. Lequel est cité comme une lacune à combler au Cameroun ?
+      a) L'absence de laboratoire forensique accrédité au niveau national
+      b) L'absence de loi sur la cybercriminalité
+      c) L'absence de l'ANTIC
+      d) L'absence totale d'expérience sur les fraudes MoMo
+
+17. À quelle spécialité correspond la certification GIAC GREM ?
+      a) Le reverse engineering de malware
+      b) La forensique Windows débutante
+      c) Le pentest
+      d) La forensique mobile
+
+18. À quoi sert l'analyse ELA (Error Level Analysis) sur une image ?
+      a) Faire ressortir les zones retouchées par un niveau d'erreur différent
+      b) Chiffrer l'image
+      c) Calculer son hash
+      d) Compresser l'image sans perte
+
+19. Sur quoi repose l'analyse statique d'un binaire ?
+      a) Les chaînes, les imports, les sections PE et l'entropie, sans exécution
+      b) L'observation du comportement à l'exécution
+      c) La seule lecture des logs réseau
+      d) Le témoignage de la victime
+
+20. Au Cameroun, quel article de la loi 2010/012 couvre la fraude informatique, applicable aux deepfakes frauduleux ?
+      a) L'article 72
+      b) L'article 4
+      c) L'article 30
+      d) L'article 53
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Au Cameroun, aucun texte n'autorise encore une preuve fondée uniquement sur un algorithme opaque.
+      Vrai / Faux
+
+22. La règle d'or énonce que l'IA oriente et que l'humain constate.
+      Vrai / Faux
+
+23. L'analyse statique d'un malware est facilement contournée par l'obfuscation.
+      Vrai / Faux
+
+24. En forensique cloud, l'investigateur peut simplement saisir le serveur physique comme pour un PC.
+      Vrai / Faux
+
+25. La synchronisation labiale et les reflets des yeux peuvent trahir un deepfake vidéo.
+      Vrai / Faux
+
+26. L'analyse d'adresses Bitcoin via un explorateur de blockchain fait partie de la boîte à outils OSINT.
+      Vrai / Faux
+
+27. Le Cameroun dispose déjà d'une jurisprudence numérique abondante et bien publiée.
+      Vrai / Faux
+
+28. La phase 1 de la roadmap vise la maîtrise de Kali Linux, Autopsy, FTK Imager et Volatility 3.
+      Vrai / Faux
+
+29. Le standard C2PA signifie Coalition for Content Provenance and Authenticity.
+      Vrai / Faux
+
+30. Un modèle de machine learning bien entraîné atteint souvent 95 à 99 pour cent de précision sur des jeux équilibrés.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. L'outil OSINT qui recherche un pseudonyme sur de nombreux réseaux s'appelle ______.
+
+32. La commande qui interroge l'enregistrement d'un nom de domaine s'appelle ______.
+
+33. La technique qui substitue le visage d'une personne par un autre dans une vidéo s'appelle le face ______.
+
+34. Les réseaux générateurs à l'origine de nombreux deepfakes portent le sigle ______.
+
+35. Le défi par lequel les données d'un service sont réparties entre plusieurs pays s'appelle la multi-______.
+
+36. Dans DICES, la lettre E désigne l'______ juridique et institutionnel.
+
+37. La certification GIAC spécialisée dans la forensique Windows au niveau intermédiaire est la ______.
+
+38. L'institution camerounaise citée comme fonctionnelle et présente dans les enquêtes est l'______.
+
+39. La plateforme gratuite de laboratoires forensiques citée pour s'entraîner se nomme ______.
+
+40. L'arrêt américain de 2016 illustrant le risque des algorithmes opaques en justice est l'arrêt Loomis v. ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

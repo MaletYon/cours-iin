@@ -1,0 +1,235 @@
+NDAP SUKULU · IIN · fiche FICHE-C09
+Chapitre 9 : Outils et techniques d'acquisition
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Quel est le rôle d'un write blocker ?
+      a) Interdire toute écriture sur le support pendant l'acquisition
+      b) Accélérer la copie
+      c) Chiffrer le disque
+      d) Compresser l'image
+
+ 2. Quel type de write blocker est préféré en contexte judiciaire devant le TCS ?
+      a) Le write blocker matériel
+      b) Le write blocker logiciel seul
+      c) Aucun n'est nécessaire
+      d) Un antivirus
+
+ 3. Quel format d'image forensique est le standard de référence devant les tribunaux ?
+      a) Le format E01
+      b) Le format JPEG
+      c) Le format ZIP
+      d) Le format PDF
+
+ 4. Qu'intègre le format E01 que le format DD brut n'a pas ?
+      a) La compression et des métadonnées d'affaire, avec hash par segment
+      b) Rien de plus
+      c) Une interface graphique
+      d) Un antivirus intégré
+
+ 5. Quelle est la première étape de l'acquisition disque avec FTK Imager ?
+      a) Activer le write blocker et vérifier l'espace disponible
+      b) Ouvrir les documents du suspect
+      c) Supprimer les fichiers inutiles
+      d) Lancer une mise à jour
+
+ 6. Quelle est la dernière vérification après une acquisition disque ?
+      a) Vérifier que le hash source est égal au hash image
+      b) Supprimer l'original
+      c) Redémarrer le PC suspect
+      d) Effacer le journal de bord
+
+ 7. Que faut-il faire immédiatement après la capture d'un fichier mémoire .mem ?
+      a) Calculer son hash SHA-256
+      b) L'ouvrir dans un éditeur de texte
+      c) Le compresser en ZIP
+      d) Le renommer au hasard
+
+ 8. Comment gérer le fait que la capture de la RAM modifie elle-même la RAM ?
+      a) Le documenter comme une modification inhérente à l'outil, minimale et connue
+      b) L'ignorer
+      c) Renoncer à capturer la RAM
+      d) Effacer la RAM d'abord
+
+ 9. Quel outil Linux natif permet une acquisition bit-à-bit ?
+      a) dd
+      b) grep
+      c) nano
+      d) ping
+
+10. Quel avantage dcfldd offre-t-il par rapport à dd ?
+      a) Il calcule le hash pendant l'acquisition
+      b) Il chiffre automatiquement l'image
+      c) Il supprime l'original
+      d) Il n'a aucun avantage
+
+11. Combien de niveaux d'acquisition mobile le chapitre distingue-t-il ?
+      a) Quatre
+      b) Deux
+      c) Sept
+      d) Un seul
+
+12. Que désigne ADB en forensique Android ?
+      a) Android Debug Bridge, pour extraire des données d'un appareil Android
+      b) Advanced Disk Backup
+      c) Automatic Data Blocker
+      d) Android Data Base
+
+13. À quoi sert Volatility 3 ?
+      a) Analyser le fichier mémoire RAM capturé
+      b) Chiffrer un disque
+      c) Capturer le trafic réseau
+      d) Rédiger le rapport juridique
+
+14. Quelle commande Volatility liste les processus en mémoire ?
+      a) windows.pslist
+      b) windows.encrypt
+      c) windows.format
+      d) windows.delete
+
+15. Scénario MVOM. Vous cherchez la connexion réseau d'un processus suspect en mémoire. Quelle commande utilisez-vous ?
+
+      a) windows.netscan
+      b) windows.info
+      c) windows.screenshot
+      d) windows.hashdump
+
+16. Sur quoi repose le file carving pour récupérer des fichiers supprimés ?
+      a) Les signatures caractéristiques de chaque type de fichier, sans la table de fichiers
+      b) Le nom du fichier uniquement
+      c) La table de fichiers intacte
+      d) Le hash du disque
+
+17. Dans quel contexte le write blocker logiciel est-il acceptable ?
+      a) En investigation préliminaire, à défaut de matériel
+      b) Jamais, en aucun cas
+      c) Uniquement sur un téléphone
+      d) Uniquement pour la RAM
+
+18. Scénario. Un disque de 1 To doit être acquis avec peu d'espace de stockage. Quel format privilégier ?
+
+      a) E01, grâce à sa compression
+      b) DD brut non compressé
+      c) Un fichier Word
+      d) Un ZIP de photos
+
+19. Pourquoi la RAM est-elle une source si précieuse ?
+      a) Elle contient des éléments qui n'existent nulle part ailleurs, comme des processus et des clés actives
+      b) Elle est la plus facile à copier
+      c) Elle ne change jamais
+      d) Elle est déjà chiffrée
+
+20. Pourquoi ne faut-il pas acquérir une image sur le même disque que la source ?
+      a) L'acquisition échoue, le support ne peut être à la fois source et destination
+      b) Cela va plus vite
+      c) C'est au contraire recommandé
+      d) Cela améliore le hash
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Sans write blocker, le simple branchement d'un disque peut en modifier les données.
+      Vrai / Faux
+
+22. Le fichier de capture de la RAM a une taille proche de celle de la RAM installée.
+      Vrai / Faux
+
+23. Le format DD brut intègre une compression et des métadonnées riches.
+      Vrai / Faux
+
+24. Avec dd, on calcule le hash de l'original avant et de l'image après, puis on compare.
+      Vrai / Faux
+
+25. Volatility 3 sert à capturer le trafic réseau en direct.
+      Vrai / Faux
+
+26. Ne pas vérifier la correspondance des hash après acquisition est une erreur.
+      Vrai / Faux
+
+27. Le file carving a besoin d'une table de fichiers intacte pour fonctionner.
+      Vrai / Faux
+
+28. En contexte judiciaire, le write blocker matériel est préférable au logiciel.
+      Vrai / Faux
+
+29. ADB permet d'extraire des données d'un appareil Android.
+      Vrai / Faux
+
+30. On peut acquérir l'image sur le même disque physique que la source sans problème.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le format d'image forensique de référence devant les tribunaux est le format ______.
+
+32. Le dispositif qui empêche toute écriture sur le support acquis s'appelle un write ______.
+
+33. L'outil Linux natif d'acquisition bit-à-bit se nomme ______.
+
+34. La variante de dd qui calcule le hash pendant l'acquisition s'appelle ______.
+
+35. La commande Volatility qui liste l'arborescence des processus est windows.______.
+
+36. La commande Volatility qui recherche les fichiers présents en mémoire est windows.______.
+
+37. Le pont de débogage utilisé pour extraire un Android porte le sigle ______.
+
+38. L'outil de file carving cité pour récupérer des fichiers supprimés se nomme ______.
+
+39. Le fichier produit par la capture de la mémoire porte l'extension .______.
+
+40. Après la capture de la RAM, on calcule immédiatement son empreinte SHA-______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

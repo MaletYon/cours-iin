@@ -1,0 +1,745 @@
+% ============================================================================
+% Fichier  : partie1/P01_C05_etat_art.tex
+% Titre    : Etat de l'Art et Defis Contemporains
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- Juin 2026
+% ============================================================================
+
+\chapter{État de l'Art et Défis Contemporains}
+\label{chap:etat-art}
+
+\epigraph{%
+    « La science progresse en faisant danser les faits aux rythmes
+    de nouvelles théories. »%
+}{Marcel Proust}
+
+\niveauChapitre{Fondamental}{%
+    Ce chapitre est le dernier de la Partie~I. Il mobilise les concepts
+    des chapitres précédents pour cartographier l'état de la discipline
+    en 2025--2026 et projeter son évolution à l'horizon 2030.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Situer les cinq frontières actives de l'investigation numérique
+          en 2025--2026 et comprendre les défis spécifiques de chacune.
+    \item Analyser la valeur et les limites de l'IA forensique~: LLM pour
+          triage, machine learning pour classification de malware,
+          deepfake detection.
+    \item Comprendre les défis forensiques propres au cloud, à l'IoT et
+          au mobile dans le contexte africain et camerounais.
+    \item Maîtriser les fondamentaux de l'OSINT légal pour les OPJ~:
+          outils, cadre juridique, limites.
+    \item Utiliser le framework DICES pour positionner les pratiques
+          camerounaises par rapport aux standards mondiaux.
+    \item Construire une roadmap de développement professionnel réaliste
+          sur 36~mois dans le contexte camerounais.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Bilan d'une Discipline en Accélération}
+% ============================================================================
+
+La Partie~I de ce cours a posé les fondements~: philosophie, histoire,
+affaires fondatrices, théories mathématiques. Ce dernier chapitre de la
+Partie~I change de registre~: il décrit ce qui se passe \emph{maintenant},
+les défis que la discipline affronte \emph{aujourd'hui}, et les compétences
+que vous devrez avoir construites \emph{dans cinq ans}.
+
+\medskip
+
+L'investigation numérique de 2025 n'est plus celle de 2015. Cinq ruptures
+simultanées la reconfigurent en profondeur~:
+\begin{enumerate}
+    \item L'\textbf{IA} entre dans la chaîne d'analyse, comme outil
+          d'accélération du triage et comme vecteur d'attaque sophistiqué.
+    \item Les \textbf{deepfakes} brouillent la frontière entre le vrai
+          et le fabriqué, forçant la discipline à développer une
+          sous-spécialité d'authentification des médias.
+    \item Le \textbf{cloud et l'IoT} pulvérisent la notion de scène de
+          crime localisée~: les preuves sont partout, souvent éphémères,
+          toujours multi-juridictionnelles.
+    \item L'\textbf{OSINT} s'est professionnalisé au point d'être une
+          compétence à part entière, avec ses outils, son droit et son
+          éthique propres.
+    \item La \textbf{cryptographie post-quantique} est en cours de
+          déploiement~: l'investigateur de demain doit comprendre ce que
+          cela change pour la chaîne de preuves.
+\end{enumerate}
+
+\separateur
+
+% ============================================================================
+\section{IA Forensique~: Puissance et Limites}
+\label{sec:ia-forensique}
+% ============================================================================
+
+\subsection{L'IA comme accélérateur de triage}
+
+Le triage forensique, identifier en quelques minutes les artefacts
+pertinents parmi des milliers, est la tâche où l'IA apporte le gain
+le plus immédiat. Les \termecle{LLM}\index{LLM forensique}
+(\textit{Large Language Models}) peuvent~:
+\begin{itemize}
+    \item \textbf{Résumer et catégoriser} des volumes d'emails, de journaux
+          ou de logs qui dépassent la capacité d'analyse humaine en temps
+          raisonnable.
+    \item \textbf{Identifier des anomalies linguistiques} dans des
+          communications, syntaxe inhabituelle, traduction automatique,
+          incohérences de registre.
+    \item \textbf{Générer des hypothèses} à partir d'un corpus de preuves
+          hétérogènes~: un LLM peut proposer des connections entre artefacts
+          que l'analyste humain n'aurait pas immédiatement vus.
+\end{itemize}
+
+\subsection{Classification automatique de malware}
+
+Les approches de machine learning pour la classification de malware
+reposent sur trois familles de caractéristiques~:
+
+\begin{tableaucours}{p{3.5cm}p{3.5cm}p{4.5cm}}{%
+    \tableauHeader{Approche} &
+    \tableauHeader{Caractéristiques} &
+    \tableauHeader{Forces / Limites}
+}
+Statique & Chaînes, imports, sections PE, entropie &
+    Rapide, pas d'exécution~; contourné par l'obfuscation \\
+Dynamique & Appels système, trafic réseau, comportement &
+    Robuste à l'obfuscation~; lent, risque d'environnement sandbox \\
+Hybride & Combinaison statique + dynamique &
+    Meilleure précision~; coûteux en calcul \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.1. Approches ML pour la classification de malware}
+\end{center}
+
+\subsection{Les limites de l'IA forensique, la crise d'opposabilité}
+
+L'IA forensique pose une question CRO fondamentale~: si une conclusion
+repose sur un modèle opaque, comment la défendre devant un tribunal~?
+
+\begin{boxCRO}
+\textbf{Analyse CRO. IA forensique}
+
+$\mathcal{R}$ (Fiabilité)~: les modèles de ML bien entraînés atteignent
+des précisions de 95--99\% sur des jeux de données équilibrés.
+
+$\mathcal{O}$ (Opposabilité)~: \textbf{c'est la crise.} Un avocat de la
+défense peut demander l'explication complète du modèle. Si la réponse
+est ``le réseau de neurones a attribué une probabilité de 0.97''
+sans explication compréhensible, le juge peut refuser la conclusion.
+L'arrêt \textit{Loomis v. Wisconsin} (2016) aux États-Unis illustre
+ce risque pour les algorithmes de prédiction en justice.
+
+$\mathcal{C}$ (Confidentialité)~: les modèles entraînés sur des données
+réelles (cas judiciaires précédents) peuvent mémoriser des informations
+sur des affaires passées et les révéler via des attaques par inversion.
+
+\cro{$\downarrow$ risque de fuite}{$\uparrow$ précision technique}{$\downarrow$ crise d'explicabilité}
+
+\textbf{Règle pratique~:} utiliser l'IA pour le \emph{triage} (hypothèses,
+orientation), jamais comme \emph{preuve primaire}. L'analyste humain
+confirme et documente chaque conclusion de l'IA.
+\end{boxCRO}
+
+\begin{boxalert}
+\textbf{Règle d'or~: l'IA oriente, l'humain constate.}
+
+En contexte judiciaire camerounais, aucun texte n'autorise encore une
+preuve basée uniquement sur un algorithme opaque. L'investigateur doit
+systématiquement~: (1)~documenter l'outil utilisé (nom, version,
+paramètres), (2)~vérifier manuellement les conclusions de l'IA sur un
+échantillon, (3)~présenter la conclusion IA comme \emph{indication}
+corroborée par une analyse humaine, jamais comme preuve autonome.
+\end{boxalert}
+
+% ============================================================================
+\section{Deepfake Detection~: Authentifier les Médias Numériques}
+\label{sec:deepfakes}
+% ============================================================================
+
+\subsection{Le défi de l'authenticité des médias}
+
+Les \termecle{deepfakes}\index{deepfake} (vidéos, images, audios générés
+ou manipulés par IA) constituent l'une des menaces forensiques les plus
+graves de la décennie. Trois catégories~:
+\begin{itemize}
+    \item \textbf{Face swap}~: substitution du visage d'une personne par
+          celui d'une autre dans une vidéo existante.
+    \item \textbf{Voice cloning}~: reproduction convaincante de la voix
+          d'une personne à partir d'un échantillon de quelques secondes.
+    \item \textbf{Document forgery}~: génération de documents officiels
+          (relevés bancaires, identités, contrats) cohérents avec les
+          templates réels.
+\end{itemize}
+
+\subsection{Méthodes de détection}
+
+Quatre approches complémentaires~:
+\begin{enumerate}
+    \item \textbf{Analyse de cohérence physique}~: les deepfakes génèrent
+          souvent des incohérences dans les reflets des yeux, le
+          mouvement des oreilles, la synchronisation labiale.
+    \item \textbf{Analyse spectrale}~: les artefacts de compression GAN
+          (\textit{Generative Adversarial Network}) laissent des
+          signatures dans le domaine fréquentiel (FFT) détectables
+          même après recompression.
+    \item \textbf{Métadonnées et provenance}~: la
+          \termecle{C2PA}\index{C2PA} (\textit{Coalition for Content
+          Provenance and Authenticity}) développe un standard de
+          signature cryptographique à la capture~: chaque photo prise
+          par un appareil certifié porte une signature vérifiable.
+    \item \textbf{Analyse comportementale}~: les modèles de langage
+          génèrent des textes avec des patterns statistiques spécifiques
+          détectables par des outils comme GPTZero ou Binoculars.
+\end{enumerate}
+
+\begin{boxartefact}{Vérification d'authenticité d'image -- commandes pratiques}
+\textbf{Étape 1. Extraction des métadonnées EXIF et C2PA~:}
+\begin{lstlisting}[language=bash_forensique]
+# ExifTool -- extraction complete
+exiftool -a -u -g1 image_suspecte.jpg
+# Chercher : Make, Model, GPS, CreateDate, Software
+# ALERTE : 'Software: GIMP' sur une photo prétendument originale
+# ALERTE : absence de champ GPS sur une photo censée être localisée
+
+# Analyse des erreurs de niveau JPEG (ELA -- Error Level Analysis)
+# Disponible via fotoforensics.com ou imagemagick
+convert image.jpg -auto-level ela_result.jpg
+# Les zones retouchées apparaissent avec un niveau d'erreur différent
+\end{lstlisting}
+
+\textbf{Étape 2. Analyse spectrale (FFT)~:}
+\begin{lstlisting}[language=bash_forensique]
+python3 -c \"
+import cv2, numpy as np, matplotlib.pyplot as plt
+img = cv2.imread('suspect.jpg', 0)
+f = np.fft.fft2(img)
+fshift = np.fft.fftshift(f)
+magnitude = 20*np.log(np.abs(fshift)+1)
+plt.imshow(magnitude, cmap='gray')
+plt.savefig('spectrum.png')
+\"
+# Un spectre en croix ou en échiquier indique une génération GAN
+\end{lstlisting}
+\end{boxartefact}
+
+\begin{boxjuris}
+\textbf{Statut juridique des deepfakes au Cameroun~:}
+
+La \loicam{2010/012}~\cite{cameroun2010a}, art.~72 (fraude informatique) et art.~71
+(modification de données) couvrent la création de documents falsifiés,
+y compris les deepfakes à des fins frauduleuses. La \loicam{2024/017}~\cite{cameroun2024donnees},
+art.~59 (utilisation frauduleuse des données personnelles) s'applique
+lorsque le deepfake utilise le visage ou la voix d'une personne sans
+son consentement.
+\end{boxjuris}
+
+% ============================================================================
+\section{Forensique Cloud, IoT et Mobile~: la Scène de Crime Distribuée}
+\label{sec:cloud-iot-mobile}
+% ============================================================================
+
+\subsection{Les trois défis structurels du cloud forensique}
+
+La forensique cloud n'est pas une extension de la forensique système~:
+c'est une discipline qui doit être repensée. Trois défis fondamentaux~:
+
+\begin{enumerate}
+    \item \textbf{Multitenancy}~: les données d'un client sont physiquement
+          colocalisées avec celles d'autres clients sur les mêmes serveurs.
+          L'investigateur ne peut pas simplement ``saisir le serveur''.
+
+    \item \textbf{Éphéméralité}~: les instances cloud (containers,
+          fonctions serverless) durent quelques secondes à quelques minutes.
+          Les logs sont supprimés selon des politiques de rotation que
+          l'investigateur ne contrôle pas.
+
+    \item \textbf{Multi-juridiction}~: un service hébergé chez AWS peut
+          avoir ses données réparties entre des datacenters en Irlande,
+          aux États-Unis et à Singapour. Quelle loi s'applique~?
+          Le \textit{CLOUD Act}~\cite{cloudact2018} américain (2018) donne aux autorités US
+          accès aux données hébergées par des entreprises américaines
+          \emph{n'importe où dans le monde}~; cela entre en conflit avec
+          la souveraineté de nombreux États.
+\end{enumerate}
+
+\begin{boxoutils}{Forensique cloud, commandes de collecte AWS/Azure}
+\textbf{AWS CloudTrail. journaux d'audit~:}
+\begin{lstlisting}[language=bash_forensique]
+# Lister les événements récents CloudTrail (30 derniers jours)
+aws cloudtrail lookup-events \\
+    --lookup-attributes AttributeKey=EventName,AttributeValue=DeleteBucket \\
+    --max-results 50
+
+# Exporter les logs d'un bucket S3 spécifique vers l'investigation
+aws s3 cp s3://bucket-suspect/logs/ ./evidence/logs/ --recursive
+# Calculer les hash immédiatement après téléchargement
+sha256sum ./evidence/logs/*
+\end{lstlisting}
+
+\textbf{Azure Activity Log~:}
+\begin{lstlisting}[language=bash_forensique]
+# Lister les activités suspectes sur un abonnement Azure
+az monitor activity-log list \\
+    --start-time 2026-03-01 \\
+    --end-time 2026-03-15 \\
+    --query '[?level==`Critical`]' \\
+    --output table
+\end{lstlisting}
+\end{boxoutils}
+
+\subsection{IoT forensique~: l'explosion des surfaces de collecte}
+
+Selon Cisco, plus de 29~milliards d'appareils IoT seront connectés en 2030.
+Chacun est potentiellement une scène de crime~: routeur compromis, caméra IP,
+montre connectée, véhicule, thermostat intelligent. Les défis~:
+
+\begin{itemize}
+    \item \textbf{Hétérogénéité}~: chaque fabricant utilise un système
+          d'exploitation propriétaire. Les outils forensiques génériques
+          (Autopsy, FTK) ne fonctionnent pas sur un firmware TP-Link.
+    \item \textbf{Volatilité extrême}~: beaucoup d'appareils IoT ne
+          conservent leurs logs qu'en RAM ou dans un buffer circulaire
+          de quelques heures.
+    \item \textbf{Extraction physique}~: certains appareils exigent
+          une extraction via UART, JTAG ou chip-off, des techniques
+          matérielles qui nécessitent un équipement spécialisé.
+\end{itemize}
+
+\begin{boxscenario}{Caméra IP dans une affaire d'homicide, Yaoundé, fictif}
+Une caméra de vidéosurveillance IP a enregistré l'entrée d'un suspect dans
+un immeuble le soir d'un homicide. L'immeuble utilise un système Hikvision.
+La caméra est connectée à un NVR (enregistreur réseau).
+
+\textbf{Procédure forensique~:}
+\begin{enumerate}
+    \item Identifier le modèle du NVR et son interface d'administration.
+    \item Extraire les séquences vidéo via l'interface web ou via
+          l'outil dédié (IVMS-4200 pour Hikvision).
+    \item Calculer le hash de chaque fichier vidéo extrait.
+    \item Documenter les paramètres de la caméra (heure système,
+          synchronisation NTP~; un décalage horaire fausse tout
+          témoignage basé sur la vidéo).
+\end{enumerate}
+
+\textbf{Attention CRO~:} \cro{$\sim$}{$\uparrow$ si hash documenté}{$\sim$ dépend horloge}
+Le décalage horaire est le piège le plus fréquent des vidéos de
+surveillance~: sans synchronisation NTP documentée, l'heure affichée
+peut être fausse de plusieurs heures.
+\end{boxscenario}
+
+\subsection{Mobile forensique~: spécificités africaines}
+
+En Afrique subsaharienne, le mobile est le premier vecteur de services
+numériques (banque, communication, commerce). La forensique mobile y est
+donc disproportionnellement centrale. Quatre niveaux d'acquisition selon
+\norme{NIST SP~800-101r1}~\cite{nist800101r1}~:
+
+\begin{tableaucours}{p{3.0cm}p{3.0cm}p{5.5cm}}{%
+    \tableauHeader{Niveau} &
+    \tableauHeader{Technique} &
+    \tableauHeader{Données accessibles}
+}
+Niveau~1 & Extraction manuelle & Photos, contacts, SMS visibles à l'écran \\
+Niveau~2 & Extraction logique (ADB) &
+    Fichiers accessibles du système de fichiers, bases SQLite applications \\
+Niveau~3 & Extraction physique &
+    Image complète de la mémoire flash~; données supprimées récupérables \\
+Niveau~4 & Chip-off / JTAG &
+    Extraction directe de la puce mémoire~; dernier recours \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.2. Niveaux d'acquisition mobile
+(NIST SP~800-101r1)}\end{center}
+
+% ============================================================================
+\section{OSINT~: Renseignement en Source Ouverte}
+\label{sec:osint}
+% ============================================================================
+
+\subsection{Définition, périmètre et cadre légal camerounais}
+
+L'\termecle{OSINT}\index{OSINT} (\textit{Open Source Intelligence}) désigne
+la collecte et l'analyse d'informations issues de sources légalement
+accessibles au public~: sites web, réseaux sociaux, bases WHOIS, registres
+officiels, archives, publications scientifiques.
+
+\begin{boxjuris}
+\textbf{Cadre légal OSINT au Cameroun~:}
+\begin{itemize}
+    \item Art.~41 \loicam{2010/012}~: droit au respect de la vie privée.
+          L'OSINT ne couvre que les informations \emph{volontairement}
+          rendues publiques par leur sujet.
+    \item Art.~9 \loicam{2024/017}~: la collecte systématique (fichage)
+          et le croisement avec des données non publiques peuvent
+          entrer en conflit avec le principe de finalité déterminée.
+    \item \textbf{Règle pratique~:} documenter dans chaque rapport OSINT
+          la source exacte et la date de consultation. Une capture d'écran
+          horodatée est indispensable, un lien public aujourd'hui peut
+          être privé à l'audience.
+    \item \textbf{Infiltration en ligne~:} se faire passer pour quelqu'un
+          d'autre en ligne pour obtenir des informations constitue une
+          provocation ou surveillance couverte~; elle requiert une
+          autorisation judiciaire et sort du cadre OSINT.
+\end{itemize}
+\end{boxjuris}
+
+\subsection{Le cycle OSINT pour les OPJ}
+
+Le cycle OSINT structuré en cinq étapes~:
+\begin{enumerate}
+    \item \textbf{Planification}~: définir la cible et les questions
+          clés. Qu'est-ce que j'ignore et que je dois trouver~?
+    \item \textbf{Collecte}~: identifier et exploiter les sources
+          pertinentes (réseaux sociaux, WHOIS, enregistrements publics).
+    \item \textbf{Traitement}~: organiser, filtrer, supprimer les doublons.
+    \item \textbf{Analyse}~: recouper, vérifier, tirer des conclusions.
+    \item \textbf{Diffusion}~: produire un rapport utilisable par le
+          magistrat instructeur.
+\end{enumerate}
+
+\subsection{Boîte à outils OSINT pour les OPJ camerounais}
+
+\begin{tableaucours}{p{2.8cm}p{2.5cm}p{6.0cm}}{%
+    \tableauHeader{Outil} &
+    \tableauHeader{Usage principal} &
+    \tableauHeader{Application forensique}
+}
+Sherlock & Recherche de pseudo & Identifier tous les comptes d'une personne
+    à partir d'un username (cas WOURI~: \texttt{duke\_cyber\_ng}) \\
+WHOIS / dig & Infrastructure & Propriétaire d'un domaine~; serveurs DNS~;
+    enregistrement d'un domaine de phishing \\
+crt.sh & Certificats SSL & Trouver tous les sous-domaines d'un domaine~;
+    identifier des sites de phishing (ex~: \texttt{*.uba-cameroun.com}) \\
+dnstwist & Typosquatting & Générer et vérifier les variantes d'un domaine
+    légitime \\
+Shodan & Appareils exposés & Identifier des caméras, serveurs, IoT
+    vulnérables associés à une cible \\
+ExifTool & Métadonnées & GPS dans les photos, auteur, appareil~;
+    localiser un suspect via ses publications Instagram \\
+Blockchair & Blockchain & Tracer les transactions Bitcoin~;
+    identifier les adresses de mixeurs (cas WOURI) \\
+Maltego & Graphe de relations & Cartographier visuellement les connexions
+    entre entités (personnes, domaines, IPs) \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.3. Boîte à outils OSINT pour les OPJ}
+\end{center}
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={Workflow OSINT complet, cible fictive KOUAME Narcisse}]
+# 1. Recherche de pseudo identifié (@koffi_biz_225)
+sherlock koffi_biz_225
+# -> identifie comptes Telegram, Instagram, Twitter/X
+
+# 2. Reverse image search via exiftool si photo disponible
+exiftool photo_profil.jpg | grep -i 'GPS\|Make\|Date'
+
+# 3. Infrastructure : domaine utilisé pour le phishing
+whois medequip-portugal.com
+dig medequip-portugal.com ANY
+crt.sh : medequip-portugal.com  # via navigateur
+
+# 4. Adresses Bitcoin du réseau
+# -> Blockchair.com : entrer l'adresse, visualiser le graphe de transactions
+# -> Identifier les exchanges (Binance, Kraken) : portail LEA disponible
+
+# 5. Maltego : cartographier les connexions
+# Entités : KOUAME, @koffi_biz_225, +225 07XXXXXX,
+#           medequip-portugal.com, 3 adresses BTC
+\end{lstlisting}
+
+% ============================================================================
+\section{Benchmarking Mondial~: le Framework DICES}
+\label{sec:dices}
+% ============================================================================
+
+\subsection{Le framework DICES}
+
+Le framework \termecle{DICES}\index{DICES, framework} (\textbf{D}octrine,
+\textbf{I}nfrastructure, \textbf{C}apacités, \textbf{E}cosystème,
+\textbf{S}tratégie) permet de comparer les pratiques forensiques de
+différentes juridictions sur cinq axes \cite{dfrws2001}~:
+\begin{itemize}
+    \item \textbf{D}octrine~: philosophie et approche conceptuelle
+          (empirisme pragmatique ou rigueur formelle~?)
+    \item \textbf{I}nfrastructure~: moyens techniques et organisationnels
+          (laboratoires, équipements, plateformes cloud)
+    \item \textbf{C}apacités~: compétences humaines et processus
+          (formations, certifications, procédures standardisées)
+    \item \textbf{E}cosystème~: environnement juridique et institutionnel
+          (lois, tribunaux, organismes de régulation)
+    \item \textbf{S}tratégie~: vision prospective et adaptation
+          (investissements R\&D, coopération internationale)
+\end{itemize}
+
+\subsection{Positionnement comparatif}
+
+\begin{tableaucours}{p{2.4cm}p{2.0cm}p{2.0cm}p{2.0cm}p{2.0cm}p{2.0cm}}{%
+    \tableauHeader{Axe DICES} &
+    \tableauHeader{USA/FBI} &
+    \tableauHeader{Europe} &
+    \tableauHeader{Afrique du Sud} &
+    \tableauHeader{Nigeria} &
+    \tableauHeader{Cameroun}
+}
+Doctrine & Empirisme & Droit civil & Mixte & Common law & Droit civil fr. \\
+Infrastructure & $\bullet\bullet\bullet\bullet\bullet$ & $\bullet\bullet\bullet\bullet$ &
+    $\bullet\bullet\bullet$ & $\bullet\bullet$ & $\bullet\bullet$ \\
+Capacités & $\bullet\bullet\bullet\bullet\bullet$ & $\bullet\bullet\bullet\bullet$ &
+    $\bullet\bullet\bullet$ & $\bullet\bullet$ & $\bullet\bullet$ \\
+Ecosystème & CFAA + FRE & RGPD~\cite{rgpd2016} + Budapest & RICA & Budapest & Loi 2010 \\
+Stratégie & IA + quantique & ENISA + C2PA & SAPS-DCI & EFCC & ANTIC \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.4. Comparaison DICES~: $\bullet$ = niveau de maturité}
+\end{center}
+
+\subsection{Atouts et lacunes du Cameroun~: une lecture honnête}
+
+\textbf{Atouts réels~:}
+\begin{itemize}
+    \item Un cadre législatif complet et récent~: \loicam{2010/012} et
+          \loicam{2024/017} couvrent les infractions numériques et la
+          protection des données.
+    \item L'ANTIC, institution fonctionnelle et présente dans les enquêtes.
+    \item Une communauté technique en formation rapide (ENSP, Universités,
+          entreprises privées).
+    \item Une expérience terrain sur les fraudes MoMo~: le Cameroun forme
+          ses propres enquêteurs sur des cas réels, pas des simulations.
+\end{itemize}
+
+\textbf{Lacunes à combler~:}
+\begin{itemize}
+    \item Absence de laboratoire forensique accrédité au niveau national.
+    \item Faible infrastructure de partage de renseignements cyber
+          (\textit{threat intelligence}) entre les institutions.
+    \item Jurisprudence numérique naissante~: peu de décisions de justice
+          commentées et publiées sur la preuve numérique.
+    \item Ressources d'investigation en langue française et en contexte
+          africain~: c'est précisément le vide que ce cours est conçu pour
+          combler.
+\end{itemize}
+
+% ============================================================================
+\section{Roadmap de Développement Professionnel}
+\label{sec:roadmap}
+% ============================================================================
+
+\subsection{Les certifications de référence mondiales}
+
+\begin{tableaucours}{p{3.0cm}p{2.5cm}p{3.0cm}p{3.0cm}}{%
+    \tableauHeader{Certification} &
+    \tableauHeader{Niveau} &
+    \tableauHeader{Spécialité} &
+    \tableauHeader{Coût estimé}
+}
+GIAC GCFE & Intermédiaire & Forensique Windows & 7~000~USD \\
+GIAC GCFA & Avancé & Incident Response & 7~000~USD \\
+GIAC GREM & Expert & Malware RE & 7~000~USD \\
+EnCE & Intermédiaire & EnCase (outil) & 3~000~USD \\
+OSCP & Avancé & Pentest & 1~500~USD \\
+CompTIA CySA+ & Intermédiaire & Analyse cyber & 400~USD \\
+Cellebrite CCPA & Intermédiaire & Mobile forensique & Variable \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.5. Certifications forensiques de référence
+(coûts indicatifs relevés sur les sites des organismes certificateurs~; à vérifier avant toute inscription)}\end{center}
+
+\subsection{Roadmap réaliste sur 36 mois en contexte camerounais}
+
+\begin{tableaucours}{p{2.5cm}p{2.2cm}p{7.0cm}}{%
+    \tableauHeader{Phase} &
+    \tableauHeader{Durée} &
+    \tableauHeader{Objectifs et activités}
+}
+Phase~1. Socle & Mois 1--6 &
+    Maîtrise de Kali Linux, Autopsy, FTK~Imager, Volatility~3.
+    Réalisation de 20~scénarios de laboratoire (images forensiques fournies).
+    Lecture de ce cours. Obtention CompTIA CySA+ si financement disponible. \\
+Phase~2. Spécialisation & Mois 7--18 &
+    Choisir une spécialité~: (a)~forensique judiciaire (droit +
+    procédure), (b)~réponse aux incidents (cloud + SIEM),
+    (c)~forensique mobile (Android/iOS). Participation aux CTF forensiques
+    (CyberDefenders, BlueTeamLabs). Contribution à 3~investigations réelles
+    (stage ou DGSN). \\
+Phase~3. Excellence & Mois 19--36 &
+    Préparation GIAC GCFE ou GCFA. Rédaction d'un article technique
+    sur un cas camerounais. Contribution à l'élaboration de procédures
+    standardisées pour l'ANTIC ou la DGSN. \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~5.6. Roadmap 36~mois en contexte camerounais}
+\end{center}
+
+\begin{boxPNC}
+\textbf{Ressources gratuites accessibles depuis le Cameroun~:}
+\begin{itemize}
+    \item \textbf{CyberDefenders.org}~: laboratoires forensiques avec
+          images disque, captures réseau, fichiers mémoire. Niveaux
+          Débutant à Expert. Gratuit.
+    \item \textbf{BlueTeamLabsOnline.com}~: scénarios de réponse aux
+          incidents. Gratuit pour les niveaux de base.
+    \item \textbf{HackTheBox / DFIR Track}~: challenge forensique mensuel.
+    \item \textbf{SANS Cyber Aces}~: cours de fondamentaux gratuit.
+    \item \textbf{GitHub/volatility3}~: documentation officielle avec
+          exemples d'analyse mémoire.
+    \item \textbf{Journal of Digital Forensics, Security and Law}~:
+          accès ouvert~; articles académiques en forensique.
+\end{itemize}
+\end{boxPNC}
+
+% ============================================================================
+\section{Synthèse~: la Carte de la Discipline en 2025--2026}
+\label{sec:synthese-etat-art}
+% ============================================================================
+
+Ce chapitre clôt la Partie~I. La figure ci-dessous synthétise la carte
+de la discipline telle qu'elle se présente en 2025--2026~:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    domaine/.style={
+        draw=CouleurPrimaire, fill=CouleurDef, rounded corners=5pt,
+        minimum width=3.0cm, minimum height=0.85cm,
+        font=\small\bfseries\color{CouleurPrimaire}, align=center
+    },
+    defi/.style={
+        draw=CouleurBordAlerte, fill=CouleurAlerte, rounded corners=4pt,
+        minimum width=2.8cm, minimum height=0.75cm,
+        font=\footnotesize\color{CouleurBordAlerte}, align=center
+    },
+    coeur/.style={
+        draw=CouleurAccent, fill=CouleurAccent!20, rounded corners=6pt,
+        minimum width=3.5cm, minimum height=1.1cm,
+        font=\small\bfseries\color{CouleurAccent!80!black}, align=center
+    },
+    fl/.style={-{Stealth[length=4pt]}, thick, color=CouleurSecondaire}
+]
+% Centre : CRO
+\node[coeur] (cro) at (0,0) {Trilemme CRO\\$\mathcal{C}$--$\mathcal{R}$--$\mathcal{O}$};
+% Domaines actifs
+\node[domaine] (ia)    at (-4,  2.5) {IA Forensique};
+\node[domaine] (df)    at ( 0,  3.5) {Deepfake\\Detection};
+\node[domaine] (cloud) at ( 4,  2.5) {Cloud / IoT\\Mobile};
+\node[domaine] (osint) at ( 4, -2.5) {OSINT};
+\node[domaine] (pq)    at (-4, -2.5) {Post-Quantique};
+% Défis
+\node[defi] (opp)  at (-2.5,  0.8) {Opposabilité IA~?};
+\node[defi] (jur)  at ( 2.5,  0.8) {Juridiction\\cloud~?};
+\node[defi] (hndl) at (-2.5, -0.8) {HNDL};
+\node[defi] (priv) at ( 2.5, -0.8) {Vie privée\\vs enquête};
+% Flèches
+\draw[fl] (ia)    -- (cro);
+\draw[fl] (df)    -- (cro);
+\draw[fl] (cloud) -- (cro);
+\draw[fl] (osint) -- (cro);
+\draw[fl] (pq)    -- (cro);
+\end{tikzpicture}
+\caption{Carte de la forensique numérique en 2025--2026~: cinq frontières
+actives toutes soumises aux tensions du Trilemme CRO}
+\end{figure}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{IA forensique~:} puissant pour le triage, problématique
+          pour l'opposabilité. L'IA oriente~; l'humain constate et signe.
+          Documenter outil, version, paramètres, échantillon de vérification.
+
+    \item \textbf{Deepfakes~:} détection par analyse de cohérence physique,
+          analyse spectrale (FFT), métadonnées et standard C2PA. La
+          \loicam{2010/012} art.~72 et la \loicam{2024/017} art.~59
+          couvrent les deepfakes frauduleux.
+
+    \item \textbf{Cloud forensique~:} trois défis~: multitenancy, éphéméralité,
+          multi-juridiction. La réquisition aux opérateurs cloud passe par
+          des portails LEA dédiés (AWS, Azure, Google, Binance).
+
+    \item \textbf{Mobile Afrique~:} quatre niveaux d'acquisition NIST. En
+          Afrique subsaharienne, la forensique mobile est prioritaire~:
+          Mobile Money, WhatsApp, SIM swapping sont les vecteurs dominants.
+
+    \item \textbf{OSINT~:} cycle en 5~étapes, 8~outils de référence.
+          La capture d'écran horodatée est obligatoire. L'infiltration en
+          ligne sort du cadre OSINT et exige une autorisation judiciaire.
+
+    \item \textbf{DICES~:} le Cameroun a un cadre législatif solide
+          (\loicam{2010/012} + \loicam{2024/017}) mais manque de laboratoire
+          accrédité et de jurisprudence publiée.
+
+    \item \textbf{Roadmap 36~mois~:} Socle (Kali/Autopsy/Volatility)
+          $\to$ Spécialisation (judiciaire / IR / mobile)
+          $\to$ Excellence (GCFE/GCFA + contribution institutionnelle).
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~5.1. Évaluation d'un outil IA \niveaubase}]
+Un analyste utilise un outil commercial d'IA pour classifier automatiquement
+500~emails dans une affaire de fraude. L'outil indique que 47~emails sont
+``fortement suspects'' avec une probabilité de 0.93.
+
+\begin{enumerate}[(a)]
+    \item Quelles informations l'analyste doit-il obtenir sur l'outil
+          avant de l'utiliser dans un rapport judiciaire~?
+    \item Comment valide-t-il les conclusions de l'IA sur un échantillon~?
+    \item Comment formule-t-il la conclusion dans son rapport pour
+          qu'elle soit défendable devant un tribunal camerounais~?
+    \item Formulez l'analyse CRO de cette décision d'utiliser l'IA.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~5.2. Workflow OSINT \niveaumoyen}]
+Dans une affaire de cyberharcèlement, la victime vous fournit~:
+\begin{itemize}
+    \item Un numéro de téléphone camerounais~: \texttt{+237 6XX XXX XXX}
+    \item Un pseudo Instagram~: \texttt{@shadow\_cam237}
+    \item Une photo de profil téléchargée depuis Instagram
+    \item Un email reçu depuis~: \texttt{noreply@camphone-support.cm}
+\end{itemize}
+
+\begin{enumerate}[(a)]
+    \item Construisez un workflow OSINT complet~: pour chaque élément,
+          quel outil utilisez-vous et quelle information cherchez-vous~?
+    \item Identifier les limites légales de votre collecte~: à quel
+          moment devez-vous une réquisition judiciaire pour continuer~?
+    \item Comment documentez-vous vos sources pour la recevabilité~?
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~5.3. Analyse DICES du Cameroun \niveauexpert}]
+En vous appuyant sur le framework DICES et sur les informations du
+chapitre~:
+\begin{enumerate}[(a)]
+    \item Pour chaque axe DICES, identifiez une force et une faiblesse
+          spécifique au contexte camerounais en 2026.
+    \item Proposez une action concrète et réalisable à court terme
+          ($\leq$ 2~ans) pour chacune des deux lacunes les plus critiques.
+    \item Dans la roadmap 36~mois, quel axe DICES est le plus influencé
+          par votre choix de spécialisation~? Justifiez.
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Transition vers la Partie~II.} La Partie~I vous a donné
+la philosophie (Ch.~\ref{chap:phi-fond}), l'histoire
+(Ch.~\ref{chap:histoire}), les affaires de référence
+(Ch.~\ref{chap:gr-affaires}), les fondements mathématiques
+(Ch.~\ref{chap:fond-theo}) et l'état de l'art (ce chapitre). Ces
+cinq chapitres constituent le \emph{pourquoi} de la discipline. La
+\textbf{Partie~II} (Chapitres~6--9) en construit le \emph{comment}~:
+le Processus Investigatif Universel, les méthodologies et standards,
+la chaîne de custody et les outils d'acquisition~; tout ce qu'il vous
+faut pour conduire votre première investigation de A à Z.
+\end{boxinfo}

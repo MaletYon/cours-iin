@@ -1,0 +1,235 @@
+NDAP SUKULU · IIN · fiche FICHE-C12
+Chapitre 12 : Droit camerounais et africain
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Lequel de ces textes est la loi camerounaise sur la cybersécurité et la cybercriminalité ?
+      a) La loi 2010/012
+      b) La loi 2024/017
+      c) La Convention de Budapest
+      d) Le RGPD
+
+ 2. Que régit la loi 2024/017 du 23 décembre 2024 ?
+      a) La protection des données personnelles
+      b) Le code de la route
+      c) La fiscalité
+      d) Le droit du travail
+
+ 3. Que contient l'article 4 de la loi 2010/012 ?
+      a) Les définitions, soit 73 termes
+      b) Les sanctions pénales
+      c) Les règles de perquisition
+      d) Le budget de l'ANTIC
+
+ 4. Quels articles de la loi 2010/012 portent sur les perquisitions et saisies ?
+      a) Les articles 52 à 59
+      b) Les articles 2 à 11
+      c) Les articles 60 à 89
+      d) L'article 4 seul
+
+ 5. Que vise l'article 65 de la loi 2010/012 ?
+      a) L'accès illicite et l'interception illégale
+      b) La fraude informatique
+      c) La protection des mineurs
+      d) Le transfert de données
+
+ 6. Un suspect a pénétré un système sans autorisation, mais sans causer de dommage. Est-ce punissable au titre de l'article 65 ?
+
+      a) Oui, toute intrusion non autorisée tombe sous l'article 65, dommage ou non
+      b) Non, sans dommage il n'y a pas d'infraction
+      c) Seulement si le suspect avoue
+      d) Seulement à l'étranger
+
+ 7. Quel article de la loi 2010/012 est le plus utilisé contre les escroqueries en ligne ?
+      a) L'article 72, fraude informatique
+      b) L'article 4
+      c) L'article 52
+      d) L'article 88
+
+ 8. Que sanctionne l'article 88 de la loi 2010/012 ?
+      a) Le refus de remettre la clé de déchiffrement
+      b) L'accès illicite
+      c) La collecte de données
+      d) Le transfert international
+
+ 9. Face à un téléphone chiffré dont le suspect refuse le code, quel article devient un réflexe ?
+
+      a) L'article 88
+      b) L'article 4
+      c) L'article 72
+      d) L'article 52
+
+10. Quelle autorité la loi 2010/012 institue-t-elle comme régulateur ?
+      a) L'ANTIC
+      b) INTERPOL
+      c) Le RGPD
+      d) La CEDEAO
+
+11. Quel vide la loi 2024/017 vient-elle combler par rapport à la loi 2010 ?
+      a) Les mesures préventives de protection des données, consentement, sécurité, registre
+      b) La définition du hachage
+      c) Le code pénal général
+      d) Les règles de circulation
+
+12. Que prévoit l'article 22 de la loi 2024/017 ?
+      a) La notification d'une violation de données
+      b) L'interdiction du chiffrement
+      c) La saisie des véhicules
+      d) La gratuité des services
+
+13. Que prévoit l'article 27 de la loi 2024/017 ?
+      a) La sécurité obligatoire des données
+      b) La vente des données
+      c) L'accès libre
+      d) La destruction des registres
+
+14. Que vise l'article 63 de la loi 2024/017 ?
+      a) La collecte frauduleuse de données personnelles
+      b) L'accès illicite à un système
+      c) La protection des réseaux
+      d) Le droit d'auteur
+
+15. Une entreprise victime d'une fuite qui n'a pas notifié peut-elle être sanctionnée ?
+      a) Oui, le défaut de notification est sanctionnable en plus des infractions de l'attaquant
+      b) Non, la victime est toujours exonérée
+      c) Seulement si elle le demande
+      d) Jamais
+
+16. Que prévoit l'article 87 de la loi 2010/012 comme peine accessoire ?
+      a) La confiscation des outils
+      b) La gratuité d'Internet
+      c) Une récompense
+      d) L'anonymat
+
+17. Que visent les articles 66 et 67 de la loi 2010/012 ?
+      a) L'atteinte à l'intégrité des réseaux et des systèmes
+      b) La protection des données personnelles
+      c) Le transfert international
+      d) La signature électronique
+
+18. Quel article de la loi 2024/017 encadre le transfert international de données ?
+      a) L'article 32
+      b) L'article 4
+      c) L'article 65
+      d) L'article 88
+
+19. Que prévoit l'alinéa 3 de l'article 65 ?
+      a) Le doublement des peines en cas de circonstance aggravante
+      b) La relaxe du suspect
+      c) La réduction de moitié
+      d) L'abandon des poursuites
+
+20. Combien de titres et de définitions la loi 2010/012 comporte-t-elle ?
+      a) Cinq titres et soixante-treize définitions
+      b) Un titre et dix définitions
+      c) Dix titres et aucune définition
+      d) Trois titres et cent définitions
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. L'article 65 punit l'intrusion non autorisée même en l'absence de dommage.
+      Vrai / Faux
+
+22. La loi 2024/017 ne prévoit que des sanctions administratives, jamais pénales.
+      Vrai / Faux
+
+23. Le refus de remettre une clé de déchiffrement est une infraction au Cameroun.
+      Vrai / Faux
+
+24. L'article 72 sur la fraude informatique est peu utilisé en pratique.
+      Vrai / Faux
+
+25. Une victime d'attaque qui a manqué à son obligation de sécurité peut engager sa responsabilité.
+      Vrai / Faux
+
+26. L'ANTIC est instituée comme autorité de régulation par la loi 2010/012.
+      Vrai / Faux
+
+27. La loi 2024/017 impose un registre de traitement et le consentement.
+      Vrai / Faux
+
+28. Les règles de perquisition numérique figurent aux articles 52 à 59 de la loi 2010/012.
+      Vrai / Faux
+
+29. L'article 4 de la loi 2010/012 ne contient aucune définition.
+      Vrai / Faux
+
+30. L'article 22 de la loi 2024/017 impose au responsable de traitement de notifier une violation.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. La loi camerounaise sur la cybersécurité et la cybercriminalité est la loi 2010/______.
+
+32. La loi camerounaise sur la protection des données personnelles est la loi 2024/______.
+
+33. L'accès illicite et l'interception illégale sont visés par l'article ______ de la loi 2010/012.
+
+34. La fraude informatique, article le plus utilisé contre les escroqueries, est l'article ______.
+
+35. Le refus de remettre la clé de déchiffrement est sanctionné par l'article ______.
+
+36. L'autorité de régulation instituée par la loi 2010/012 porte le sigle ______.
+
+37. La notification d'une violation de données relève de l'article ______ de la loi 2024/017.
+
+38. La sécurité obligatoire des données relève de l'article ______ de la loi 2024/017.
+
+39. Les dispositions processuelles de perquisition de la loi 2010/012 vont de l'article 52 à l'article ______.
+
+40. La confiscation des outils, peine accessoire, est prévue par l'article ______ de la loi 2010/012.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

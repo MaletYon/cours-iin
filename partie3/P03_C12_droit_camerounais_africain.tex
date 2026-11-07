@@ -1,0 +1,791 @@
+% ============================================================================
+% Fichier  : partie3/P03_C12_droit_camerounais_africain.tex
+% Titre    : Droit Camerounais et Africain
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% ============================================================================
+
+\chapter{Droit Camerounais et Africain}
+\label{chap:droit-cam}
+
+\epigraph{%
+    « Africa must develop its own digital legal framework that respects
+    both international standards and local cultural realities. »%
+}{Nnenna Ifeanyi-Ajufo}
+
+\niveauChapitre{Fondamental}{%
+    Notions de droit général recommandées mais non indispensables~:
+    ce chapitre part de zéro sur le droit camerounais du numérique.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Identifier les trois textes du cadre normatif national et
+          leur articulation~: \loicam{2010/012}~\cite{cameroun2010a}, \loicam{2024/017}~\cite{cameroun2024donnees},
+          Code pénal.
+    \item Qualifier les infractions numériques les plus fréquentes
+          au Cameroun (fraude, accès illicite, ransomware, CSAM) selon
+          l'article de loi exact.
+    \item Appliquer la \loicam{2024/017} aux violations de données
+          personnelles et identifier les sanctions applicables.
+    \item Maîtriser les règles d'articulation des trois textes~:
+          quand cumuler, quand choisir.
+    \item Identifier les six erreurs de qualification les plus fréquentes
+          et leurs conséquences sur la validité du dossier judiciaire.
+    \item Rédiger un rapport de qualification d'infraction numérique
+          transmissible au parquet.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Ce chapitre dans la pratique quotidienne}
+% ============================================================================
+
+Un OPJ qui ne maîtrise pas les qualifications nationales sera incapable
+de rédiger un procès-verbal valable, de choisir le bon article d'inculpation
+et de préparer un dossier transmissible au parquet. Les droits internationaux
+des chapitres précédents sont inutilisables sans cette fondation nationale.
+
+\textbf{Méthode de ce chapitre~:} partir systématiquement de cas concrets
+camerounais (fraudes MoMo, escroqueries Facebook, SIM~swapping, ransomware)
+et remonter vers la qualification légale. Jamais l'inverse.
+
+\separateur
+
+% ============================================================================
+\section{Architecture du Cadre Normatif National~: Trois Textes}
+\label{sec:architecture-nationale}
+% ============================================================================
+
+\subsection{Vue d'ensemble}
+
+Trois textes constituent le droit camerounais du numérique~:
+
+\begin{tableaucours}{p{3.5cm}p{4.0cm}p{4.5cm}}{%
+    \tableauHeader{Texte} &
+    \tableauHeader{Objet} &
+    \tableauHeader{Rôle pour l'enquêteur}
+}
+\textbf{\loicam{2010/012}} du 21~déc.~2010 &
+    Cybersécurité et cybercriminalité &
+    \textbf{Texte principal de qualification pénale.}
+    97~articles, 5~titres, 73~définitions. \\
+\textbf{\loicam{2024/017}} du 23~déc.~2024 &
+    Protection des données à caractère personnel &
+    Complète la Loi~2010 pour les violations de données.
+    Sanctions administratives ET pénales. \\
+\textbf{Code pénal camerounais} &
+    Droit pénal général &
+    S'applique en cumul pour l'escroquerie, le faux,
+    la diffamation, les menaces. \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~12.1. Les trois textes du cadre national}\end{center}
+
+\begin{boxalert}
+\textbf{Quatre points clés avant de qualifier~:}
+\begin{enumerate}
+    \item L'article~4 de la Loi~2010/012 définit \textbf{73~termes}. Ces
+          définitions ont valeur juridique contraignante. Une qualification
+          fondée sur une définition incorrecte fragilise le dossier.
+    \item La Loi~2010 n'abroge pas le Code pénal. \textbf{Les deux se cumulent.}
+          Un même fait peut être à la fois escroquerie (CP) et fraude
+          informatique (art.~72 Loi~2010).
+    \item \textbf{Art.~89 Loi~2010~: le sursis est impossible.} Tout condamné
+          sous la Loi~2010 purge sa peine. Mentionner ce point dans
+          chaque rapport transmis au parquet.
+    \item Le champ d'application est large~: réseaux + systèmes d'information
+          + équipements terminaux. \textbf{Un téléphone mobile est un
+          équipement terminal. Un groupe WhatsApp est un réseau de
+          communications électroniques.}
+\end{enumerate}
+\end{boxalert}
+
+\subsection{Architecture de la Loi~2010/012}
+
+\begin{tableaucours}{p{3.5cm}p{8.0cm}}{%
+    \tableauHeader{Titre} &
+    \tableauHeader{Contenu et articles clés}
+}
+\textbf{Titre~I}. Dispositions générales &
+    Définitions (art.~4. 73~termes).
+    Champ d'application. Exclusion défense/sécurité nationale (art.~2). \\
+\textbf{Titre~II}. Cybersécurité &
+    Politique de sécurité (art.~6). Régulation ANTIC (art.~7--9).
+    Certification et signature électronique (art.~10--23).
+    Protection des réseaux et vie privée (art.~24--51). \\
+\textbf{Titre~III}. Cybercriminalité &
+    \textbf{Dispositions processuelles (art.~52--59)~: perquisitions,
+    saisies, réquisitions.}
+    \textbf{Infractions et sanctions (art.~60--89)~: toutes les
+    qualifications pénales.} \\
+\textbf{Titre~IV}. Coopération judiciaire &
+    Entraide judiciaire internationale (art.~91--94). \\
+\textbf{Titre~V}. Dispositions finales &
+    Textes d'application (art.~95--97). \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~12.2. Architecture de la Loi~2010/012}\end{center}
+
+% ============================================================================
+\section{Les Infractions de la Loi~2010/012~: Titre~III}
+\label{sec:infractions-loi2010}
+% ============================================================================
+
+\subsection{Articles~65 à~69~: accès, interception, atteinte à l'intégrité}
+
+\begin{boxjuris}
+\textbf{Article~65. Accès illicite et interception illégale~:}
+\begin{quote}
+(1)~Est puni d'un emprisonnement de cinq~(05) à dix~(10)~ans et d'une
+amende de 5~000~000 à 10~000~000~F~CFA \textit{[\ldots]} celui qui effectue,
+sans droit ni autorisation, l'interception par des moyens techniques, de
+données lors des transmissions \textit{[\ldots]} à destination, en provenance
+ou à l'intérieur ou non d'un réseau de communications électroniques.
+
+(2)~Est puni des mêmes peines tout accès non autorisé à l'ensemble ou à
+une partie d'un réseau de communications électroniques ou d'un système
+d'information ou d'un équipement terminal.
+
+(3)~Les peines prévues à l'alinéa~1 ci-dessus sont doublées, en cas
+d'accès illicite portant atteinte à l'intégrité, la confidentialité,
+la disponibilité du réseau ou du système d'information.
+
+(4)~Est puni des mêmes peines celui qui, sans droit, permet l'accès dans
+un réseau ou dans un système d'information par défi intellectuel.
+\end{quote}
+\textbf{L'article fondamental.} Toute intrusion informatique non autorisée
+tombe sous cet article, qu'elle ait causé un dommage ou non. L'argument
+de la ``simple curiosité'' ne constitue pas une défense~: l'al.~4 le
+criminalise explicitement.\\[0.3ex]
+\textbf{Circonstance aggravante (al.~3)~:} peines doublées si l'accès porte
+atteinte à l'intégrité, la confidentialité ou la disponibilité.
+En pratique~: toute intrusion qui modifie, copie ou rend inaccessibles
+des données tombe dans l'aggravation.\\[0.3ex]
+\textbf{Cas type PNC~:} accès au compte bancaire en ligne d'un tiers en
+utilisant ses identifiants volés~$\to$ art.~65~al.~2 + art.~65~al.~3
+(données copiées).
+\end{boxjuris}
+
+\begin{boxjuris}
+\textbf{Articles~66--67. Atteinte à l'intégrité des réseaux et systèmes~:}
+Art.~66~al.~1~: puni de 2 à 5~ans + 1~000~000 à 2~000~000~F~CFA, celui
+qui entraîne la perturbation ou l'interruption du fonctionnement d'un
+réseau en introduisant, transmettant, endommageant, effaçant, détériorant,
+modifiant, supprimant ou rendant inaccessibles les données.\\[0.3ex]
+\textbf{Distinction art.~66 vs art.~67~:} art.~66~= perturbation d'un réseau
+ou équipement terminal~; art.~67~= atteinte à l'intégrité d'un
+système d'information. Les deux peuvent être cumulés.\\[0.3ex]
+\textbf{Couverture pratique~:} attaques DDoS (saturation~= perturbation)~;
+ransomware (chiffrement~= rendre inaccessibles)~; defacement de site web
+(modification~= art.~67)~; sabotage de base de données.
+\end{boxjuris}
+
+\begin{boxjuris}
+\textbf{Articles~68--69. Accès aggravé et espionnage informatique~:}
+Art.~68~: puni de 5 à 10~ans + 10~M à 50~M~F~CFA celui qui accède ou
+se maintient frauduleusement dans un système en causant une perturbation.
+\textbf{Peines doublées si suppression ou modification de données
+(art.~68~al.~2).}\\[0.3ex]
+Art.~69~: accès en violation des mesures de sécurité pour obtenir des
+données d'un système interconnecté. Amende plafond~: \textbf{100~millions
+FCFA.}\\[0.3ex]
+\textbf{Cas type art.~69~:} intrusion dans le système de paie d'une
+administration camerounaise depuis Internet pour extraire des données
+salariales.
+\end{boxjuris}
+
+\subsection{Articles~70 à~72 et~86~: fraude, manipulation, abus de dispositifs}
+
+\begin{boxjuris}
+\textbf{Article~72. Fraude informatique~:}
+Est puni des peines de l'art.~66 celui qui, de quelque manière que ce
+soit, sans droit, introduit, altère, efface ou supprime, \textbf{afin
+d'obtenir un bénéfice économique}, les données électroniques, de manière
+à causer un préjudice patrimonial à autrui.\\[0.3ex]
+\textbf{Trois éléments constitutifs~:} (1)~acte sur des données
+(introduction, altération, effacement, suppression), (2)~sans droit,
+(3)~pour obtenir un bénéfice économique causant un préjudice patrimonial.\\[0.3ex]
+\textbf{L'article le plus utilisé pour les escroqueries en ligne.}
+BEC, phishing bancaire, fraude MoMo, modification de relevés bancaires
+tous tombent sous art.~72.\\[0.3ex]
+\textbf{Cumul recommandé~:} art.~72 Loi~2010 + art.~318 Code pénal
+(escroquerie) quand la victime a été manipulée ET que des données
+ont été altérées.
+\end{boxjuris}
+
+\begin{boxjuris}
+\textbf{Article~86. Abus de dispositifs informatiques~:}
+Est puni d'un emprisonnement de 2 à 5~ans \textit{[\ldots]} celui qui
+importe, détient, offre, cède, vend ou met à disposition un programme
+informatique, un mot de passe, un code d'accès ou toutes données
+informatiques similaires conçus et/ou spécialement adaptés pour permettre
+d'accéder à un système d'information.\\[0.3ex]
+\textbf{Criminalise la préparation~:} vendre un kit de phishing, partager
+des identifiants volés, mettre à disposition un logiciel d'intrusion 
+même sans attaque effective.\\[0.3ex]
+\textbf{Peines accessoires (art.~87)~:} confiscation des outils~;
+interdiction d'exercer une activité professionnelle (5~ans)~;
+fermeture d'établissement~; exclusion des marchés publics.
+\end{boxjuris}
+
+\subsection{Article~88~: refus de remettre la clé de déchiffrement}
+
+\begin{boxjuris}
+\textbf{Article~88. Refus de déchiffrement~:}
+(1)~Est puni d'un emprisonnement de \textbf{un~(01) à cinq~(05)~ans} et
+d'une amende de \textbf{100~000 à 1~000~000~F~CFA} celui qui refuse de
+remettre aux autorités judiciaires compétentes la convention secrète de
+déchiffrement d'un moyen cryptologique susceptible d'avoir été utilisé
+pour préparer ou commettre une infraction.
+
+(2)~Les peines prévues à l'alinéa~1 sont portées de 3 à 5~ans et de
+1~000~000 à 5~000~000~F~CFA lorsque la remise de ladite convention aurait
+permis d'éviter un crime ou délit ou d'en limiter les effets.
+\end{boxjuris}
+
+\begin{boxPNC}
+\textbf{L'article 88~: réflexe obligatoire face à un téléphone chiffré}
+
+Un suspect refuse de déverrouiller son téléphone. L'OPJ ne doit pas bloquer~:
+\begin{enumerate}
+    \item Obtenir une réquisition formelle du procureur ou du juge
+          d'instruction (la réquisition est la condition préalable).
+    \item Si le suspect refuse après réquisition~: art.~88~al.~1
+          constitue une infraction autonome \emph{indépendante} de
+          l'infraction principale.
+    \item Si des éléments montrent que le déchiffrement aurait permis
+          d'éviter un crime en cours~: art.~88~al.~2 (aggravé~: 3--5~ans).
+    \item Documenter précisément~: date et heure de la réquisition,
+          formulation exacte de la demande, refus exprimé clairement.
+\end{enumerate}
+\textbf{Erreur fréquente~:} beaucoup d'enquêteurs ignorent l'existence
+de cet article. Un dossier CSAM ou ransomware peut être débloqué par
+la seule citation de l'art.~88.
+\end{boxPNC}
+
+\subsection{Article~76~: CSAM et contenus sexuels impliquant des mineurs}
+
+\begin{boxjuris}
+\textbf{Article~76. Pornographie enfantine~:}
+Est puni d'un emprisonnement de \textbf{cinq~(05) à dix~(10)~ans} et
+d'une amende de \textbf{5~000~000 à 10~000~000~F~CFA} celui qui fixe,
+enregistre, transmet ou diffuse, via un système d'information ou un
+réseau de communications électroniques, des images pornographiques
+impliquant des mineurs.\\[0.3ex]
+\textbf{Ressource opérationnelle clé~:} NCMEC CyberTipline
+(\texttt{cybertipline.org}). Les fournisseurs américains ont l'obligation
+légale de signaler tout CSAM détecté~; les signalements sont transmis
+via INTERPOL.\\[0.3ex]
+\textbf{Cumul obligatoire~:} art.~76 Loi~2010 + art.~295 Code pénal
+(attentat à la pudeur aggravé) + art.~80--81 Loi~2010 si proposition
+sexuelle en ligne à un mineur.
+\end{boxjuris}
+
+% ============================================================================
+\section{La Loi~2024/017~: Protection des Données Personnelles}
+\label{sec:loi2024}
+% ============================================================================
+
+\subsection{Architecture et innovations par rapport à la Loi~2010}
+
+La \loicam{2024/017} du 23~décembre~2024 comble un vide~: la Loi~2010
+réprimait les violations de données, mais ne fixait pas les obligations
+préventives (consentement, sécurité obligatoire, registre de traitement,
+notification de violation). La Loi~2024 établit un système complet
+analogue au RGPD~\cite{rgpd2016} européen.
+
+\begin{tableaucours}{p{3.5cm}p{4.0cm}p{4.0cm}}{%
+    \tableauHeader{Titre / Chapitre} &
+    \tableauHeader{Objet} &
+    \tableauHeader{Articles clés}
+}
+Titre~I. Général & Champ d'application, définitions fondamentales &
+    Art.~1--5 \\
+Titre~II. Principes & Légitimité, consentement, finalité, minimisation,
+    sécurité &
+    Art.~6--36 \\
+Titre~III. Droits & Accès, rectification, effacement, portabilité,
+    opposition &
+    Art.~37--47 \\
+Titre~IV. Interdictions & Données sensibles, profilage, traitements
+    illicites &
+    Art.~48--52 \\
+Titre~V. Autorité & Création et pouvoirs de l'Autorité de protection &
+    Art.~53 \\
+Titre~VI. Sanctions & Administratives + pénales &
+    Art.~54--71 \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~12.3. Architecture de la Loi~2024/017}\end{center}
+
+\subsection{Définitions fondamentales~: art.~5}
+
+\begin{itemize}
+    \item \textbf{Donnée personnelle~:} toute information permettant
+          d'identifier directement ou indirectement une personne physique.
+          \textbf{L'adresse IP est une donnée personnelle.} Une intrusion
+          qui consigne les adresses IP des victimes active la Loi~2024.
+    \item \textbf{Donnée sensible~:} origine tribale ou raciale, opinions
+          politiques, convictions religieuses, appartenance syndicale,
+          données de santé, vie sexuelle, données génétiques, biométriques.
+          \textbf{Protection renforcée~: peines doublées (art.~74~al.~5
+          Loi~2010, art.~66 Loi~2024).}
+    \item \textbf{Responsable du traitement~:} toute personne physique
+          ou morale qui détermine les finalités et les moyens du traitement.
+    \item \textbf{Profilage~:} traitement automatisé visant à évaluer des
+          aspects personnels relatifs à une personne (santé, préférences,
+          localisation, situation économique).
+\end{itemize}
+
+\subsection{Obligations clés du responsable du traitement}
+
+\begin{boxjuris}
+\textbf{Article~22. Notification de violation de données (``breach'')}\\
+Le responsable du traitement notifie \textbf{sans délai} à l'Autorité de
+protection toute violation de données à caractère personnel susceptible
+d'engendrer un risque pour les droits et libertés des personnes concernées.
+
+\textbf{Sanction du défaut de notification~:} art.~56~: amende
+administrative de 1 à 10~millions FCFA.\\[0.3ex]
+\textbf{Pour l'enquêteur~:} quand une entreprise victime d'un ransomware
+ou d'une fuite de données n'a pas notifié l'Autorité noter ce manquement
+dans le rapport d'enquête. C'est une infraction administrative indépendante,
+sanctionnable en plus des infractions commises par l'attaquant.
+\end{boxjuris}
+
+\begin{boxjuris}
+\textbf{Article~27. Sécurité obligatoire des données}\\
+Le responsable du traitement met en \oe uvre \textit{[\ldots]} les mesures
+techniques et organisationnelles appropriées~: \textbf{traçabilité des accès}
+(journaux de connexion, logs d'audit)~; \textbf{contrôle d'accès}
+(principe du moindre privilège)~; chiffrement des données sensibles~;
+sauvegardes régulières et plans de continuité.
+
+\textbf{Points utiles pour l'enquête~:} (1)~le responsable a l'obligation
+de constituer et conserver des logs d'audit ils existent, ils peuvent
+être requis~; (2)~un employé qui accède à des données hors de son périmètre
+commet une infraction ET son employeur est en faute s'il n'avait pas mis
+en place les contrôles.
+\end{boxjuris}
+
+\begin{boxjuris}
+\textbf{Article~32. Transfert international de données~:}
+Le transfert de données à caractère personnel vers un État étranger
+est subordonné à une \textbf{autorisation préalable} de l'Autorité
+de protection, qui doit s'assurer~: que le pays de destination offre
+un niveau de protection suffisant~; de l'entrée en vigueur d'un instrument
+juridique avec ce pays~; de la souscription de clauses contractuelles types.\\[0.3ex]
+\textbf{Sanction~: art.~69~: 3 à 10~ans + 2 à 20~millions FCFA.}
+L'une des infractions les plus graves de la Loi~2024.
+\end{boxjuris}
+
+\subsection{Les sanctions pénales de la Loi~2024/017}
+
+\begin{boxjuris}
+\textbf{Article~63. Collecte frauduleuse de données personnelles~:}
+(1)~Puni de \textbf{2 à 5~ans} + \textbf{200~000 à 5~000~000~F~CFA}
+celui qui collecte des données à caractère personnel ou y accède par
+un moyen frauduleux, déloyal ou illicite.
+
+(2)~\textbf{Peines doublées} lorsque la collecte frauduleuse s'accompagne
+d'un verrouillage, d'un cryptage ou de toute autre technique portant atteinte
+à la disponibilité et à l'intégrité des données.
+
+\textbf{Al.~2 couvre directement les ransomwares~:} l'attaque ransomware
+= collecte frauduleuse + chiffrement~= peines doublées.\\[0.3ex]
+\textbf{Cumul possible avec art.~65 Loi~2010} quand la collecte frauduleuse
+implique une intrusion dans un système d'information.
+\end{boxjuris}
+
+% ============================================================================
+\section{Tableau Comparatif des Sanctions~: les Trois Textes}
+\label{sec:sanctions-comparees}
+% ============================================================================
+
+\begin{tableaucours}{p{3.5cm}p{2.8cm}p{2.8cm}p{2.5cm}}{%
+    \tableauHeader{Infraction} &
+    \tableauHeader{Loi~2010/012} &
+    \tableauHeader{Loi~2024/017} &
+    \tableauHeader{Code pénal (cumul)}
+}
+Accès illicite & Art.~65~: 5--10~ans + 5--10M & Art.~63 si données perso. &
+    Tentative possible (art.~97) \\
+Interception illégale & Art.~65~al.~1~: 5--10~ans & Art.~63 si données perso. &
+    Art.~305 si contenu utilisé \\
+Atteinte intégrité syst. & Art.~66--67~: 2--5~ans + 1--2M &
+    Art.~63~al.~2 si chiffrement &
+    Art.~318 si préjudice \\
+Fraude informatique & Art.~72~: 2--5~ans + 1--2M &
+    Art.~63 si données perso. &
+    Art.~318 escroquerie \\
+Collecte frauduleuse & Art.~74~al.~4~: 6~mois--2~ans + 1--5M &
+    Art.~63~: 2--5~ans (plus lourd) & Art.~318 si revente \\
+Données sensibles &
+    Art.~74~al.~5~: peines~$\times$~2 &
+    Art.~66~: 6~mois--2~ans + 500K--5M & Art.~305 \\
+Transfert illégal étranger &
+    Art.~74~al.~7~: 6~mois--2~ans + 5--50M &
+    Art.~69~: \textbf{3--10~ans + 2--20M} & Art.~99 si données étatiques \\
+Profilage sans consentement & Non prévu expressément &
+    Art.~65~: 3--10~ans + 1--20M & Non prévu \\
+CSAM & Art.~76/80~: 5--10~ans + 5--10M &
+    Art.~52 atteinte à la dignité & Art.~295 aggravé \\
+Refus déchiffrement & Art.~88~: \textbf{1--5~ans + 100K--1M} &
+    Non prévu & Non prévu \\
+Personnes morales & Art.~64~: 5--50M +~peine access. &
+    Art.~71~: \textbf{50M à 1~milliard} & Dissolution possible \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~12.4. Comparatif des sanctions~:
+valeurs en millions FCFA sauf mention}\end{center}
+
+\begin{boiteRemarque}{Trois chiffres à mémoriser}
+\begin{itemize}
+    \item \textbf{100~millions FCFA} (Loi~2010~: espionnage, art.~69)
+          . l'amende la plus lourde de la Loi~2010.
+    \item \textbf{1~milliard FCFA} (Loi~2024, art.~71~: personnes morales)
+          . l'amende la plus lourde du dispositif national.
+    \item \textbf{Sursis impossible} sous Loi~2010 (art.~89). unique
+          dans le droit camerounais.
+\end{itemize}
+\end{boiteRemarque}
+
+% ============================================================================
+\section{Règles d'Articulation des Trois Textes}
+\label{sec:articulation}
+% ============================================================================
+
+\begin{tableaucours}{p{3.2cm}p{8.5cm}}{%
+    \tableauHeader{Règle} &
+    \tableauHeader{Contenu et exemples}
+}
+\textbf{Règle~1. Spécialité} &
+    La Loi~2010 est la \textit{lex specialis} du droit pénal cyber.
+    Elle prime sur le Code pénal pour les infractions qu'elle définit
+    expressément. Mais le Code pénal s'applique en complément pour les
+    éléments non couverts ou les qualifications aggravées. \\
+\textbf{Règle~2. Cumul} &
+    Un même fait peut être qualifié sous plusieurs textes si les éléments
+    constitutifs sont indépendants. Loi~2010 + Code pénal~: toujours possible.
+    Loi~2010 + Loi~2024~: possible si la violation porte à la fois sur
+    l'intégrité du système ET sur les données personnelles. \\
+\textbf{Règle~3. Plus solide} &
+    Quand deux qualifications sont possibles, choisir celle dont les
+    éléments constitutifs sont les plus faciles à prouver, pas
+    nécessairement la peine la plus élevée. \\
+\textbf{Règle~4. Données perso.} &
+    Tout fait impliquant des données à caractère personnel (y compris
+    l'adresse IP~: art.~5 Loi~2024) active potentiellement la Loi~2024
+    EN PLUS des autres textes. \\
+\textbf{Règle~5. Personnes morales} &
+    La Loi~2024 prévoit des amendes pour personnes morales bien
+    supérieures à la Loi~2010 (jusqu'à 1~milliard FCFA vs 50~millions).
+    Pour les infractions d'entreprises~: toujours vérifier si la Loi~2024
+    est applicable. \\
+\textbf{Règle~6. Sursis} &
+    Art.~89 Loi~2010~: sursis impossible.
+    Loi~2024~: pas de disposition similaire, le sursis est en principe
+    possible (Code pénal). Cette différence peut orienter la stratégie
+    du parquet. \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~12.5. Règles d'articulation des trois textes}\end{center}
+
+\subsection{Grille de qualification par type d'infraction courant}
+
+\begin{tableaucours}{p{3.8cm}p{7.8cm}}{%
+    \tableauHeader{Infraction type} &
+    \tableauHeader{Articles à citer (toujours au moins deux textes)}
+}
+Fraude MoMo / BEC &
+    Art.~72 Loi~2010 + Art.~318 CP (escroquerie)~;
+    si données perso.~: +~Art.~63 Loi~2024 \\
+Intrusion système &
+    Art.~65~al.~2 Loi~2010~; aggravé~: art.~65~al.~3 si dommage~;
+    + Art.~65 Loi~2024 si données perso. \\
+Ransomware &
+    Art.~66--67 Loi~2010 + Art.~63~al.~2 Loi~2024 (peines doublées)
+    + Art.~22 Loi~2024 si pas de notification \\
+Vol de base de données &
+    Art.~63 Loi~2024 + Art.~74 Loi~2010 + Art.~318 CP (revente) \\
+CSAM &
+    Art.~76 + Art.~80--81 Loi~2010. Signaler NCMEC CyberTipline.
+    + Art.~295 CP aggravé \\
+Phishing / site frauduleux &
+    Art.~72 + Art.~86 Loi~2010 + Art.~318 CP + Art.~155 CP (faux) \\
+Téléphone chiffré, refus &
+    Art.~88 Loi~2010. Réquisition judiciaire obligatoire préalablement. \\
+Transfert données étranger &
+    Art.~69 Loi~2024 (3--10~ans)~: la sanction la plus lourde du dispositif. \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~12.6. Grille de qualification par infraction type}\end{center}
+
+% ============================================================================
+\section{Six Erreurs de Qualification et Comment les Éviter}
+\label{sec:erreurs-qualification}
+% ============================================================================
+
+\begin{tableaucours}{p{3.8cm}p{4.0cm}p{4.0cm}}{%
+    \tableauHeader{Erreur} &
+    \tableauHeader{Description} &
+    \tableauHeader{Correction}
+}
+\textbf{1.~Tout qualifier sous art.~74 Loi~2010} &
+    Art.~74 couvre la vie privée. Beaucoup d'enquêteurs l'utilisent
+    pour toutes les infractions sur les données~: renvoi de dossier. &
+    Pour les violations de données personnelles post-23~déc.~2024~:
+    utiliser les articles pertinents Loi~2024. Art.~74 reste applicable
+    pour les faits antérieurs. \\
+\textbf{2.~Oublier art.~88} &
+    Suspect refuse de déverrouiller son téléphone. Blocage total.
+    L'enquêteur ignore qu'il existe une infraction autonome. &
+    Réquisition du juge~$\to$ refus~= art.~88. Infraction indépendante
+    de l'infraction principale. \\
+\textbf{3.~Ne pas citer le Code pénal} &
+    PV ne cite que Loi~2010. Le magistrat rejette la qualification pour
+    un vice de forme. Pas de filet de sécurité. &
+    Systématiquement citer en alternative~: art.~318~CP (escroquerie),
+    art.~155--162 (faux), art.~305--308 (diffamation). \\
+\textbf{4.~Confondre art.~66 et art.~72} &
+    Art.~66~= perturbation sans bénéfice économique. Art.~72~= manipulation
+    avec préjudice patrimonial. Qualifier une fraude sous art.~66 est faux. &
+    Élément clé~: y a-t-il un bénéfice économique et un préjudice
+    patrimonial~? Oui~$\to$ art.~72. Non (sabotage pur)~$\to$ art.~66. \\
+\textbf{5.~Ignorer que l'IP est une donnée perso.} &
+    OPJ note une IP sans penser à qualifier sous Loi~2024 la collecte
+    de ces IP par un acteur non autorisé. &
+    Art.~5 Loi~2024~: l'adresse IP est explicitement une donnée personnelle.
+    Toute collecte sans base légale active la Loi~2024. \\
+\textbf{6.~Ne pas noter le défaut de notification} &
+    Entreprise victime d'un ransomware n'a pas notifié l'Autorité.
+    L'OPJ ne le signale pas dans son rapport. &
+    Art.~22 Loi~2024~= obligation de notifier ``sans délai''. Défaut~=
+    infraction administrative indépendante (art.~56~: amende 1--10M). \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~12.7. Six erreurs de qualification et corrections}\end{center}
+
+% ============================================================================
+\section{Le Cadre Procédural~: De la Plainte au Jugement}
+\label{sec:procedure}
+% ============================================================================
+
+\subsection{Autorités compétentes}
+
+\begin{itemize}
+    \item \textbf{ANTIC} (Agence Nationale des TIC)~: autorité de régulation
+          technique~; point focal de la coopération internationale cyber~;
+          compétences d'enquête administrative.
+    \item \textbf{DGSN/DPJ}~: Direction de la Police Judiciaire~;
+          BCN INTERPOL Cameroun~; unité de cybercriminalité.
+    \item \textbf{Parquet spécialisé}~: Tribunal de Grande Instance de Yaoundé
+          et Douala disposent de magistrats affectés aux affaires cyber.
+    \item \textbf{Autorité de protection des données (Loi~2024, art.~53)}~:
+          organisme public indépendant~; délivre les autorisations~;
+          dispose d'un arsenal de sanctions administratives.
+          \textbf{Statut~(juin~2026)~:} à créer par décret présidentiel~;
+          surveiller le Journal Officiel.
+    \item \textbf{Experts agréés}~: Décret~N°~69/DF/544~; BAC+5 informatique
+          minimum~; 5~ans d'expérience~; agrément du Ministère de la Justice.
+\end{itemize}
+
+\subsection{Procédure type d'investigation numérique}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    etape/.style={draw=CouleurPrimaire, fill=CouleurDef, rounded corners=3pt,
+        minimum width=7cm, minimum height=0.85cm,
+        font=\small\bfseries\color{CouleurPrimaire}, align=center},
+    fl/.style={-{Stealth[length=4pt]}, thick, color=CouleurSecondaire}
+]
+\node[etape] (e1) at (0, 0)   {1. Plainte / Signalement};
+\node[etape] (e2) at (0,-1.1) {2. Enquête préliminaire (OPJ + ANTIC)};
+\node[etape] (e3) at (0,-2.2) {3. Ouverture information judiciaire};
+\node[etape] (e4) at (0,-3.3) {4. Commission rogatoire pour expertise};
+\node[etape] (e5) at (0,-4.4) {5. Expertise technique (expert agréé)};
+\node[etape] (e6) at (0,-5.5) {6. Rapport d'expertise};
+\node[etape] (e7) at (0,-6.6) {7. Audience (présentation des preuves)};
+\node[etape] (e8) at (0,-7.7) {8. Jugement};
+\draw[fl] (e1)--(e2); \draw[fl] (e2)--(e3); \draw[fl] (e3)--(e4);
+\draw[fl] (e4)--(e5); \draw[fl] (e5)--(e6); \draw[fl] (e6)--(e7);
+\draw[fl] (e7)--(e8);
+\node[font=\footnotesize\itshape, color=CouleurSecondaire,
+    text width=3.5cm, align=left] at (5.5,-1.1)
+    {Art.~52--59 Loi~2010\\perquisitions, saisies,\\réquisitions};
+\node[font=\footnotesize\itshape, color=CouleurSecondaire,
+    text width=3.5cm, align=left] at (5.5,-4.4)
+    {Décret~69/DF/544\\expert agréé MJ};
+\end{tikzpicture}
+\caption{Procédure type d'investigation numérique au Cameroun}
+\label{fig:procedure-cam}
+\end{figure}
+
+% ============================================================================
+\section{Jurisprudence Camerounaise~: Premières Décisions de Référence}
+\label{sec:jurisprudence}
+% ============================================================================
+
+La jurisprudence numérique camerounaise est naissante~: peu de décisions
+publiées à ce jour. Trois affaires de référence~:
+
+\begin{boxscenario}{Affaire CAMTEL c.~X (2018), première condamnation pour intrusion}
+\textbf{Faits~:} intrusion non autorisée dans les systèmes de CAMTEL~;
+modification de données de facturation au profit du prévenu.\\
+\textbf{Qualification retenue~:} art.~65~al.~2 + art.~65~al.~3
+Loi~2010/012 (accès illicite + aggravation pour modification de données).\\
+\textbf{Preuves admises~:} logs système~; IP tracking~; analyse forensique
+d'un expert agréé.\\
+\textbf{Décision~:} 2~ans d'emprisonnement ferme (sursis refusé, art.~89)~;
+5~millions FCFA d'amende~; dommages-intérêts à CAMTEL.\\
+\textbf{Enseignement~:} première validation judiciaire des logs système
+comme preuves numériques suffisantes. La chaîne de custody de l'expert
+agréé était irréprochable.
+\end{boxscenario}
+
+\begin{boxscenario}{Affaire Ministère public c.~Y (2020), fraude Mobile Money}
+\textbf{Faits~:} escroquerie via Mobile Money~; le prévenu interceptait
+des codes OTP par SIM~swapping~; 47~victimes~; préjudice total~:
+23~millions FCFA.\\
+\textbf{Qualification retenue~:} art.~72 Loi~2010 (fraude informatique)
++ art.~318 Code pénal (escroquerie).\\
+\textbf{Innovation~:} première utilisation des données USSD d'Orange
+Cameroun comme preuve admissible.\\
+\textbf{Enseignement~:} les données opérateurs (MTN MoMo, Orange Money)
+constituent des preuves admissibles. Le cumul art.~72 Loi~2010 + art.~318
+CP est validé par la jurisprudence.
+\end{boxscenario}
+
+\subsection{Défis de la jurisprudence camerounaise}
+
+\begin{enumerate}
+    \item \textbf{Formation des magistrats~:} insuffisante en technique~;
+          le projet de formation continue des magistrats sur le droit du
+          numérique est en cours au Ministère de la Justice.
+    \item \textbf{Délais d'expertise~:} 1 à 3~mois en moyenne~;
+          absence de laboratoire forensique national accrédité.
+    \item \textbf{Jurisprudence non publiée~:} peu de décisions commentées
+          et diffusées~; lacune que ce cours contribue à combler.
+    \item \textbf{Absence de normes nationales d'accréditation~:}
+          l'agrément des experts (Décret~69/DF/544) ne fixe pas de
+          standard technique précis.
+\end{enumerate}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{Trois textes, toujours cités en cumul~:}
+          \loicam{2010/012} (lex specialis cyber) + Code pénal
+          (escroquerie, faux, diffamation) + \loicam{2024/017}
+          (données personnelles).
+
+    \item \textbf{Art.~89 Loi~2010~: sursis impossible.} Mentionner
+          dans chaque rapport transmis au parquet.
+
+    \item \textbf{L'adresse IP est une donnée personnelle} (art.~5
+          Loi~2024). Toute intrusion consignant des IP active la Loi~2024
+          en plus de la Loi~2010.
+
+    \item \textbf{Art.~88 pour les téléphones chiffrés~:} refus de
+          déverrouiller après réquisition judiciaire~= infraction
+          autonome (1--5~ans). Ne jamais bloquer sur ce point.
+
+    \item \textbf{Ransomware~:} art.~66--67 Loi~2010 + art.~63~al.~2
+          Loi~2024 (peines doublées~: chiffrement~= atteinte
+          à la disponibilité). + art.~22 Loi~2024 si la victime
+          n'a pas notifié l'Autorité.
+
+    \item \textbf{Personnes morales~:} Loi~2024 prévoit jusqu'à
+          1~milliard FCFA (art.~71). Pour les infractions d'entreprises,
+          toujours rechercher si la Loi~2024 est applicable
+          l'effet dissuasif est sans commune mesure avec la Loi~2010.
+
+    \item \textbf{Transfert illégal de données à l'étranger~:}
+          art.~69 Loi~2024~: 3--10~ans. La sanction la plus lourde
+          du dispositif national. L'autorisation préalable de l'Autorité
+          de protection est obligatoire pour tout transfert.
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~12.1. Qualification nationale \niveaubase}]
+Pour chacun des 5~cas suivants, identifiez~: (A)~l'article Loi~2010/012
+applicable, (B)~l'article Loi~2024/017 si pertinent, (C)~l'article Code
+pénal en cumul~:
+\begin{enumerate}[(a)]
+    \item Un individu accède au compte Facebook d'une étudiante en
+          utilisant son mot de passe dérobé par phishing et publie des
+          photos intimes.
+    \item Un employé copie la base de données clients de son employeur
+          (50~000~entrées avec téléphone et email) et la vend à un concurrent.
+    \item Un ransomware paralyse le système de facturation d'une clinique
+          privée de Douala pendant 5~jours~; toutes les données patients
+          sont chiffrées.
+    \item Le directeur informatique d'une banque refuse de remettre la
+          clé de déchiffrement du serveur de sauvegarde après réquisition
+          formelle du juge d'instruction.
+    \item Une startup camerounaise envoie sans autorisation les données
+          personnelles de 200~000~utilisateurs vers ses serveurs AWS
+          en Irlande.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~12.2. Tableau de sanctions \niveaumoyen}]
+En utilisant le Tableau~12.4~:
+\begin{enumerate}[(a)]
+    \item Quelle est la qualification qui expose l'auteur aux peines les
+          plus sévères dans chaque cas~: le dirigeant d'une PME qui a
+          vendu des données clients à l'étranger sans autorisation (1~000
+          personnes concernées)~?
+    \item Pour une entreprise qui a subi une fuite de données massive
+          et n'a pas notifié l'Autorité de protection~: quelles infractions
+          peut-on retenir contre l'entreprise elle-même (personne morale)~?
+          Quelle est la sanction maximale potentielle~?
+    \item Le sursis peut-il être accordé pour un condamné pour fraude
+          informatique (art.~72 Loi~2010) ayant subtilisé 3~millions FCFA
+          via Mobile Money~? Justifiez.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~12.3. Simulation MOABI \niveauexpert}]
+La Brigade de lutte contre la cybercriminalité de Yaoundé reçoit une plainte.
+L'entreprise MOABI~SA (200~employés) signale~:
+\begin{enumerate}
+    \item Son site e-commerce a été piraté~: 45~000 numéros de cartes
+          bancaires clients dérobés.
+    \item Son serveur de paie a été chiffré par un ransomware
+          (données RH inaccessibles depuis 4~jours).
+    \item Elle n'a pas encore notifié ses clients ni l'Autorité de
+          protection des données.
+    \item Le suspect identifié a supprimé son téléphone principal
+          mais possède un second téléphone chiffré qu'il refuse de
+          déverrouiller.
+\end{enumerate}
+\begin{enumerate}[(a)]
+    \item Listez toutes les infractions constituées avec les articles
+          précis (distinguez~: infractions du suspect vs infractions de
+          MOABI~SA).
+    \item Identifiez les responsabilités de MOABI~SA en tant que personne
+          morale~: quels articles de la Loi~2024 s'appliquent~?
+    \item Rédigez un rapport de qualification transmissible au parquet
+          (une page maximum)~: structure~: faits~/ qualifications~/ articles~/ sanctions encourues~/ mention art.~89.
+    \item Quel est l'enjeu de l'art.~88 dans ce dossier~? Quelle démarche
+          l'OPJ doit-il engager~?
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Transition.} Le Chapitre~\ref{chap:deonto} (Déontologie de
+l'investigateur) clôt la Partie~III. Il aborde les obligations éthiques,
+les conflits d'intérêt, les responsabilités personnelles et la conduite
+de l'investigateur en situation difficile la dimension humaine du
+métier que les textes de loi ne couvrent pas.
+\end{boxinfo}

@@ -1,0 +1,234 @@
+NDAP SUKULU · IIN · fiche FICHE-C06
+Chapitre 6 : Processus investigatif universel (PIU)
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Comment s'articule l'architecture du Processus Investigatif Universel ?
+      a) 5 phases, 17 étapes et 3 Quality Gates
+      b) 3 phases et 10 étapes
+      c) 7 phases sans point de contrôle
+      d) 4 phases et 4 Quality Gates
+
+ 2. Lequel fait partie des quatre objectifs fondamentaux du PIU ?
+      a) La défendabilité des conclusions face à la contestation
+      b) La rapidité à tout prix
+      c) La discrétion absolue
+      d) L'économie de documentation
+
+ 3. Quels sont les trois contextes d'application du PIU ?
+      a) Particulier, organisationnel et judiciaire
+      b) Local, régional et national
+      c) Civil, pénal et administratif
+      d) Matériel, logiciel et réseau
+
+ 4. Quels sont les trois niveaux de profondeur de chaque étape ?
+      a) Minimal, standard et avancé
+      b) Bas, moyen et haut
+      c) Simple, double et triple
+      d) Rapide, normal et lent
+
+ 5. À quoi sert la matrice de criticité ?
+      a) Calibrer le niveau de rigueur adapté à l'investigation
+      b) Calculer un hash
+      c) Chiffrer les preuves
+      d) Nommer les témoins
+
+ 6. Que signifie une décision ROUGE à un Quality Gate ?
+      a) Suspension jusqu'à mise en conformité complète
+      b) Progression immédiate
+      c) Fin de l'investigation
+      d) Passage facultatif
+
+ 7. Que permet une décision ORANGE à un Quality Gate ?
+      a) Une progression conditionnelle avec plan de régularisation
+      b) Une suspension totale
+      c) L'abandon du dossier
+      d) Le saut de deux phases
+
+ 8. Que vise l'étape E2, Décision d'engagement ?
+      a) Valider formellement le lancement, avec mandat ou lettre de mission
+      b) Rédiger le rapport final
+      c) Acquérir les preuves
+      d) Interroger les témoins
+
+ 9. À l'étape E4, quelles empreintes cryptographiques le niveau avancé prévoit-il ?
+      a) SHA-256 et SHA-512
+      b) Aucune
+      c) Un simple CRC32
+      d) Le nom du fichier
+
+10. Que prévoit la règle de sauvegarde 3-2-1 de l'étape E5 ?
+      a) Trois copies, sur deux types de support, dont une hors site
+      b) Trois hash en deux heures
+      c) Trois témoins et deux experts
+      d) Trois phases et deux gates
+
+11. Quel critère caractérise le Quality Gate 2, intégrité probatoire ?
+      a) Cent pour cent des hash correspondants
+      b) La moitié des hash vérifiés
+      c) Aucune vérification requise
+      d) Un seul hash suffisant
+
+12. Combien d'hypothèses distinctes le niveau standard de l'étape E8 impose-t-il au minimum ?
+      a) Au moins cinq
+      b) Une seule
+      c) Exactement deux
+      d) Aucune
+
+13. Que désigne l'hypothèse nulle que le PIU impose d'inclure ?
+      a) L'absence de fait délictuel
+      b) L'hypothèse la plus grave
+      c) Une hypothèse sans preuve
+      d) L'aveu du suspect
+
+14. Sur quoi repose l'étape E9 pour départager les hypothèses ?
+      a) Une matrice de compatibilité hypothèses/preuves
+      b) Le vote des enquêteurs
+      c) L'intuition seule
+      d) Le tirage au sort
+
+15. Que doit documenter l'investigateur au Quality Gate 3, robustesse analytique ?
+      a) Les tentatives de falsification des hypothèses principales
+      b) Le prix des outils
+      c) La couleur des scellés
+      d) Le nom du juge
+
+16. Comment le PIU considère-t-il le retour à des étapes antérieures ?
+      a) Une caractéristique normale du processus, pas un échec
+      b) Une faute grave
+      c) Une impossibilité
+      d) Un abandon du dossier
+
+17. En combien de volumes s'organise le dossier d'investigation consolidé (E11) ?
+      a) Cinq volumes, de la synthèse aux annexes
+      b) Un seul volume
+      c) Dix volumes
+      d) Trois volumes
+
+18. Quelle longueur le chapitre recommande-t-il pour une synthèse exécutive (E12) ?
+      a) Deux à quatre pages
+      b) Vingt à cent pages
+      c) Une seule ligne
+      d) Cinquante pages minimum
+
+19. Quelle règle de style le livrable final doit-il respecter pour la clarté ?
+      a) Des phrases courtes, de quinze à vingt mots maximum
+      b) Des phrases de cent mots
+      c) Un ton personnel et émotionnel
+      d) Aucune référence aux preuves
+
+20. Une affaire implique un enjeu supérieur à 100k, un risque pénal correctionnel et plus de 20 parties prenantes. Quel niveau de rigueur s'impose ?
+
+      a) Le niveau avancé
+      b) Le niveau minimal
+      c) Aucun niveau particulier
+      d) Le niveau standard suffit toujours
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. La qualité d'une investigation se mesure à la robustesse des conclusions face à la contestation.
+      Vrai / Faux
+
+22. Un Quality Gate est un point de contrôle facultatif que l'on peut ignorer.
+      Vrai / Faux
+
+23. Les images forensiques du niveau avancé se créent bit-à-bit avec un write blocker.
+      Vrai / Faux
+
+24. Un investigateur rigoureux se contente de l'hypothèse qui lui paraît d'emblée la plus probable.
+      Vrai / Faux
+
+25. Revenir à l'étape E4 quand une preuve manque est un fonctionnement attendu du PIU.
+      Vrai / Faux
+
+26. En contexte judiciaire camerounais, l'obtention d'un mandat s'appuie notamment sur l'article 52 de la loi 2010/012.
+      Vrai / Faux
+
+27. Le livrable final peut employer un ton subjectif du type « je pense que ».
+      Vrai / Faux
+
+28. La vérification de l'intégrité par hash doit être répétée périodiquement pendant la conservation.
+      Vrai / Faux
+
+29. La matrice de criticité ne prend en compte que l'enjeu financier.
+      Vrai / Faux
+
+30. Chaque affirmation du rapport final doit être appuyée par une référence à une preuve.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le PIU compte cinq phases et dix-sept ______ opérationnelles.
+
+32. Les points de contrôle qualité obligatoires du PIU s'appellent les Quality ______.
+
+33. Le principe de sauvegarde cité à l'étape E5 porte le nom de règle ______.
+
+34. Pour empêcher toute écriture lors de l'acquisition d'un disque, on utilise un write ______.
+
+35. La démarche consistant à chercher à réfuter ses hypothèses s'appuie sur la méthode ______ (sigle anglais).
+
+36. Le livrable formalisant le lancement de l'investigation à l'étape E2 s'appelle le ______ d'investigation.
+
+37. Une décision de Quality Gate autorisant la progression sans réserve est codée par la couleur ______.
+
+38. Le niveau de livrable le plus court, de deux à quatre pages, s'appelle la synthèse ______.
+
+39. La toute première phase du PIU s'appelle Initialisation et ______.
+
+40. L'un des quatre objectifs du PIU est de garantir l'intégrité ______ des éléments collectés.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

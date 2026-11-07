@@ -1,0 +1,753 @@
+% ============================================================================
+% Fichier  : partie1/P01_C02_histoire_investigation.tex
+% Titre    : Histoire de l'Investigation Numérique
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- Juin 2026
+% ============================================================================
+
+\chapter{Histoire de l'Investigation Numérique}
+\label{chap:histoire}
+
+\epigraph{%
+    « Plus vous regarderez loin dans le passé, plus vous verrez loin dans
+    le futur. »%
+}{Winston Churchill, \textit{The Gathering Storm}, 1948}
+
+\niveauChapitre{Fondamental}{%
+    Ce chapitre prolonge le Chapitre~\ref{chap:phi-fond}~: la notion de
+    régime de vérité numérique ($\vec{R}_t$) y est appliquée cas par cas.
+    Aucun prérequis technique.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Reconstituer la \termecle{double hélice} de l'investigation
+          numérique~: l'enroulement historique du technique et du juridique.
+    \item Appliquer le modèle des régimes de vérité $\vec{R}_t$ à chaque
+          période pour comprendre pourquoi les affaires ont produit les
+          innovations qu'elles ont produites.
+    \item Identifier les jalons africains et camerounais de l'histoire
+          de la discipline~; positionner le Cameroun dans ce récit.
+    \item Extraire de chaque affaire une leçon opérationnelle directement
+          applicable à la pratique contemporaine.
+    \item Anticiper les configurations futures des régimes de vérité à
+          partir de la loi d'accélération épistémique.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{La Double Hélice de l'Investigation Numérique}
+% ============================================================================
+
+L'histoire de l'investigation numérique ne se raconte pas en ligne droite.
+Elle s'enroule selon une \termecle{double hélice}\index{double hélice}, image
+empruntée à la biologie moléculaire, où deux brins s'entrelacent sans
+jamais se confondre~: le brin \textbf{technique} (ce que les outils permettent
+de faire) et le brin \textbf{juridique} (ce que le droit autorise à faire
+et ce qu'il exige pour que ce soit recevable). Chaque rupture dans l'un des
+brins provoque une tension dans l'autre. C'est cette tension répétée qui fait
+avancer la discipline~\cite{pollitt2010history}.
+
+\medskip
+
+L'histoire se découpe en cinq régimes de vérité successifs, chacun déclenché
+par un incident fondateur qui a contraint le régime précédent à se reconfigurer.
+Le vecteur de dominance $\vec{R}_t$ de chaque époque, rappelé dans le tableau
+synthétique ci-après, sera illustré affaire par affaire.
+
+\begin{tableaucours}{p{2.2cm}p{2.5cm}p{3.0cm}p{3.8cm}}{%
+    \tableauHeader{Période} &
+    \tableauHeader{Incident fondateur} &
+    \tableauHeader{Innovation} &
+    \tableauHeader{Vecteur $\vec{R}_t$ dominant}
+}
+1970--1990 & Creeper / 414s & Trace électronique & $\alpha_T \approx 0.7$ \\
+1990--2000 & Op. Sundevil / Mitnick & Chain of custody & $\alpha_J \approx 0.5$ \\
+2000--2010 & Enron / McKinnon & Standards ISO/NIST & $\alpha_P \approx 0.5$ \\
+2010--2020 & Silk Road / Panama & Analyse massive & $\alpha_T \approx 0.6$ \\
+2020--\ldots & SolarWinds / IA & Preuves ZK / IA & $\alpha_T + \alpha_J \approx 0.8$ \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~2.1. La double hélice en cinq régimes
+(synthèse de l'auteur, d'après \cite{pollitt2010history})}\end{center}
+
+% ============================================================================
+\section{Les Prémices (1970--1990)~: L'Émergence de la Trace Électronique}
+% ============================================================================
+
+\subsection{Contexte socio-technique du premier régime}
+
+Cette période correspond à ce que Manovich appelle « la logique culturelle
+de l'ordinateur personnel »~: le numérique est le territoire d'une élite
+technique restreinte, les crimes sont commis par curiosité autant que par
+appât du gain, et le cadre juridique est absent ou analogique. Le régime
+de vérité est dominé par la technique ($\alpha_T \approx 0.7$)~: l'expert
+technique isolé est l'unique autorité épistémique, et ses méthodes ne sont
+soumises à aucune contrainte procédurale.
+
+\medskip
+
+Les premières investigations sont de l'\textbf{artisanat}~: chaque analyste
+invente ses propres méthodes, documente selon son intuition, conclut selon
+son expertise. La preuve paradigmatique de l'époque est le log système
+une trace brute, technique, dont la signification est accessible seulement
+aux initiés.
+
+\begin{tableaucours}{p{2.8cm}p{8.2cm}}{%
+    \tableauHeader{Dimension} &
+    \tableauHeader{Caractéristiques du régime 1970--1990}
+}
+Technologie & Mainframes, premiers PC, réseau ARPANET, absence de sécurité \\
+Juridique & Absence de cadre spécifique~; application analogique du droit pénal existant \\
+Social & Fracture numérique massive~; les hackers sont des héros ou des démons \\
+Pratique & Méthodes ad hoc~; expertise individuelle non transmissible~; aucun standard \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~2.2. Contexte socio-technique des prémices
+(d'après \cite{pollitt2010history})}\end{center}
+
+\subsection{The Creeper (1971)~: le premier artefact forensique}
+
+\textbf{The Creeper} n'est pas un crime~: c'est une expérience. Bob Thomas,
+ingénieur chez BBN Technologies, écrit en 1971 un programme capable de
+se déplacer d'ordinateur en ordinateur sur ARPANET en affichant le message
+\texttt{I'M THE CREEPER: CATCH ME IF YOU CAN!}. La réponse, \textbf{The
+Reaper}, programme écrit pour supprimer The Creeper, constitue la
+première \emph{investigation active} de l'histoire numérique~: pour
+attraper The Creeper, il fallait comprendre son comportement, sa propagation,
+ses traces.
+
+\medskip
+
+La leçon n'est pas technique~; elle est épistémologique~: \textbf{tout
+programme laisse des traces}, et ces traces peuvent être lues par qui sait
+les interpréter. Ce principe, évident aujourd'hui, était révolutionnaire
+en 1971.
+
+\subsection{L'affaire des 414s (1983)~: premier paradigme investigatif}
+
+En 1983, six adolescents de Milwaukee, surnommés les \termecle{414s} d'après
+leur indicatif régional, pénètrent dans 60~systèmes informatiques incluant le
+Los Alamos National Laboratory et le Memorial Sloan-Kettering Cancer Center.
+Ils sont arrêtés, non par des techniques forensiques sophistiquées, mais parce
+que l'un d'eux se vante devant ses pairs, un informateur prévient la police.
+
+\medskip
+
+Du point de vue forensique, cette affaire établit que les traces réseau
+constituent une preuve légitime, créant le premier régime de vérité basé
+sur l'adresse IP~\cite{pollitt2010history}~:
+
+\begin{equation}
+P_{\text{réseau}} = \bigl\{\text{logs},\; \text{adresses IP},\;
+\text{horodatages}\bigr\} \in \mathcal{P}_{\text{légitime}}
+\label{eq:preuve-reseau}
+\end{equation}
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Affaire des 414s}
+
+L'investigation repose sur l'exploitation des logs système~: aucune protection
+de la vie privée n'est invoquée. \cro{$\downarrow$}{$\uparrow$}{$\downarrow$},
+Les preuves sont techniquement solides mais le cadre juridique n'existe pas encore
+pour les qualifier. L'absence de \loicam{} ou de \textit{Computer Fraud and Abuse
+Act} avant 1986 illustre le retard du brin juridique sur le brin technique.
+\end{boxCRO}
+
+\textbf{Impact~:} création du \textit{Computer Fraud and Abuse Act} aux
+États-Unis en 1986. Prise de conscience politique mondiale de la nécessité
+d'un cadre juridique propre aux crimes informatiques.
+
+\subsection{L'affaire BTK Killer (2005, racines 1974)~: les métadonnées comme preuve}
+
+Dennis Rader, tueur en série surnommé BTK (\textit{Bind, Torture, Kill}),
+avait communiqué avec la police pendant 30~ans sans être identifié. En
+janvier 2005, il envoie une disquette contenant un fichier
+\texttt{Test.A.rtf}. Les enquêteurs du FBI extraient les
+\termecle{métadonnées}\index{métadonnées} du fichier avec un outil basique~:
+le champ « Auteur » contient \texttt{Dennis}, et la propriété « Dernière
+organisation » indique \texttt{Christ Lutheran Church}. En croisant avec
+les membres actifs de cette paroisse, Rader est identifié en quelques
+heures.
+
+\medskip
+
+Cette affaire illustre un principe cardinal~: \textbf{la valeur probatoire
+d'un artefact numérique peut dépasser celle de son contenu}. Le message
+de Rader n'incriminait personne~; ses métadonnées l'ont trahi~:
+
+\begin{equation}
+V_{\text{probatoire}}(\text{métadonnées}) \;\geq\;
+V_{\text{probatoire}}(\text{contenu})
+\label{eq:meta-superieur}
+\end{equation}
+
+\begin{boxartefact}{Métadonnées de fichier Office}
+\textbf{Localisation~:} \texttt{Propriétés} du fichier $\to$
+\texttt{Détails} (Windows) ou extraction via ExifTool/Autopsy.
+
+\textbf{Informations typiquement contenues~:} auteur, organisation, date de
+création, date de dernière modification, logiciel utilisé, parfois chemin
+du fichier sur l'ordinateur source, nom d'imprimante.
+
+\textbf{Commande d'extraction~:}
+\lstinline[language=bash_forensique]{exiftool fichier.docx}
+
+\textbf{Vulnérabilité~:} la plupart des utilisateurs ignorent que ces
+données existent et n'ont pas l'habitude de les supprimer avant d'envoyer
+un fichier. L'investigateur doit systématiquement les extraire.
+\end{boxartefact}
+
+% ============================================================================
+\section{La Professionnalisation (1990--2000)~: Naissance d'une Discipline}
+% ============================================================================
+
+\subsection{La révolution Internet et ses conséquences épistémiques}
+
+L'émergence du web transforme radicalement le régime de vérité. Le brin
+juridique ($\alpha_J$) et le brin pratique ($\alpha_P$) deviennent dominants~:
+l'investigation ne peut plus être artisanale quand elle touche des millions
+d'internautes. La \textbf{professionnalisation} au sens d'Abbott correspond
+à ce moment où un groupe construit sa juridiction professionnelle autour~:
+d'un corps de connaissances formalisé~; de méthodes standardisées et
+reproductibles~; d'une reconnaissance juridique et institutionnelle~; et
+d'un code déontologique contraignant~\cite{abbott1988}.
+
+\subsection{L'Opération Sundevil (1990)~: le choc de la standardisation}
+
+Le 8~mai~1990, le Secret Service américain lance la plus grande opération
+contre la cybercriminalité jamais conduite~: saisie de 42~systèmes
+informatiques dans 14~villes simultanément. L'opération est un succès
+opérationnel et un désastre juridique. La majorité des poursuites
+s'effondrent~: les preuves saisies n'ont pas été préservées selon des
+protocoles cohérents~; les hash n'existent pas encore comme concept
+forensique~; plusieurs systèmes saisis appartiennent à des innocents ciblés
+par erreur.
+
+\medskip
+
+L'Opération Sundevil représente, selon Durkheim, un \textbf{fait social total}~:
+elle cristallise tous les enjeux de la nouvelle société numérique et révèle
+l'impossibilité de continuer avec des méthodes artisanales. Elle conduit
+directement à la création de l'\sigle{IOCE} (\textit{International Organization
+on Computer Evidence}) en 1995, première institution dédiée à la
+standardisation de la forensique numérique.
+
+\begin{boxjuris}
+\textbf{Héritage normatif de l'Opération Sundevil~:}
+\begin{itemize}
+    \item Création de l'\sigle{IOCE} (1995), premiers principes de collecte
+          de preuves numériques.
+    \item Fondation du \sigle{DFRWS} (\textit{Digital Forensics Research
+          Workshop}) (2001), qui produira le premier modèle de processus
+          forensique.
+    \item Inspiration directe pour la Convention de Budapest~\cite{budapest2001} (2001).
+\end{itemize}
+\end{boxjuris}
+
+\subsection{L'arrestation de Kevin Mitnick (1995)~: institution de la chaîne de custody}
+
+Le 15~février~1995, Kevin Mitnick « le hacker le plus recherché du monde » est arrêté à Raleigh (Caroline du Nord) grâce au travail de Tsutomu
+Shimomura. L'affaire dure depuis 1993~: Mitnick a utilisé le \textit{IP
+spoofing}, le \textit{TCP session hijacking} et l'ingénierie sociale pour
+pénétrer des dizaines de systèmes militaires et corporatifs.
+
+\medskip
+
+La contribution épistémologique de cette affaire est plus importante que
+sa dimension médiatique~: elle institue la \textit{chain of custody}
+comme \textbf{condition nécessaire de la validité épistémique} d'une
+preuve numérique~\cite{casey2004}~:
+
+\begin{equation}
+\mathrm{Validit}(P) \;\Leftrightarrow\;
+\exists\, \mathcal{C} \;\text{ telle que }\; \int \mathrm{grit}(\mathcal{C})\,dt = 1
+\label{eq:validite-custody}
+\end{equation}
+
+où $\mathcal{C}$ représente la chaîne de custody et $\mathrm{grit}(\mathcal{C})$
+sa densité documentaire. Informellement~: une preuve n'est valide que si elle
+est accompagnée d'une documentation continue de sa traçabilité.
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Arrestation Mitnick}
+
+L'affaire Mitnick mobilise les trois dimensions sous forte tension.
+$\mathcal{C}$~: les écoutes téléphoniques étendues soulèvent des questions
+de vie privée qui alimenteront la littérature juridique pendant une décennie.
+$\mathcal{R}$~: l'innovation de Shimomura (analyse de honeypot, corrélation
+temporelle avancée) est robuste et reproductible. $\mathcal{O}$~: la chaîne
+de custody, bien que perfectible, est suffisamment documentée pour permettre
+une condamnation.
+\cro{$\downarrow$ tendu}{$\uparrow$}{$\uparrow$ émergent}
+\end{boxCRO}
+
+% ============================================================================
+\section{La Standardisation (2000--2010)~: Rationalisation Industrielle}
+% ============================================================================
+
+\subsection{Le tournant du millénaire et les standards fondateurs}
+
+Cette période correspond à ce que Beck appelle « la société du risque »~:
+le numérique est devenu infrastructure critique, et les États comme les
+entreprises comprennent que les méthodes artisanales sont un risque systémique.
+Quatre standards fondateurs émergent simultanément, créant une infrastructure
+normative sans précédent~:
+
+\begin{tableaucours}{p{2.4cm}p{2.2cm}p{3.5cm}p{3.2cm}}{%
+    \tableauHeader{Standard} &
+    \tableauHeader{Portée} &
+    \tableauHeader{Contribution principale} &
+    \tableauHeader{Acteurs moteurs}
+}
+\norme{ISO~27037} & International &
+    Méthodologie unifiée de collecte & Organisations internationales \\
+\norme{NIST SP 800-86} & États-Unis &
+    Gouvernance processuelle complète & Agences gouvernementales \\
+\norme{RFC~3227} & Internet &
+    Ordre de volatilité, bonnes pratiques & Communauté technique \\
+\norme{ACPO Guide} & Royaume-Uni &
+    4~principes déontologiques & Forces de l'ordre britanniques \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~2.3. Standards fondateurs de l'ère 2000--2010
+(d'après \cite{dfrws2001,rfc3227,nist80086,acpo2012,iso27037})}\end{center}
+
+\subsection{L'affaire Enron (2001)~: naissance de l'\textit{e-discovery}}
+
+La faillite d'Enron produit l'investigation numérique la plus massive de
+l'histoire jusqu'alors~: 500~000~documents électroniques doivent être analysés,
+croisés, et présentés en justice. Les méthodes manuelles sont impossibles~;
+la réponse est la création des premiers outils d'\termecle{analyse automatisée}
+(précurseurs du \textit{Technology-Assisted Review}). L'affaire établit que
+les résultats d'un algorithme d'analyse constituent des preuves légitimes
+si l'algorithme est validé et documenté~:
+
+\begin{equation}
+P_{\text{algo}} = \mathcal{A}(\mathcal{D}) \in \mathcal{P}_{\text{légitime}}
+\quad \text{si} \quad \mathrm{si}(\mathcal{A}) > \theta
+\label{eq:preuve-algo}
+\end{equation}
+
+où $\mathrm{si}(\mathcal{A})$ est l'indice de scientificité de l'algorithme et
+$\theta$ le seuil d'acceptabilité judiciaire. Les amendements aux
+\textit{Federal Rules of Civil Procedure} (2006) codifient ces principes
+en droit positif américain, ouvrant la voie à l'automatisation de l'investigation.
+
+\subsection{L'affaire Gary McKinnon (2002--2012)~: souveraineté numérique}
+
+Gary McKinnon, informaticien britannique autiste, passe deux ans à infiltrer
+97~serveurs militaires américains à la recherche de preuves d'existence
+extraterrestre. L'affaire dure dix~ans, non pour des raisons techniques (McKinnon
+est rapidement identifié), mais parce qu'elle cristallise un conflit de
+\textbf{souveraineté numérique}~: les États-Unis réclament l'extradition
+pour 70~ans de prison potentiels~; le Royaume-Uni refuse pendant une décennie
+au nom du droit à la santé de McKinnon.
+
+\medskip
+
+La leçon forensique est la corrélation multi-juridictionnelle~: quand une
+attaque traverse des frontières, les logs se trouvent dans des pays différents,
+les règles d'admissibilité divergent, et la coopération judiciaire internationale
+devient le vrai défi, pas la technique.
+
+% ============================================================================
+\section{Le Big Data et le Cloud (2010--2020)~: L'Échelle Critique}
+% ============================================================================
+
+\subsection{Le changement d'échelle qualitatif}
+
+Cette période correspond à ce que Boyd et Crawford appellent « l'ère des
+big data » où l'échelle change la nature même de l'investigation. Au-delà
+d'un certain seuil $N_{\text{critique}}$, l'analyse ne peut plus être humaine~:
+
+\begin{equation}
+\lim_{N \to \infty}
+\frac{\text{Analyse humaine}}{\text{Analyse algorithmique}} = 0
+\label{eq:bigdata}
+\end{equation}
+
+Cette équation a une implication directe sur le Trilemme CRO~: quand
+l'analyse est déléguée à un algorithme opaque, $\mathcal{O}$ (opposabilité)
+est menacée, l'avocat de la défense peut contester une conclusion
+qu'aucun expert humain ne peut entièrement expliquer.
+
+\subsection{L'affaire Silk Road (2013)~: forensique blockchain}
+
+Ross Ulbricht exploite Silk Road, première grande place de marché du dark
+web, depuis 2011. L'investigation du FBI combine trois innovations~: la
+\textbf{forensique Tor} (corrélation de flux pour désanonymiser les serveurs),
+la \textbf{forensique blockchain} (analyse du graphe de transactions Bitcoin
+pour remonter les flux financiers), et l'\textbf{OSINT} (Ulbricht a publié
+des messages identifiables sur un forum public). La saisie de 144~000~bitcoins
+(environ 28~millions~USD à l'époque, bien plus aujourd'hui) établit que
+les cryptomonnaies ne sont pas anonymes~: elles sont pseudonymes, et le
+pseudonymat se brise par corrélation de métadonnées.
+
+\begin{boiteRemarque}{La Blockchain comme registre forensique}
+La blockchain Bitcoin est, du point de vue forensique, le registre comptable
+le plus complet jamais créé~: chaque transaction est permanente, publique,
+et cryptographiquement liée à toutes les précédentes. La forensique blockchain
+exploite cette propriété en construisant le graphe complet des flux pour
+identifier les points d'échange (exchanges) où les cryptomonnaies sont
+converties en monnaie réelle, permettant l'identification des acteurs.
+\end{boiteRemarque}
+
+\subsection{Les Panama Papers (2016)~: investigation transfrontière}
+
+La fuite de 2,6~To de données (11,5~millions de documents) du cabinet
+Mossack Fonseca constitue la plus grande investigation de données de
+l'histoire. 376~journalistes de 76~pays collaborent pendant un an
+sur un corpus unifié. L'impact forensique est l'émergence de
+l'\termecle{investigation transnationale}\index{investigation transnationale}
+comme nouveau paradigme~:
+
+\begin{equation}
+I_{\text{global}} = \sum_{i=1}^{n} I_{\text{locale}}^{i} +
+C_{\text{collaboration}} - L_{\text{juridique}}
+\label{eq:investigation-globale}
+\end{equation}
+
+où $C_{\text{collaboration}}$ est le bénéfice de la coopération et
+$L_{\text{juridique}}$ les frictions des barrières légales entre juridictions.
+La leçon~: la coordination internationale compense les barrières juridiques,
+mais cette coordination exige des protocoles techniques et déontologiques
+communs, exactement ce que ce cours enseigne.
+
+% ============================================================================
+\section{L'Ère Post-Quantique et IA (2020--\ldots)~: Le Grand Saut}
+% ============================================================================
+
+\subsection{La double révolution IA / quantique}
+
+Nous entrons dans ce que l'on pourrait appeler l'ère de la « guerre
+algorithmique »~: l'IA est simultanément l'arme de l'attaquant et
+le bouclier de l'investigateur. Deux ruptures parallèles redéfinissent
+les fondamentaux.
+
+\medskip
+
+La première rupture est l'\textbf{émergence du régime de vérité algorithmique}~:
+la vérité numérique est désormais établie par des systèmes d'IA dont le
+fonctionnement peut être incompréhensible pour les humains (\textit{black box
+problem}). Cela crée une tension épistémique fondamentale~: peut-on fonder
+une condamnation pénale sur un résultat algorithmique inexplicable~?
+
+La seconde rupture est la \textbf{menace quantique sur la cryptographie}~:
+l'algorithme de Shor rend théoriquement cassables RSA et ECC sur un ordinateur
+quantique suffisant. Les preuves numériques collectées aujourd'hui et
+reposant sur ces algorithmes pourraient être invalidées rétroactivement.
+
+\subsection{L'attaque SolarWinds (2020)~: IA contre IA}
+
+L'attaque SolarWinds est la première illustration documentée d'une
+\textbf{attaque \textit{living-off-the-land}} à l'échelle des États~:
+les attaquants (groupe APT29, attribué aux services de renseignement russes)
+compromettent la chaîne d'approvisionnement logicielle de SolarWinds en
+injectant un code malveillant dans une mise à jour légitime. 18~000~organisations
+téléchargent la mise à jour infectée~; la compromission reste non détectée
+pendant \textbf{9~mois} malgré des outils de sécurité sophistiqués.
+
+\medskip
+
+La leçon forensique centrale~: la détection classique basée sur des signatures
+est morte. Seule l'\textbf{analyse comportementale basée sur l'IA} permet
+de détecter ce type d'attaque, et encore, après le fait. L'attribution
+reste incertaine~: les techniques d'obfuscation masquent l'origine, et
+l'investigateur doit composer avec une probabilité, pas une certitude.
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Attaque SolarWinds}
+
+$\mathcal{C}$~: l'investigation exige l'accès aux systèmes internes de
+18~000~organisations, tension massive avec la vie privée des clients.
+$\mathcal{R}$~: la reproductibilité est problématique~; les outils IA
+utilisés pour la détection ne produisent pas des conclusions entièrement
+auditables. $\mathcal{O}$~: l'attribution probabiliste basée sur l'IA
+est encore mal acceptée par les juridictions pénales~; aucune condamnation
+n'a suivi. \cro{$\downarrow$ critique}{$\sim$ partielle}{$\downarrow$ problématique}
+
+Ce cas illustre la \textbf{crise d'opposabilité du régime algorithmique}~:
+les outils sont puissants, les conclusions solides techniquement, mais leur
+défendabilité devant un tribunal reste à construire.
+\end{boxCRO}
+
+\subsection{Affaire WannaCry (2017)~: immunité collective numérique}
+
+Le~12~mai~2017, le ransomware WannaCry infecte 300~000~ordinateurs dans
+150~pays en 72~heures, exploitant la vulnérabilité \textit{EternalBlue}
+volée à la NSA. La réponse forensique de Marcus Hutchins, un chercheur
+de 22~ans qui identifie et active un \textit{kill switch} caché dans le code,
+arrêtant la propagation, illustre un principe nouveau~: la réponse aux
+incidents majeurs devient une entreprise \textbf{décentralisée et collaborative}
+similaire à l'immunité collective en épidémiologie~:
+
+\begin{equation}
+R_0 = \beta \cdot \gamma^{-1}
+\label{eq:wannacry-R0}
+\end{equation}
+
+où $\beta$ est le taux d'infection et $\gamma$ le taux de désinfection.
+L'analyse du \textit{Domain Generation Algorithm} (DGA) de WannaCry par
+des dizaines d'équipes en parallèle constitue un modèle d'investigation
+distribuée qui préfigure les pratiques actuelles du partage de renseignement
+sur les menaces (\textit{Threat Intelligence}).
+
+% ============================================================================
+\section{L'Afrique et le Cameroun dans l'Histoire de la Discipline}
+% ============================================================================
+
+\subsection{Une histoire trop souvent absente des manuels}
+
+Les histoires standard de l'investigation numérique sont presque
+exclusivement nord-américaines et européennes. C'est une distorsion~:
+l'Afrique n'est pas un spectateur de la cybercriminalité mondiale, elle
+en est simultanément une cible croissante, un terrain d'opération, de plus en plus, une source d'innovation forensique. Cette section
+comble ce vide historiographique.
+
+\subsection{Les fraudes 419 (1990s--présent)~: la plus longue affaire forensique africaine}
+
+Les escroqueries dites \termecle{419}\index{419, fraude}, du numéro de
+l'article du Code pénal nigérian qui les prohibe, constituent la première
+grande catégorie de cybercriminalité d'origine africaine à portée mondiale.
+Dès les années 1990, des réseaux nigérians envoient par email des millions de
+messages proposant des fortunes fictives. La réponse investigative révèle les
+limites fondamentales du régime de vérité de l'époque~: les suspects sont en
+Afrique, les victimes en Europe et en Amérique, les preuves traversent des
+dizaines de juridictions, et aucune convention de coopération n'existe.
+
+\medskip
+
+Cette affaire permanente a deux héritages directs pour notre cours~: elle a
+forcé la Convention de Budapest (2001) à inclure une dimension coopération
+internationale, et elle a conduit le Cameroun à adopter la
+\loicam{2010/012}~\cite{cameroun2010a}, qui criminalise explicitement ces pratiques en droit
+positif camerounais.
+
+\subsection{Le Cameroun et la Loi 2010/012~: entrée dans le régime de standardisation}
+
+Le 21~décembre~2010, le Cameroun adopte la \textbf{Loi N°2010/012 relative
+à la cybersécurité et la cybercriminalité}. Cette date marque l'entrée
+formelle du Cameroun dans le régime de standardisation mondial, avec un
+décalage de dix ans sur les pays pionniers, mais avec l'avantage de
+bénéficier du retour d'expérience d'une décennie d'application internationale.
+La même année, l'\sigle{ANTIC} est opérationnalisée comme autorité compétente.
+
+\begin{boxjuris}
+\textbf{Jalons camerounais de l'histoire forensique~:}
+\begin{itemize}
+    \item \textbf{2010}~: Loi 2010/012 (cybersécurité et cybercriminalité)
+          et Loi 2010/013~\cite{cameroun2010b} (communications électroniques).
+    \item \textbf{2011}~: Création et montée en puissance de l'\sigle{ANTIC}
+          comme autorité de régulation et de certification.
+    \item \textbf{2016}~: Compétence du Tribunal Criminel Spécial (\sigle{TCS})
+          étendue à certaines infractions cyber.
+    \item \textbf{2017}~: Opérationnalisation du \sigle{CIRT} national
+          (Computer Incident Response Team).
+    \item \textbf{2019--présent}~: Multiplication des affaires de fraude
+          Mobile Money (SIM swapping, BEC), première jurisprudence
+          camerounaise en investigation numérique.
+    \item \textbf{2024}~: Loi sur la protection des données personnelles,
+          nouveau cadre pour les investigations impliquant des données privées.
+\end{itemize}
+\end{boxjuris}
+
+\subsection{Les Opérations FALCON (2020--2022)~: la coopération en action}
+
+En 2020, puis en 2021--2022, INTERPOL, la police nigériane et des
+partenaires privés de la cybersécurité conduisent les Opérations FALCON et
+FALCON~II contre des réseaux de fraude au courriel d'affaires et
+d'hameçonnage basés au Nigeria~: trois arrestations lors de la première,
+onze lors de la seconde, visant des membres du groupe \textbf{SilverTerrier}
+\cite{interpol2020falcon,interpol2022falcon}.
+
+\medskip
+
+Ces opérations montrent qu'une enquête transnationale peut aboutir sur le
+continent quand la police nationale, une organisation internationale et
+les détenteurs de données techniques partagent leurs informations. Elles
+montrent aussi sa dépendance à des partenaires étrangers~: un enjeu pour
+la souveraineté des enquêtes africaines.
+
+\begin{boxscenario}{Fraude Mobile Money. Cameroun, 2021}
+\textbf{Faits~:} Un réseau de SIM swapping opère dans la région du Centre.
+Méthode~: collecte des données personnelles des victimes via de faux sondages
+diffusés sur WhatsApp, puis substitution de la SIM dans une agence MTN
+complice. Résultat~: 47~millions FCFA détournés en 3~semaines, 23~victimes.
+
+\textbf{Arrestations~:} 4~personnes dont 2~employés MTN. Qualification
+juridique~: escroquerie informatique (\loicam{2010/012}, art.~72)
+et complicité.
+
+\textbf{Leçon forensique~:} La preuve numérique centrale n'est pas le
+message WhatsApp (contenu) mais les métadonnées de connexion (qui s'est
+connecté au système MTN, depuis quelle adresse IP, à quelle heure) et
+les logs de transactions Mobile Money. L'enquête illustre que la chaîne
+de custody doit commencer chez l'opérateur télécom, avant même la
+saisie du téléphone du suspect.
+
+\textbf{Analyse CRO~:} \cro{$\downarrow$}{$\uparrow$}{$\uparrow$}. Les logs
+opérateur sont techniquement fiables ($\mathcal{R}$ haute) et leur
+communication est encadrée par l'art.~57 de la Loi~2010/012 (réquisition
+judiciaire), garantissant $\mathcal{O}$. La vie privée des victimes
+($\mathcal{C}$) est sacrifiée dans la limite du nécessaire, ce qui est
+justifiable et proportionnel.
+\end{boxscenario}
+
+% ============================================================================
+\section{Perspectives~: la Loi d'Accélération Épistémique}
+% ============================================================================
+
+\subsection{Le temps entre les régimes se raccourcit}
+
+L'observation la plus frappante de l'histoire que nous venons de parcourir
+est que le temps entre les ruptures de paradigme semble se réduire.
+Le cours en propose un modèle simple, qui est une hypothèse de lecture et
+non un résultat établi~:
+
+\begin{equation}
+\Delta t_{n+1} = k \cdot \Delta t_n \quad \text{avec} \quad 0 < k < 1
+\label{eq:acceleration}
+\end{equation}
+
+Le passage du régime technique au régime juridique a pris vingt ans (1970--1990).
+Du juridique au standardisé~: dix ans. Du standardisé au computationnel~: dix
+ans. Du computationnel au post-quantique/IA~: probablement cinq ans. La
+conséquence pratique est directe~: un investigateur formé uniquement sur les
+outils actuels sera partiellement obsolète dans moins de cinq ans. La
+compréhension des \emph{régimes}, pas des outils, est la seule
+formation qui résiste à cette accélération.
+
+\subsection{Trois scénarios pour 2030--2050}
+
+L'analyse prospective que propose ce cours retient trois régimes plausibles, à discuter~:
+
+\begin{enumerate}
+    \item \textbf{Régime quantique dominant~:} le calcul quantique devient
+          accessible. RSA et ECC sont cassées. Toute la forensique des preuves
+          collectées avant 2030 doit être revue. Les protocoles ZK et les
+          algorithmes post-quantiques standardisés par le NIST (CRYSTALS-Kyber,
+          CRYSTALS-Dilithium) deviennent la nouvelle norme.
+
+    \item \textbf{Régime IA investigatif~:} les LLM et les agents autonomes
+          conduisent les premières phases de triage forensique sans intervention
+          humaine. La question d'opposabilité devient centrale~: peut-on présenter
+          en justice une preuve identifiée par un agent IA qu'aucun expert humain
+          ne peut entièrement auditer~?
+
+    \item \textbf{Régime post-humain~:} existe un point $t_s$ (\textit{singularité
+          investigative}) où l'IA investigative dépasse durablement les capacités
+          humaines. Ce régime pose la question fondamentale de la responsabilité~:
+          si l'IA se trompe et conduit à une condamnation injuste, qui en est
+          responsable~?
+\end{enumerate}
+
+\medskip
+
+Ces scénarios ne sont pas des spéculations~: ils se préparent maintenant.
+Les Parties~V et~VI du cours SEC4052 sont construites précisément pour équiper
+l'étudiant face aux deux premiers scénarios.
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+
+\begin{itemize}
+    \item L'histoire de l'investigation numérique suit une
+          \textbf{double hélice}~: le brin technique et le brin juridique
+          s'enroulent et se contraignent mutuellement. Chaque rupture dans
+          l'un provoque une réorganisation dans l'autre.
+
+    \item Cinq régimes successifs~: \textbf{technique} (1970--1990),
+          \textbf{juridique} (1990--2000), \textbf{standardisé} (2000--2010),
+          \textbf{computationnel} (2010--2020), \textbf{post-quantique/IA}
+          (2020--\ldots). Chacun est déclenché par un incident fondateur.
+
+    \item Leçons opérationnelles permanentes~: les métadonnées peuvent
+          dépasser le contenu en valeur probatoire (BTK)~; la chaîne de
+          custody est une condition de validité, pas un formalisme
+          (Mitnick)~; les algorithmes d'analyse sont des preuves à documenter
+          (Enron)~; le pseudonymat blockchain se brise par corrélation
+          (Silk Road)~; l'attribution probabiliste reste à la limite de
+          l'opposabilité (SolarWinds).
+
+    \item L'Afrique et le Cameroun ont leur propre histoire~: les fraudes~419,
+          la \loicam{2010/012} (2010), le SIM swapping, les Opérations FALCON.
+          Cette histoire n'est pas un appendice de l'histoire mondiale, elle
+          en est une dimension constitutive.
+
+    \item La \textbf{loi d'accélération épistémique}
+          ($\Delta t_{n+1} = k \cdot \Delta t_n$) prédit que les ruptures
+          s'accélèrent. Maîtriser les régimes est plus durable que maîtriser
+          les outils.
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~2.1. Analyse d'un incident par son régime \niveaubase}]
+Pour chacun des incidents suivants, identifiez le régime de vérité dominant,
+le brin (technique ou juridique) qui a été le plus sollicité, et la leçon
+forensique principale~:
+
+\begin{enumerate}[(a)]
+    \item Un journaliste publie un reportage sur la corruption d'un ministre
+          en utilisant des emails obtenus par un lanceur d'alerte. Le tribunal
+          accepte les emails comme preuves. Année~: 2004.
+    \item Une entreprise camerounaise perd 80~millions FCFA via un BEC. La
+          police obtient les logs de connexion auprès de l'opérateur internet
+          sur réquisition judiciaire. Année~: 2022.
+    \item Un analyste utilise un modèle LLM pour classer automatiquement
+          50~000~messages WhatsApp dans une affaire de trafic de drogue.
+          L'avocat de la défense conteste la méthode. Année~: 2025.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~2.2. La double hélice appliquée \niveaumoyen}]
+L'affaire Stuxnet (2010) est un cas où un programme malveillant, conçu par
+des services étatiques, a physiquement endommagé des centrifugeuses iraniennes
+d'enrichissement d'uranium. Son investigation a mobilisé simultanément~:
+reverse engineering de code polymorphe (4~zero-days simultanés), attribution
+géopolitique, droit international, et éthique de la guerre numérique.
+
+\begin{enumerate}[(a)]
+    \item Appliquez le modèle $\vec{R}_t$ à cette affaire~: quelles composantes
+          $(\alpha_T, \alpha_J, \alpha_S, \alpha_P)$ sont les plus sollicitées~?
+    \item Identifiez deux tensions CRO spécifiques à cette affaire et proposez
+          comment un investigateur mandaté par une institution internationale
+          devrait les gérer.
+    \item En quoi cette affaire préfigure-t-elle le « régime IA contre IA »
+          décrit en Section~2.5~?
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~2.3. Prospective \niveauexpert}]
+La loi d'accélération épistémique ($\Delta t_{n+1} = k \cdot \Delta t_n$)
+suggère que le prochain régime de vérité émergera vers 2027--2030.
+
+\begin{enumerate}[(a)]
+    \item Sur la base des tendances actuelles (IA générative, informatique
+          quantique, blockchain forensique), construisez un scénario de rupture
+          plausible~: quel incident fondateur pourrait déclencher le prochain
+          changement de régime~?
+    \item Quelles compétences un investigateur formé aujourd'hui devrait-il
+          développer pour rester pertinent dans ce nouveau régime~?
+    \item Positionnez le Cameroun dans ce scénario~: quels atouts et quelles
+          vulnérabilités spécifiques le pays présente-t-il face à cette
+          transition~?
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Transition.} Le Chapitre~\ref{chap:gr-affaires} approfondit
+cinq affaires choisies pour leur valeur pédagogique maximale, chacune
+illustrant une innovation forensique qui a redéfini la pratique. Le
+Chapitre~\ref{chap:fond-theo} formalisera ensuite les outils théoriques
+(théorie de l'information, théorie des graphes, cryptographie) sur lesquels
+repose la forensique moderne.
+\end{boxinfo}

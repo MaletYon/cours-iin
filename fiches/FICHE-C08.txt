@@ -1,0 +1,234 @@
+NDAP SUKULU · IIN · fiche FICHE-C08
+Chapitre 8 : Chaîne de custody et admissibilité
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Qu'est-ce que la chaîne de custody ?
+      a) Un document chronologique de chaque personne, action et transfert sur une preuve
+      b) Un logiciel d'analyse de disque
+      c) Un algorithme de chiffrement
+      d) Un type de scellé plastique
+
+ 2. À quel moment la chaîne de custody commence-t-elle ?
+      a) Au premier contact avec la preuve
+      b) Quand on ouvre Autopsy
+      c) À la rédaction du rapport
+      d) À l'audience
+
+ 3. Pourquoi la chaîne de custody prime-t-elle sur l'analyse technique ?
+      a) Une preuve dont la custody n'est pas documentée est une preuve qui n'existe pas
+      b) Parce qu'elle est plus rapide
+      c) Parce qu'elle coûte moins cher
+      d) Parce qu'elle remplace le hash
+
+ 4. Que prévoit l'article 53 alinéa 1 de la loi 2010/012 ?
+      a) La réalisation des copies en présence des parties
+      b) L'interdiction du hachage
+      c) La destruction des originaux
+      d) L'anonymat du collecteur
+
+ 5. Que couvre l'article 57 de la loi 2010/012 ?
+      a) Les réquisitions aux opérateurs
+      b) La saisie des véhicules
+      c) La protection des témoins
+      d) Le droit du travail
+
+ 6. Quelles empreintes le formulaire de custody doit-il consigner ?
+      a) MD5 et SHA-256, de l'original et de l'image
+      b) Un seul hash de l'image
+      c) Aucune, les signatures suffisent
+      d) Le nom du fichier seulement
+
+ 7. Quand cocher la case « Intégrité vérifiée OUI » ?
+      a) Uniquement si le hash source est égal au hash image
+      b) Toujours, par principe
+      c) Si l'image s'ouvre dans Autopsy
+      d) Si le suspect avoue
+
+ 8. Quels transferts doivent être documentés dans le formulaire ?
+      a) Chaque transfert, même temporaire, avec date, heure, raison et signatures
+      b) Seulement le dernier
+      c) Aucun, c'est facultatif
+      d) Seulement ceux de plus d'un jour
+
+ 9. Quelle est la première erreur fatale de custody ?
+      a) Allumer le PC suspect sans acquisition préalable
+      b) Calculer trop de hash
+      c) Documenter chaque transfert
+      d) Sceller l'original
+
+10. Pourquoi travailler sur l'evidence originale est-il une erreur fatale ?
+      a) Toute analyse doit se faire sur une copie, l'original reste scellé
+      b) L'original est trop lent
+      c) L'original est chiffré
+      d) Ce n'est pas une erreur
+
+11. Pourquoi conserver les hash uniquement dans l'image E01 est-il insuffisant ?
+      a) Si l'image est contestée, le hash qui y est inclus ne prouve plus rien d'indépendant
+      b) L'image E01 ne contient pas de hash
+      c) Le hash ralentit l'ouverture
+      d) C'est au contraire recommandé
+
+12. Où faut-il conserver les empreintes d'une image forensique ?
+      a) Séparément de l'image, sur le formulaire et un support distinct
+      b) Uniquement à l'intérieur de l'image
+      c) Dans la mémoire de l'investigateur
+      d) Nulle part, c'est inutile
+
+13. Scénario. Un PC saisi est allumé et déverrouillé. Quel est le bon ordre de custody ?
+
+      a) Capturer la RAM, puis write blocker, puis hash et scellement
+      b) Éteindre d'abord, puis tout analyser
+      c) Copier les fichiers sur une clé personnelle
+      d) Ouvrir les documents pour vérifier
+
+14. Quelle est la première action de custody sur un téléphone saisi ?
+      a) Activer le mode avion
+      b) Le brancher au chargeur
+      c) Le redémarrer
+      d) Retirer la batterie
+
+15. Que faire dès qu'on reçoit un fichier d'un opérateur par réquisition ?
+      a) Calculer immédiatement son hash
+      b) L'ouvrir et le modifier
+      c) Le renommer au hasard
+      d) Le supprimer après lecture
+
+16. Quelle erreur consiste à ne pas renseigner le nom et la version de l'outil employé ?
+      a) Oublier les versions d'outils
+      b) Travailler sur l'original
+      c) Allumer le PC
+      d) Conserver les hash séparément
+
+17. Que prévoit l'article 55 pour la saisie des données ?
+      a) Copie immédiate, l'original n'étant restitué que sur décision judiciaire, hash avant restitution
+      b) Destruction immédiate de l'original
+      c) Interdiction de copier
+      d) Aucune formalité
+
+18. Que crée un transfert d'evidence non documenté ?
+      a) Une période de custody inconnue, exploitable par la défense
+      b) Un gain de temps sans risque
+      c) Une amélioration de l'intégrité
+      d) Rien de problématique
+
+19. Comment le chapitre qualifie-t-il la chaîne de custody au regard de l'admissibilité ?
+      a) Une condition nécessaire de l'admissibilité
+      b) Une formalité facultative
+      c) Une option réservée aux grandes affaires
+      d) Un document interne sans portée
+
+20. À quelle exigence d'ISO 27037 l'article 53 de la loi 2010/012 correspond-il ?
+      a) La réalisation et la documentation de la copie de manière transparente
+      b) Le chiffrement post-quantique
+      c) Le threat hunting
+      d) La forensique mobile
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Un rapport technique de cent pages perd sa valeur si la chaîne de custody est brisée.
+      Vrai / Faux
+
+22. On peut travailler directement sur le disque original si l'on est prudent.
+      Vrai / Faux
+
+23. Un transfert très bref entre deux personnes peut rester non documenté.
+      Vrai / Faux
+
+24. Le formulaire de custody se remplit seulement une fois l'acquisition terminée.
+      Vrai / Faux
+
+25. Sur un PC allumé, la RAM doit être capturée avant toute isolation réseau.
+      Vrai / Faux
+
+26. La perquisition numérique exige une autorisation judiciaire préalable selon l'article 52.
+      Vrai / Faux
+
+27. Les hash doivent être calculés sur l'original avant l'acquisition.
+      Vrai / Faux
+
+28. Allumer un PC éteint avant d'activer un write blocker contamine la preuve.
+      Vrai / Faux
+
+29. Les preuves obtenues par réquisition échappent aux règles de custody.
+      Vrai / Faux
+
+30. On coche « Intégrité vérifiée OUI » même quand les hash source et image diffèrent.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Les perquisitions numériques sont encadrées par les articles 52 à 59 de la loi 2010/______.
+
+32. Sur un PC allumé, le premier élément à capturer, le plus volatil, est la ______.
+
+33. Avant de brancher un disque suspect, on active un write ______.
+
+34. La première action sur un téléphone saisi est d'activer le mode ______.
+
+35. Les empreintes d'une image forensique doivent être conservées ______ de l'image.
+
+36. Chaque transfert de custody exige la date, l'heure, la raison et les ______ des deux parties.
+
+37. La chaîne de custody est une condition ______ de l'admissibilité d'une preuve.
+
+38. À défaut de sac de Faraday, un téléphone peut être isolé dans plusieurs épaisseurs de feuille d'______.
+
+39. Sur l'original, on calcule au minimum deux empreintes, le MD5 et le SHA-______.
+
+40. Après acquisition, l'original est placé dans un sachet ______ étiqueté.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

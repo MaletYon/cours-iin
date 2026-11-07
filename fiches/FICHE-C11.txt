@@ -1,0 +1,234 @@
+NDAP SUKULU · IIN · fiche FICHE-C11
+Chapitre 11 : Législation mondiale comparée
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. À quel droit les grands fournisseurs comme Meta, Microsoft et Google sont-ils soumis ?
+      a) Au droit américain, car ce sont des entreprises américaines
+      b) Au droit camerounais
+      c) À aucun droit
+      d) Au seul droit européen
+
+ 2. Que régit la FRE Rule 901 aux États-Unis ?
+      a) L'authentification des preuves
+      b) Le calcul du hash
+      c) La protection des mineurs
+      d) Le droit d'auteur
+
+ 3. Que prévoit la FRE Rule 803(6) ?
+      a) L'exception des documents d'affaires (business records)
+      b) L'interdiction du chiffrement
+      c) La saisie sans mandat
+      d) La destruction des logs
+
+ 4. Quel standard régit l'admissibilité de la preuve scientifique devant les juridictions fédérales américaines ?
+      a) Le standard Daubert
+      b) Le standard ISO 9001
+      c) Le standard RGPD
+      d) Le standard eIDAS
+
+ 5. Que faut-il, selon le SCA, pour obtenir le contenu des communications d'un fournisseur américain ?
+      a) Un mandat de perquisition (search warrant)
+      b) Un simple courriel
+      c) Rien du tout
+      d) L'accord du suspect
+
+ 6. Vous ne disposez pas d'un mandat américain. Quelle donnée reste accessible via une demande plus simple selon le SCA ?
+
+      a) Les métadonnées, admissibles sans warrant
+      b) Le contenu intégral des messages
+      c) Les clés de chiffrement
+      d) Rien n'est accessible
+
+ 7. Que définit le Computer Fraud and Abuse Act (CFAA) ?
+      a) Les infractions informatiques poursuivies aux États-Unis, avec compétence extraterritoriale
+      b) Le règlement des signatures européennes
+      c) La protection des données africaines
+      d) Les normes ISO
+
+ 8. Que permet le CLOUD Act américain de 2018 ?
+      a) L'accès transfrontalier aux données détenues par les fournisseurs US
+      b) La fermeture des datacenters
+      c) L'interdiction du cloud
+      d) La gratuité du stockage
+
+ 9. Sous quel délai l'article 33 du RGPD impose-t-il la notification d'une violation de données ?
+      a) Soixante-douze heures
+      b) Trente jours
+      c) Un an
+      d) Aucune obligation
+
+10. Que permet l'article 23 du RGPD à l'investigateur ?
+      a) Des limitations aux droits, une exception quand cela entrave l'enquête
+      b) L'accès libre à toutes les données
+      c) La suppression du RGPD
+      d) La vente des données
+
+11. Quel niveau de signature eIDAS équivaut légalement à une signature manuscrite ?
+      a) La signature qualifiée
+      b) La signature simple
+      c) La signature anonyme
+      d) Aucune
+
+12. Que régit le règlement eIDAS ?
+      a) La valeur probatoire des signatures et horodatages électroniques
+      b) La vitesse des réseaux
+      c) Le format des disques
+      d) La protection des mineurs
+
+13. Quel délai le règlement européen e-Evidence vise-t-il pour une production de données ?
+      a) Dix jours
+      b) Dix-huit mois
+      c) Cinq ans
+      d) Une heure
+
+14. Quel cadre régional couvre l'Afrique de l'Ouest ?
+      a) La CEDEAO
+      b) La SADC
+      c) L'EAC
+      d) L'Union européenne
+
+15. Quel cadre régional correspond à l'Afrique australe ?
+      a) La SADC
+      b) La CEDEAO
+      c) L'EAC
+      d) L'ASEAN
+
+16. Face à une affaire touchant l'Union européenne, que recommande le chapitre ?
+      a) Citer explicitement l'article 23 du RGPD
+      b) Ignorer le RGPD
+      c) Invoquer le CFAA
+      d) N'invoquer aucun texte
+
+17. Quelle est la situation conventionnelle de la Russie et de la Chine ?
+      a) Elles ne sont parties ni à Budapest ni à Malabo
+      b) Elles ont ratifié Budapest
+      c) Elles ont ratifié Malabo
+      d) Elles ont ratifié les deux
+
+18. Pour obtenir des métadonnées d'abonné, quel instrument le SCA prévoit-il ?
+      a) Une administrative subpoena, via le portail LEA
+      b) Un mandat de perquisition obligatoire
+      c) Une simple demande orale
+      d) Aucun instrument
+
+19. Pourquoi qualifier une infraction à la fois sous le CFAA et sous la loi 2010/012 ?
+      a) Cela renforce la demande de coopération
+      b) Cela l'affaiblit
+      c) C'est interdit
+      d) Cela n'a aucun effet
+
+20. Sur quoi porte la directive NIS 2 en Europe ?
+      a) La sécurité des réseaux et la forensique d'incident
+      b) La signature manuscrite
+      c) Le droit d'auteur
+      d) La fiscalité
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Le SCA interdit aux fournisseurs US de livrer le contenu des communications sans mandat, même à une autorité étrangère.
+      Vrai / Faux
+
+22. Le RGPD interdit toute coopération judiciaire avec le Cameroun.
+      Vrai / Faux
+
+23. Une signature électronique qualifiée a la même valeur qu'une signature manuscrite.
+      Vrai / Faux
+
+24. Le CFAA peut s'appliquer au-delà des frontières américaines dans certains cas.
+      Vrai / Faux
+
+25. Les métadonnées sont souvent accessibles sans mandat de perquisition.
+      Vrai / Faux
+
+26. L'article 33 du RGPD laisse un an pour notifier une violation de données.
+      Vrai / Faux
+
+27. La CEDEAO, la SADC et l'EAC sont des cadres régionaux africains.
+      Vrai / Faux
+
+28. Le règlement e-Evidence vise des délais beaucoup plus longs que le MLAT classique.
+      Vrai / Faux
+
+29. Le standard Daubert concerne l'admissibilité de la preuve scientifique aux États-Unis.
+      Vrai / Faux
+
+30. Les grands fournisseurs de services numériques sont majoritairement soumis au droit camerounais.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le texte européen de référence sur la protection des données est le ______.
+
+32. L'article 33 du RGPD impose de notifier une violation sous ______ heures (en chiffres).
+
+33. Le texte américain de 2018 sur l'accès transfrontalier aux données est le ______ Act.
+
+34. La base des poursuites informatiques aux États-Unis porte le sigle ______.
+
+35. Le règlement européen sur les signatures et horodatages électroniques s'appelle ______.
+
+36. La loi américaine qui protège et encadre l'accès aux communications stockées porte le sigle ______.
+
+37. Le cadre régional d'Afrique de l'Ouest porte le sigle ______.
+
+38. Aux États-Unis, les règles d'admissibilité des preuves portent le sigle ______.
+
+39. Le standard américain d'admissibilité de la preuve scientifique s'appelle le standard ______.
+
+40. Pour obtenir le contenu des communications, le SCA exige un mandat appelé search ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

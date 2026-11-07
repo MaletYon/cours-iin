@@ -1,0 +1,620 @@
+% ============================================================================
+% Fichier  : partie3/P03_C11_legislation_mondiale.tex
+% Titre    : Législation Mondiale et Régionale
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- Juin 2026
+% ============================================================================
+
+\chapter{Législation Mondiale et Régionale}
+\label{chap:leg-mond}
+
+\epigraph{%
+    « Cybercrime knows no borders, but our laws still do.
+    International cooperation is not just desirable, it's imperative. »%
+}{Susan W. Brenner}
+
+\niveauChapitre{Fondamental}{%
+    Lecture des Chapitres~\ref{chap:norm-glob} (Cadre normatif global)
+    recommandée~: ce chapitre examine les droits nationaux que le
+    Chapitre~10 ne couvre pas directement.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Comprendre le droit américain applicable aux investigations
+          impliquant des fournisseurs US~: FRE, SCA, CFAA, CLOUD~Act~\cite{cloudact2018}.
+    \item Identifier les tensions entre RGPD~\cite{rgpd2016} européen et investigation
+          forensique, et comprendre comment les résoudre en pratique.
+    \item Maîtriser eIDAS et NIS~2~: leur impact sur la valeur probatoire
+          des preuves numériques et la sécurité des systèmes.
+    \item Connaître les cadres régionaux africains~: CEDEAO, SADC, EAC
+          et leur utilité opérationnelle pour les OPJ camerounais.
+    \item Appliquer une grille de lecture comparative pour choisir
+          la stratégie juridique optimale dans une affaire transfrontalière.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Question directrice de ce chapitre}
+% ============================================================================
+
+Quand un OPJ camerounais réquisitionne Google pour les emails d'un suspect,
+c'est le droit américain qui s'applique chez Google, pas le droit camerounais.
+Quand des preuves proviennent d'un serveur hébergé en Allemagne, c'est le RGPD
+qui contraint le fournisseur. Quand un partenaire sénégalais coopère sur une
+affaire transfrontalière, c'est leur propre cadre législatif qui détermine ce
+qu'ils peuvent partager.
+
+Ce chapitre répond à une question pratique~: \emph{quel droit local s'applique
+chez quel partenaire, et qu'est-ce que cela change concrètement pour mes
+demandes et mes preuves~?}
+
+\separateur
+
+% ============================================================================
+\section{Droit Américain~: le Cadre des Grands Fournisseurs}
+\label{sec:droit-usa}
+% ============================================================================
+
+Les plus grands fournisseurs de services numériques mondiaux (Google,
+Meta, Microsoft, Amazon, Apple) sont des entreprises américaines soumises
+au droit fédéral des États-Unis. Comprendre ce droit n'est pas une option
+académique~: c'est la condition pour formuler des demandes qui aboutissent.
+
+\subsection{Federal Rules of Evidence (FRE)~: admissibilité aux États-Unis}
+
+Les \termecle{Federal Rules of Evidence}\index{Federal Rules of Evidence}
+(FRE) régissent l'admissibilité des preuves devant les juridictions fédérales
+américaines. Deux règles sont particulièrement importantes pour la forensique
+numérique internationale~:
+
+\begin{boxjuris}
+\textbf{FRE Rule~901. Authentication~:}
+\begin{quote}
+To satisfy the requirement of authenticating or identifying an item of
+evidence, the proponent must produce evidence sufficient to support a finding
+that the item is what the proponent claims it is.
+\end{quote}
+\textbf{Application numérique~:} les hash SHA-256 sont acceptés comme preuve
+d'authenticité~; la chaîne de custody doit être documentée~; le témoignage
+d'un expert est souvent requis pour expliquer les méthodes forensiques.
+MD5 est considéré \emph{deprecated} pour les nouveaux dossiers.
+\end{boxjuris}
+
+\begin{boxjuris}
+\textbf{FRE Rule~803(6). Business Records Exception~:}
+Les enregistrements de routine d'une entreprise (logs système, emails
+conservés, transactions financières) sont admissibles même sans témoignage
+direct si~: (1)~ils ont été créés dans le cours normal des affaires~;
+(2)~ils ont été conservés selon les procédures habituelles de l'entreprise~;
+(3)~un représentant qualifié en atteste.\\[0.3ex]
+\textbf{Impact forensique~:} les réponses aux réquisitions LEA de Meta ou
+Google constituent des ``business records'', elles sont directement
+admissibles selon cette règle devant les tribunaux américains, et leur
+valeur probatoire est reconnue dans la plupart des juridictions francophones
+par réciprocité.
+\end{boxjuris}
+
+\subsection{Stored Communications Act (SCA)~: protection et accès}
+
+Le \termecle{Stored Communications Act}\index{SCA} (SCA, 18~U.S.C.
+\S\S~2701--2712) protège les communications électroniques stockées par des
+tiers. Il régit ce que les fournisseurs américains \emph{peuvent} et
+\emph{doivent} communiquer aux forces de l'ordre.
+
+\begin{tableaucours}{p{3.5cm}p{3.5cm}p{4.5cm}}{%
+    \tableauHeader{Type de données} &
+    \tableauHeader{Instrument requis} &
+    \tableauHeader{Impact pour les OPJ camerounais}
+}
+Données d'abonné de base (nom, adresse, facturation) &
+    Administrative subpoena &
+    Accessibles via portail LEA sur simple réquisition~;
+    délai~: 7--21~jours \\
+Adresses IP de connexion, logs de session &
+    Court order (18~U.S.C.~\S~2703(d)) &
+    Portail LEA~; urgence~: 24--72h~; standard~: 7--30j \\
+Contenu des communications (emails, messages) &
+    Search warrant (mandat de perquisition) &
+    \textbf{MLAT USA obligatoire}~; délai~: 6--18~mois~;
+    Protocole~II Budapest peut réduire ce délai (si ratifié) \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~11.1. SCA~: instruments selon le type de données}\end{center}
+
+\begin{boiteRemarque}{Pourquoi les portails LEA ne donnent pas le contenu des emails}
+Le SCA interdit aux fournisseurs américains de communiquer le contenu des
+communications sans warrant (mandat de perquisition), même à des autorités
+étrangères. Ce n'est pas un refus de coopérer, c'est une obligation
+légale. La seule voie légale pour obtenir le contenu est le MLAT ou le
+Protocole~II Budapest (si l'État requis l'a ratifié). Reformuler la demande
+en ciblant les métadonnées (admissibles sans warrant) est souvent la
+stratégie plus rapide et suffisante.
+\end{boiteRemarque}
+
+\subsection{Computer Fraud and Abuse Act (CFAA)~: base des poursuites US}
+
+Le \termecle{CFAA}\index{CFAA} (18~U.S.C.~\S~1030) définit les infractions
+informatiques fédérales américaines. Bien que principalement applicable aux
+faits commis sur le sol américain, il importe à deux titres~:
+
+\begin{enumerate}
+    \item \textbf{Base de coopération}~: quand l'OPJ camerounais demande
+          une entraide aux États-Unis, la demande doit démontrer que les
+          faits constituent une infraction dans les deux pays
+          (\textit{double incrimination}). Montrer que les faits tombent
+          sous le CFAA \emph{et} sous la Loi~2010/012~\cite{cameroun2010a} renforce la demande.
+    \item \textbf{Compétence extraterritoriale}~: le CFAA s'applique quand
+          une infrastructure américaine est visée ou utilisée, même si
+          l'auteur et la victime sont à l'étranger. Un attaquant nigérian
+          ciblant une banque camerounaise via des serveurs Amazon peut être
+          poursuivi aux États-Unis.
+\end{enumerate}
+
+\begin{tableaucours}{p{3.5cm}p{3.0cm}p{5.0cm}}{%
+    \tableauHeader{Infraction CFAA} &
+    \tableauHeader{Peine max.} &
+    \tableauHeader{Équivalent Loi~2010/012}
+}
+Accès non autorisé à un ordinateur protégé &
+    1--10~ans &
+    Art.~65~al.~2 (accès illicite) \\
+Accès avec obtention d'information &
+    1--10~ans &
+    Art.~65~al.~2--3 + Art.~72 si préjudice \\
+Dommages intentionnels (ransomware) &
+    10~ans (1\textsuperscript{re} offense) &
+    Art.~66--67 (atteinte au système et aux données) \\
+Fraude informatique &
+    5--20~ans &
+    Art.~72 (fraude informatique) \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~11.2. CFAA et équivalents Loi~2010/012}\end{center}
+
+\subsection{CLOUD Act~: accès transfrontalier aux données}
+
+Le \termecle{CLOUD Act}\index{CLOUD Act} (\textit{Clarifying Lawful Overseas
+Use of Data Act}, 2018) est la loi la plus controversée dans le domaine de
+la coopération numérique internationale. Elle détermine les obligations
+des entreprises américaines vis-à-vis des demandes étrangères.
+
+\begin{boxCRO}
+\textbf{Analyse CRO. CLOUD Act}
+
+$\mathcal{R}$ (Fiabilité)~: le CLOUD~Act permet aux autorités américaines
+d'accéder aux données stockées par des entreprises US \emph{n'importe où
+dans le monde}, indépendamment du pays de stockage. Pour la forensique~:
+les preuves obtenues via CLOUD~Act ont une valeur probatoire élevée car
+elles sont certifiées par l'entreprise américaine.
+
+$\mathcal{O}$ (Opposabilité)~: les données obtenues via CLOUD~Act sont
+admissibles devant les tribunaux américains selon FRE~803(6), et
+généralement reconnues par réciprocité dans les pays partenaires.
+
+$\mathcal{C}$ (Confidentialité)~: \textbf{tension majeure.} Le CLOUD~Act
+signifie que les données d'un ressortissant camerounais hébergées chez
+Google aux États-Unis peuvent être accessibles aux autorités américaines
+sans que le Cameroun en soit informé. La souveraineté numérique
+camerounaise est directement engagée.
+
+\cro{$\downarrow\downarrow$ tension souveraineté}{$\uparrow$ pour preuves obtenues}{$\uparrow\uparrow$ recov. us-based}
+
+\textbf{Implication pratique~:} pour les OPJ camerounais le CLOUD~Act
+joue en leur faveur~: les partenaires américains peuvent obtenir des données
+chez des fournisseurs US plus facilement qu'un MLAT classique, et les
+partager via accords bilatéraux.
+\end{boxCRO}
+
+% ============================================================================
+\section{Droit Européen~: RGPD, eIDAS, NIS~2 et e-Evidence}
+\label{sec:droit-europe}
+% ============================================================================
+
+L'Union Européenne a construit le cadre normatif numérique le plus dense
+au monde. Pour un OPJ camerounais coopérant avec des partenaires européens
+ou réquisitionnant des fournisseurs basés en Europe, quatre textes sont
+directement pertinents.
+
+\subsection{RGPD~: tensions avec l'investigation forensique}
+
+Le \termecle{RGPD}\index{RGPD} (Règlement~(UE)~2016/679) est le texte de
+référence mondial sur la protection des données personnelles. Il crée des
+tensions structurelles avec la forensique numérique~:
+
+\begin{tableaucours}{p{3.5cm}p{3.5cm}p{4.5cm}}{%
+    \tableauHeader{Droit RGPD} &
+    \tableauHeader{Tension forensique} &
+    \tableauHeader{Résolution}
+}
+Droit à l'effacement (art.~17) &
+    Un suspect peut demander la suppression de ses données chez un
+    fournisseur européen, y compris des preuves potentielles &
+    Art.~17(3)(e)~: exception pour \textit{constatation, exercice ou
+    défense de droits en justice}~; conservation possible sur injonction \\
+Minimisation des données (art.~5) &
+    La collecte exhaustive de toutes les données d'un suspect viole le
+    principe de minimisation &
+    L'investigation judiciaire constitue une base légale distincte
+    (art.~6(1)(e)~: mission d'intérêt public) \\
+Notification de violation (art.~33) &
+    Un fournisseur victime d'une fuite doit notifier sous 72h.
+    ce qui peut alerter le suspect visé &
+    Les autorités judiciaires peuvent demander le report de la
+    notification (art.~23) si cela entrave l'enquête \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~11.3. Tensions RGPD / investigation forensique}\end{center}
+
+\begin{boxjuris}
+\textbf{RGPD Article~23. Limitations~:}
+\begin{quote}
+Le droit de l'Union ou le droit d'un État membre \textit{[\ldots]} peut
+limiter la portée des obligations \textit{[\ldots]} lorsqu'une telle
+limitation respecte l'essence des libertés et droits fondamentaux et qu'elle
+constitue une mesure nécessaire et proportionnée dans une société
+démocratique pour garantir~: \textit{(d)~la prévention et la détection
+d'infractions pénales, ainsi que les enquêtes et les poursuites en la
+matière ou l'exécution de sanctions pénales}.
+\end{quote}
+\textbf{Implication opérationnelle~:} l'article~23 est la base légale
+qui permet aux partenaires européens de transmettre des données au
+Cameroun malgré le RGPD, dans le cadre d'une coopération judiciaire.
+Citer explicitement cet article dans toute demande d'entraide adressée
+à un État européen.
+\end{boxjuris}
+
+\subsection{eIDAS~: valeur probatoire des signatures et horodatages électroniques}
+
+Le règlement \termecle{eIDAS}\index{eIDAS} (Règlement~(UE)~910/2014,
+révisé 2024) établit un cadre pour la confiance numérique en Europe.
+Son impact forensique porte sur la valeur probatoire des documents
+électroniques provenant d'Europe.
+
+\begin{tableaucours}{p{3.2cm}p{5.5cm}p{3.8cm}}{%
+    \tableauHeader{Niveau} &
+    \tableauHeader{Description} &
+    \tableauHeader{Valeur probatoire}
+}
+\textbf{Signature simple} &
+    Toute donnée électronique liée à un signataire &
+    Faible~; contestable \\
+\textbf{Signature avancée} &
+    Identifie le signataire de manière unique~; liée aux données
+    de façon détectable en cas de modification &
+    Moyenne~; présomption simple d'authenticité \\
+\textbf{Signature qualifiée} &
+    Certificat qualifié + dispositif sécurisé certifié QSCD~;
+    équivalent légal d'une signature manuscrite &
+    \textbf{Maximale}~; présomption irréfragable en droit européen \\
+\textbf{Horodatage qualifié} &
+    Preuve d'existence d'un document à un instant précis~;
+    délivré par une autorité de confiance certifiée &
+    \textbf{Force probante maximale} pour la date d'existence \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~11.4. Niveaux de signature et valeur probatoire (eIDAS)}\end{center}
+
+\begin{boiteRemarque}{eIDAS et forensique camerounaise}
+Quand un partenaire européen transmet des preuves numériques signées avec
+une signature qualifiée eIDAS, ces preuves ont une valeur probatoire
+maximale en droit européen. Dans un tribunal camerounais, la \loicam{2024/017}~\cite{cameroun2024donnees}
+(art.~6~: principe d'intégrité) et les principes généraux du droit de
+la preuve permettent de faire reconnaître cette valeur si l'expert
+forensique explique le système de certification. Documenter systématiquement
+le niveau eIDAS des documents reçus dans le rapport d'analyse.
+\end{boiteRemarque}
+
+\subsection{NIS~2~: implications pour la forensique d'incident}
+
+La Directive \termecle{NIS~2}\index{NIS 2} (Directive~(UE)~2022/2555)
+impose des obligations de cybersécurité aux opérateurs de secteurs
+essentiels dans l'UE. Son impact sur la forensique~:
+
+\begin{itemize}
+    \item \textbf{Obligation de notification d'incident}~: les entités
+          essentielles doivent notifier l'incident dans les 24h à l'autorité
+          nationale compétente, et dans les 72h un rapport initial complet.
+          Ces rapports d'incident constituent des preuves documentaires
+          exploitables en forensique.
+    \item \textbf{Logs conservés}~: NIS~2 impose la conservation de logs
+          de sécurité pendant une durée suffisante pour permettre les
+          investigations post-incident. Pour l'OPJ coopérant avec un
+          partenaire UE~: ces logs existent, ils sont conservés, ils peuvent
+          être requis.
+    \item \textbf{Incident Response Plans}~: les entités NIS~2 sont tenues
+          de maintenir des procédures de réponse aux incidents documentées.
+          La conformité NIS~2 d'un partenaire est une garantie de qualité
+          probatoire de ses données.
+\end{itemize}
+
+\subsection{Règlement e-Evidence~: la révolution en cours}
+
+Le Règlement~(UE)~2023/1543 (\termecle{e-Evidence}), applicable depuis
+2026, crée un mécanisme direct pour l'obtention de preuves électroniques
+entre les États membres de l'UE~:
+
+\begin{itemize}
+    \item \textbf{European Production Order}~: les autorités judiciaires
+          d'un État membre peuvent directement requérir un fournisseur
+          établi dans un autre État membre~; délai cible~: 10~jours
+          (6h en urgence).
+    \item \textbf{Impact pour le Cameroun}~: les délais de coopération
+          intra-UE se raccourcissent drastiquement~; les partenaires
+          européens du Cameroun peuvent obtenir des données pan-européennes
+          bien plus vite, et les partager ensuite dans le cadre d'un MLAT.
+\end{itemize}
+
+% ============================================================================
+\section{Droit Africain Régional~: CEDEAO, SADC et EAC}
+\label{sec:droit-afrique}
+% ============================================================================
+
+\subsection{CEDEAO~: le cadre d'Afrique de l'Ouest}
+
+La \termecle{CEDEAO}\index{CEDEAO} (\textit{Communauté Économique des États
+de l'Afrique de l'Ouest}) a adopté deux textes harmonisant le droit numérique
+de ses 15~membres~:
+
+\begin{tableaucours}{p{4.0cm}p{7.5cm}}{%
+    \tableauHeader{Texte} &
+    \tableauHeader{Contenu et pertinence forensique}
+}
+\textbf{Directive C/DIR/1/08/11} sur la cybercriminalité &
+    Harmonise les infractions cyberpénales~: accès illicite,
+    interception, atteinte à l'intégrité. Infractions similaires
+    à Budapest. \textbf{Pertinence~:} base pour demandes de coopération
+    vers les membres CEDEAO (Sénégal, Ghana, Nigeria~: membres). \\
+\textbf{Acte additionnel A/SA.2/01/10} sur les données personnelles &
+    Définit les principes de protection des données pour les États
+    membres. Influence les réponses aux réquisitions de données de
+    citoyens des États membres. \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~11.5. Textes CEDEAO pertinents pour la forensique}\end{center}
+
+\begin{boiteRemarque}{CEDEAO et coopération avec le Nigeria et le Sénégal}
+Le Nigeria et le Sénégal (deux États membres CEDEAO ayant également
+ratifié Budapest) constituent les partenaires les plus sollicités par
+les OPJ camerounais dans les affaires transfrontalières. La CEDEAO ajoute
+une couche de coopération régionale~: des demandes peuvent être acheminées
+via le mécanisme CEDEAO \emph{en plus} du canal INTERPOL, augmentant les
+chances d'obtenir une réponse rapide.
+\end{boiteRemarque}
+
+\subsection{SADC~: le modèle d'Afrique Australe}
+
+La \termecle{SADC}\index{SADC} (\textit{Southern African Development
+Community}) a développé une \textit{Model Law on Computer Crime and
+Cybercrime} servant de référence pour l'harmonisation législative de ses
+16~membres (Zimbabwe, Zambie, Mozambique, Afrique du Sud~\ldots).
+
+Points clés de la \textit{Model Law}~:
+\begin{itemize}
+    \item Criminalisation cohérente avec Budapest des accès illicites,
+          interceptions, atteintes à l'intégrité.
+    \item Dispositions spécifiques sur la cyberfraude et les atteintes
+          aux données financières~: pertinent pour les fraudes bancaires
+          transfrontalières Cameroun-Afrique du Sud.
+    \item L'Afrique du Sud (\textit{Cybercrimes Act} 2020) est le système
+          le plus abouti de la région~: laboratoire forensique national,
+          unité cybercrime SAPS, coopération INTERPOL établie.
+\end{itemize}
+
+\subsection{EAC~: le cadre d'Afrique de l'Est}
+
+La \termecle{EAC}\index{EAC} (\textit{East African Community}) a développé
+un \textit{Framework for Cyberlaws} couvrant les membres~: Kenya, Tanzanie,
+Ouganda, Rwanda, Burundi, Sud-Soudan.
+
+Pour les OPJ camerounais, les deux points de contact pertinents sont~:
+\begin{itemize}
+    \item \textbf{Rwanda}~: l'un des cadres les plus avancés d'Afrique
+          sub-saharienne~; \textit{Computer Crime Law} 2020, Autorité
+          nationale de cybersécurité (NCSA) opérationnelle.
+    \item \textbf{Kenya}~: \textit{Computer Misuse and Cybercrimes Act}
+          2018~; coopération INTERPOL active~; hub financier
+          (M-Pesa)~: réquisitions sur les fraudes mobile money
+          régionales aboutissent bien.
+\end{itemize}
+
+% ============================================================================
+\section{Grille de Lecture Comparative~: Choisir sa Stratégie Juridique}
+\label{sec:grille-comparative}
+% ============================================================================
+
+\subsection{Tableau synthétique~: droit local et implications opérationnelles}
+
+\begin{tableaucours}{p{2.5cm}p{2.8cm}p{3.0cm}p{3.5cm}}{%
+    \tableauHeader{Juridiction} &
+    \tableauHeader{Texte-clé} &
+    \tableauHeader{Spécificité forensique} &
+    \tableauHeader{Canal recommandé}
+}
+\textbf{USA} & SCA + CLOUD~Act &
+    Contenu emails~: mandat obligatoire. Métadonnées~: portail LEA. &
+    Portail LEA (métadonnées)~; MLAT USA (contenu)~;
+    Protocole~II Budapest si disponible \\
+\textbf{UE} & RGPD + e-Evidence &
+    Art.~23 RGPD~: exception judiciaire. e-Evidence~: 10~jours. &
+    MLAT bilatéral~; e-Evidence (intra-UE)~;
+    citer art.~23 RGPD explicitement \\
+\textbf{Afrique West} & CEDEAO Directive &
+    Harmonisation avec Budapest. Sénégal/Ghana/Nigeria~: Budapest. &
+    INTERPOL réseau 24/7~; canal CEDEAO en complément \\
+\textbf{Afrique Sud} & Malabo~; SADC Model Law &
+    Rwanda/Kenya~: lois modernes. AfSud~: coopération établie. &
+    INTERPOL~; AFRIPOL~; accords bilatéraux \\
+\textbf{Russie / Chine} & (pas Budapest, pas Malabo) &
+    Coopération très limitée. Chercher les nœuds intermédiaires. &
+    Identifier les segments du chemin dans des États coopérants~;
+    OSINT sur les nœuds accessibles \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~11.6. Grille comparative~: droit local et stratégie}\end{center}
+
+\subsection{Processus de qualification d'une affaire transfrontalière}
+
+Face à une affaire impliquant un élément étranger, la démarche en
+cinq étapes~:
+
+\begin{enumerate}
+    \item \textbf{Identifier les éléments étrangers}~: où est le serveur~?
+          Où est le suspect~? Où est hébergé le fournisseur~? Où ont transité
+          les fonds~?
+    \item \textbf{Cartographier les droits locaux applicables}~: pour chaque
+          État impliqué, quel texte encadre la coopération~? Budapest,
+          Malabo, CEDEAO, accord bilatéral, ou rien~?
+    \item \textbf{Qualifier l'infraction en double incrimination}~: montrer
+          que les faits constituent une infraction dans les deux pays. Sans
+          double incrimination, la coopération peut être refusée.
+    \item \textbf{Prioriser~: données volatiles d'abord}~: activer
+          immédiatement la conservation (art.~29 Budapest, portail LEA).
+          Le droit local du partenaire ne change rien à cette priorité.
+    \item \textbf{Choisir le canal adapté}~: MLAT formel si contenu
+          requis~; portail LEA si métadonnées suffisent~; INTERPOL 24/7
+          si urgence.
+\end{enumerate}
+
+\begin{boxscenario}{Affaire BEC Cameroun-UE-USA, stratégie juridique}
+\textbf{Faits~:} SONATRAV SA, Douala, perd 85~millions FCFA dans une
+attaque BEC. L'email frauduleux a été envoyé depuis une adresse Gmail
+(\texttt{@gmail.com}), via un VPN hébergé en Allemagne. Les fonds ont
+transité vers un compte Revolut (UE) puis vers Binance (Caïmans).
+
+\textbf{Cartographie juridique~:}
+\begin{itemize}
+    \item Gmail~$\to$ \textbf{Google USA}~: SCA~; métadonnées via portail
+          LEA~; contenu MLAT USA~; base~: CFAA~\S~1030 (fraude via
+          ordinateur protégé) + Loi~2010/012 art.~72.
+    \item VPN Allemagne~$\to$ \textbf{droit allemand + RGPD}~: MLAT
+          franco-camerounais indirect (via UE)~; citer art.~23 RGPD~;
+          e-Evidence~\S~si partenaire UE impliqué.
+    \item Revolut (Lituanie/UE)~$\to$ \textbf{RGPD + e-Evidence}~:
+          European Production Order~; délai~10~jours.
+    \item Binance~$\to$ identifier la juridiction réelle~; analyse
+          blockchain Blockchair~; portail LEA Binance si disponible.
+\end{itemize}
+
+\textbf{Séquence d'actions~:}
+\begin{enumerate}
+    \item Conservation urgente simultanée~: portail LEA Google (urgence)
+          + BCN INTERPOL pour VPN Allemagne (art.~29 Budapest).
+    \item Analyse blockchain Binance~: tracer les fonds (OSINT légal).
+    \item MLAT USA pour contenu Gmail dans les 60~jours.
+    \item Demande e-Evidence à Revolut Lituanie.
+\end{enumerate}
+\end{boxscenario}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item \textbf{Droit USA}~: SCA impose un \emph{mandat} pour le contenu
+          des communications~; les métadonnées s'obtiennent via portail LEA.
+          CLOUD~Act~: les entreprises US peuvent livrer des données stockées
+          n'importe où. CFAA~: base pour la double incrimination.
+
+    \item \textbf{RGPD européen}~: tension structurelle avec la forensique,
+          résolue par l'art.~23 (exception judiciaire) et l'art.~6(1)(e)
+          (mission d'intérêt public). Citer explicitement ces articles
+          dans toute demande à un partenaire européen.
+
+    \item \textbf{eIDAS}~: trois niveaux de signature~; la signature
+          qualifiée a valeur légale maximale~; l'horodatage qualifié
+          prouve l'existence à un instant~; documenter le niveau eIDAS
+          des preuves reçues d'Europe.
+
+    \item \textbf{NIS~2}~: impose la conservation de logs et la
+          notification d'incidents~; les entités conformes constituent
+          des sources de preuves documentaires de qualité.
+
+    \item \textbf{Afrique régionale}~: CEDEAO renforce les demandes vers
+          Sénégal/Ghana/Nigeria~; SADC couvre l'Afrique australe (Afrique
+          du Sud~: meilleur partenaire forensique)~; EAC couvre
+          Rwanda/Kenya (lois modernes, coopération active).
+
+    \item \textbf{Double incrimination}~: condition nécessaire dans la
+          plupart des coopérations~; montrer que les faits constituent une
+          infraction chez les deux partenaires. Loi~2010/012 +
+          CFAA/RGPD-infraction/Budapest = base solide.
+
+    \item \textbf{Grille de décision en 5 étapes}~: identifier les
+          éléments étrangers~$\to$ cartographier les droits~$\to$ double
+          incrimination~$\to$ conservation d'abord~$\to$ canal adapté.
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~11.1. Identification du cadre légal \niveaubase}]
+Pour chacune des situations suivantes, identifiez~: (A)~le ou les textes
+légaux applicables chez le partenaire étranger, (B)~l'instrument requis
+pour obtenir les données demandées, (C)~le délai réaliste~:
+\begin{enumerate}[(a)]
+    \item Vous souhaitez obtenir les données d'abonné d'un compte Gmail
+          suspect (\texttt{@gmail.com}) utilisé dans une fraude MoMo.
+    \item Vous devez obtenir le contenu des emails Outlook d'un suspect
+          hébergés par Microsoft USA dans le cadre d'une escroquerie.
+    \item Un serveur Apache hébergé en France a servi à déposer un malware.
+          Vous demandez les logs d'accès au fournisseur d'hébergement.
+    \item Un compte Facebook utilisé pour harcèlement identifie son
+          propriétaire au Sénégal. Vous demandez les données d'abonné.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~11.2. Tensions RGPD \niveaumoyen}]
+Un fournisseur d'hébergement allemand vous informe qu'il ne peut pas
+répondre à votre réquisition en raison du RGPD et du principe de
+minimisation des données~:
+\begin{enumerate}[(a)]
+    \item Quel article du RGPD invoqueriez-vous pour contester ce refus~?
+          Rédigez le paragraphe de réponse à inclure dans votre demande.
+    \item Quelle condition doit être remplie pour que l'exception judiciaire
+          de l'art.~23 RGPD soit valablement invoquée~?
+    \item Si le fournisseur maintient son refus, par quel canal alternatif
+          pouvez-vous obtenir les données~?
+    \item Appliquez la grille CRO à la décision d'invoquer l'art.~23
+          ou de passer directement au MLAT.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~11.3. Stratégie juridique complète \niveauexpert}]
+Dans l'Opération WOURI (Chapitre~\ref{chap:gr-affaires}), l'analyse
+révèle que l'attaque BEC implique~:
+\begin{itemize}
+    \item Email phishing envoyé depuis un compte Outlook~(\texttt{@hotmail.fr})
+          hébergé en Irlande (centre de données Microsoft Europe)~;
+    \item VPN utilisé~: NordVPN (siège social~: Panama, serveurs
+          aux Pays-Bas)~;
+    \item Compte bancaire destinataire~: HSBC Hong Kong~;
+    \item Fonds convertis en BTC et envoyés vers une adresse dont la
+          dernière transaction pointe vers un exchange turc (Paribu).
+\end{itemize}
+\begin{enumerate}[(a)]
+    \item Pour chaque élément, identifiez le cadre légal applicable et
+          l'instrument de coopération optimal.
+    \item La double incrimination est-elle satisfaite dans chaque cas~?
+          Justifiez en citant les textes de loi des deux pays.
+    \item Rédigez le plan d'action chronologique complet~: dans quel
+          ordre agir, par quel canal, dans quel délai, et quel résultat
+          attendre à chaque étape.
+    \item Quel élément de cette chaîne est le plus vulnérable à un
+          refus de coopération~? Proposez une stratégie de contournement.
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Transition.} Le Chapitre~\ref{chap:droit-cam} approfondit le
+\textbf{droit camerounais du numérique}~: architecture complète de
+la \loicam{2010/012} et de la \loicam{2024/017}, jurisprudence naissante,
+rôle de l'ANTIC, articulation avec le Code pénal et le Code de procédure
+pénale. Ce chapitre sera le plus important pour la rédaction des
+procès-verbaux et la qualification des infractions devant les tribunaux
+camerounais.
+\end{boxinfo}

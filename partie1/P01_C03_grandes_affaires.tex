@@ -1,0 +1,924 @@
+% ============================================================================
+% Fichier  : partie1/P01_C03_grandes_affaires.tex
+% Titre    : Les Grandes Affaires --- Leçons de l'Histoire
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- Juin 2026
+% ============================================================================
+
+\chapter{Les Grandes Affaires. Leçons de l'Histoire}
+\label{chap:gr-affaires}
+
+\epigraph{%
+    « Chaque grande affaire forensique est un laboratoire où s'expérimente
+    l'avenir de notre discipline. »%
+}{D\textsuperscript{r} Henry C. Lee}
+
+\niveauChapitre{Fondamental}{%
+    Ce chapitre prolonge le Chapitre~\ref{chap:histoire} en approfondissant
+    l'anatomie technique des affaires fondatrices. Aucun prérequis -- les
+    concepts techniques sont introduits et définis au fil du texte.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Analyser l'anatomie technique et judiciaire de sept affaires
+          fondatrices pour en extraire les principes forensiques durables.
+    \item Identifier, dans chaque affaire, l'\termecle{artefact décisif},
+          la preuve unique qui a fait basculer le dossier, et la méthode
+          employée pour le découvrir.
+    \item Reconnaître les erreurs procédurales récurrentes qui affaiblissent
+          les dossiers, afin de ne pas les reproduire.
+    \item Appliquer la grille d'analyse CRO à des cas réels pour comprendre
+          comment les tensions entre confidentialité, fiabilité et opposabilité
+          se manifestent concrètement.
+    \item S'approprier les quatre cas camerounais (Opérations ONAMBELE, TANGUE,
+          MVOM, WOURI) comme référentiels de pratique locale.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Comment lire ce chapitre}
+% ============================================================================
+
+Chaque affaire est disséquée selon la même structure~: \textbf{contexte} (ce
+qui s'est passé, en bref), \textbf{artefact décisif} (la preuve qui a tout
+changé), \textbf{anatomie technique} (comment cette preuve a été trouvée et
+pourquoi elle a tenu juridiquement), \textbf{erreurs commises} (ce qui a failli
+faire échouer l'investigation), et \textbf{leçon transférable} (ce que vous
+devez emporter de cette affaire dans votre pratique quotidienne).
+
+\medskip
+
+Les quatre premières affaires sont internationales et fondatrices. Les quatre
+suivantes sont camerounaises, fictives mais construites sur les patterns
+exacts des affaires traitées par la \sigle{DGSN} et l'\sigle{ANTIC} entre
+2020 et 2026.
+
+\separateur
+
+% ============================================================================
+\section{L'Affaire BTK Killer. Dennis Rader (2005)}
+\label{sec:btk}
+% ============================================================================
+
+\subsection{Contexte et artefact décisif}
+
+Dennis Rader, tueur en série surnommé \termecle{BTK} (\textit{Bind, Torture,
+Kill}), a assassiné 10~personnes dans la région de Wichita (Kansas) entre
+1974 et 1991. Après une longue absence, il reprend contact avec la police en
+2004 par lettres, puis par disquette. En janvier~2005, il envoie une disquette
+contenant un fichier \texttt{Test.A.rtf}. Les métadonnées extraites par les
+enquêteurs du FBI en quelques minutes conduisent à son arrestation en
+quatre jours.
+
+\medskip
+
+\textbf{L'artefact décisif}~: les propriétés du fichier \texttt{.rtf} révèlent
+le champ \textit{Auteur}~: \texttt{Dennis}, et le champ
+\textit{Dernière organisation}~: \texttt{Christ Lutheran Church}. Le
+croisement avec les membres actifs de cette paroisse identifie Rader
+immédiatement.
+
+\subsection{Anatomie technique}
+
+\begin{boxartefact}{Métadonnées Office, champs auteur et organisation}
+\textbf{Localisation dans Windows~:}
+Clic droit sur le fichier $\to$ \texttt{Propriétés} $\to$
+onglet \texttt{Détails}. Ou dans Office~: \texttt{Fichier} $\to$
+\texttt{Informations} $\to$ \texttt{Propriétés}.
+
+\textbf{Localisation dans Autopsy~:}
+\texttt{Results} $\to$ \texttt{Extracted Content} $\to$
+\texttt{Document Metadata}.
+
+\textbf{Extraction en ligne de commande~:}
+\begin{lstlisting}[language=bash_forensique]
+# ExifTool -- extraction complete des metadonnees
+exiftool fichier.docx
+
+# Sortie typique
+Author              : Dennis
+Last Modified By    : Dennis
+Organization        : Christ Lutheran Church
+Create Date         : 2005:01:15 19:42:33
+\end{lstlisting}
+
+\textbf{Principe clé~:} tout document Office créé depuis 1997 porte ces
+métadonnées. La plupart des utilisateurs ignorent leur existence.
+Elles survivent au renommage, à la copie, au transfert par email.
+\end{boxartefact}
+
+\subsection{Erreurs commises et ce qu'elles enseignent}
+
+Rader a commis une erreur élémentaire~: utiliser un ordinateur institutionnel
+(celui de son église) pour préparer un document destiné à la police, sans
+jamais nettoyer les métadonnées. Cette erreur révèle un \textbf{angle mort
+cognitif} universel~: les utilisateurs visualisent le contenu de leurs
+documents mais ignorent la couche de métadonnées sous-jacente. Pour
+l'investigateur, cet angle mort est une opportunité systématique.
+
+\begin{boxalert}
+\textbf{Le principe des métadonnées survivantes}~: tout fichier numérique
+produit une \emph{deuxième couche d'information}, les métadonnées, que
+son auteur ne voit pas et oublie donc de supprimer. Cette couche contient
+souvent~: l'identité de l'auteur, l'organisation, l'équipement utilisé,
+le chemin de fichier sur l'ordinateur source, parfois des coordonnées GPS
+(photos), la géolocalisation de l'imprimante, les révisions successives du
+document. L'examen systématique des métadonnées est une étape non
+optionnelle de toute investigation numérique.
+\end{boxalert}
+
+\subsection{Leçon transférable}
+
+\begin{boxresume}
+\textbf{BTK. Ce que vous emportez~:}
+\begin{itemize}
+    \item Extraire systématiquement les métadonnées de \textbf{tous} les
+          fichiers collectés~; ne jamais se limiter au contenu visible.
+    \item La commande \lstinline[language=bash_forensique]{exiftool -r /dossier/}
+          traite récursivement un répertoire entier.
+    \item Un champ auteur vide n'est pas neutre~: il signifie que le fichier
+          a été créé avec un outil qui ne l'inscrit pas, ou que les
+          métadonnées ont été \emph{délibérément} supprimées (\textit{timestomping}
+          ou nettoyage EXIF), ce qui est en soi un indice forensique.
+\end{itemize}
+\end{boxresume}
+
+% ============================================================================
+\section{L'Affaire Stuxnet (2010)}
+\label{sec:stuxnet}
+% ============================================================================
+
+\subsection{Contexte et artefact décisif}
+
+\termecle{Stuxnet} est le premier programme malveillant conçu pour causer des
+dommages physiques à une infrastructure industrielle. Découvert en juin~2010
+par VirusBlokAda, il cible spécifiquement les centrifugeuses d'enrichissement
+d'uranium iraniennes de Natanz. Quatre zero-days simultanés, un code polymorphe
+sophistiqué, une précision chirurgicale sur les automates Siemens
+\texttt{SIMATIC S7-315/S7-417}~: l'attribution à des services étatiques
+(États-Unis et Israël, selon les sources) est largement acceptée.
+
+\medskip
+
+\textbf{L'artefact décisif}~: la présence de \textbf{quatre zero-days
+simultanés} dans un seul programme. Un groupe cybercriminel ordinaire
+en exploite rarement plus d'un~; en utiliser quatre simultanément signale
+des ressources d'État. Ce \textit{marqueur de sophistication} a été
+l'argument principal de l'attribution.
+
+\subsection{Anatomie technique}
+
+L'investigation de Stuxnet a fondé la sous-discipline de la
+\termecle{cyberforensique industrielle}\index{cyberforensique industrielle}.
+Quatre techniques innovantes ont été nécessaires~:
+
+\begin{enumerate}
+    \item \textbf{Reverse engineering de code polymorphe~:} Stuxnet modifiait
+          son propre code à chaque exécution pour contourner les signatures
+          antivirales. L'analyse a requis l'extraction du code depuis la
+          mémoire du processus en cours d'exécution, avant que la
+          polymorphie ne l'altère.
+
+    \item \textbf{Sandboxing comportemental~:} l'exécution dans un
+          environnement virtualisé isolé (\textit{sandbox}) a permis
+          d'observer le comportement du malware sans risquer de propager
+          l'infection. Stuxnet vérifiait lui-même s'il tournait dans une
+          sandbox~; les analystes ont dû contourner cette détection.
+
+    \item \textbf{Identification des quatre zero-days~:}
+          \begin{itemize}
+              \item CVE-2010-2568~: vulnérabilité dans le traitement des
+                    fichiers \texttt{.lnk} (raccourcis Windows).
+              \item CVE-2010-2772~: vulnérabilité dans le \textit{Windows
+                    Task Scheduler}.
+              \item CVE-2010-2729~: vulnérabilité dans le service
+                    \textit{Print Spooler} pour la propagation réseau.
+              \item CVE-2010-2743~: vulnérabilité dans le pilote
+                    noyau Windows pour l'élévation de privilèges.
+          \end{itemize}
+
+    \item \textbf{Forensique des automates industriels (ICS/SCADA)~:}
+          les \sigle{PLC} (\textit{Programmable Logic Controllers}) Siemens
+          ciblés ne sont pas des PC~; leur forensique exige des outils et
+          des compétences spécifiques absents des boîtes à outils classiques.
+\end{enumerate}
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Affaire Stuxnet}
+
+$\mathcal{C}$~: l'investigation a nécessité l'accès à des données sensibles
+d'États souverains et d'installations nucléaires. Le niveau de
+classification a fortement contraint la diffusion des résultats.
+\cro{$\downarrow$ très contrainte}{$\uparrow$ robuste}{$\sim$ limitée aux instances spécialisées}
+
+La tension CRO de Stuxnet est atypique~: l'opposabilité n'est pas un
+objectif pénal (personne ne sera jugé) mais stratégique (attribution
+pour la diplomatie et la dissuasion). Cela illustre que l'investigation
+numérique sert des finalités multiples, pas seulement judiciaires.
+\end{boxCRO}
+
+\subsection{Leçon transférable}
+
+\begin{boxresume}
+\textbf{Stuxnet. Ce que vous emportez~:}
+\begin{itemize}
+    \item La sophistication d'un malware est un \textbf{marqueur
+          d'attribution}~: zéro à deux zero-days = acteur criminel ou
+          hacktiviste~; trois zero-days et plus = ressources d'État.
+    \item Les systèmes industriels (ICS/SCADA) sont une frontière en
+          expansion de l'investigation numérique~; leur forensique
+          nécessite des compétences spécifiques au-delà de l'informatique
+          classique.
+    \item L'analyse comportementale en sandbox est indispensable pour
+          tout malware inconnu~: ne jamais exécuter un binaire suspect
+          sur un système de production ou d'analyse non isolé.
+\end{itemize}
+\end{boxresume}
+
+% ============================================================================
+\section{L'Affaire WannaCry (2017)}
+\label{sec:wannacry}
+% ============================================================================
+
+\subsection{Contexte et artefact décisif}
+
+Le 12~mai~2017, le ransomware \termecle{WannaCry} infecte 300~000~ordinateurs
+dans 150~pays en moins de 72~heures, en exploitant la vulnérabilité
+\textit{EternalBlue} (CVE-2017-0144) volée à la NSA et publiée par le
+groupe Shadow Brokers. Les systèmes Windows non patchés, notamment ceux du
+National Health Service britannique (NHS), sont frappés de plein fouet~:
+des hôpitaux doivent reporter des opérations chirurgicales non urgentes.
+
+\medskip
+
+\textbf{L'artefact décisif}~: le \textbf{kill switch}. Marcus Hutchins,
+chercheur de 22~ans, découvre dans le code de WannaCry une requête vers un
+domaine non enregistré (\texttt{iuqerfsodp9ifjaposdfjhgosurijfaewrwergwea.com}).
+En enregistrant ce domaine pour 10,69~USD, il active le kill switch et stoppe
+la propagation mondiale.
+
+\subsection{Anatomie technique}
+
+Trois techniques d'investigation ont été déterminantes~:
+
+\subsubsection{Analyse du Domain Generation Algorithm (DGA)}
+
+WannaCry ne s'appuie pas sur un DGA classique, le domaine kill switch
+est codé en dur. Mais l'analyse de ce domaine a révélé l'architecture de
+contrôle du malware~: la présence d'un kill switch hard-codé est une
+signature des opérations de malware à grande échelle (permet à l'auteur de
+désactiver le malware en cas d'attribution imminente).
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={Extraction du kill switch depuis un binaire WannaCry}]
+# Strings -- recherche de domaines et URLs dans le binaire
+strings wannacry.exe | grep -E "\.(com|net|org|onion)"
+
+# Sortie attendue :
+# iuqerfsodp9ifjaposdfjhgosurijfaewrwergwea.com  <- kill switch
+# 2.0.0.10 <- C2 IP candidate
+# @WanaDecryptor@  <- marqueur de famille
+
+# Vérification dynamique en sandbox (REMnux)
+remnux analyze --timeout 60 wannacry.exe
+\end{lstlisting}
+
+\subsubsection{Attribution probabiliste~: la piste Lazarus}
+
+L'attribution à la Corée du Nord (groupe Lazarus) repose sur trois
+artefacts corrélés~: similitudes de code avec des malwares Lazarus
+précédents (2014~: Sony Pictures), utilisation de la même adresse
+Bitcoin pour les paiements de rançons, et présence de commentaires
+en coréen dans certaines chaînes de débogage.
+
+\begin{boiteRemarque}{Attribution numérique~: probabilité, pas certitude}
+L'attribution d'une attaque numérique à un acteur étatique ou
+criminel est un \textbf{jugement probabiliste}, jamais une certitude.
+Les bons acteurs imitent les signatures d'autres groupes (\textit{false
+flag}). L'investigateur doit présenter ses conclusions d'attribution avec
+un niveau de confiance explicite (\textit{ex.}~: « attribution avec
+confiance modérée, sur la base de trois indicateurs corrélés »), non
+comme des faits établis.
+\end{boiteRemarque}
+
+\subsubsection{Forensique de l'impact~: reconstitution de la chronologie}
+
+La réponse à WannaCry a révélé l'importance de la
+\termecle{forensique des journaux distribués}\index{forensique!journaux distribués}~:
+les logs de 150~pays devaient être corrélés temporellement. La
+leçon fondamentale est que les horloges système ne sont pas synchronisées
+universellement, une écart de quelques minutes entre deux systèmes
+peut inverser la chronologie d'une infection et fausser l'attribution.
+
+\subsection{Leçon transférable}
+
+\begin{boxresume}
+\textbf{WannaCry. Ce que vous emportez~:}
+\begin{itemize}
+    \item Analyser systématiquement les requêtes réseau d'un malware~:
+          elles révèlent l'architecture de contrôle et parfois un
+          mécanisme de désactivation.
+    \item L'attribution est une \textbf{opinion raisonnée}, pas une
+          certitude~; la présenter comme telle protège l'expert
+          lors du contre-interrogatoire.
+    \item La corrélation temporelle multi-sources exige une
+          \textbf{synchronisation des horloges}~: documenter le
+          décalage NTP de chaque système analysé avant toute chronologie.
+\end{itemize}
+\end{boxresume}
+
+% ============================================================================
+\section{L'Affaire Enron. L'E-Discovery à l'Échelle (2001)}
+\label{sec:enron}
+% ============================================================================
+
+\subsection{Contexte et artefact décisif}
+
+La faillite d'Enron en décembre~2001 génère la première investigation
+numérique à grande échelle de l'histoire~: 500~000~documents électroniques
+(emails, feuilles Excel, présentations PowerPoint) doivent être collectés,
+préservés, analysés et présentés en justice. L'enjeu dépasse le périmètre
+technique~: pour la première fois, un tribunal doit statuer sur la
+recevabilité de preuves numériques massives.
+
+\medskip
+
+\textbf{L'artefact décisif}~: l'\textbf{email d'Enron} du 23~août~2001,
+dans lequel le vice-président Sherron Watkins avertit le PDG~: \textit{« I
+am incredibly nervous that we will implode in a wave of accounting
+scandals. »} Cet email n'était pas destiné à être conservé, mais il
+l'était, dans les sauvegardes automatiques des serveurs Exchange.
+
+\subsection{Anatomie technique}
+
+\subsubsection{La problématique de l'e-discovery à grande échelle}
+
+500~000~documents ne peuvent pas être examinés manuellement. Enron a
+conduit au développement des premières techniques de
+\termecle{Technology-Assisted Review} (TAR)\index{TAR}, ancêtre des
+outils d'IA forensique actuels. Les principes~:
+
+\begin{enumerate}
+    \item \textbf{Collecte préservante~:} extraction des emails depuis les
+          serveurs Exchange avec préservation des métadonnées (horodatages,
+          en-têtes SMTP, codes de priorité). La simple exportation en
+          \texttt{.pst} aurait supprimé des informations cruciales.
+    \item \textbf{Déduplication~:} les mêmes emails existent en copies
+          multiples (boîtes envoi, reçu, sauvegardes). La déduplication
+          basée sur le hachage permet de réduire le volume sans perte d'information.
+    \item \textbf{Classification assistée~:} les premiers algorithmes de
+          classification par mots-clés et par graphe de communication ont
+          identifié les 200~personnes les plus impliquées parmi les
+          20~000~boîtes email analysées.
+\end{enumerate}
+
+\subsubsection{La règle de l'email~: ce qui est envoyé ne disparaît jamais}
+
+\begin{boxalert}
+\textbf{Le principe de la persistance des communications électroniques~:}
+un email envoyé existe en copies multiples, dans la boîte d'envoi de
+l'expéditeur, la boîte de réception du destinataire, les sauvegardes
+automatiques des serveurs, les journaux des serveurs relais, les archives
+légales si elles existent. La suppression d'une copie n'élimine pas les autres.
+
+En contexte judiciaire~: la réquisition aux fournisseurs de services
+(art.~57 Loi~2010/012~\cite{cameroun2010a} au Cameroun~; Convention de Budapest~\cite{budapest2001} art.~17 et~18
+pour la coopération internationale) est le mécanisme légal pour accéder
+aux copies conservées par les opérateurs.
+\end{boxalert}
+
+\subsection{Leçon transférable}
+
+\begin{boxresume}
+\textbf{Enron. Ce que vous emportez~:}
+\begin{itemize}
+    \item La collecte préservante des emails exige d'extraire les
+          \textbf{métadonnées complètes} (en-têtes SMTP, horodatages
+          de réception, Message-ID), pas seulement le corps du message.
+    \item La déduplication basée sur le hachage est la méthode de référence
+          pour traiter de grands volumes sans altérer les preuves.
+    \item En droit camerounais~: la réquisition judiciaire aux opérateurs
+          pour obtenir les communications conservées est l'article~57
+          de la \loicam{2010/012}. Elle doit être formulée avec précision
+          (période, type de données, critères d'identification).
+\end{itemize}
+\end{boxresume}
+
+% ============================================================================
+\section{Opération ONAMBELE (Cameroun)}
+\label{sec:onambele}
+% ============================================================================
+
+\subsection{Contexte}
+
+\begin{boxscenario}{Opération ONAMBELE. Fraude MoMo}
+\textbf{Situation initiale~:} Mme~ABENA Céline, infirmière à Yaoundé,
+perd 850~000~FCFA en trois virements MTN MoMo (mars~2026) après avoir reçu
+des SMS lui annonçant qu'elle a gagné une promotion MTN fictive. Les fonds
+sont transférés vers le numéro de ZANGA Michel, 28~ans, qui a « prêté » son
+compte à un individu connu sous le nom de « KOFFI » en échange de
+5~000~FCFA. KOFFI est identifié comme KOUAME Narcisse, basé à Abidjan
+(Côte d'Ivoire).
+\end{boxscenario}
+
+\subsection{Artefacts décisifs et anatomie technique}
+
+L'affaire mobilise quatre artefacts complémentaires~:
+
+\begin{boxartefact}{Historique de transactions MoMo}
+\textbf{Source~:} réquisition judiciaire à MTN (\loicam{2010/012}, art.~57).
+
+\textbf{Information probante~:} horodatages précis des trois virements,
+numéro destinataire (ZANGA), et la cascade de transferts immédiats vers
+trois autres numéros puis vers un retrait en espèces.
+
+\textbf{Valeur forensique~:} la cascade (\textit{layering}) est un
+schéma classique de blanchiment~; elle prouve que le numéro de ZANGA
+n'était pas une destination finale mais un relais dans un réseau organisé.
+\end{boxartefact}
+
+\begin{boxartefact}{Métadonnées du check-in Facebook de KOFFI}
+\textbf{Source~:} OSINT sur le profil Facebook de KOFFI.
+
+\textbf{Information probante~:} un check-in dans un restaurant de Yaoundé
+daté du 25~février~2026, deux semaines avant la fraude. Le profil indiquait
+être à Abidjan, mais ce check-in contredit cette déclaration et place KOFFI
+au Cameroun au moment des faits.
+
+\textbf{Valeur forensique~:} les check-ins Facebook contiennent les
+coordonnées GPS inscrites dans les métadonnées du post. En l'occurrence~:
+latitude~3.86°N, longitude~11.52°E, centre de Yaoundé.
+\end{boxartefact}
+
+\subsection{Erreurs à éviter}
+
+\begin{boxalert}
+\textbf{Erreur n°1. Arrêter à ZANGA~:} ZANGA est une « mule », un
+intermédiaire recruté pour ouvrir un compte et le prêter. L'arrêter seul
+ne démantèle pas le réseau. L'investigateur doit remonter la chaîne~:
+ZANGA $\to$ KOFFI $\to$ le vrai organisateur.
+
+\textbf{Erreur n°2. Négliger le téléphone allumé~:} le téléphone
+Samsung de ZANGA était allumé lors de l'arrestation. Un OPJ non formé
+pourrait le brancher sur un chargeur sans activer le mode avion. En
+quelques secondes, un message de «~remote wipe~» pourrait effacer les
+contacts de KOFFI sur WhatsApp. Procédure correcte~: mode avion
+immédiat, puis ADB.
+
+\textbf{Erreur n°3. Omettre la coopération internationale~:}
+KOUAME Narcisse est en Côte d'Ivoire. Sans demande de coopération
+(Convention de Budapest art.~29~; accord bilatéral Cameroun-CEDEAO),
+il ne peut pas être arrêté. La demande doit partir dès l'identification,
+pas attendre la fin de l'investigation nationale.
+\end{boxalert}
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Opération ONAMBELE}
+
+$\mathcal{C}$~: le contenu des messages WhatsApp entre ZANGA et KOFFI
+est une preuve cruciale, mais son accès exige le déblocage du téléphone
+(code PIN que ZANGA refuse de communiquer). Tenter un brute-force sans
+mandat risque de violer $\mathcal{C}$ et compromettre $\mathcal{O}$.
+
+$\mathcal{R}$~: les données MoMo (réquisition MTN) sont des preuves
+fiables car issues directement des bases de l'opérateur, avec horodatages
+serveur.
+
+$\mathcal{O}$~: l'ensemble du dossier (réquisition MTN + OSINT Facebook
++ ADB après consentement ou mandat) est admissible si la procédure est
+respectée.
+
+\cro{$\sim$ à gérer}{$\uparrow$}{$\uparrow$ sous conditions}
+\end{boxCRO}
+
+% ============================================================================
+\section{Opération TANGUE (Cameroun)}
+\label{sec:tangue}
+% ============================================================================
+
+\subsection{Contexte}
+
+\begin{boxscenario}{Opération TANGUE. Forensique de disque}
+BELLO Armand, comptable chez SONATRAV (entreprise de travaux publics),
+est suspecté d'avoir détourné 25~millions FCFA via de faux bons de commande
+créés dans le système comptable informatisé. Son ordinateur portable
+Windows est saisi. Une image forensique E01 est créée avec FTK Imager.
+Huit artefacts sont cachés dans l'image~: l'investigateur doit les trouver
+tous avec Autopsy.
+\end{boxscenario}
+
+\subsection{Les huit artefacts et leur localisation}
+
+\begin{tableaucours}{p{2.5cm}p{4.5cm}p{5cm}}{%
+    \tableauHeader{Artefact} &
+    \tableauHeader{Description} &
+    \tableauHeader{Localisation Autopsy}
+}
+A1. Email virement &
+    Email Outlook~: ordre de virement avec faux IBAN fournisseur &
+    \texttt{Results → E-Mail Messages → rechercher 'virement'} \\
+A2. Screenshot banque &
+    Capture portail bancaire UBA après virement &
+    \texttt{File Views → Images → filtrer par date} \\
+A3. GPS dans photo &
+    Photo prise à Yaoundé (pas à Douala comme déclaré) -- coordonnées GPS dans EXIF &
+    \texttt{Results → EXIF Metadata → colonnes Latitude/Longitude} \\
+A4. Document supprimé &
+    \texttt{faux\_bon\_de\_commande.docx} marqué supprimé &
+    \texttt{File Views → Deleted Files} \\
+A5. Tableau détournements &
+    Excel avec suivi des détournements~: montants, dates, bénéficiaires &
+    \texttt{File Views → Recent Documents} \\
+A6. Historique Chrome &
+    Visite portail bancaire le jour du virement à 14h32 &
+    \texttt{Results → Web History → filtrer par date} \\
+A7. Prefetch keyfinder &
+    \texttt{PASSWORDRECOVERY.EXE} -- outil d'extraction de mots de passe &
+    \texttt{C:\textbackslash Windows\textbackslash Prefetch\textbackslash} \\
+A8. Clé USB non déclarée &
+    Kingston~16~Go, branchée le jour du virement à 14h40 &
+    \texttt{Results → USB Device Attached} \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~3.1. Les huit artefacts de l'Opération
+TANGUE et leur localisation dans Autopsy}\end{center}
+
+\subsection{Leçon transférable}
+
+L'affaire TANGUE illustre la \textbf{convergence probatoire}~: aucun des
+huit artefacts n'est suffisant seul, mais leur combinaison est accablante.
+L'email prouve l'intention~; le screenshot prouve l'action~; le GPS
+invalide l'alibi~; le document supprimé prouve la préméditation~; le
+Prefetch du keyfinder prouve la préparation technique~; la clé USB prouve
+l'exfiltration.
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Opération TANGUE}
+
+L'artefact A5 (tableau de suivi des détournements) pose une question
+CRO intéressante~: un fichier \emph{auto-incriminant} a une valeur
+probatoire réelle ($\mathcal{R}$ haute~: l'auteur lui-même documente
+ses actes) mais doit être corroboré ($\mathcal{O}$ conditionnelle~: sans
+corroboration, un juge prudent le considèrera comme insuffisant seul).
+
+La corrélation A5 + A1 + A6 (même journée, même heure, même montant)
+constitue la triade probatoire qui rend le dossier incontestable.
+\cro{$\sim$}{$\uparrow\uparrow$}{$\uparrow$ par convergence}
+\end{boxCRO}
+
+% ============================================================================
+\section{Opération MVOM (Cameroun)}
+\label{sec:mvom}
+% ============================================================================
+
+\subsection{Contexte}
+
+\begin{boxscenario}{Opération MVOM. Ransomware sur PME}
+TRANSBOIS SA, PME forestière de Yaoundé (45~employés, 2~milliards FCFA
+de CA), subit une attaque ransomware LockBit. 85\% des fichiers sont chiffrés
+(extension \texttt{.lockbitcm}). La rançon demandée est de 5~bitcoins
+(\textasciitilde 400~000~USD). L'entrée initiale~: une connexion RDP
+depuis une IP roumaine, utilisant le compte administrateur dont le mot de
+passe était \texttt{Transbois2023}. 2,3~Go de données ont été exfiltrées
+\emph{avant} le chiffrement.
+\end{boxscenario}
+
+\subsection{Anatomie technique~: reconstruction sur la Kill Chain}
+
+La Kill Chain de Lockheed Martin en sept phases est l'outil de référence
+pour reconstituer une attaque~:
+
+\begin{tableaucours}{p{1.8cm}p{3.0cm}p{6.5cm}}{%
+    \tableauHeader{Phase} &
+    \tableauHeader{Nom} &
+    \tableauHeader{Preuve dans l'affaire MVOM}
+}
+Phase~1 & Reconnaissance & Non documentée~; probable scan RDP depuis l'IP roumaine \\
+Phase~2 & Armement & Préparation du ransomware LockBit~; hors périmètre camerounais \\
+Phase~3 & Livraison & Connexion RDP avec \texttt{admin\_tb / Transbois2023} \\
+Phase~4 & Exploitation & Accès administrateur obtenu (12/03~02h14) \\
+Phase~5 & Installation & Dépôt de \texttt{enc\_all.ps1} dans \texttt{\%TEMP\%}~; processus \texttt{svchost.exe} suspect \\
+Phase~6 & C\&C & Requête DNS vers \texttt{lockbit-pay-cm.onion}~; connexion vers port~4444 \\
+Phase~7 & Actions & Exfiltration 2,3~Go (11/03) puis chiffrement (13/03) \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~3.2. Reconstruction MVOM sur la Kill Chain
+(d'après l'analyse Wireshark + Volatility)}\end{center}
+
+\subsection{L'analyse Volatility~: preuve de l'installation}
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={Volatility 3. analyse mémoire RAM TRANSBOIS}]
+# Lister les processus -- identifier le svchost.exe suspect
+python3 vol.py -f transbois.mem windows.pslist
+# Résultat : PID 4892 svchost.exe -- parent : cmd.exe (PID 4891)
+# ANORMAL : svchost.exe ne devrait pas avoir cmd.exe comme parent
+
+# Analyser les connexions réseau du processus suspect
+python3 vol.py -f transbois.mem windows.netscan | grep 4892
+# Résultat : connexion ESTABLISHED vers 185.220.XX.XX:4444
+
+# Lister les fichiers ouverts par le processus
+python3 vol.py -f transbois.mem windows.filescan | grep enc_all
+# Résultat : \Device\HarddiskVolume3\Users\admin\AppData\Local\Temp\enc_all.ps1
+\end{lstlisting}
+
+\subsection{Leçon transférable~: la double victime}
+
+\begin{boxalert}
+\textbf{TRANSBOIS est simultanément victime et contrevenante.} Le fait
+d'être victime d'une attaque ransomware n'exonère pas TRANSBOIS de ses
+obligations légales~: absence de politique de mots de passe robuste (art.~27
+\loicam{2024/017}~\cite{cameroun2024donnees}), non-notification de violation de données à l'ANPDP
+(art.~22 \loicam{2024/017}), absence de registre de traitement (art.~29
+\loicam{2024/017}).
+
+\textbf{Principe~:} un responsable de traitement qui facilite, même
+involontairement, une attaque contre les données de ses clients engage
+sa responsabilité administrative et potentiellement pénale. Les deux
+procédures (victimisation + manquements) sont indépendantes et doivent
+être traitées séparément.
+\end{boxalert}
+
+% ============================================================================
+\section{Opération WOURI (Cameroun)}
+\label{sec:wouri}
+% ============================================================================
+
+\subsection{Contexte}
+
+\begin{boxscenario}{Opération WOURI. Réseau BEC transfrontalier}
+Un réseau de quatre individus opérant depuis trois pays (Cameroun,
+Nigeria, Émirats arabes unis) défraude des entreprises camerounaises via des
+attaques \termecle{BEC} (\textit{Business Email Compromise})~: usurpation
+du domaine d'un fournisseur pour intercepter des virements. Deux victimes~:
+SOTRADI SA (47M~FCFA) et AGROBOIS Cameroun (32M~FCFA). Rôles~:
+ATANGANA (organisateur, Cameroun), OKAFOR (technicien, Nigeria),
+HASSAN (blanchisseur, EAU), NGUEMO (complice-mule, Cameroun).
+\end{boxscenario}
+
+\subsection{Cartographie du réseau criminel}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    suspect/.style={
+        draw=CouleurPrimaire, fill=CouleurDef,
+        rounded corners=4pt, minimum width=3.2cm, minimum height=0.9cm,
+        font=\small\bfseries\color{CouleurPrimaire}, align=center
+    },
+    victime/.style={
+        draw=CouleurBordAlerte, fill=CouleurAlerte,
+        rounded corners=4pt, minimum width=3.2cm, minimum height=0.9cm,
+        font=\small\color{CouleurBordAlerte}, align=center
+    },
+    flux/.style={-{Stealth[length=5pt]}, thick, color=CouleurSecondaire},
+    blanchiment/.style={-{Stealth[length=5pt]}, thick, dashed, color=CouleurAccent}
+]
+% Suspects
+\node[suspect] (atangana) at (0, 0)    {ATANGANA\\Yaoundé (CM)};
+\node[suspect] (okafor)   at (-4, -2)  {OKAFOR\\Lagos (NG)};
+\node[suspect] (nguemo)   at (4,  -2)  {NGUEMO\\Yaoundé (CM)};
+\node[suspect] (hassan)   at (0,  -4)  {HASSAN\\Dubaï (EAU)};
+% Victimes
+\node[victime] (sotradi)  at (-3.5, 2) {SOTRADI SA\\47M FCFA};
+\node[victime] (agrobois) at (3.5,  2) {AGROBOIS\\32M FCFA};
+% Flux
+\draw[flux] (okafor)   -- node[left, font=\tiny, color=CouleurSecondaire]
+    {phishing/BEC} (sotradi);
+\draw[flux] (okafor)   -- node[right, font=\tiny, color=CouleurSecondaire]
+    {phishing/BEC} (agrobois);
+\draw[flux] (atangana) -- node[above, font=\tiny] {cibles} (okafor);
+\draw[flux] (sotradi)  -- node[above left, font=\tiny, color=CouleurBordAlerte]
+    {virement} (nguemo);
+\draw[flux] (agrobois) -- node[above right, font=\tiny, color=CouleurBordAlerte]
+    {virement} (nguemo);
+\draw[blanchiment] (nguemo) -- node[right, font=\tiny, color=CouleurAccent]
+    {BTC mixeur} (hassan);
+\draw[blanchiment] (atangana) to[bend right=20]
+    node[below, font=\tiny, color=CouleurAccent] {coordination} (hassan);
+\end{tikzpicture}
+\caption{Réseau criminel Opération WOURI. flux d'information et financiers}
+\end{figure}
+
+\subsection{L'OSINT comme technique forensique à part entière}
+
+L'identification d'OKAFOR (basé à Lagos, jamais entré au Cameroun) repose
+exclusivement sur l'\termecle{OSINT}\index{OSINT} (\textit{Open Source
+Intelligence})~:
+
+\begin{enumerate}
+    \item \textbf{LinkedIn~:} profil de « cybersecurity consultant »,
+          3~anciens emplois vérifiables, email professionnel récupérable.
+    \item \textbf{GitHub~:} un script de phishing publié avec des
+          commentaires en anglais et en pidgin nigérian, signé du même
+          pseudo.
+    \item \textbf{Sherlock~:} l'outil de recherche de pseudo
+          (\lstinline[language=bash_forensique]{sherlock duke_cyber_ng})
+          identifie 12~plateformes supplémentaires.
+    \item \textbf{Corrélation blockchain~:} les adresses Bitcoin
+          transmises par ATANGANA sont reliées à des adresses connues du
+          groupe SilverTerrier sur Blockchair.
+\end{enumerate}
+
+\begin{boxPNC}
+\textbf{Procédure WOURI. Actions coopération internationale}
+
+L'affaire implique trois pays~; la coopération doit être lancée en parallèle
+dès l'identification des suspects étrangers~:
+
+\begin{enumerate}
+    \item \textbf{OKAFOR (Nigeria)~:} transmission d'une Notice Bleue
+          INTERPOL via le BCN Cameroun~; demande d'entraide judiciaire
+          (ENTR) via l'ANIF si des flux financiers sont identifiés au Nigeria.
+
+    \item \textbf{HASSAN (Émirats arabes unis)~:} demande de conservation
+          urgente à Binance via le portail LEA (\textit{Law Enforcement
+          Agency})~; demande d'identification du titulaire du compte Bitcoin.
+          Les EAU ont signé la Convention de Budapest en 2021~: la
+          procédure s'applique.
+
+    \item \textbf{OKAFOR -- arrestation~:} une Notice Rouge INTERPOL est
+          nécessaire pour permettre une arrestation provisoire au Nigeria.
+          Elle requiert un mandat d'arrêt camerounais préalable.
+\end{enumerate}
+\end{boxPNC}
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Opération WOURI}
+
+$\mathcal{C}$~: les communications WhatsApp d'ATANGANA (trouvées sur
+son téléphone déverrouillé) sont une preuve directe mais contiennent
+aussi des communications sans rapport avec l'affaire (famille, travail).
+Le principe de proportionnalité impose de ne produire en justice que
+les communications pertinentes.
+
+$\mathcal{R}$~: les données blockchain (Blockchair) sont publiques et
+reproductibles~; leur fiabilité est très haute. Les données Binance
+(portail LEA) sont fiables mais leur chaîne d'obtention doit être
+documentée pour $\mathcal{O}$.
+
+$\mathcal{O}$~: le principal risque d'irrecevabilité est la coopération
+internationale~: si les données obtenues du Nigeria ou des EAU ne
+respectent pas les procédures \sigle{MLAT} (Mutual Legal Assistance
+Treaty), un tribunal camerounais peut refuser de les utiliser.
+
+\cro{$\downarrow$ gérer proportionnalité}{$\uparrow$}{$\sim$ dépend de la coopération}
+\end{boxCRO}
+
+% ============================================================================
+\section{Tableau de Synthèse~: les Leçons Permanentes}
+\label{sec:synthese-affaires}
+% ============================================================================
+
+Sept affaires, sept leçons, toutes applicables demain matin sur le terrain~:
+
+\begin{tableaucours}{p{2.5cm}p{3.5cm}p{5.5cm}}{%
+    \tableauHeader{Affaire} &
+    \tableauHeader{Innovation forensique} &
+    \tableauHeader{Leçon permanente}
+}
+BTK / Rader &
+    Métadonnées comme preuve décisive &
+    Extraire systématiquement les métadonnées~; une couche invisible peut
+    identifier un suspect \\
+Stuxnet &
+    Cyberforensique industrielle &
+    La sophistication est un marqueur d'attribution~;
+    les ICS/SCADA sont une frontière émergente \\
+WannaCry &
+    Kill switch et kill chain &
+    L'attribution est probabiliste~;
+    la synchronisation des horloges est critique \\
+Enron &
+    E-discovery à grande échelle &
+    La réquisition aux opérateurs est le levier légal du volume~;
+    la déduplication par hachage est la méthode \\
+ONAMBELE &
+    Forensique Mobile Money + OSINT &
+    Remonter la chaîne complète~;
+    traiter le téléphone allumé selon le protocole avant tout \\
+TANGUE &
+    Convergence probatoire par artefacts multiples &
+    Aucun artefact seul ne suffit~;
+    la convergence de huit preuves est accablante \\
+MVOM &
+    Kill chain + Volatility + Loi 2024 &
+    La victime peut être aussi contrevenante~;
+    les deux procédures sont indépendantes \\
+WOURI &
+    BEC + OSINT + coopération multilatérale &
+    Lancer la coopération internationale dès l'identification~;
+    les plateformes \sigle{LEA} sont des outils légaux directement accessibles \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~3.3. Synthèse des leçons permanentes}\end{center}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+
+\begin{itemize}
+    \item Chaque grande affaire a produit une \textbf{innovation forensique}
+          qui est aujourd'hui une technique standard~: les métadonnées (BTK),
+          le sandboxing comportemental (Stuxnet), l'analyse kill chain
+          (WannaCry, MVOM), la réquisition numérique (Enron, ONAMBELE).
+
+    \item L'\textbf{artefact décisif}. la seule preuve qui a fait basculer
+          le dossier, est rarement la plus spectaculaire. C'est souvent
+          une métadonnée oubliée, un horodatage incohérent, ou un processus
+          système anormal.
+
+    \item Les \textbf{erreurs récurrentes}. brancher le téléphone sans
+          mode avion, arrêter le maillon faible sans remonter la chaîne,
+          négliger la coopération internationale, sont évitables. Elles
+          se préviennent par le protocole, pas par le talent.
+
+    \item Les \textbf{cas camerounais} (ONAMBELE, TANGUE, MVOM, WOURI)
+          illustrent que les schémas mondiaux (fraude MoMo, ransomware BEC,
+          réseaux transfrontaliers) opèrent au Cameroun avec les mêmes
+          mécanismes et la même sophistication qu'ailleurs.
+
+    \item Le Trilemme CRO se manifeste différemment dans chaque affaire~:
+          Stuxnet sacrifie $\mathcal{O}$ au profit de $\mathcal{C}$ et
+          $\mathcal{R}$~; TANGUE maximise $\mathcal{R}$ et $\mathcal{O}$~;
+          WOURI dépend de la coopération internationale pour atteindre
+          $\mathcal{O}$.
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~3.1. Identification de l'artefact décisif \niveaubase}]
+Pour chacune des situations suivantes, identifiez l'artefact décisif probable
+et la méthode qui permettrait de l'extraire~:
+
+\begin{enumerate}[(a)]
+    \item Un suspect nie avoir participé à une réunion en ligne, mais vous
+          disposez de son ordinateur Windows.
+    \item Une entreprise prétend que ses données n'ont pas été exfiltrées
+          avant le chiffrement par un ransomware. Vous disposez d'une
+          capture réseau Wireshark de 48~heures.
+    \item Une escroquerie sentimentale via Facebook~: le suspect prétend
+          être à Paris, mais la victime affirme avoir été contactée depuis
+          le Cameroun. Vous disposez du profil Facebook du suspect.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~3.2. Reconstitution d'attaque \niveaumoyen}]
+\textbf{Scénario MVOM simplifié~:} vous recevez les données suivantes
+concernant une PME camerounaise attaquée~:
+
+\begin{itemize}
+    \item Log pare-feu~: connexion RDP entrante depuis \texttt{91.192.X.X}
+          le 03/04/2026 à 23h47, durée 3h12.
+    \item Processus Volatility~: \texttt{powershell.exe} (PID~7231),
+          parent~: \texttt{cmd.exe} (PID~7228), connexion vers
+          \texttt{91.192.X.X:443} pendant 2h45.
+    \item Log pare-feu~: transfert sortant de 4,7~Go vers \texttt{185.220.Y.Y}
+          le 04/04/2026 entre 01h15 et 02h58.
+    \item Autopsy~: 87\% des fichiers \texttt{.xlsx} et \texttt{.docx}
+          portent l'extension \texttt{.locked2026}.
+
+\end{itemize}
+
+(a)~Placez chaque élément sur la Kill Chain (7~phases).\\
+(b)~Quel est le vecteur d'entrée probable~? Quelle preuve l'établit~?\\
+(c)~Quand a eu lieu l'exfiltration~: avant ou après le chiffrement~?
+Quelle implication pour les victimes (données personnelles exfiltrées)~?\\
+(d)~Quels articles de la \loicam{2010/012} et de la \loicam{2024/017}
+qualifier pour les auteurs~? Pour la PME elle-même~?
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~3.3. Analyse CRO d'une décision
+investigative \niveauexpert}]
+Dans l'Opération WOURI, l'OPJ en charge décide d'extraire l'intégralité
+du téléphone d'ATANGANA via ADB (après que celui-ci a fourni son code PIN)
+pour analyser toutes ses communications des 12~derniers mois.
+
+\begin{enumerate}[(a)]
+    \item Évaluez cette décision selon le Trilemme CRO~: quelles
+          dimensions sont renforcées ou fragilisées~?
+    \item La décision est-elle proportionnelle~? Argumentez en référence
+          au cadre légal camerounais et au type d'infraction.
+    \item Proposez une alternative moins intrusive qui préserverait mieux
+          $\mathcal{C}$ tout en maintenant une $\mathcal{O}$ satisfaisante.
+    \item Comment documentez-vous dans votre rapport le choix effectué
+          et sa justification, pour qu'un juge puisse l'évaluer~?
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Transition.} Les Chapitres~4 et~5 complètent la Partie~I en
+formalisant les \textbf{fondements théoriques} mobilisés dans ces affaires
+(Shannon~\cite{shannon1948}, Dolev-Yao~\cite{dolevyao1983}, théorie de la complexité) et en dressant l'\textbf{état
+de l'art} 2025 (IA forensique, deepfakes, conteneurs). La Partie~II
+construit ensuite le \textbf{processus investigatif universel} qui structure
+la mise en œuvre de toutes ces leçons dans une investigation réelle.
+\end{boxinfo}

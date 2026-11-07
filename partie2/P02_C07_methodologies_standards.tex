@@ -1,0 +1,784 @@
+% ============================================================================
+% Fichier  : partie2/P02_C07_methodologies_standards.tex
+% Titre    : Méthodologies et Standards Internationaux
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- Juin 2026
+% ============================================================================
+
+\chapter{Méthodologies et Standards Internationaux}
+\label{chap:meth-std}
+
+\epigraph{%
+    « Digital forensics is not just about recovering data, it's about
+    understanding the context in which the data existed. »%
+}{Joshua I. James}
+
+\niveauChapitre{Fondamental}{%
+    Lecture du Chapitre~\ref{chap:PIU} (PIU) recommandée~: ce chapitre
+    positionne les standards internationaux par rapport au PIU et démontre
+    leur cohérence.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Maîtriser les cinq standards forensiques mondiaux de référence~:
+          DFRWS~\cite{dfrws2001}, ISO/IEC~27037~\cite{iso27037}/41/42/43, NIST~SP~800-86~\cite{nist80086}, RFC~3227~\cite{rfc3227}, ACPO~\cite{acpo2012}.
+    \item Comprendre la logique des standards~: pourquoi ils existent,
+          ce qu'ils imposent, et ce qu'ils laissent libre.
+    \item Mettre en correspondance chaque standard avec les phases du PIU
+          pour montrer leur cohérence structurelle.
+    \item Appliquer le framework d'analyse \termecle{DICES} pour comparer
+          les méthodologies mondiales.
+    \item Identifier les équivalences entre standards internationaux et
+          droit camerounais (\loicam{2010/012}~\cite{cameroun2010a}, \loicam{2024/017}~\cite{cameroun2024donnees}).
+    \item Choisir le standard adapté à une investigation selon son contexte.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Standards et PIU~: une relation de complémentarité}
+% ============================================================================
+
+Le Processus Investigatif Universel (PIU) présenté au Chapitre~\ref{chap:PIU}
+est un cadre général adaptatif. Les standards internationaux qui font l'objet
+de ce chapitre sont ses fondements normatifs~: ils précisent \emph{comment}
+chaque phase doit être conduite pour être reconnue par les juridictions et
+institutions du monde entier. La relation n'est pas de concurrence mais de
+complémentarité~: le PIU structure, les standards légitiment.
+
+\separateur
+
+% ============================================================================
+\section{Architecture des Standards Forensiques~: vue d'ensemble}
+\label{sec:std-architecture}
+% ============================================================================
+
+\subsection{Pourquoi des standards~?}
+
+Sans standards communs, deux investigateurs de deux pays différents peuvent
+analyser la même preuve avec des méthodes incompatibles et produire des
+conclusions qui se contredisent sans qu'aucune expertise externe ne puisse
+trancher. Les standards résolvent trois problèmes fondamentaux~:
+\begin{enumerate}
+    \item \textbf{Interopérabilité}~: les preuves collectées selon ISO~27037
+          au Cameroun sont recevables dans un tribunal belge ou canadien~;
+    \item \textbf{Opposabilité}~: un expert qui documente sa conformité à
+          NIST~SP~800-86 peut répondre à n'importe quelle attaque méthodologique~;
+    \item \textbf{Formation}~: les standards constituent une base d'apprentissage
+          commune pour les investigateurs du monde entier.
+\end{enumerate}
+
+\subsection{Cartographie des standards}
+
+\begin{tableaucours}{p{3.0cm}p{2.5cm}p{2.5cm}p{4.0cm}}{%
+    \tableauHeader{Standard} &
+    \tableauHeader{Organisme} &
+    \tableauHeader{Domaine} &
+    \tableauHeader{Contribution principale}
+}
+DFRWS 2001 & DFRWS & Processus global &
+    Premier modèle formel~: 6~phases \\
+\norme{ISO/IEC 27037} & ISO/IEC & Collecte & Rôles DEFR/DES,
+    identification et acquisition \\
+\norme{ISO/IEC 27041}~\cite{iso27041_2015} & ISO/IEC & Méthodes &
+    Validation des méthodes d'investigation \\
+\norme{ISO/IEC 27042}~\cite{iso27042_2015} & ISO/IEC & Analyse &
+    Analyse et interprétation des preuves \\
+\norme{ISO/IEC 27043}~\cite{iso27043_2015} & ISO/IEC & Processus complet &
+    Principes et processus intégrés \\
+\norme{NIST SP 800-86} & NIST (USA) & IR + Forensique &
+    Intégration réponse aux incidents \\
+\norme{RFC 3227} & IETF & Volatilité &
+    Ordre de collecte, bonnes pratiques \\
+ACPO Guide & ACPO (UK) & Déontologie &
+    4~principes, responsabilité légale \\
+SANS FOR508 & SANS Institute & IR avancée &
+    Forensique entreprise, threat hunting \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.1. Cartographie des standards forensiques}
+\end{center}
+
+\subsection{Correspondance standards / phases PIU}
+
+\begin{tableaucours}{p{4.2cm}p{2.0cm}p{2.0cm}p{2.0cm}p{2.0cm}}{%
+    \tableauHeader{Standard} &
+    \tableauHeader{Ph.1\\Init.} &
+    \tableauHeader{Ph.2\\Acquis.} &
+    \tableauHeader{Ph.3\\Analyt.} &
+    \tableauHeader{Ph.4--5\\Form.}
+}
+\norme{ISO/IEC 27037} & $\bullet$ & $\bullet\bullet\bullet$ & & \\
+\norme{ISO/IEC 27041} & & $\bullet$ & $\bullet\bullet$ & \\
+\norme{ISO/IEC 27042} & & & $\bullet\bullet\bullet$ & \\
+\norme{ISO/IEC 27043} & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\
+\norme{NIST SP 800-86} & $\bullet$ & $\bullet\bullet$ & $\bullet\bullet$ & $\bullet$ \\
+\norme{RFC 3227} & & $\bullet\bullet\bullet$ & & \\
+ACPO Guide & $\bullet$ & $\bullet\bullet$ & $\bullet$ & $\bullet$ \\
+SANS FOR508 & $\bullet\bullet$ & $\bullet$ & $\bullet\bullet$ & $\bullet$ \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.2. Correspondance standards / phases PIU~:
+$\bullet$ pertinent~; $\bullet\bullet$ central~; $\bullet\bullet\bullet$ définitoire}
+\end{center}
+
+% ============================================================================
+\section{DFRWS~: la Fondation Conceptuelle (2001)}
+\label{sec:dfrws}
+% ============================================================================
+
+Le \termecle{Digital Forensics Research Workshop}\index{DFRWS} publie en 2001
+le premier cadre formel de forensique numérique. Son importance est
+fondatrice~: il établit un vocabulaire commun et une séquence logique que
+tous les standards suivants reprendront et affineront.
+
+\subsection{Les six phases DFRWS}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    box/.style={draw=CouleurPrimaire, fill=CouleurDef,
+        rounded corners=3pt, minimum width=2.5cm, minimum height=0.9cm,
+        font=\small\bfseries\color{CouleurPrimaire}, align=center},
+    fl/.style={-{Stealth[length=4pt]}, thick, color=CouleurSecondaire}
+]
+\node[box] (id)   at (0,0)    {Identifi-\\cation};
+\node[box] (pr)   at (2.7,0)  {Préser-\\vation};
+\node[box] (co)   at (5.4,0)  {Collec-\\tion};
+\node[box] (ex)   at (8.1,0)  {Examina-\\tion};
+\node[box] (an)   at (5.4,-1.8) {Analyse};
+\node[box] (pe)   at (2.7,-1.8) {Présen-\\tation};
+\draw[fl] (id) -- (pr);
+\draw[fl] (pr) -- (co);
+\draw[fl] (co) -- (ex);
+\draw[fl] (ex) -- (an);
+\draw[fl] (an) -- (pe);
+% Correspondance PIU
+\node[font=\tiny\itshape, color=CouleurSecondaire] at (0,-0.9) {PIU~E1--E3};
+\node[font=\tiny\itshape, color=CouleurSecondaire] at (2.7,-0.9) {PIU~E4--E5};
+\node[font=\tiny\itshape, color=CouleurSecondaire] at (5.4,-0.9) {PIU~E4};
+\node[font=\tiny\itshape, color=CouleurSecondaire] at (8.1,-0.9) {PIU~E7--E9};
+\node[font=\tiny\itshape, color=CouleurSecondaire] at (5.4,-2.7) {PIU~E9--E10};
+\node[font=\tiny\itshape, color=CouleurSecondaire] at (2.7,-2.7) {PIU~E12--E13};
+\end{tikzpicture}
+\caption{Les 6~phases DFRWS et leurs correspondances avec le PIU}
+\label{fig:dfrws}
+\end{figure}
+
+\begin{boxdef}
+\textbf{Identification}~: reconnaître l'existence d'un incident numérique
+et en définir le périmètre. \textbf{Préservation}~: protéger les preuves
+de toute altération, phase la plus critique, car une erreur ici est
+irréparable. \textbf{Collection}~: acquérir les preuves selon des méthodes
+documentées. \textbf{Examination}~: extraire les informations pertinentes.
+\textbf{Analyse}~: corréler et reconstruire les événements.
+\textbf{Presentation}~: communiquer les conclusions de façon défendable.
+\end{boxdef}
+
+\subsection{Limite historique du DFRWS et apport du PIU}
+
+Le modèle DFRWS est \textbf{linéaire}. En pratique, la Phase~3
+(\textit{Collection}) et la Phase~4 (\textit{Examination}) s'entrelacent~:
+chaque artefact découvert lors de l'examen peut déclencher une nouvelle
+collecte. Le PIU formalise cette réalité avec la boucle itérative
+E4--E6~$\leftrightarrow$~E7--E10. Le DFRWS reste la référence conceptuelle~;
+le PIU est l'implémentation opérationnelle.
+
+% ============================================================================
+\section{La Suite ISO/IEC 2703x~: le Standard International de Référence}
+\label{sec:iso-2703x}
+% ============================================================================
+
+\subsection{Architecture de la famille}
+
+La famille ISO/IEC~2703x constitue l'architecture normative la plus complète
+et la plus internationalement reconnue pour la forensique numérique. Ses
+quatre normes couvrent l'intégralité du cycle de vie des preuves numériques.
+
+% ---- ISO 27037 ----
+\subsection{ISO/IEC~27037:2012. Identification, Collecte et Préservation}
+
+\norme{ISO/IEC~27037:2012}. \textit{Guidelines for identification,
+collection, acquisition and preservation of digital evidence},
+est \textbf{le standard le plus important pour le travail de terrain}.
+Son apport central est la définition de deux rôles distincts et de quatre
+principes fondamentaux.
+
+\subsubsection*{Les deux rôles}
+
+\begin{itemize}
+    \item \textbf{DEFR} (\textit{Digital Evidence First Responder})~:
+          le premier intervenant sur la scène. Son rôle est la préservation
+          initiale. Son erreur est irréparable. C'est l'OPJ qui arrive le
+          premier dans l'affaire MBONGO.
+    \item \textbf{DES} (\textit{Digital Evidence Specialist})~:
+          l'analyste en laboratoire. Il reçoit les preuves préservées par
+          le DEFR et conduit l'examination et l'analysis.
+\end{itemize}
+
+\subsubsection*{Les quatre principes ISO~27037}
+
+\begin{enumerate}
+    \item \textbf{Pertinence}~: la collecte doit être ciblée et justifiée.
+          Ne collecter que ce qui est pertinent pour l'investigation.
+    \item \textbf{Fiabilité}~: les méthodes utilisées doivent être
+          reproductibles et vérifiables.
+    \item \textbf{Suffisance}~: la collecte doit être exhaustive dans
+          le périmètre défini. Pas de lacunes qui permettraient de contester
+          la représentativité de la base probatoire.
+    \item \textbf{Documentation}~: traçabilité complète de chaque action.
+\end{enumerate}
+
+\subsubsection*{Procédure de saisie selon ISO~27037}
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={Checklist de saisie ISO~27037, séquence minimale}]
+# Étape 1 : Identification préliminaire
+# Type de dispositif, état (allumé/éteint), connexions actives
+# -> Appliquer l'ordre de volatilité RFC 3227 (cf. section suivante)
+
+# Étape 2 : Documentation photographique
+# Photos du contexte avant toute manipulation
+# Horodatage visible (montre + journal de bord)
+
+# Étape 3 : Isolation du dispositif
+# Mobile : mode avion ou sac de Faraday
+# PC allumé : capturer RAM avant isolation réseau
+
+# Étape 4 : Acquisition (write-blocker obligatoire)
+# FTK Imager : File -> Create Disk Image -> Format E01
+# Vérifier que le write-blocker est actif avant montage
+
+# Étape 5 : Vérification d'intégrité (hash SHA-256 minimum)
+sha256sum /dev/sdb > hash_source.txt  # Linux
+certutil -hashfile image.E01 SHA256   # Windows
+# Conserver les deux hash dans le formulaire custody
+
+# Étape 6 : Scellement et transport
+# Sachet inviolable, étiquette, formulaire custody signé
+\end{lstlisting}
+
+\begin{boxjuris}
+\textbf{Compatibilité ISO/IEC~27037 et droit camerounais~:}
+
+Les articles~52--59 de la \loicam{2010/012} imposent~: présence des parties,
+copie réalisée en leur présence, documentation. Ces exigences sont
+\textbf{substantiellement alignées} sur ISO/IEC~27037. Un investigateur
+respectant le standard international respecte de facto le droit camerounais.
+Inversement, une investigation conforme aux articles~52--59 satisfait
+aux critères DEFR d'ISO/IEC~27037.
+\end{boxjuris}
+
+% ---- ISO 27041 ----
+\subsection{ISO/IEC~27041:2015. Validation des Méthodes}
+
+\norme{ISO/IEC~27041:2015}. \textit{Guidance on assuring suitability and
+adequacy of incident investigative method}, répond à la question~:
+\emph{comment s'assurer qu'une méthode d'investigation est scientifiquement
+valide~?} Ce standard est particulièrement important pour l'opposabilité~:
+il fournit le cadre pour justifier le choix d'un outil ou d'une technique
+devant un tribunal.
+
+Quatre domaines de méthodes validées~:
+\begin{itemize}
+    \item \textbf{Live Forensics}~: investigation sur système en cours
+          d'exécution~; méthode conforme à RFC~3227.
+    \item \textbf{Dead Forensics}~: investigation sur système éteint~;
+          méthode conforme à NIST~SP~800-86.
+    \item \textbf{Network Forensics}~: capture et analyse de trafic~;
+          standards IETF (RFC~3227).
+    \item \textbf{Mobile Forensics}~: quatre niveaux d'acquisition~;
+          NIST~SP~800-101~\cite{nist800101r1}r1.
+\end{itemize}
+
+% ---- ISO 27042 ----
+\subsection{ISO/IEC~27042:2015. Analyse et Interprétation}
+
+\norme{ISO/IEC~27042:2015}. \textit{Guidelines for the analysis and
+interpretation of digital evidence}, est le standard de la Phase~3 du PIU.
+Son apport clé est la formalisation de la séquence d'analyse~:
+
+\begin{enumerate}
+    \item \textbf{Préparation}~: environnement d'analyse isolé, outils
+          validés et versionnés.
+    \item \textbf{Extraction}~: récupération des données depuis les
+          images forensiques.
+    \item \textbf{Analyse}~: application des techniques appropriées.
+    \item \textbf{Interprétation}~: contextualisation~; c'est ici que
+          la distinction constatation/interprétation s'applique.
+    \item \textbf{Rapport}~: documentation rigoureuse des découvertes,
+          des méthodes utilisées et des limitations.
+\end{enumerate}
+
+ISO~27042 renforce ce que le PIU appelle E9bis (falsification active)~:
+le standard impose de \textbf{tester les conclusions alternatives avant
+de les rejeter}, pas simplement de choisir l'explication la plus probable.
+
+% ---- ISO 27043 ----
+\subsection{ISO/IEC~27043:2015. Principes et Processus Intégrés}
+
+\norme{ISO/IEC~27043:2015} est le standard de niveau le plus élevé~:
+il intègre les trois précédents dans un processus complet incluant la
+\termecle{readiness} (préparation pré-incident) et la gestion
+post-investigation. Sa représentation canonique~:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    ph/.style={draw=CouleurSecondaire, fill=CouleurDef, rounded corners=3pt,
+        font=\footnotesize\bfseries\color{CouleurPrimaire}, align=center,
+        minimum height=0.8cm, inner xsep=4pt},
+    fl/.style={-{Stealth[length=4pt]}, thick, color=CouleurSecondaire}
+]
+\node[ph, minimum width=2.0cm] (r) at (0,0) {Readiness};
+\node[ph, minimum width=1.8cm] (d) at (2.2,0) {Detection};
+\node[ph, minimum width=2.0cm] (ir) at (4.3,0) {Initial\\Response};
+\node[ph, minimum width=1.8cm] (st) at (6.3,0) {Strategy};
+\node[ph, minimum width=1.8cm] (c) at (0,-1.5) {Collection};
+\node[ph, minimum width=1.8cm] (an) at (2.2,-1.5) {Analysis};
+\node[ph, minimum width=2.0cm] (pr) at (4.3,-1.5) {Presentation};
+\node[ph, minimum width=2.4cm] (pi) at (6.3,-1.5) {Post-Investigation};
+\draw[fl] (r) -- (d);
+\draw[fl] (d) -- (ir);
+\draw[fl] (ir) -- (st);
+\draw[fl] (st) -- (c);
+\draw[fl] (c) -- (an);
+\draw[fl] (an) -- (pr);
+\draw[fl] (pr) -- (pi);
+% Retours possibles
+\draw[fl, dashed, color=CouleurAccent]
+    (an.south) to[bend right=20]
+    node[below, font=\tiny\itshape, color=CouleurAccent] {besoin supplémentaire}
+    (c.south);
+\end{tikzpicture}
+\caption{Processus ISO/IEC~27043~: 8~phases avec boucle retour}
+\label{fig:iso27043}
+\end{figure}
+
+% ============================================================================
+\section{NIST SP~800-86~: Forensique et Réponse aux Incidents}
+\label{sec:nist-800-86}
+% ============================================================================
+
+\norme{NIST SP~800-86}. \textit{Guide to Integrating Forensic Techniques
+into Incident Response}, est la référence américaine. Sa contribution
+distinctive par rapport aux normes ISO est l'\textbf{intégration de la
+forensique dans la réponse aux incidents}~: le NIST ne traite pas la
+forensique comme une activité autonome mais comme une composante de la
+gestion des incidents de sécurité.
+
+\subsection{Les quatre phases NIST}
+
+\begin{tableaucours}{p{2.8cm}p{4.5cm}p{4.0cm}}{%
+    \tableauHeader{Phase NIST} &
+    \tableauHeader{Activités} &
+    \tableauHeader{Correspondance PIU}
+}
+Collection & Priorisation des données~; préservation~; chaîne de custody &
+    E4--E5 (Acquisition) \\
+Examination & Extraction des données~; revue manuelle~; analyse automatisée &
+    E7--E8 (Investigation) \\
+Analysis & Reconstruction de la chronologie~; corrélation~; attribution &
+    E9--E10 (Investigation analytique) \\
+Reporting & Synthèse exécutive~; détails techniques~; recommandations &
+    E11--E12 (Formalisation) \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.3. Phases NIST SP~800-86
+et correspondances PIU}\end{center}
+
+\subsection{Distinction Examination / Analysis~: règle d'or du rapport}
+
+La contribution épistémologique la plus importante du NIST~SP~800-86 est la
+séparation stricte entre~:
+\begin{itemize}
+    \item \textbf{Examination}~: documenter ce qu'on \emph{trouve}.
+          Résultats factuels, vérifiables, non ambigus. \emph{Exemple~:}
+          « Le fichier \texttt{enc\_all.ps1} est présent dans
+          \texttt{\%TEMP\%} avec un horodatage de création le
+          12/03/2026~à~02h17. »
+    \item \textbf{Analysis}~: interpréter ce que cela \emph{signifie}.
+          Conclusions raisonnées, avec niveau de certitude explicite.
+          \emph{Exemple~:} « La présence de ce script à cet horodatage,
+          corrélée avec la connexion RDP de 02h14, indique \emph{avec
+          une haute confiance} que le script a été déposé par l'attaquant
+          lors de sa connexion. »
+\end{itemize}
+
+\begin{boxalert}
+\textbf{Un avocat peut attaquer une interprétation~; il ne peut pas attaquer
+un hash qui correspond.} Séparer strictement les deux types d'énoncés dans
+le rapport est la protection la plus efficace contre les attaques méthodologiques
+en contre-interrogatoire.
+\end{boxalert}
+
+% ============================================================================
+\section{RFC~3227~: l'Ordre de Volatilité}
+\label{sec:rfc3227}
+% ============================================================================
+
+La RFC~3227 (\textit{Guidelines for Evidence Collection and Archiving},
+Brezinski \& Killalea, 2002) est la référence technique pour l'ordre de
+collecte sur les systèmes en cours d'exécution. Elle complète ISO~27037
+en précisant la \textbf{priorité de collecte selon la volatilité des données}.
+
+\subsection{L'ordre de volatilité canonique}
+
+\begin{tableaucours}{p{0.8cm}p{4.5cm}p{6.0cm}}{%
+    \tableauHeader{Rang} &
+    \tableauHeader{Type de données} &
+    \tableauHeader{Durée de vie et outil}
+}
+1 & Registres CPU, cache &
+    Nanosecondes~; non capturable en pratique \\
+2 & Mémoire système (RAM) &
+    Jusqu'à extinction~; FTK~Imager Portable (\texttt{Capture Memory}) \\
+3 & État réseau (tables de routage, ARP, connexions) &
+    Secondes à minutes~; \texttt{netstat -ano}, \texttt{arp -a} \\
+4 & Processus en cours d'exécution &
+    Minutes~; \texttt{tasklist} (Windows) ou \texttt{ps aux} (Linux) \\
+5 & Fichiers temporaires, logs actifs &
+    Heures~; \texttt{dir /T} ou \texttt{ls -lt /tmp} \\
+6 & Disque dur (système de fichiers) &
+    Mois à années~; FTK~Imager (image E01 avec hash) \\
+7 & Logs système distants &
+    Jours à semaines selon rotation~; réquisition opérateur \\
+8 & Configuration physique, topologie réseau &
+    Stables~; documentés en dernier \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.4. Ordre de volatilité RFC~3227}
+avec outils de collecte\end{center}
+
+\begin{boxPNC}
+\textbf{Application OPJ~: règle mnémotechnique RFC~3227}
+
+\textbf{Sur un système allumé~: RAM avant disque, réseau avant fichiers.}
+
+Arrivée sur la scène~: (1)~capturer la mémoire RAM en premier
+(\volatilite{2}{RAM})~; (2)~documenter les connexions réseau
+(\volatilite{3}{Réseau})~; (3)~lister les processus actifs
+(\volatilite{4}{Processus})~; (4)~éteindre proprement~;
+(5)~acquérir le disque avec write blocker
+(\volatilite{6}{Disque}).
+
+Sur un système éteint~: passer directement à l'étape~(5).
+Ne jamais allumer un système éteint sans write blocker actif.
+\end{boxPNC}
+
+% ============================================================================
+\section{Les Quatre Principes ACPO~: Responsabilité et Déontologie}
+\label{sec:acpo}
+% ============================================================================
+
+Le guide ACPO (\textit{Association of Chief Police Officers}, Royaume-Uni,
+2012) est la référence déontologique mondiale pour les forces de l'ordre.
+Son importance tient à sa simplicité~: quatre principes mémorables qui
+encadrent toute l'activité forensique policière.
+
+\begin{tableaucours}{p{2.2cm}p{9.5cm}}{%
+    \tableauHeader{Principe} &
+    \tableauHeader{Formulation et implications}
+}
+\textbf{Principe~1} & \textbf{Aucune action ne doit modifier les données.}
+    Toute opération de collecte doit laisser les données originales intactes.
+    Fondement du write blocker, du calcul de hash et du travail sur copies. \\
+\textbf{Principe~2} & \textbf{Si une modification est nécessaire,
+    elle requiert la compétence technique et doit être documentée.}
+    Un OPJ non formé ne doit pas procéder à l'acquisition~: il appellera
+    un spécialiste. Toute modification est explicitement justifiée. \\
+\textbf{Principe~3} & \textbf{Un audit trail complet doit être maintenu.}
+    Chaque action, chaque accès, chaque transfert est documenté. C'est la
+    traduction procédurale de la chaîne de custody. \\
+\textbf{Principe~4} & \textbf{Le responsable de l'investigation est
+    responsable de la conformité.} L'investigateur en chef endosse personnellement
+    la responsabilité du respect de ces principes pour l'ensemble de l'équipe. \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.5. Les quatre principes ACPO}
+\end{center}
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Principes ACPO}
+
+Les principes ACPO maximisent $\mathcal{R}$ et $\mathcal{O}$ au détriment
+partiel de la flexibilité opérationnelle~: ils imposent une rigueur absolue
+même dans les situations d'urgence. Cette tension est délibérée~: dans
+le contexte policier, la $\mathcal{O}$ doit primer pour que les preuves
+collectées mènent à des condamnations incontestables.
+
+Le Principe~4 (responsabilité personnelle) est la réponse institutionnelle
+au problème d'attribution~: quand la chaîne est violée, il doit être possible
+d'identifier précisément qui est responsable.
+
+\cro{$\sim$}{$\uparrow\uparrow$}{$\uparrow\uparrow$}
+\end{boxCRO}
+
+% ============================================================================
+\section{SANS FOR508~: Forensique d'Entreprise et Threat Hunting}
+\label{sec:sans-for508}
+% ============================================================================
+
+Le cours \norme{SANS FOR508} (\textit{Advanced Incident Response, Threat Hunting,
+and Digital Forensics}) représente l'état de l'art de la forensique
+d'entreprise. Contrairement aux normes ISO qui s'appliquent à tous les
+contextes, FOR508 cible spécifiquement les investigations à grande échelle
+sur des réseaux d'entreprise compromis.
+
+\subsection{La méthodologie en six phases}
+
+\begin{enumerate}
+    \item \textbf{Preparation}~: plan de réponse aux incidents, validation des
+          outils, formation de l'équipe~;
+    \item \textbf{Identification}~: développement des IoC
+          (\textit{Indicators of Compromise}), intégration de la Threat
+          Intelligence, détection d'anomalies~;
+    \item \textbf{Containment}~: isolation à court terme, planification
+          de l'éradication, préservation des preuves~;
+    \item \textbf{Eradication}~: suppression du malware, correction des
+          vulnérabilités, durcissement des systèmes~;
+    \item \textbf{Recovery}~: restauration des systèmes, surveillance
+          renforcée, tests de validation~;
+    \item \textbf{Lessons Learned}~: revue post-incident, amélioration des
+          processus, mise à jour de la documentation.
+\end{enumerate}
+
+\subsection{Apports distinctifs de FOR508 en 2025}
+
+\begin{itemize}
+    \item \textbf{Forensique mémoire avec Volatility~3}~: syntaxe mise à
+          jour (\texttt{python3 vol.py -f mem.dmp windows.pslist}),
+          nouveaux plugins pour artefacts modernes.
+    \item \textbf{EDR Forensics}~: exploitation des journaux produits par les
+          outils de détection/réponse sur les endpoints (CrowdStrike, SentinelOne)~;
+          souvent plus complets que les logs Windows natifs.
+    \item \textbf{Enterprise-scale IR}~: investigation simultanée sur
+          des centaines de machines avec des outils comme Velociraptor ou KAPE.
+    \item \textbf{Threat Hunting}~: recherche proactive de compromissions
+          latentes \emph{avant} qu'une alerte soit déclenchée.
+\end{itemize}
+
+\begin{boiteRemarque}{SANS FOR508 vs ISO~27037~: quelle différence~?}
+ISO~27037 est un standard \emph{normatif}~: il définit ce que vous devez faire.
+SANS FOR508 est un cours \emph{opérationnel}~: il vous apprend à le faire.
+FOR508 va beaucoup plus loin dans les techniques spécifiques~; ISO~27037 a
+une portée légale internationale. En pratique, un bon investigateur maîtrise
+les deux~: la légitimité normative (ISO) et les techniques avancées (SANS).
+\end{boiteRemarque}
+
+% ============================================================================
+\section{Analyse Comparative~: le Framework DICES Appliqué}
+\label{sec:comparaison-dices}
+% ============================================================================
+
+\subsection{Grille comparative DICES des standards}
+
+Chaque standard peut être analysé selon les cinq axes DICES
+(\textbf{D}octrine, \textbf{I}nfrastructure, \textbf{C}apacités,
+\textbf{E}cosystème, \textbf{S}tratégie)~:
+
+\begin{tableaucours}{p{2.8cm}p{2.2cm}p{2.0cm}p{2.2cm}p{2.5cm}}{%
+    \tableauHeader{Standard} &
+    \tableauHeader{Doctrine} &
+    \tableauHeader{Public cible} &
+    \tableauHeader{Portée légale} &
+    \tableauHeader{Spécialité forensique}
+}
+\norme{ISO/IEC 27037} & Collecte terrain & DEFR / DES &
+    Internationale & Acquisition et préservation \\
+\norme{ISO/IEC 27042} & Analyse & DES & Internationale & Analyse et interprétation \\
+\norme{ISO/IEC 27043} & Processus global & Toute équipe &
+    Internationale & Cycle de vie complet \\
+\norme{NIST SP 800-86} & IR intégrée & CISO, équipe SOC &
+    USA + adopté monde & IR + forensique \\
+\norme{RFC 3227} & Volatilité & Tout OPJ &
+    Universelle & Ordre de collecte \\
+ACPO Guide & Déontologie & Forces de l'ordre &
+    Nationale + influence & Principes éthiques \\
+SANS FOR508 & Technique avancée & Senior analyste &
+    Formation privée & Forensique entreprise \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.6. Analyse DICES comparative des standards}
+\end{center}
+
+\subsection{Quel standard pour quelle situation~?}
+
+\begin{tableaucours}{p{5.5cm}p{5.5cm}}{%
+    \tableauHeader{Situation} &
+    \tableauHeader{Standard(s) prioritaire(s)}
+}
+OPJ arrive sur une scène, matériel allumé &
+    RFC~3227 (ordre de collecte) + ISO~27037 (procédure) \\
+Analyse d'une image forensique en laboratoire &
+    ISO~27041 (méthode) + ISO~27042 (analyse) \\
+Investigation d'un incident ransomware en entreprise &
+    NIST~SP~800-86 + SANS~FOR508 \\
+Expert judiciaire devant un tribunal &
+    ISO~27037 + ACPO Principe~3 + NIST~SP~800-86 (rapport) \\
+Investigation impliquant un État partenaire Budapest &
+    ISO~27043 + Convention Budapest art.~29 (conservation) \\
+Formation d'un OPJ camerounais niveau débutant &
+    ACPO 4~principes + RFC~3227 (ordre volatilité) \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~7.7. Sélection du standard selon la situation}
+\end{center}
+
+% ============================================================================
+\section{Standards Émergents~: Cloud, IoT et Post-Quantique}
+\label{sec:standards-emergents}
+% ============================================================================
+
+\subsection{Forensique cloud}
+
+\begin{itemize}
+    \item \norme{ISO/IEC~27050}~\cite{iso27050_2019}~: \textit{Electronic Discovery}~;
+          collecte de données électroniques pour procédures légales,
+          incluant les environnements cloud.
+    \item \norme{NIST SP~800-210}~\cite{nist800210}~: Cloud forensics challenges~;
+          gestion des défis multitenancy, éphéméralité et multi-juridiction.
+    \item \textbf{CSA Guidelines}~: Cloud Security Alliance,
+          bonnes pratiques d'investigation dans les environnements cloud.
+\end{itemize}
+
+\subsection{Forensique IoT}
+
+\begin{itemize}
+    \item \norme{IEEE~P2933}~: Trusted IoT Data~;
+          authenticité et intégrité des données produites par des objets connectés.
+    \item \norme{ETSI TR~103~939}~: IoT testing methodology.
+    \item \norme{ISO/IEC~30141}~\cite{iso30141_2018}~: IoT reference architecture~;
+          utile pour comprendre où trouver les données forensiques.
+\end{itemize}
+
+\subsection{Post-quantique et authenticité des preuves}
+
+Le NIST a publié en 2024 les premiers standards post-quantiques de
+signature~: \norme{CRYSTALS-Dilithium} (FIPS~204) et \norme{SPHINCS+}
+(FIPS~205)~; \norme{FALCON} est encore en cours de normalisation. Ces
+algorithmes remplaceront à terme ECDSA et RSA pour la signature
+cryptographique des preuves numériques. L'enjeu forensique~: les preuves
+signées aujourd'hui avec ECDSA seront potentiellement cassables dans 10--15~ans.
+Pour les affaires à longue durée (\textit{e.g.} terrorisme), la migration
+vers les algorithmes post-quantiques est déjà une obligation éthique.
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Standards et choix méthodologique}
+
+Le choix d'un standard n'est pas neutre vis-à-vis du Trilemme CRO~:
+
+$\mathcal{R}$ (Fiabilité) est maximisée par les standards techniques~:
+RFC~3227 (ordre de collecte), ISO~27037 (hash), ISO~27042 (méthodes validées).
+
+$\mathcal{O}$ (Opposabilité) est maximisée par les standards à portée légale~:
+ISO~27037 et ACPO sont reconnus par les tribunaux du monde entier~;
+NIST~SP~800-86 est reconnu aux USA et dans de nombreux pays.
+
+$\mathcal{C}$ (Confidentialité) est gérée par les standards procéduraux~:
+ACPO Principe~1 (ne pas modifier) protège les données des parties~;
+ISO~27041 (proportionnalité de la collecte) évite la sur-collecte.
+
+\cro{$\uparrow$ ACPO Pr.1}{$\uparrow\uparrow$ ISO 27037/42}{$\uparrow\uparrow$ ISO 27037/ACPO}
+\end{boxCRO}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item Les standards forensiques résolvent trois problèmes~:
+          \textbf{interopérabilité} (preuves recevables partout),
+          \textbf{opposabilité} (méthode défendable) et \textbf{formation}
+          (base commune).
+
+    \item \textbf{Pour le terrain~:} RFC~3227 (ordre de volatilité~:
+          RAM $\to$ réseau $\to$ processus $\to$ disque) et ISO~27037
+          (procédure de saisie, rôles DEFR/DES, hash SHA-256 minimum).
+
+    \item \textbf{Pour l'analyse~:} ISO~27042 impose la séquence
+          Préparation~$\to$ Extraction~$\to$ Analyse~$\to$ Interprétation~$\to$
+          Rapport~; la distinction Examination/Analysis (NIST~SP~800-86)
+          est la règle d'or du rapport forensique.
+
+    \item \textbf{Pour la déontologie~:} ACPO 4~principes -- (1)~ne
+          pas modifier~; (2)~compétence si modification~; (3)~audit trail~;
+          (4)~responsabilité personnelle.
+
+    \item \textbf{En droit camerounais~:} ISO~27037 est
+          \textbf{substantiellement aligné} sur les articles~52--59 de la
+          \loicam{2010/012}. La conformité à l'un implique la conformité
+          à l'autre.
+
+    \item \textbf{Choix situationnel~:} terrain~$\to$ RFC~3227 + ISO~27037~;
+          laboratoire~$\to$ ISO~27041 + ISO~27042~; entreprise~$\to$ NIST + SANS~;
+          tribunal~$\to$ ISO~27037 + ACPO~; transfrontalier~$\to$ Budapest art.~29.
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~7.1. Sélection de standard \niveaubase}]
+Pour chacune des situations suivantes, identifiez le(s) standard(s) à
+appliquer en priorité et justifiez votre choix~:
+\begin{enumerate}[(a)]
+    \item Un OPJ camerounais arrive chez un suspect~; l'ordinateur est allumé,
+          et un téléphone Android est posé sur le bureau en mode déverrouillé.
+    \item Un analyste forensique doit déterminer si les 15~000~emails
+          collectés dans une affaire de fraude ont été altérés depuis leur
+          collecte.
+    \item Une PME camerounaise victime d'un ransomware demande une investigation
+          complète pour identifier l'attaquant et produire un rapport
+          pour son assurance.
+    \item Un expert judiciaire doit produire un rapport opposable dans
+          une affaire impliquant des preuves stockées sur des serveurs
+          Google (États-Unis).
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~7.2. Application ACPO + RFC~3227 \niveaumoyen}]
+Vous intervenez dans l'affaire MVOM (Opération MVOM, Chapitre~\ref{chap:gr-affaires})~:
+serveur Windows compromis par ransomware, allumé, connecté au réseau.
+\begin{enumerate}[(a)]
+    \item Appliquez l'ordre de volatilité RFC~3227 à cette scène spécifique~:
+          listez les 6~premières actions dans l'ordre exact, en précisant
+          l'outil et la commande correspondante.
+    \item Pour chaque action, identifiez le principe ACPO auquel elle répond.
+    \item L'analyste doit capturer la mémoire RAM (16~Go) sur un serveur
+          en production. Le Principe~1 ACPO dit ``ne pas modifier les données''~;
+          or la capture RAM modifie légèrement la RAM. Comment résoudre
+          cette tension~? Quelle documentation apporter~?
+    \item Rédigez l'entrée correspondante dans le formulaire de chaîne
+          de custody (une ligne par action).
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~7.3. Analyse comparative DICES \niveauexpert}]
+Un responsable forensique au sein de l'ANTIC doit rédiger une
+\textit{note de politique forensique} recommandant les standards à adopter
+officiellement au Cameroun.
+\begin{enumerate}[(a)]
+    \item Sur la base de l'analyse DICES, quel standard recommandez-vous
+          comme fondement légal principal~? Justifiez en articulant portée
+          légale, compatibilité avec la Loi~2010/012 et facilité de
+          formation pour les OPJ.
+    \item Identifiez deux tensions CRO que la mise en \oe uvre de ce standard
+          créerait dans le contexte camerounais~; proposez une résolution
+          pour chacune.
+    \item La Convention de Budapest~\cite{budapest2001} (art.~29) est complémentaire à ces
+          standards~: expliquez en quoi, et dans quel cas un OPJ camerounais
+          l'activerait en \emph{plus} d'ISO~27037.
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Transition.} Le Chapitre~\ref{chap:custody} approfondit la
+\textbf{chaîne de custody}~: le mécanisme procédural qui traduit concrètement
+ISO~27037 et les principes ACPO en documents et formulaires opposables.
+C'est le chapitre le plus important pour l'admissibilité des preuves
+devant les tribunaux camerounais.
+\end{boxinfo}

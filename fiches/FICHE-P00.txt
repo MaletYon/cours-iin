@@ -1,0 +1,235 @@
+NDAP SUKULU · IIN · fiche FICHE-P00
+Chapitre 0 : Prologue, scène de crime numérique
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Dans l'affaire MBONGO, qu'est-ce qui a entraîné l'irrecevabilité de toutes les preuves numériques ?
+
+      a) L'OPJ a allumé l'ordinateur, contaminant la scène
+      b) Le rapport technique était trop court
+      c) Le suspect avait un avocat
+      d) Les montants étaient trop élevés
+
+ 2. Quels sont les quatre principes fondamentaux de la discipline ?
+      a) Intégrité, traçabilité, reproductibilité, admissibilité
+      b) Vitesse, discrétion, exhaustivité, coût
+      c) Confidentialité, disponibilité, intégrité, non-répudiation
+      d) Collecte, analyse, rapport, archivage
+
+ 3. Comment l'intégrité d'une preuve numérique se démontre-t-elle ?
+      a) Par une déclaration de l'enquêteur affirmant n'avoir rien touché
+      b) Par la correspondance des empreintes cryptographiques avant et après
+      c) Par la signature du procureur
+      d) Par le nombre de pages du rapport
+
+ 4. Quelle précaution empêche un disque suspect d'être modifié lors de son branchement ?
+      a) Un antivirus à jour
+      b) Un write blocker matériel ou logiciel
+      c) Un câble USB neuf
+      d) Un compte administrateur
+
+ 5. Selon le prologue, quel est le document le plus important d'une investigation ?
+      a) Le rapport technique final
+      b) La chaîne de custody
+      c) La photographie de l'écran
+      d) Le mandat de perquisition
+
+ 6. À quel moment la chaîne de custody commence-t-elle ?
+      a) Au premier contact avec l'evidence
+      b) À la rédaction du rapport
+      c) À l'audience
+      d) Après l'analyse en laboratoire
+
+ 7. Pourquoi la reproductibilité est-elle la condition de scientificité de l'investigation ?
+      a) Parce qu'un résultat que seul son auteur obtient est une opinion, pas une preuve
+      b) Parce qu'elle accélère l'analyse
+      c) Parce qu'elle réduit le coût des outils
+      d) Parce qu'elle est exigée par les fabricants
+
+ 8. Quelle formulation respecte l'exigence de reproductibilité ?
+      a) Analyse avec Autopsy
+      b) Analyse avec un outil forensique
+      c) Autopsy 4.21.0 (The Sleuth Kit 4.12.0) sur Windows 11 Pro 22H2
+      d) Analyse sur un ordinateur récent
+
+ 9. Quels sont les quatre critères d'admissibilité en droit camerounais ?
+      a) Légalité, pertinence, intégrité, authenticité
+      b) Rapidité, coût, clarté, longueur
+      c) Chiffrement, sauvegarde, copie, archivage
+      d) Photographie, scellement, transport, stockage
+
+10. Pourquoi dit-on que l'admissibilité est la finalité des autres principes ?
+      a) Parce que l'intégrité, la traçabilité et la reproductibilité existent pour la garantir
+      b) Parce qu'elle est la plus facile à obtenir
+      c) Parce qu'elle ne dépend d'aucun autre principe
+      d) Parce qu'elle concerne seulement la technique
+
+11. Selon l'ordre de volatilité, quelle donnée disparaît le plus vite ?
+      a) Les données du disque dur
+      b) Les registres et le cache du processeur
+      c) Les journaux de serveur
+      d) Les données stockées dans le nuage
+
+12. Quel standard décrit l'ordre de collecte selon la volatilité ?
+      a) La RFC 3227
+      b) La norme ISO 9001
+      c) Le protocole HTTP
+      d) La loi de Moore
+
+13. À quel principe physique le prologue compare-t-il la contamination d'un système observé ?
+      a) Le principe d'Heisenberg
+      b) La loi d'Ohm
+      c) Le théorème de Pythagore
+      d) La relativité restreinte
+
+14. Que désignent les trois lettres du Trilemme CRO ?
+      a) Confidentialité, fiabilité (Reliability), opposabilité
+      b) Collecte, rapport, organisation
+      c) Chiffrement, redondance, obfuscation
+      d) Contrôle, révision, opération
+
+15. Que dit le Trilemme CRO des trois dimensions ?
+      a) Elles se renforcent toujours mutuellement
+      b) On ne peut pas les maximiser simultanément, toute investigation est un compromis
+      c) Seule la confidentialité compte
+      d) Elles sont indépendantes les unes des autres
+
+16. Quelles sont les trois questions immédiates à l'arrivée sur la scène ?
+      a) Sous tension, chiffrement actif, connexion réseau active
+      b) Marque, modèle, couleur
+      c) Prix, propriétaire, garantie
+      d) Taille du disque, version de l'OS, antivirus
+
+17. Sur un PC allumé, dans quel ordre agir ?
+      a) RAM, écran, réseau, arrêt, disque
+      b) Disque, RAM, écran, réseau, arrêt
+      c) Arrêt immédiat puis analyse
+      d) Écran, disque, RAM, réseau
+
+18. Face à un PC éteint, quelle est la première règle ?
+      a) L'allumer pour constater les faits
+      b) Ne pas l'allumer, car cela contamine la scène
+      c) Lancer une mise à jour
+      d) Connecter une clé USB pour copier les fichiers
+
+19. Quelle est la règle d'or face à un téléphone mobile allumé ?
+      a) Le mettre en charge immédiatement
+      b) Activer le mode avion en premier
+      c) Le redémarrer
+      d) Retirer la carte SIM sans précaution
+
+20. Scénario. Un supérieur hiérarchique accède au poste d'un employé suspecté avec son compte administrateur, copie des fichiers sur sa clé personnelle et les remet à la police. Quel est le statut de ces fichiers ?
+
+      a) Recevables, puisque les fichiers existent
+      b) Irrecevables, collecte sans autorisation et saisie non conforme
+      c) Recevables si le hash est calculé après
+      d) Recevables avec l'accord du supérieur
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. L'intégrité d'une preuve se prouve mathématiquement par le hachage, pas par une simple déclaration.
+      Vrai / Faux
+
+22. Il est acceptable de monter un support suspect sans write blocker si on est prudent.
+      Vrai / Faux
+
+23. En forensique, on recommande de calculer à la fois MD5 et SHA-256 et de documenter les deux.
+      Vrai / Faux
+
+24. Un transfert d'evidence entre deux personnes peut rester non documenté s'il est bref.
+      Vrai / Faux
+
+25. Un rapport qui tait ses propres lacunes est un rapport trompeur.
+      Vrai / Faux
+
+26. Tout acte d'observation d'un système numérique en cours d'exécution le modifie.
+      Vrai / Faux
+
+27. Une preuve techniquement parfaite est toujours recevable, quelle que soit la façon dont elle a été obtenue.
+      Vrai / Faux
+
+28. Un téléphone connecté peut recevoir une commande d'effacement à distance en quelques secondes.
+      Vrai / Faux
+
+29. Toute modification introduite pendant l'investigation doit être documentée, justifiée et minimisée.
+      Vrai / Faux
+
+30. Sur un PC allumé, il faut éteindre immédiatement avant toute autre action.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. La donnée la plus volatile après les registres CPU est la mémoire ______.
+
+32. Le dispositif qui empêche toute écriture sur un support analysé s'appelle un write ______.
+
+33. Le registre chronologique de tous les accès à une preuve s'appelle la chaîne de ______.
+
+34. Le format d'image forensique mentionné dans le prologue, produit par FTK Imager, est le format ______.
+
+35. Le sac qui isole un téléphone des ondes pour empêcher un effacement à distance s'appelle un sac de ______.
+
+36. Le code à composer pour afficher l'IMEI d'un téléphone est ______.
+
+37. Dans le Trilemme CRO, la lettre O désigne l'______ juridique.
+
+38. Pour documenter les connexions réseau actives sous Windows en ligne de commande, on tape ______ -ano.
+
+39. Le texte camerounais de référence cité dans le prologue est la loi 2010/______.
+
+40. Pour être reproductible, un rapport doit nommer l'outil, sa ______ exacte et le système hôte.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

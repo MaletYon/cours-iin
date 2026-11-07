@@ -1,0 +1,234 @@
+NDAP SUKULU · IIN · fiche FICHE-C13
+Chapitre 13 : Déontologie de l'investigateur
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. À quel cadre éthique l'approche de Kant, fondée sur des droits absolus, correspond-elle ?
+      a) L'éthique déontologique
+      b) L'éthique conséquentialiste
+      c) L'éthique des vertus
+      d) L'éthique du marché
+
+ 2. À quel cadre l'approche de Mill, fondée sur le calcul des conséquences, correspond-elle ?
+      a) L'éthique conséquentialiste
+      b) L'éthique déontologique
+      c) L'éthique des vertus
+      d) Le relativisme
+
+ 3. À quel philosophe le chapitre rattache-t-il l'éthique des vertus, centrée sur le caractère ?
+      a) Aristote
+      b) Descartes
+      c) Platon
+      d) Hobbes
+
+ 4. Comment le chapitre qualifie-t-il le biais de confirmation ?
+      a) L'ennemi structurel de l'objectivité
+      b) Un atout de l'enquêteur
+      c) Une technique d'acquisition
+      d) Une norme ISO
+
+ 5. En quoi consiste le biais de confirmation ?
+      a) Chercher à confirmer ses croyances initiales plutôt qu'à les falsifier
+      b) Calculer un hash deux fois
+      c) Chiffrer les preuves
+      d) Documenter chaque transfert
+
+ 6. Quel droit protège une personne interrogée contre l'auto-incrimination ?
+      a) Le droit de ne pas s'auto-incriminer, principe nemo tenetur
+      b) Le droit au chiffrement
+      c) Le droit à l'anonymat total
+      d) Le droit de modifier les preuves
+
+ 7. Que désigne la méthode PEACE ?
+      a) Une méthode d'entretien éthique et efficace
+      b) Un format d'image disque
+      c) Un algorithme de chiffrement
+      d) Une norme de hachage
+
+ 8. Quel protocole concret le chapitre recommande-t-il pour l'objectivité d'un rapport ?
+      a) Séparer une section Constatations des faits et une section Analyse
+      b) Tout mélanger dans un seul paragraphe
+      c) Omettre les faits
+      d) Ne rédiger aucune analyse
+
+ 9. Quel acte engage la responsabilité pénale personnelle de l'investigateur ?
+      a) Falsifier un rapport d'expertise ou un formulaire de custody
+      b) Calculer un hash
+      c) Documenter une limite
+      d) Séparer constatation et analyse
+
+10. Que pose le Principe 4 du guide ACPO ?
+      a) Le responsable de l'investigation répond du respect des principes par toute l'équipe
+      b) Le fabricant de l'outil est responsable
+      c) Le témoin est responsable
+      d) Personne n'est responsable
+
+11. Quelle est la première tension déontologique majeure ?
+      a) Efficacité contre droits fondamentaux
+      b) Vitesse contre coût
+      c) Local contre distant
+      d) Matériel contre logiciel
+
+12. Une saisie rencontre des échanges couverts par le secret médical ou le secret de l'avocat. Que faire ?
+
+      a) Limiter la saisie et respecter le secret professionnel
+      b) Tout saisir sans distinction
+      c) Publier les échanges
+      d) Les détruire
+
+13. Que risque un investigateur qui travaille au-delà de sa compétence ?
+      a) Contaminer les preuves, en violation du principe ACPO 2
+      b) Gagner du temps sans risque
+      c) Améliorer l'intégrité
+      d) Rien du tout
+
+14. Comment la quatrième tension oppose-t-elle deux exigences ?
+      a) La loyauté institutionnelle contre l'intégrité personnelle
+      b) La vitesse contre la précision
+      c) Le hash contre la custody
+      d) Le local contre le cloud
+
+15. Quelle condition le chapitre rappelle-t-il pour les actes judiciaires d'expertise ?
+      a) L'expert doit être assermenté
+      b) L'expert doit être anonyme
+      c) L'expert doit être étranger
+      d) Aucune condition
+
+16. Comment doivent être traitées les données recueillies, selon la tension confidentialité et divulgation ?
+      a) Avec un usage limité à la finalité de l'enquête
+      b) En libre accès
+      c) Vendues à des tiers
+      d) Publiées en ligne
+
+17. Pourquoi documenter les tentatives de réfutation de ses hypothèses ?
+      a) Pour contrer le biais de confirmation et protéger l'objectivité
+      b) Pour allonger le rapport
+      c) Pour impressionner le juge
+      d) Cela n'a aucune utilité
+
+18. Que rappelle le principe ACPO 2, lié à la compétence ?
+      a) Toute modification suppose une personne compétente capable de l'expliquer
+      b) Il faut toujours modifier les données
+      c) La compétence est facultative
+      d) Il faut déléguer au hasard
+
+19. Quel est le remède central du chapitre contre les biais cognitifs ?
+      a) Séparer systématiquement les faits constatés de leur interprétation
+      b) Supprimer les faits gênants
+      c) Se fier à son intuition
+      d) Conclure vite
+
+20. Selon l'éthique des vertus, que vise le développement de l'investigateur ?
+      a) Internaliser les vertus jusqu'à une pratique intégrée
+      b) Mémoriser des procédures sans les comprendre
+      c) Maximiser sa vitesse
+      d) Éviter toute réflexion
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Le biais de confirmation consiste à chercher à réfuter ses propres hypothèses.
+      Vrai / Faux
+
+22. Une personne interrogée a le droit de ne pas s'auto-incriminer.
+      Vrai / Faux
+
+23. Les données d'enquête peuvent être utilisées à des fins étrangères à l'enquête.
+      Vrai / Faux
+
+24. Travailler au-delà de sa compétence peut contaminer les preuves.
+      Vrai / Faux
+
+25. Falsifier un formulaire de custody engage la responsabilité pénale de l'investigateur.
+      Vrai / Faux
+
+26. Le chef d'investigation répond du respect des principes par l'ensemble de son équipe.
+      Vrai / Faux
+
+27. Le secret médical et le secret de l'avocat limitent l'étendue d'une saisie.
+      Vrai / Faux
+
+28. Un expert peut réaliser des actes judiciaires sans être assermenté.
+      Vrai / Faux
+
+29. Séparer constatations et analyse protège l'objectivité du rapport.
+      Vrai / Faux
+
+30. L'éthique conséquentialiste raisonne à partir des conséquences des actions.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le biais qui pousse à ne retenir que ce qui conforte sa thèse s'appelle le biais de ______.
+
+32. Le droit de ne pas s'auto-incriminer porte le nom latin nemo ______.
+
+33. La méthode d'entretien éthique citée dans le chapitre porte le nom de ______.
+
+34. Le cadre éthique fondé sur des droits absolus, rattaché à Kant, est l'éthique ______.
+
+35. Le cadre éthique rattaché à Aristote et centré sur le caractère est l'éthique des ______.
+
+36. Dans un rapport, on sépare la section Constatations de la section ______.
+
+37. La responsabilité du chef d'investigation pour toute l'équipe relève du principe ACPO numéro ______.
+
+38. Travailler hors de sa compétence viole le principe ACPO numéro ______.
+
+39. Pour les actes judiciaires, l'expert doit être ______.
+
+40. La première tension déontologique oppose l'efficacité aux droits ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

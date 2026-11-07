@@ -1,0 +1,721 @@
+% ============================================================================
+% Fichier  : partie0/P00_scene_crime_numerique.tex
+% Titre    : Prologue -- Scène de Crime Numérique
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- Juin 2026
+% ============================================================================
+
+\chapter{Prologue: Scène de Crime Numérique}
+\label{chap:prologue}
+
+\epigraph{%
+    « Un dossier judiciaire ne se perd jamais au tribunal.\\
+    Il se perd sur la scène de crime, dans les dix premières minutes. »%
+}{Thierry Minka, Expert Judiciaire}
+
+\niveauChapitre{Introductif}{%
+    Aucun prérequis technique. Ce prologue se lit avant même d'ouvrir un
+    terminal ou de brancher un disque dur.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Comprendre, à travers un cas concret, pourquoi la méthode prime
+          sur la technique en investigation numérique.
+    \item Identifier les quatre principes fondamentaux, intégrité,
+          traçabilité, reproductibilité, admissibilité, et reconnaître
+          une violation de chacun d'eux.
+    \item Mémoriser les réflexes immédiats sur une scène de crime numérique
+          (PC allumé, PC éteint, téléphone) avant toute manipulation.
+    \item Saisir la nature du \termecle{Trilemme CRO} comme tension
+          constitutive de toute investigation numérique.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section*{Avant de commencer : une affaire qui n'aurait pas dû échouer}
+% ============================================================================
+
+Douala, mars~2026. Le tribunal de grande instance vient de rendre son verdict
+dans l'affaire MBONGO\footnote{Les noms, dates et montants de ce cas sont
+fictifs mais les mécanismes juridiques et techniques sont rigoureusement
+exacts.}. Joseph MBONGO, comptable d'une PME de la Zone Industrielle de
+Bassa, était accusé d'avoir détourné \textbf{12~millions de francs CFA} via
+des virements frauduleux depuis le compte de son employeur vers un compte
+tiers. Les preuves semblaient accablantes : un email de virement portant sa
+signature, des captures d'écran du portail bancaire UBA sur son ordinateur,
+un historique de navigation Chrome daté et horodaté, un fichier Word supprimé
+nommé \texttt{faux\_bon\_de\_commande.docx}.
+
+\medskip
+
+L'avocat de la défense a demandé la parole. En dix minutes, il a obtenu
+l'irrecevabilité de la totalité des preuves numériques. Le dossier s'est
+effondré.
+
+\begin{boxalert}
+\textbf{Pourquoi ?} L'OPJ chargé de la saisie avait, en arrivant sur place,
+\emph{allumé} l'ordinateur pour « constater visuellement les faits ». Windows
+avait automatiquement monté toutes les partitions, mis à jour les horodatages
+d'accès, créé des fichiers temporaires, modifié des clés de registre. L'avocat
+a prouvé au juge que l'heure de « création » de la capture d'écran
+\texttt{ecran\_virement.png}, telle que lue dans Autopsy, était
+\textbf{postérieure} à l'heure de saisie déclarée dans le procès-verbal.
+Contamination prouvée. Irrecevabilité prononcée.
+
+L'OPJ avait pourtant fait \emph{tout le reste} correctement~: il avait utilisé
+Autopsy, calculé les hash, rédigé un rapport de 40~pages. Tout cela est devenu
+sans valeur à cause de \textbf{dix secondes d'inattention} au moment d'appuyer
+sur le bouton Power.
+\end{boxalert}
+
+\medskip
+
+Ce prologue n'est pas là pour vous enseigner Autopsy, ni le protocole TCP/IP,
+ni la cryptographie post-quantique. Ces sujets occupent les pages qui
+suivent. Ce prologue est là pour vous enseigner \textbf{le réflexe fondateur
+de toute la discipline}~: \emph{avant d'agir, comprendre ce que votre action
+va détruire}.
+
+\separateur
+
+% ============================================================================
+\section{La Scène de Crime Numérique : un Lieu à Sécuriser}
+% ============================================================================
+
+\subsection{Ce qui change par rapport à une scène physique}
+
+Un investigateur criminaliste traditionnel sait qu'il ne doit pas marcher
+sur les traces de pas, ni toucher l'arme sans gants. L'équivalent numérique
+de cette règle est moins intuitif, parce que la contamination y est
+\textbf{invisible}. Brancher un clavier, allumer un écran, ouvrir un
+fichier~: chacune de ces actions laisse des traces qui modifient l'état
+de la scène.
+
+\begin{boxdef}
+\textbf{Scène de crime numérique}\index{scène de crime numérique}: Tout
+environnement numérique susceptible de contenir des traces probantes d'un
+acte délictueux. Elle inclut les supports physiques (disques durs, clés USB,
+téléphones), la mémoire volatile (RAM), le trafic réseau, les journaux
+de serveurs et les données stockées dans le nuage.
+\end{boxdef}
+
+La différence essentielle avec une scène physique est la
+\termecle{volatilité}~: certaines données disparaissent en quelques
+secondes (mémoire vive), d'autres en quelques minutes (connexions réseau),
+d'autres subsistent mais peuvent être altérées sans laisser de trace
+visible à l'~il nu (horodatages de fichiers).
+
+\begin{tableaucours}{p{3.5cm}p{3.8cm}p{4.5cm}}{%
+    \tableauHeader{Type de donnée} &
+    \tableauHeader{Durée de vie} &
+    \tableauHeader{Menace principale}
+}
+Registres CPU, cache & Nanosecondes & Non capturable \\
+Mémoire RAM & Jusqu'à extinction & Extinction non planifiée \\
+Connexions réseau actives & Secondes à minutes & Déconnexion réseau \\
+Fichiers ouverts, sessions & Minutes & Fermeture de session \\
+Disque dur / SSD & Mois à années & Chiffrement, TRIM \\
+Journaux de serveur & Jours à semaines & Rotation automatique \\
+Données cloud & Indéfini & Suppression distante \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~P.1. Ordre de volatilité des données numériques
+(d'après RFC~3227 \cite{rfc3227})}\end{center}
+
+\subsection{Le paradoxe de l'observation}
+
+En physique quantique, le principe d'Heisenberg stipule que l'acte de mesurer
+une particule modifie son état. L'investigation numérique connaît un paradoxe
+analogue~: \textbf{tout acte d'observation d'un système numérique en cours
+d'exécution le modifie}. Lancer un outil forensique sur un PC allumé écrit
+dans la RAM, crée des fichiers temporaires, génère des entrées dans les
+journaux système.
+
+Ce paradoxe ne constitue pas une impasse, il se gère par la
+\textbf{documentation rigoureuse}~: l'investigateur note précisément chaque
+action entreprise et chaque modification connue qu'elle a induite. Le tribunal
+peut alors distinguer les traces \emph{antérieures} à l'investigation des
+traces \emph{créées par} l'investigation.
+
+\begin{boxinfo}
+\textbf{La règle d'or~:} toute modification introduite pendant l'investigation
+doit être \emph{documentée}, \emph{justifiée} et \emph{minimisée}. L'objectif
+n'est pas la perfection impossible, mais la traçabilité complète.
+\end{boxinfo}
+
+% ============================================================================
+\section{Les Quatre Principes Fondamentaux}
+% ============================================================================
+
+Ces quatre principes structurent l'intégralité de la discipline. Ils seront
+formalisés mathématiquement dans la Partie~II, mais les voici dans leur
+formulation la plus directe, illustrée par des violations réelles.
+
+\subsection{Principe 1. Intégrité}
+\label{subsec:principe-integrite}
+
+\begin{boxdef}
+\textbf{Intégrité}\index{intégrité!preuve numérique} (\textit{Integrity}):
+Garantie que la preuve numérique n'a pas été modifiée depuis sa collecte.
+Elle se démontre par la correspondance des \termecle{empreintes
+cryptographiques} calculées avant et après acquisition.
+\end{boxdef}
+
+L'intégrité est prouvée \textbf{mathématiquement}, pas déclarativement.
+Il ne suffit pas d'affirmer « je n'ai rien touché »~; il faut que le
+\termecle{hash} de l'image forensique soit bit-à-bit identique au hash du
+support original.
+
+\begin{boxalert}
+\textbf{Violation typique.} Un enquêteur branche un disque dur suspect
+directement sur son ordinateur Windows sans \textit{write blocker}. Windows
+monte la partition, met à jour les horodatages d'accès du système de fichiers
+NTFS, crée un répertoire \texttt{System Volume Information}. Le hash du disque
+après branchement diffère du hash avant branchement. La preuve est contaminée.
+
+\smallskip
+\textbf{Règle absolue~:} ne jamais monter un support suspect sans
+\termecle{write blocker} matériel ou logiciel activé et vérifié.
+\end{boxalert}
+
+La vérification d'intégrité repose sur des fonctions de hachage
+cryptographiques. Les commandes de référence~:
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={Calcul et vérification d'empreintes cryptographiques}]
+# Windows (CMD) -- calcul MD5 et SHA-256
+certutil -hashfile C:\evidence\disque.E01 MD5
+certutil -hashfile C:\evidence\disque.E01 SHA256
+
+# Windows (PowerShell) -- alternative recommandée
+Get-FileHash C:\evidence\disque.E01 -Algorithm SHA256
+
+# Linux / Kali Linux -- syntaxe native
+md5sum    /evidence/disque.E01
+sha256sum /evidence/disque.E01
+\end{lstlisting}
+
+Les deux hash, source et image, doivent être \textbf{identiques} et
+\textbf{documentés} dans le formulaire de chaîne de custody \emph{avant}
+toute analyse.
+
+\begin{boiteRemarque}{MD5 ou SHA-256 ?}
+MD5 (128~bits) reste accepté en forensique pour l'intégrité d'une image
+car le risque n'est pas la falsification intentionnelle mais l'altération
+accidentelle. SHA-256 (256~bits) est recommandé pour toutes les nouvelles
+investigations et exigé en contexte à haute valeur probatoire. Calculez
+\emph{toujours les deux simultanément} et documentez les deux dans le
+formulaire de custody.
+\end{boiteRemarque}
+
+\subsection{Principe 2. Traçabilité (chaîne de custody)}
+\label{subsec:principe-tracabilite}
+
+\begin{boxdef}
+\termecle{Chaîne de custody}\index{chaîne de custody} (\textit{Chain of
+custody}): Registre chronologique documentant chaque personne ayant eu
+accès à une preuve et toutes les actions effectuées sur celle-ci, depuis
+sa collecte jusqu'à sa présentation en audience.
+\end{boxdef}
+
+La chaîne de custody est le \textbf{document le plus important d'une
+investigation numérique}, plus important que le rapport technique
+lui-même. Un rapport d'analyse de 100~pages perd toute valeur si on ne peut
+prouver que l'evidence analysée est bien celle saisie sur la scène de crime.
+
+\begin{boxcustody}
+\textbf{Le formulaire commence au premier contact.}
+Les informations minimales à consigner immédiatement~:
+\begin{enumerate}
+    \item Numéro de dossier et numéro d'evidence (\textit{ex.}~: DOS-2026-004 / EV-001)
+    \item Description physique précise~: marque, modèle, numéro de série,
+          couleur, état apparent (rayures, caches manquants)
+    \item Lieu, date et heure de collecte (\texttt{JJ/MM/AAAA HH:MM})
+    \item Nom, grade et matricule du collecteur
+    \item \hash{MD5}{} et \hash{SHA-256}{} du support original (avant acquisition)
+    \item \hash{MD5}{} et \hash{SHA-256}{} de l'image forensique (après acquisition)
+    \item Confirmation explicite que les deux hash correspondent
+\end{enumerate}
+Le formulaire complet est disponible en Annexe~C.
+\end{boxcustody}
+
+\begin{boxalert}
+\textbf{Violation typique.} Un OPJ saisit le téléphone d'un suspect et le
+confie à un collègue pendant une heure pour « garder un \oe il dessus ».
+Ce transfert non documenté constitue un vide dans la chaîne de custody.
+À l'audience, l'avocat peut semer le doute~: le téléphone a-t-il été
+manipulé pendant cette heure ?
+
+\textbf{Règle~:} tout transfert d'une evidence entre deux personnes doit
+être documenté immédiatement: date, heure, raison, signatures des deux
+parties. Si un doute existe, l'intégrité doit être re-vérifiée par re-hashage.
+\end{boxalert}
+
+\begin{boxjuris}
+\textbf{Droit camerounais, \loicam{2010/012}, article~53, alinéa~1~:}~\cite{cameroun2010a}
+
+\medskip
+\textit{« Les perquisitions \textelp{} peuvent porter sur des copies réalisées
+en présence des personnes qui assistent à la perquisition. »}
+
+\medskip
+Cet article établit l'exigence légale d'une copie forensique réalisée
+\emph{en présence} des parties. Le formulaire de chaîne de custody est la
+traduction procédurale de cette exigence~: il prouve que la copie a été
+réalisée de façon transparente et documentée. Son absence peut suffire à
+faire rejeter l'ensemble du dossier numérique.
+\end{boxjuris}
+
+\subsection{Principe 3. Reproductibilité}
+\label{subsec:principe-reproductibilite}
+
+\begin{boxdef}
+\textbf{Reproductibilité}\index{reproductibilité} (\textit{Reproducibility}):
+Propriété d'une méthode d'investigation telle que, si elle est appliquée
+par un autre investigateur qualifié sur la même evidence avec les mêmes
+outils, elle produit les mêmes résultats.
+\end{boxdef}
+
+La reproductibilité est la \textbf{condition de scientificité} de
+l'investigation numérique. Un résultat que seul son auteur peut obtenir,
+avec un outil non documenté, selon une méthode non explicitée, n'est pas
+une preuve scientifique~: c'est une opinion.
+
+En pratique, trois exigences concrètes s'imposent~:
+
+\begin{enumerate}
+    \item \textbf{Nommer les outils avec précision~:} nom, version exacte,
+          système d'exploitation hôte. \textit{« Analysé avec Autopsy »}
+          est insuffisant. La formulation correcte est~: \textit{« Autopsy
+          4.21.0 (The Sleuth Kit 4.12.0) sur Windows~11 Pro~22H2. »}
+
+    \item \textbf{Décrire la méthode~:} les étapes dans leur ordre exact,
+          suffisamment détaillées pour qu'un pair puisse les reproduire
+          indépendamment.
+
+    \item \textbf{Documenter les limites~:} ce qui n'a \emph{pas} pu être
+          analysé (partition chiffrée, fichier corrompu) doit être
+          explicitement mentionné. Un rapport silencieux sur ses propres
+          lacunes est un rapport trompeur.
+\end{enumerate}
+
+\begin{boxalert}
+\textbf{Violation typique.} Un analyste utilise un script Python maison
+pour extraire des artefacts de navigation. L'expert adverse tente de
+reproduire l'analyse sur la même image, et obtient des résultats
+différents, car le script contient une erreur sur certains formats SQLite.
+La méthode n'est pas reproductible. Les conclusions sont invalidées.
+
+\textbf{Règle~:} utiliser des outils validés et documentés (Autopsy,
+Volatility, FTK Imager). Documenter la version exacte. Tester tout outil
+maison sur des données de référence connues avant utilisation en investigation
+réelle.
+\end{boxalert}
+
+\subsection{Principe 4. Admissibilité}
+\label{subsec:principe-admissibilite}
+
+\begin{boxdef}
+\textbf{Admissibilité}\index{admissibilité} (\textit{Admissibility}):
+Qualité d'une preuve numérique lui permettant d'être recevable dans une
+procédure judiciaire. Elle suppose que la preuve a été obtenue légalement,
+qu'elle est pertinente aux faits allégués, et qu'elle est intègre.
+\end{boxdef}
+
+Une preuve techniquement parfaite est sans valeur si elle est juridiquement
+irrecevable. L'admissibilité est la \emph{finalité} de tous les autres
+principes~: l'intégrité, la traçabilité et la reproductibilité existent
+\emph{pour} garantir l'admissibilité.
+
+\begin{boxalert}
+\textbf{Violation typique.} Un supérieur hiérarchique accède au poste de
+travail d'un employé suspecté avec son propre compte administrateur, copie
+les fichiers sur une clé USB personnelle et les remet à la police. Ces
+fichiers sont irrecevables~: collecte sans autorisation judiciaire,
+procédure de saisie non conforme aux articles~52--59 de la
+\loicam{2010/012}.
+
+\textbf{Règle~:} en contexte judiciaire, l'investigation numérique exige
+l'autorisation appropriée (mandat de perquisition, réquisition du procureur).
+En contexte interne (entreprise), elle doit être encadrée par le règlement
+intérieur et respecter le droit du travail camerounais.
+\end{boxalert}
+
+\begin{boxjuris}
+\textbf{Quatre critères d'admissibilité en droit camerounais}\\
+\textit{(d'après la jurisprudence et les articles~52--59 de la \loicam{2010/012})}
+
+\begin{enumerate}
+    \item \textbf{Légalité~:} obtenue avec l'autorisation requise par la loi.
+    \item \textbf{Pertinence~:} en lien direct avec les faits poursuivis.
+    \item \textbf{Intégrité~:} non altérée depuis sa collecte (hachage vérifiable).
+    \item \textbf{Authenticité~:} origine prouvable par la chaîne de custody.
+\end{enumerate}
+\end{boxjuris}
+
+% ============================================================================
+\section{Le Trilemme CRO : la Tension Constitutive}
+\label{sec:trilemme-intro}
+% ============================================================================
+
+Avant d'entrer dans le détail des techniques, il est essentiel de comprendre
+la tension profonde qui traverse toute l'investigation numérique. Cette tension
+a été formalisée par les travaux du \sigle{LIMSI} sous le nom de
+\termecle{Trilemme CRO}\index{Trilemme CRO} \cite{minka2025cro}.
+
+\subsection{Les trois dimensions en opposition}
+
+Toute investigation numérique doit simultanément satisfaire trois exigences
+qui se contrarient mutuellement~:
+
+\begin{itemize}
+    \item \textbf{$\mathcal{C}$. Confidentialité~:} protéger la vie privée
+          des personnes impliquées (suspect, victimes, témoins) et les données
+          sensibles rencontrées.
+    \item \textbf{$\mathcal{R}$. Fiabilité~(\textit{Reliability})~:} garantir
+          que les preuves sont intègres, authentiques, reproductibles.
+    \item \textbf{$\mathcal{O}$. Opposabilité juridique~:} assurer que les
+          preuves peuvent être présentées et défendues devant un tribunal.
+\end{itemize}
+
+\begin{boxCRO}
+\textbf{Le Trilemme formulé~:} il est impossible de maximiser simultanément
+les trois dimensions.
+
+\medskip
+Pour qu'une preuve soit \textbf{opposable} ($\mathcal{O}$ haute), elle doit
+être vérifiable par toutes les parties, ce qui tend à \emph{réduire} la
+confidentialité ($\mathcal{C}$ contrainte).
+
+Pour maximiser la \textbf{confidentialité} ($\mathcal{C}$ haute), en
+chiffrant les données collectées, on risque de compromettre la
+reproductibilité et donc la fiabilité ($\mathcal{R}$ réduite).
+
+Pour garantir la \textbf{fiabilité} ($\mathcal{R}$ haute), en collectant
+le maximum de données, on élargit le périmètre et empiète sur la vie
+privée de personnes non impliquées ($\mathcal{C}$ réduite).
+
+\[
+\Gamma_{CRO}(\Pi) \;=\; \max\bigl\{\mathcal{C}(\Pi),\;
+\mathcal{R}(\Pi),\; \mathcal{O}(\Pi)\bigr\}
+\;\geq\; 0.4 + \mathrm{negl}(\lambda)
+\]
+
+\textit{Toute investigation est un compromis explicite entre ces trois
+dimensions. La maîtrise de ce compromis distingue l'investigateur expert
+du technicien.}
+\end{boxCRO}
+
+\subsection{Le Trilemme sur la scène de crime : exemples immédiats}
+
+Ce n'est pas une abstraction théorique. Dès les premières secondes,
+l'investigateur fait face à des choix CRO concrets~:
+
+\begin{itemize}
+    \item \textit{Doit-il capturer la RAM ?} Cette capture va légèrement
+          modifier la RAM (atteinte à $\mathcal{R}$, documentable et
+          acceptable) mais c'est la seule façon d'obtenir les clés de
+          chiffrement actives (gain majeur pour $\mathcal{O}$).
+          \hfill\cro{$\sim$}{$\downarrow$faible}{$\uparrow$}
+
+    \item \textit{Peut-il lire tous les messages WhatsApp ?} Certains n'ont
+          aucun lien avec l'affaire et révèlent la vie privée de tiers
+          innocents. Lire plus que nécessaire améliore la fiabilité brute
+          mais viole la proportionnalité légale.
+          \hfill\cro{$\downarrow$}{$\uparrow$}{$\sim$}
+
+    \item \textit{Doit-il tout documenter publiquement ?} Certains artefacts
+          sensibles (données médicales, correspondances protégées) peuvent
+          être transmis sous pli scellé au juge. Gain pour $\mathcal{C}$,
+          légère contrainte pour $\mathcal{O}$.
+          \hfill\cro{$\uparrow$}{$\sim$}{$\downarrow$faible}
+\end{itemize}
+
+\medskip
+
+Tout au long de ce cours, chaque technique sera analysée à travers ce prisme.
+L'encadré \textbf{Analyse~CRO} apparaîtra systématiquement pour expliciter
+quel compromis est réalisé et comment le justifier devant un tribunal.
+
+% ============================================================================
+\section{Protocole d'Urgence : les 10 Premières Minutes}
+\label{sec:protocole-urgence}
+% ============================================================================
+
+Ce protocole synthétise les décisions critiques des dix premières minutes.
+Il sera détaillé et justifié dans la Partie~II (chapitres~8 et~9). Il est
+présenté ici dans sa forme la plus opérationnelle, pour être applicable
+immédiatement.
+
+\subsection{Arrivée sur la scène : les trois questions immédiates}
+
+\begin{enumerate}
+    \item \textbf{Le matériel est-il sous tension ?} → La réponse détermine
+          tout ce qui suit.
+    \item \textbf{Y a-t-il du chiffrement actif visible ?}
+          (BitLocker déverrouillé, VeraCrypt monté, Android déverrouillé) →
+          Éteindre un support chiffré sans le capturer d'abord peut rendre
+          les données définitivement inaccessibles.
+    \item \textbf{Y a-t-il une connexion réseau active ?} → Un suspect peut
+          encore déclencher une destruction de données à distance tant que
+          la connexion est maintenue.
+\end{enumerate}
+
+\subsection{PC allumé : procédure de triage}
+
+\begin{boxPNC}
+\textbf{PC allumé: ordre des actions}
+
+\begin{enumerate}
+    \item \volatilite{1}{RAM}: Capturer la mémoire vive avec FTK~Imager
+          (\texttt{File → Capture Memory}). Le PC reste allumé pendant
+          cette étape.
+    \item \volatilite{2}{Écran}: Photographier l'écran dans son état
+          actuel. Ne fermer aucune fenêtre.
+    \item \volatilite{3}{Réseau}: Documenter les connexions actives~:
+          \texttt{netstat -ano} (CMD) ou \texttt{Get-NetTCPConnection}
+          (PowerShell). Photographier ou noter.
+    \item \volatilite{4}{Arrêt}: Éteindre proprement via le menu Windows.
+          Sauf si une destruction de données est imminente, auquel cas
+          l'arrachage du câble est justifiable et \emph{doit être documenté}.
+    \item \volatilite{5}{Disque}: Brancher avec write blocker. Acquérir
+          l'image E01 avec FTK~Imager. Calculer et noter hash MD5+SHA-256.
+\end{enumerate}
+
+\medskip
+\textbf{Ne jamais~:} ouvrir un fichier, lancer une application, connecter
+un périphérique USB sans write blocker, laisser Windows exécuter une tâche
+automatique (mise à jour, indexation).
+\end{boxPNC}
+
+\subsection{PC éteint : procédure de saisie}
+
+\begin{boxPNC}
+\textbf{PC éteint: ordre des actions}
+
+\begin{enumerate}
+    \item \textbf{Ne pas allumer.} Appuyer sur le bouton Power contamine
+          la scène avant même que l'OS ne soit chargé.
+    \item Photographier le matériel sous tous les angles, câbles en place,
+          avant toute manipulation physique.
+    \item Activer le write blocker logiciel ou utiliser un write blocker
+          matériel, puis retirer le disque dur ou SSD.
+    \item Acquérir l'image forensique en format E01 avec FTK~Imager.
+          Documenter les métadonnées du cas (numéro de dossier, examinateur).
+    \item Calculer et documenter les hash MD5 et SHA-256 source et image.
+    \item Sceller l'evidence originale dans un sachet inviolable étiqueté
+          et consigner dans le formulaire de chaîne de custody.
+\end{enumerate}
+\end{boxPNC}
+
+\subsection{Téléphone mobile : les règles absolues}
+
+\begin{boxPNC}
+\textbf{Téléphone mobile: La règle d'or~: mode avion en premier.}
+
+\medskip
+Un téléphone connecté peut recevoir une commande d'effacement à distance
+(\textit{remote wipe}) en quelques secondes. Le mode avion coupe la
+connexion sans effacer les données.
+
+\medskip
+\begin{enumerate}
+    \item \textbf{Téléphone allumé~:} mode avion immédiat. Si l'écran est
+          inaccessible, placer dans un sac de Faraday\footnote{À défaut de
+          sac de Faraday~: plusieurs épaisseurs d'aluminium ménager
+          hermétiquement scellées. Vérifier que le signal opérateur disparaît.}.
+          Ne jamais brancher sur un chargeur avant isolation électromagnétique.
+
+    \item \textbf{Téléphone éteint, Android, code connu~:} allumer en mode
+          avion (maintenir le bouton Power et activer le mode avion dès
+          l'affichage du démarrage). Extraire via ADB.
+
+    \item \textbf{Téléphone éteint, chiffré, code inconnu~:} conserver
+          éteint. Alimenter la batterie si nécessaire via câble contrôlé.
+          Transmettre à un laboratoire spécialisé. N'allumer en aucun cas
+          sans stratégie d'extraction préparée au préalable.
+
+    \item \textbf{Documenter~:} numéro IMEI (\texttt{*\#06\#} ou sous la
+          batterie), opérateur, état de l'écran, niveau de batterie estimé.
+\end{enumerate}
+\end{boxPNC}
+
+% ============================================================================
+\section{Retour sur l'Affaire MBONGO : ce qui Aurait Dû se Passer}
+\label{sec:retour-mbongo}
+% ============================================================================
+
+Voici la reconstitution de l'affaire d'ouverture, conduite cette fois
+conformément aux quatre principes.
+
+\begin{boxscenario}{Affaire MBONGO}
+\textbf{Situation initiale~:} PC Windows allumé et déverrouillé.
+Téléphone Android sur le bureau, écran actif. L'OPJ arrive sur place avec
+une clé USB write-protégée contenant FTK~Imager Portable.
+
+\medskip
+\begin{enumerate}
+    \item \textbf{Photographies d'état}: L'OPJ photographie l'écran PC
+          (fenêtre navigateur ouverte sur le portail bancaire UBA,
+          horodatage visible dans la barre des tâches) et l'écran du téléphone.
+          Il ne touche ni l'un ni l'autre.
+
+    \item \textbf{Mode avion} sur le téléphone. Consigné dans le formulaire
+          (\textit{« 14h37~: téléphone passé en mode avion par OPJ NKENG »}).
+
+    \item \textbf{Capture RAM}: FTK~Imager Portable lancé depuis la clé
+          USB. \texttt{File → Capture Memory}. Fichier \texttt{RAM\_MBONGO.mem}
+          sauvegardé sur une clé de destination séparée. Taille~: 16~Go.
+          Hash MD5 calculé et noté : \hash{MD5}{a3f7...}.
+
+    \item \textbf{Connexions réseau}: \texttt{netstat -ano} lancé dans
+          CMD. Résultat photographié~: deux connexions ESTABLISHED vers
+          l'IP \texttt{41.202.219.X} (UBA~Cameroun) et une connexion vers
+          \texttt{185.62.X.X} (inconnue, notée pour investigation ultérieure).
+
+    \item \textbf{Arrêt propre} du PC via le menu Démarrer. Retrait du
+          disque dur après déconnexion. Write blocker logiciel activé.
+          Acquisition E01 en 47~minutes. Hash source~: \hash{SHA-256}{3d9c...}.
+          Hash image~: \hash{SHA-256}{3d9c...}. \textbf{Intégrité vérifiée.}
+
+    \item \textbf{Formulaire de chaîne de custody} rempli pour le PC et le
+          téléphone. Sachets scellés. Deux signatures. Transport au dépôt
+          de preuves de la Brigade de Cybercriminalité.
+
+    \item \textbf{Analyse sur copie}: Autopsy~4.21.0 ouvre l'image E01.
+          Jamais le disque original. Les 8~artefacts sont identifiés~;
+          leurs horodatages sont tous \emph{antérieurs} à la saisie.
+\end{enumerate}
+
+\textbf{Résultat~:} à l'audience, l'expert présente les hash correspondants,
+le formulaire de custody ininterrompu, la version exacte des outils. L'avocat
+de la défense ne peut pas arguer d'une contamination postérieure à la saisie.
+Le dossier tient.
+\end{boxscenario}
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Affaire MBONGO}
+
+\begin{itemize}
+    \item $\mathcal{C}$. La capture RAM révèle peut-être des données sans
+          rapport avec l'affaire. Ce risque est mentionné dans le rapport~;
+          les données non pertinentes ne sont pas incluses dans le dossier.
+          \hfill\textit{Compromise acceptable et documentée.}
+
+    \item $\mathcal{R}$. La capture RAM modifie légèrement la RAM
+          elle-même (le processus FTK y réside pendant l'acquisition).
+          Modification connue, quantifiable, minimale. Hash pris
+          \emph{après} capture pour refléter cet état.
+          \hfill\textit{Maîtrisée.}
+
+    \item $\mathcal{O}$. Le hachage, le formulaire de custody et les
+          versions d'outils documentés permettent à l'expert de défendre
+          chaque artefact devant le juge.
+          \hfill\textit{Maximisée.}
+\end{itemize}
+
+\cro{$\downarrow$\,acceptable}{$\sim$\,maîtrisé}{$\uparrow$\,maximisé}.
+Configuration standard d'une investigation judiciaire correctement conduite.
+\end{boxCRO}
+
+% ============================================================================
+\separateur
+% ============================================================================
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce prologue~:}
+
+\begin{itemize}
+    \item Une investigation numérique peut être techniquement irréprochable
+          et juridiquement anéantie par une erreur procédurale commise dans
+          les premières minutes.
+
+    \item Les \textbf{quatre principes fondamentaux} structurent toute la
+          discipline~: \textbf{intégrité} (hachage MD5+SHA-256),
+          \textbf{traçabilité} (chaîne de custody continue),
+          \textbf{reproductibilité} (méthodes et outils documentés),
+          \textbf{admissibilité} (légalité + pertinence + intégrité).
+
+    \item L'intégrité se prouve \textbf{mathématiquement}, jamais
+          déclarativement. Deux hash identiques (source et image) constituent
+          la preuve.
+
+    \item La \textbf{chaîne de custody} commence à la seconde où
+          l'investigateur touche l'evidence, pas quand il rédige son rapport.
+
+    \item Le \termecle{Trilemme CRO} formalise la tension irréductible entre
+          confidentialité~($\mathcal{C}$), fiabilité~($\mathcal{R}$)
+          et opposabilité~($\mathcal{O}$). Toute investigation est un
+          compromis explicite et documenté entre ces trois dimensions.
+
+    \item Sur une scène numérique~: \textbf{observer} avant d'agir,
+          \textbf{agir dans l'ordre de volatilité}, \textbf{documenter
+          chaque geste}.
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice P.1. Diagnostic d'une violation \niveaubase}]
+Lisez la description ci-dessous. Identifiez~: (a)~quel(s) principe(s)
+fondamentaux ont été violés~; (b)~quelle dimension du Trilemme CRO a été
+sacrifiée~; (c)~ce qu'il aurait fallu faire.
+
+\medskip
+\textit{Un chef d'entreprise suspecte un employé de fuite de données
+vers un concurrent. Sans prévenir les autorités, il demande à son
+informaticien de copier le disque dur de l'employé sur une clé USB
+personnelle et de « fouiller les fichiers ». L'informaticien ouvre
+les fichiers directement, prend des captures d'écran, et remet la
+clé au chef d'entreprise. Trois semaines plus tard, l'entreprise
+dépose plainte et présente ces éléments au procureur.}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice P.2. Scénario de triage \niveaumoyen}]
+Vous arrivez sur une scène avec~:
+\begin{itemize}
+    \item Un ordinateur portable Windows~11, allumé, écran déverrouillé,
+          fenêtre de navigateur ouverte sur un portail bancaire.
+    \item Un téléphone Android, allumé, sans code PIN visible, Wi-Fi actif.
+    \item Une clé USB branchée sur le laptop, voyant clignotant.
+\end{itemize}
+Décrivez, dans l'ordre exact des priorités, les six premières actions que
+vous effectuez. Pour chaque action, précisez~: le principe fondamental
+qu'elle préserve, l'ordre de volatilité auquel elle répond, et l'impact
+CRO (\cro{?}{?}{?}).
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice P.3. Réflexion CRO \niveauexpert}]
+Dans l'affaire MBONGO, l'OPJ a capturé les 16~Go de RAM du PC. Cette RAM
+contenait~: les preuves des virements, les identifiants de session bancaire,
+\emph{et} 3~Go de correspondances personnelles de MBONGO sans rapport avec
+l'affaire (échanges WhatsApp~Web, photos personnelles).
+
+L'avocat de la défense plaide que ces données personnelles n'auraient pas
+dû être collectées (violation de la vie privée, article~17 du Pacte
+international relatif aux droits civils et politiques, applicable au
+Cameroun depuis 1984).
+
+\smallskip
+(a)~Comment l'investigateur aurait-il dû anticiper ce problème avant
+la capture~?\\
+(b)~Comment le gérer dans son rapport pour préserver à la fois
+$\mathcal{O}$ et $\mathcal{C}$~?\\
+(c)~Existe-t-il une solution technique qui aurait permis de réduire
+la surface de collecte~?
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{La suite du cours.} Ce prologue vous a donné les réflexes de base
+et la tension fondamentale (Trilemme CRO) qui donne sens à toutes les
+techniques. La \textbf{Partie~I} (Chapitres~1--5) apporte la philosophie
+et l'histoire qui ancrent ces réflexes dans leur contexte intellectuel.
+La \textbf{Partie~II} (Chapitres~6--9) formalise le Processus Investigatif
+Universel, la chaîne de custody et les outils d'acquisition. La
+\textbf{Partie~III} (Chapitres~10--13) en donne le cadre juridique et déontologique. L'UE suivante, SEC4052 (Investigation numérique avancée), vous entraîne ensuite sur des systèmes réels (Windows, réseau, mobile, cloud) avec les cas qui traversent ce cours.
+\end{boxinfo}

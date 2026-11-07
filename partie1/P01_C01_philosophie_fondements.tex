@@ -1,0 +1,769 @@
+% ============================================================================
+% Fichier  : partie1/P01_C01_philosophie_fondements.tex
+% Titre    : Philosophie et Fondements de l'Investigation Numérique
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- Juin 2026
+% ============================================================================
+
+\chapter{Philosophie et Fondements de l'Investigation Numérique}
+\label{chap:phi-fond}
+
+\epigraph{%
+    « L'archéologie ne cherche pas à retrouver la continuité ininterrompue~;
+    elle établit ce qu'il nous est possible de connaître. »%
+}{Michel Foucault, \textit{L'Archéologie du savoir}, 1969}
+
+\niveauChapitre{Fondamental}{%
+    Aucun prérequis. Ce chapitre articule philosophie, épistémologie et
+    mathématiques à un niveau accessible. Les équations servent à préciser
+    des intuitions, non à les remplacer.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Caractériser l'investigation numérique comme pratique philosophique
+          à part entière, distincte d'une simple maîtrise d'outils.
+    \item Comprendre la notion foucaldienne de \termecle{régime de vérité
+          numérique} et l'appliquer à la périodisation de la discipline.
+    \item Maîtriser les fondements mathématiques mobilisés en forensique~:
+          entropie de Shannon, théorie des graphes, sensibilité aux
+          conditions initiales.
+    \item Articuler le \termecle{paradoxe de l'authenticité invisible}
+          avec le Trilemme CRO comme grille de lecture unifiée.
+    \item Formuler les obligations éthiques de l'investigateur numérique
+          à partir de la notion de \termecle{praxis de liberté}.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section{L'Investigation Numérique comme Pratique Discursive}
+% ============================================================================
+
+\subsection{Au-delà de la technique : une discipline philosophique}
+
+L'investigation numérique est souvent présentée comme une affaire d'outils~:
+Autopsy pour analyser les disques, Volatility pour la mémoire, Wireshark pour
+le réseau. Cette réduction est non seulement inexacte -- elle est dangereuse.
+Un investigateur réduit à ses outils est un artisan. Ce cours forme des
+praticiens capables de produire des conclusions défendables devant n'importe
+quel tribunal, dans n'importe quel contexte, avec les outils disponibles au
+moment de l'investigation. Cela exige une \textbf{théorie}, pas seulement
+une boîte à outils.
+
+\medskip
+
+La théorie commence ici, avec une question que Foucault aurait reconnue~:
+\textit{qu'est-ce qui fait qu'un énoncé numérique compte comme preuve à
+une époque donnée ?} Cette question n'est pas rhétorique. La réponse a changé
+quatre fois depuis 1970, et elle changera encore. L'investigateur qui ne
+comprend pas ces changements travaille dans l'obscurité~; celui qui les
+comprend peut anticiper les défis de l'audience avant même de toucher
+le premier disque dur.
+
+\begin{boxdef}
+\textbf{Investigation numérique}\index{investigation numérique} (\textit{Digital forensics}):
+Discipline scientifique appliquée ayant pour objet l'identification,
+la préservation, l'analyse et la présentation de preuves numériques en
+respectant des méthodes juridiquement admissibles. Elle mobilise
+simultanément l'informatique, le droit, les mathématiques et la philosophie
+de la connaissance.
+\end{boxdef}
+
+\subsection{La notion foucaldienne de régime de vérité numérique}
+
+Notre cadre d'analyse s'inspire de \textit{L'Archéologie du savoir} de
+Foucault \cite{foucault1969} pour analyser l'investigation numérique comme
+\termecle{pratique discursive} productrice de vérité. Chaque période
+historique correspond à un \textbf{régime de vérité numérique} différent~:
+un système qui détermine a priori ce qui peut compter comme preuve légitime,
+quelles méthodes d'investigation sont autorisées, quelles institutions sont
+habilitées à certifier la vérité numérique, et quel statut épistémique est
+accordé à l'investigateur.
+
+\begin{boxdef}
+\textbf{Régime de vérité numérique}\index{régime de vérité numérique}: Système
+historiquement situé qui détermine, de manière a priori~: les types de
+traces considérées comme preuves légitimes~; les techniques d'investigation
+autorisées~; les institutions habilitées à certifier~; les conditions
+d'acceptabilité juridique et sociale~; et le statut épistémique de
+l'investigateur comme sujet de savoir.
+\end{boxdef}
+
+Cette notion est plus qu'un exercice académique. Elle explique pourquoi
+certaines preuves irréfutables sur le plan technique restent irrecevables
+sur le plan juridique~: elles appartiennent à un régime de vérité que le
+droit n'a pas encore assimilé. Elle explique aussi pourquoi un investigateur
+formé uniquement sur les outils actuels sera dépassé dans dix ans, tandis
+que celui qui comprend la logique des régimes pourra s'adapter.
+
+\subsection{Périodisation mathématique des régimes}
+
+La périodisation des régimes de vérité repose sur quatre axes d'analyse
+dont la dominance relative définit chaque époque. Pour toute période
+historique $t$, le régime est caractérisé par un \textbf{vecteur de
+dominance} \cite{minka2025cro}~:
+
+\begin{equation}
+\vec{R}_t = \bigl(\alpha_T,\; \alpha_J,\; \alpha_S,\; \alpha_P\bigr)
+\quad \text{avec} \quad \sum_{i} \alpha_i = 1
+\label{eq:vecteur-regime}
+\end{equation}
+
+où $\alpha_T$ représente la dominance technologique, $\alpha_J$ la
+dominance juridique et normative, $\alpha_S$ la dominance sociale et
+culturelle, et $\alpha_P$ la dominance des pratiques professionnelles.
+La transition d'un régime $\vec{R}_t$ à son successeur $\vec{R}_{t+1}$
+obéit à une équation de transition non linéaire~:
+
+\begin{equation}
+\vec{R}_{t+1} = F\bigl(\vec{R}_t,\; \Delta\mathrm{Tech}_t,\;
+\Delta\mathrm{Legal}_t,\; \mathcal{I}_t\bigr)
+\label{eq:transition}
+\end{equation}
+
+où $\mathcal{I}_t$ représente l'ensemble des incidents critiques de la
+période $t$ -- les affaires qui ont contraint le régime à se reconfigurer.
+
+\bigskip
+
+Le tableau suivant synthétise l'évolution des régimes depuis l'émergence
+de la discipline~\cite{pollitt2010history,garfinkel2010next}~:
+
+\begin{tableaucours}{p{2.0cm}p{2.8cm}p{3.2cm}p{3.4cm}}{%
+    \tableauHeader{Période} &
+    \tableauHeader{Régime dominant} &
+    \tableauHeader{Preuve paradigmatique} &
+    \tableauHeader{Autorité épistémique}
+}
+1970--1990 & Technique $(\alpha_T \approx 0.7)$ & Log système, adresse IP &
+    Expert technique isolé \\
+1990--2000 & Juridique $(\alpha_J \approx 0.5)$ & Chaîne de custody & Tribunal \\
+2000--2010 & Standardisé $(\alpha_P \approx 0.5)$ & Conformité ISO/IEC & Organisme
+    de certification \\
+2010--2020 & Computationnel $(\alpha_T \approx 0.6)$ & Analyse big data &
+    Algorithme \\
+2020--\ldots & Quantique / ZK & Preuve à divulgation nulle &
+    \sigle{IA} / Protocole \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}
+{\small\itshape Tableau~1.1. Évolution des régimes de vérité numérique
+(synthèse de l'auteur, d'après \cite{pollitt2010history} et \cite{minka2025cro})}
+\end{center}
+
+% ============================================================================
+\section{Ontologie de la Trace Numérique}
+% ============================================================================
+
+\subsection{La trace comme phénomène existentiel}
+
+Dans la philosophie de Derrida, la \textit{trace} est l'inscription d'une
+absence~: quelque chose était là, a agi, et a laissé une marque. La
+\termecle{trace numérique}\index{trace numérique} est une instanciation
+particulièrement pure de cette notion~: elle est produite sans intention
+consciente de laisser une marque, elle persiste au-delà de l'action qui
+l'a générée, et elle peut être interprétée comme révélatrice d'intention
+\emph{a posteriori}.
+
+\medskip
+
+La trace numérique n'est pas une simple donnée~; elle est une
+\textbf{manifestation d'existence}. Chaque fichier créé, chaque connexion
+établie, chaque frappe de clavier enregistrée dans un journal est la
+matérialisation numérique d'un acte humain. L'investigateur qui lit ces
+traces ne lit pas de la technique~: il lit du comportement, de l'intention,
+de la relation. Cette lecture est herméneutique avant d'être technique.
+
+\begin{boiteRemarque}{Herméneutique des données}
+L'interprétation des traces numériques requiert ce que Gadamer appelle
+un \textit{cercle herméneutique}~: on ne comprend une trace qu'à la lumière
+du contexte global, et on ne comprend le contexte global qu'à la lumière
+des traces individuelles. En pratique~: un fichier \texttt{.docx} nommé
+\texttt{faux\_bon\_de\_commande.docx} n'a de signification forensique que
+replacé dans la chronologie des virements, l'historique de navigation et
+les échanges d'emails. Chaque artefact éclaire les autres.
+\end{boiteRemarque}
+
+\subsection{Temporalité numérique multidimensionnelle}
+
+Le temps numérique n'est pas linéaire. Un fichier possède jusqu'à quatre
+horodatages distincts dans le système de fichiers NTFS~:
+\textbf{M}odified, \textbf{A}ccessed, \textbf{C}hanged, \textbf{B}orn
+(horodatage de création). Ces quatre dimensions peuvent diverger de
+façon significative~: un fichier créé en 2020, modifié en 2024, mais
+accédé pour la dernière fois en 2022 raconte une histoire non linéaire.
+L'investigateur doit maîtriser cette \textbf{temporalité
+plurielle}\index{temporalité numérique} pour ne pas
+commettre d'erreurs d'interprétation.
+
+\begin{tableaucours}{p{2.2cm}p{3.8cm}p{5.2cm}}{%
+    \tableauHeader{Horodatage} &
+    \tableauHeader{Signification} &
+    \tableauHeader{Remarque forensique}
+}
+\texttt{Modified} & Dernière modification du contenu & Le plus couramment
+    analysé~; peut être falsifié (\textit{timestomping}) \\
+\texttt{Accessed} & Dernier accès en lecture & Peu fiable~: Windows désactive
+    souvent la mise à jour pour des raisons de performance \\
+\texttt{Changed} & Dernière modification des métadonnées & Révèle les
+    opérations sur l'entrée MFT~; difficile à falsifier \\
+\texttt{Born} & Date de création sur ce volume & Clé pour détecter les
+    fichiers copiés (Born > Modified = copié depuis un autre volume) \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}
+{\small\itshape Tableau~1.2. Les quatre horodatages NTFS (timestamps MAC-B)
+et leur interprétation forensique}
+\end{center}
+
+La comparaison entre la preuve traditionnelle et la preuve numérique révèle
+l'ampleur de cette transformation ontologique~:
+
+\begin{tableaucours}{p{5.5cm}p{5.5cm}}{%
+    \tableauHeader{Preuve traditionnelle} &
+    \tableauHeader{Preuve numérique}
+}
+Matérialité tangible, physique & Immatérialité des bits \\
+Stabilité physique dans le temps & Volatilité et mutabilité \\
+Authenticité portée par l'objet & Authenticité par la chaîne de confiance \\
+Temporalité linéaire, univoque & Temporalité multidimensionnelle (MAC-B) \\
+Falsification visible à l'expert & Falsification indétectable sans hachage \\
+Localité géographique claire & Dispersion cloud multi-juridictionnelle \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}
+{\small\itshape Tableau~1.3. Transition ontologique de la preuve~:
+du physique au numérique}
+\end{center}
+
+% ============================================================================
+\section{Épistémologie de la Preuve Numérique}
+% ============================================================================
+
+\subsection{La crise de la vérité numérique}
+
+L'ère numérique engendre une \textbf{crise de la vérité} sans précédent.
+Trois phénomènes convergents l'alimentent~:
+
+\begin{itemize}
+    \item \textbf{Manipulation algorithmique~:} les \textit{deepfakes}, les
+          documents générés par intelligence artificielle, les voix synthétiques
+          brouillent la frontière entre l'authentique et le fabriqué avec une
+          précision qui dépasse la capacité de détection humaine non assistée.
+
+    \item \textbf{Érosion de l'autorité épistémique~:} la multiplication des
+          sources d'information, la désintermédiation des médias et la
+          fragmentation des espaces discursifs ont détruit le consensus sur
+          ce qui constitue une source fiable.
+
+    \item \textbf{Fragmentation du réel~:} les mêmes événements peuvent être
+          documentés par des enregistrements contradictoires, tous authentiques,
+          correspondant à des points de vue partiels sur une réalité complexe.
+\end{itemize}
+
+L'investigateur numérique devient dans ce contexte un
+\textbf{archiviste du réel}\index{archiviste du réel}~: celui dont le rôle
+est de préserver l'intégrité de la mémoire collective contre l'effacement,
+la falsification et la réécriture. Ce rôle dépasse largement le cadre
+judiciaire~; il touche à la démocratie, à la justice et à l'histoire.
+
+\subsection{La théorie de Kuhn appliquée à la forensique}
+
+Thomas Kuhn, dans \textit{La Structure des révolutions scientifiques}
+\cite{kuhn1962}, a montré que les sciences ne progressent pas par accumulation
+continue mais par ruptures paradigmatiques. La forensique numérique illustre
+parfaitement ce modèle~: chaque décennie depuis 1970 a correspondu à un
+changement de paradigme, pas à une simple amélioration.
+
+\medskip
+
+Le paradigme \textbf{technique} (1970--1990) posait que la vérité numérique
+était une affaire d'experts isolés lisant des logs. Le paradigme
+\textbf{juridique} (1990--2000) a introduit la chaîne de custody et fait
+du tribunal l'arbitre final. Le paradigme \textbf{standardisé} (2000--2010)
+a délégué cette autorité aux organismes de certification (\sigle{ISO/IEC}).
+Le paradigme \textbf{computationnel} (2010--2020) a transféré l'autorité
+aux algorithmes d'analyse massive. Le paradigme \textbf{quantique/ZK}
+(2020--\ldots) en cours de formation pose que la vérité numérique peut et
+doit être prouvée sans divulgation de contenu.
+
+\medskip
+
+Chaque transition a rendu caduques des pans entiers de la pratique
+existante. Un investigateur formé uniquement dans le paradigme standardisé, maîtrisant parfaitement les procédures ISO~27037~\cite{iso27037}, n'est pas
+naturellement préparé à travailler avec des preuves à divulgation nulle.
+C'est pourquoi ce cours enseigne les \emph{fondements}, pas les procédures~:
+les fondements survivent aux changements de paradigme.
+
+% ============================================================================
+\section{Fondements Mathématiques de la Discipline}
+% ============================================================================
+
+Les mathématiques de l'investigation numérique ne sont pas décoratives~:
+elles fournissent des outils opérationnels utilisés quotidiennement.
+Trois théories fondent la discipline.
+
+\subsection{Théorie de l'information : l'entropie de Shannon}
+\label{subsec:shannon}
+
+La théorie de l'information de Shannon \cite{shannon1948} quantifie
+l'incertitude contenue dans un système d'information. Son concept central,
+l'\termecle{entropie informationnelle}\index{entropie de Shannon}, est
+défini par~:
+
+\begin{equation}
+H(X) = -\sum_{i=1}^{n} P(x_i) \log_2 P(x_i)
+\label{eq:shannon}
+\end{equation}
+
+où $X$ est une variable aléatoire prenant les valeurs $x_1, \ldots, x_n$
+avec les probabilités $P(x_1), \ldots, P(x_n)$, et $H(X)$ est mesurée
+en bits. Cette équation a trois applications forensiques directes~:
+
+\begin{enumerate}
+    \item \textbf{Détection de données chiffrées ou compressées~:}
+          un fichier chiffré ou compressé présente une entropie proche de~8
+          bits/octet (distribution quasi uniforme des octets). Un fichier texte
+          ordinaire présente une entropie de~3 à~5 bits/octet. Un examinateur
+          peut ainsi identifier rapidement les zones d'un disque contenant
+          des données potentiellement chiffrées.
+
+    \item \textbf{Détection de stéganographie~:} l'insertion de données cachées
+          dans un fichier image ou audio modifie la distribution statistique
+          des pixels ou des échantillons, entraînant une divergence entropique
+          mesurable par rapport à un fichier non modifié de même type.
+
+    \item \textbf{Analyse de malware~:} les sections de code d'un exécutable
+          malveillant chiffré (shellcode chiffré, packer) présentent une
+          entropie anormalement haute, ce qui permet de les identifier avant
+          même d'exécuter le binaire.
+\end{enumerate}
+
+\begin{boxartefact}{Entropie d'un fichier - indicateur forensique}
+\textbf{Interprétation pratique de l'entropie~:}\\[0.5ex]
+\begin{tabular}{p{3cm}p{7.5cm}}
+$H \in [0, 1]$ & Fichier quasi vide ou très répétitif (logs compressés, fichiers
+    sparse) \\
+$H \in [3, 5]$ & Texte naturel, code source, XML/JSON non compressé \\
+$H \in [6, 7]$ & Données binaires compilées, exécutables standard \\
+$H \in [7.5, 8]$ & Chiffrement, compression, stéganographie -- investigation
+    approfondie recommandée \\
+\end{tabular}
+\end{boxartefact}
+
+\subsection{Théorie des graphes : modélisation des relations}
+
+L'analyse relationnelle repose sur la \termecle{théorie des graphes},
+qui modélise les entités et leurs interactions~:
+
+\begin{equation}
+G = (V, E) \quad \text{avec} \quad E \subseteq V \times V
+\label{eq:graphe}
+\end{equation}
+
+où $V$ est l'ensemble des \textit{sommets} (entités~: personnes, machines,
+comptes, adresses IP) et $E$ l'ensemble des \textit{arêtes} (relations~:
+communications, transferts, accès). Un graphe pondéré $G = (V, E, w)$ où
+$w : E \to \mathbb{R}$ associe un poids à chaque relation (volume de
+communications, fréquence, montants transférés) est particulièrement
+utile en investigation financière.
+
+\medskip
+
+Les applications forensiques sont nombreuses~:
+
+\begin{itemize}
+    \item \textbf{Analyse de réseau de communication~:} les échanges d'emails
+          ou de messages forment un graphe dont les algorithmes de centralité
+          (PageRank, betweenness centrality) permettent d'identifier les
+          acteurs clés d'un réseau criminel.
+    \item \textbf{Corrélation d'incidents~:} les logs de plusieurs systèmes
+          peuvent être modélisés comme un graphe temporel pour reconstituer
+          un chemin d'attaque.
+    \item \textbf{Forensique blockchain~:} les transactions
+          cryptomonnaies forment un graphe de flux dont l'analyse permet
+          de remonter des fonds jusqu'à des entités identifiables.
+\end{itemize}
+
+\subsection{Sensibilité aux conditions initiales}
+
+L'investigation numérique opère dans des systèmes complexes où de minuscules
+altérations peuvent avoir des conséquences considérables. Cela est formalisé
+par la théorie du chaos~: pour un système dynamique, la distance entre
+deux trajectoires initialement proches croît exponentiellement~:
+
+\begin{equation}
+\delta(t) \approx \delta(0) \cdot e^{\lambda t}
+\label{eq:lyapunov}
+\end{equation}
+
+où $\lambda$ est l'exposant de Lyapunov caractérisant la sensibilité du
+système. En forensique, ce résultat justifie mathématiquement l'obsession
+pour la préservation de l'intégrité~: une modification infinitésimale de
+l'état initial (allumer le PC, monter une partition) peut produire
+une divergence massive dans l'état final (modification de centaines
+d'horodatages, création de fichiers temporaires, mise à jour du registre).
+La sensibilité aux conditions initiales est la justification théorique
+profonde du principe d'\textbf{intégrité}.
+
+% ============================================================================
+\section{Le Paradoxe de l'Authenticité Invisible}
+% ============================================================================
+
+\subsection{Énoncé du paradoxe}
+
+Le \termecle{paradoxe de l'authenticité invisible}\index{paradoxe de
+l'authenticité invisible}, théorisé dans \cite{minka2025zknr}, capture
+la tension fondamentale entre authentification et confidentialité~:
+
+\begin{quotation}
+\textit{Plus une preuve numérique est authentique et vérifiable, plus elle
+tend à révéler des informations sur son contenu et son origine, compromettant
+ainsi la confidentialité. Inversement, plus une preuve préserve la
+confidentialité, plus son authenticité devient difficile à établir de
+manière certaine.}
+\end{quotation}
+
+Cette tension peut s'exprimer comme une relation d'incertitude analogue
+au principe d'Heisenberg~:
+
+\begin{equation}
+\Delta\mathcal{A} \cdot \Delta\mathcal{C} \;\geq\; \hbar_{\mathrm{num}}
+\label{eq:authenticite-invisible}
+\end{equation}
+
+où $\Delta\mathcal{A}$ est l'incertitude sur l'authenticité (fiabilité de
+la preuve), $\Delta\mathcal{C}$ est l'incertitude sur la confidentialité
+(protection de l'information), et $\hbar_{\mathrm{num}}$ est une constante
+numérique fondamentale caractérisant le système considéré.
+
+\begin{boiteRemarque}{Statut de la formule~\eqref{eq:authenticite-invisible}}
+Cette relation d'incertitude est une \emph{analogie formalisée}, pas une
+dérivation de la mécanique quantique. Sa valeur est heuristique~: elle
+nomme une tension réelle et irréductible, lui donne une forme mathématique
+précise, et ouvre la voie à des mesures opérationnelles. La constante
+$\hbar_{\mathrm{num}}$ dépend du système cryptographique et du contexte
+juridique~; sa quantification précise est l'objet de travaux en cours
+au LIMSI.
+\end{boiteRemarque}
+
+\subsection{Implications épistémologiques}
+
+Le paradoxe soulève trois questions profondes que l'investigateur doit
+intégrer dans sa pratique~:
+
+\begin{enumerate}
+    \item \textbf{Peut-on savoir qu'une preuve est authentique sans
+          en connaître le contenu~?} Les preuves à divulgation nulle
+          (protocoles ZK) répondent oui, à condition d'accepter que
+          la preuve change de nature~: elle n'est plus un objet à examiner
+          mais un processus à vérifier.
+
+    \item \textbf{Comment fonder la confiance dans ce qui reste invisible~?}
+          La réponse est institutionnelle autant que technique~: la confiance
+          repose sur la robustesse mathématique du protocole ET sur la
+          légitimité de l'institution qui le met en œuvre.
+
+    \item \textbf{L'authenticité peut-elle exister sous forme chiffrée~?}
+          Oui~: un hash cryptographique prouve l'intégrité d'un fichier
+          sans en révéler le contenu. Mais l'opposabilité juridique de
+          cette preuve reste dépendante de la juridiction.
+\end{enumerate}
+
+\subsection{Résolution partielle : les protocoles ZK-NR}
+
+Les protocoles \termecle{Zero-Knowledge Non-Repudiation} (ZK-NR)
+\cite{minka2025zknr} apportent une résolution pratique en permettant~:
+
+\[
+\text{Vérification} \quad \text{sans} \quad \text{Divulgation}
+\]
+\[
+\text{Confiance} \quad \text{sans} \quad \text{Transparence totale}
+\]
+\[
+\text{Preuve} \quad \text{sans} \quad \text{Révélation du contenu}
+\]
+
+Cette résolution n'est pas magique~: elle ne supprime pas la tension
+du paradoxe, elle en gère les effets de façon contrôlée. La Partie~VI
+du cours SEC4052 (Chapitres~26--32) est entièrement consacrée à ces protocoles.
+Le paradoxe de l'authenticité invisible sera alors revisité dans toute
+sa profondeur mathématique.
+
+% ============================================================================
+\section{Le Trilemme CRO comme Grille de Lecture Unifiée}
+% ============================================================================
+
+\subsection{Genèse et formalisation}
+
+Les tensions identifiées dans les sections précédentes, entre
+authentification et confidentialité, entre opposabilité et protection de
+la vie privée, entre rigueur technique et admissibilité juridique, ne
+sont pas des accidents. Elles constituent la structure profonde de toute
+investigation numérique, formalisée par le \termecle{Trilemme CRO}
+\cite{minka2025cro}.
+
+\begin{boxCRO}
+\textbf{Le Trilemme CRO. Définition formelle}
+
+\medskip
+Soit $\Pi$ un protocole ou une méthode d'investigation numérique. On définit~:
+\begin{itemize}
+    \item $\mathcal{C}(\Pi) \in [0,1]$~: indice de confidentialité,
+          mesure dans quelle proportion $\Pi$ protège les informations
+          sensibles des parties impliquées.
+    \item $\mathcal{R}(\Pi) \in [0,1]$~: indice de fiabilité,
+          mesure dans quelle proportion $\Pi$ garantit l'intégrité et
+          la reproductibilité des preuves.
+    \item $\mathcal{O}(\Pi) \in [0,1]$~: indice d'opposabilité juridique,
+          mesure dans quelle proportion $\Pi$ produit des preuves
+          recevables et défendables devant un tribunal.
+\end{itemize}
+
+\textbf{Énoncé du trilemme \cite{minka2025cro}~:}
+\begin{equation}
+\Gamma_{CRO}(\Pi) \;=\; \max\bigl\{\mathcal{C}(\Pi),\;
+\mathcal{R}(\Pi),\; \mathcal{O}(\Pi)\bigr\}
+\;\geq\; 0.4 + \mathrm{negl}(\lambda)
+\label{eq:CRO}
+\end{equation}
+
+où $\lambda$ est le paramètre de sécurité du système cryptographique sous-jacent
+et $\mathrm{negl}(\lambda)$ une fonction négligeable.
+
+\medskip
+\textit{Interprétation~: aucun protocole ne peut simultanément maximiser
+les trois indices. Au moins l'une des trois dimensions sera contrainte à
+demeurer sous son maximum théorique. La compétence de l'investigateur
+se mesure précisément à sa capacité à choisir et justifier
+le compromis optimal pour le contexte.}
+\end{boxCRO}
+
+\subsection{Le Trilemme comme boussole de la pratique}
+
+À chaque étape d'une investigation, l'analyste du Trilemme CRO pose
+trois questions~:
+
+\begin{enumerate}
+    \item \textbf{Cette technique augmente-t-elle $\mathcal{C}$, $\mathcal{R}$
+          ou $\mathcal{O}$ ?} Si elle augmente $\mathcal{R}$ (ex.~: capture
+          RAM complète), quelle dimension sacrifie-t-elle ?
+          ($\mathcal{C}$~: accès à des données personnelles non pertinentes).
+
+    \item \textbf{Le compromis est-il justifiable et documenté~?} Un
+          compromis non documenté n'est pas défendable. Un compromis documenté
+          et justifié est presque toujours défendable.
+
+    \item \textbf{Ce compromis est-il proportionnel à l'enjeu~?} Une
+          investigation pour un détournement de 500~000~FCFA ne justifie
+          pas la même atteinte à $\mathcal{C}$ qu'une investigation pour
+          une affaire de terrorisme.
+\end{enumerate}
+
+Le Trilemme CRO n'est pas une contrainte abstraite~: c'est l'outil qui
+transforme chaque décision technique en décision éthique consciente. Il
+sera appliqué systématiquement à chaque chapitre de ce cours, sous la
+forme de l'encadré \textbf{Analyse~CRO}.
+
+% ============================================================================
+\section{Éthique et Responsabilité de l'Investigateur}
+% ============================================================================
+
+\subsection{L'investigateur comme philosophe-praticien}
+
+L'investigateur numérique moderne endosse ce que Ricoeur appellerait
+une \textbf{identité narrative composite}~: il est simultanément~:
+
+\begin{enumerate}
+    \item \textbf{Archéologue du digital~:} il exhume et préserve les traces
+          numériques comme un archéologue préserverait des vestiges -- avec
+          la conscience que toute intervention modifie irréversiblement ce
+          qu'on tente de conserver.
+
+    \item \textbf{Épistémologue pratique~:} il évalue en permanence la
+          fiabilité de ce qu'il trouve, distingue la corrélation de la
+          causalité, et refuse de conclure au-delà de ce que les preuves
+          permettent.
+
+    \item \textbf{Éthicien appliqué~:} il navigue des dilemmes moraux réels,
+          souvent sans temps de réflexion, et doit avoir internalisé des
+          principes suffisamment robustes pour guider ses choix dans l'urgence.
+\end{enumerate}
+
+\subsection{L'investigation comme praxis de liberté}
+
+Bien comprise, l'investigation numérique est une \termecle{praxis de
+liberté}\index{praxis de liberté}~: elle protège les individus contre
+l'arbitraire en documentant le réel~; elle permet la reddition des comptes
+dans des sociétés où le pouvoir numérique est concentré~; elle préserve
+la mémoire collective contre l'effacement délibéré~; elle équilibre des
+rapports de force asymétriques par la transparence.
+
+\medskip
+
+Cette dimension politique et éthique n'est pas extérieure à la technique~:
+elle lui donne son sens. C'est pourquoi ce cours insiste autant sur les
+conditions juridiques d'admissibilité que sur les commandes forensiques~:
+une preuve obtenue illégalement ou de façon disproportionnée n'est pas
+seulement irrecevable, elle est une atteinte aux droits fondamentaux.
+
+\begin{boxdef}
+\textbf{Charte de l'investigateur numérique}\index{charte de l'investigateur}: Ensemble des obligations éthiques fondamentales~:
+
+\begin{enumerate}
+    \item Je préserverai l'intégrité de la preuve avant toute autre
+          considération, y compris celle d'efficacité.
+    \item Je respecterai la dignité numérique des personnes impliquées,
+          qu'elles soient suspectes, victimes ou témoins.
+    \item Je reconnaîtrai les limites de ma connaissance et les documenterai
+          dans mes rapports.
+    \item Je travaillerai pour la vérité, pas pour la conviction d'une
+          partie, ma loyauté est envers le tribunal, pas envers
+          le commanditaire.
+    \item Je me souviendrai que derrière chaque donnée se trouve un humain
+          dont la vie peut être affectée par mes conclusions.
+\end{enumerate}
+\end{boxdef}
+
+\subsection{Vers une éthique post-quantique}
+
+L'avènement de la cryptographie post-quantique et des preuves à divulgation
+nulle soulève de nouveaux impératifs éthiques que la pratique actuelle
+n'a pas encore intégrés. Trois enjeux majeurs~:
+
+\begin{itemize}
+    \item \textbf{La résistance à l'obsolescence~:} les preuves numériques
+          collectées aujourd'hui avec des algorithmes cryptographiques
+          classiques (RSA, ECDSA) seront potentiellement cassables dans dix
+          à quinze ans par un ordinateur quantique suffisant. L'investigateur
+          a-t-il une obligation de collecter dès maintenant avec des
+          algorithmes post-quantiques~? La réponse est oui, pour les
+          affaires à haute valeur ou longue durée.
+
+    \item \textbf{Le droit à l'oubli dans un monde de mémoire parfaite~:}
+          les capacités croissantes de stockage et de traitement permettent
+          de conserver et d'analyser des traces numériques sur des décennies.
+          L'investigateur doit intégrer le principe de proportionnalité
+          temporelle~: la durée de conservation des preuves collectées doit
+          être proportionnelle à l'enjeu judiciaire.
+
+    \item \textbf{La responsabilité des algorithmes~:} quand un outil d'IA
+          identifie un suspect ou classe un artefact, qui est responsable
+          de cette conclusion~? L'investigateur ne peut pas déléguer
+          sa responsabilité épistémique à un algorithme opaque.
+\end{itemize}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+
+\begin{itemize}
+    \item L'investigation numérique est une \textbf{pratique discursive}
+          au sens foucaldien~: chaque époque définit ses propres critères
+          de vérité numérique. Comprendre ces régimes permet d'anticiper
+          les défis judiciaires à venir.
+
+    \item Le \textbf{vecteur de dominance} $\vec{R}_t = (\alpha_T, \alpha_J,
+          \alpha_S, \alpha_P)$ formalise mathématiquement le régime de vérité
+          dominant à chaque période.
+
+    \item La \textbf{trace numérique} est une manifestation d'existence~:
+          sa lecture est herméneutique avant d'être technique. La temporalité
+          numérique est multidimensionnelle (horodatages MAC-B).
+
+    \item Trois outils mathématiques fondent la discipline~:
+          \textbf{entropie de Shannon} (détection d'anomalies),
+          \textbf{théorie des graphes} (analyse relationnelle),
+          \textbf{sensibilité aux conditions initiales} (justification
+          du principe d'intégrité).
+
+    \item Le \textbf{paradoxe de l'authenticité invisible}
+          ($\Delta\mathcal{A} \cdot \Delta\mathcal{C} \geq \hbar_{\mathrm{num}}$)
+          nomme la tension irréductible entre authentification et
+          confidentialité. Les protocoles ZK-NR en gèrent les effets,
+          sans la supprimer.
+
+    \item Le \textbf{Trilemme CRO} ($\Gamma_{CRO}(\Pi) \geq 0.4 +
+          \mathrm{negl}(\lambda)$) est la grille d'analyse qui traverse
+          tout ce cours~: toute investigation est un compromis explicite
+          entre Confidentialité, Fiabilité et Opposabilité.
+
+    \item L'investigateur est un \textbf{philosophe-praticien}~: sa
+          responsabilité est envers la vérité et la justice, pas envers
+          la conviction d'une partie. La Charte de l'investigateur
+          traduit cette responsabilité en obligations concrètes.
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~1.1. Diagnostic de régime \niveaubase}]
+Identifiez le régime de vérité numérique dominant (1970--1990,
+1990--2000, 2000--2010, 2010--2020 ou 2020--\ldots) pour chacun des
+scénarios suivants, en justifiant votre réponse par les caractéristiques
+du régime (preuve paradigmatique, autorité épistémique, vecteur dominant)~:
+
+\begin{enumerate}[(a)]
+    \item Un juge rejette une preuve numérique au motif qu'elle a été
+          collectée sans protocole de hachage documenté.
+    \item Un investigateur présente au tribunal une analyse de clustering
+          automatique de 2~millions d'emails, sans pouvoir expliquer
+          précisément comment l'algorithme a identifié les messages suspects.
+    \item Une entreprise engage un consultant qui, à partir de logs système,
+          reconstitue manuellement l'activité d'un intrus et rédige
+          un rapport non structuré mais techniquement exact.
+    \item Une unité spécialisée utilise une preuve à divulgation nulle
+          pour prouver qu'un document a été modifié, sans révéler son contenu.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~1.2. Application du Trilemme CRO \niveaumoyen}]
+Pour chacune des situations suivantes, calculez qualitativement les trois
+indices CRO (\textit{faible / moyen / élevé}), identifiez le compromis
+réalisé et évaluez s'il est justifiable~:
+
+\begin{enumerate}[(a)]
+    \item Un investigateur capture l'intégralité du trafic réseau d'une
+          entreprise pendant 72~heures pour analyser une fuite de données.
+    \item Un OPJ exige du prestataire cloud qu'il livre les données chiffrées
+          d'un suspect sans lui fournir la clé de déchiffrement.
+    \item Un analyste publie ses outils d'investigation en open source pour
+          garantir la reproductibilité de ses méthodes.
+    \item Une juridiction autorise l'utilisation d'une analyse IA pour
+          classer les messages comme ``suspects'' mais interdit à l'avocat
+          de la défense d'accéder à l'algorithme utilisé.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~1.3. Réflexion sur l'entropie \niveauexpert}]
+Vous analysez une image forensique d'un disque dur de 500~Go. L'outil
+d'analyse d'entropie détecte une zone de 47~Go présentant une entropie
+uniforme de~7.98~bits/octet. Le reste du disque présente des entropies
+variables entre 3.2 et 6.8~bits/octet.
+
+\begin{enumerate}[(a)]
+    \item Quelle est votre hypothèse principale sur la nature de cette zone~?
+    \item Proposez deux hypothèses alternatives (sans supposer d'activité
+          malveillante) qui pourraient expliquer cette observation.
+    \item Quelles analyses complémentaires effectueriez-vous pour discriminer
+          entre ces hypothèses~? Précisez les outils et les commandes.
+    \item Comment documenteriez-vous ces analyses dans votre rapport pour
+          satisfaire simultanément $\mathcal{R}$ et $\mathcal{O}$~?
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Ce qui vient.} Le Chapitre~2 reprendra le cadre foucaldien posé
+ici pour décrire, affaire par affaire, comment chaque régime de vérité
+s'est constitué historiquement. La périodisation mathématique
+$\vec{R}_t$ servira de fil conducteur. Les fondements mathématiques
+(entropie, graphes) seront mis en pratique dans la Partie~IV du cours
+SEC4052. Le Trilemme CRO et le paradoxe de l'authenticité invisible y
+seront formalisés rigoureusement dans la Partie~VI.
+\end{boxinfo}

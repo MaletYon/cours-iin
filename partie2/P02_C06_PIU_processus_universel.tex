@@ -1,0 +1,1295 @@
+% ============================================================================
+% Fichier  : partie2/P02_C06_PIU_processus_universel.tex
+% Titre    : Processus Investigatif Universel
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- Juin 2026
+% ============================================================================
+
+\chapter{Processus Investigatif Universel}
+\label{chap:PIU}
+
+\epigraph{%
+    « La qualité d'une investigation se mesure moins à la rapidité avec
+    laquelle on parvient à des conclusions qu'à la robustesse avec laquelle
+    ces conclusions résistent à la contestation contradictoire. »%
+}{Principe fondamental du PIU}
+
+\niveauChapitre{Fondamental à Intermédiaire}{%
+    Lecture de la Partie~I recommandée. Ce chapitre constitue le c\oe ur
+    méthodologique de ce cours~; toutes les parties suivantes s'y réfèrent.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Comprendre l'architecture modulaire du \termecle{Processus
+          Investigatif Universel} (PIU)~: 5~phases, 17~étapes, 3~Quality Gates.
+    \item Maîtriser la \termecle{matrice de criticité} pour calibrer le niveau
+          de rigueur adapté à chaque investigation.
+    \item Appliquer chaque étape selon trois niveaux de profondeur (minimal,
+          standard, avancé) selon les contraintes du contexte.
+    \item Conduire une investigation complète dans trois contextes distincts~:
+          particulier, entreprise et judiciaire.
+    \item Comprendre le rôle des Quality Gates comme mécanismes de contrôle
+          qualité obligatoires.
+    \item Relier chaque phase du PIU aux dimensions du Trilemme CRO.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section{Introduction et Architecture Générale}
+\label{sec:piu-intro}
+% ============================================================================
+
+\subsection{Objectifs et principes fondateurs}
+
+L'investigation, qu'elle soit menée dans un cadre personnel, professionnel ou
+judiciaire, nécessite une méthodologie rigoureuse garantissant à la fois
+l'intégrité probatoire et la défendabilité des conclusions. Ce chapitre
+présente un \termecle{Processus Investigatif Universel} (PIU), conçu pour
+s'adapter à tout contexte investigatif par le biais d'une architecture
+modulaire et scalable.
+
+Le PIU vise quatre objectifs fondamentaux~:
+\begin{enumerate}
+    \item \textbf{Établissement factuel objectif}~: documenter les faits de
+          manière reproductible et vérifiable~;
+    \item \textbf{Intégrité probatoire}~: garantir que les éléments collectés
+          conservent leur valeur probante~;
+    \item \textbf{Traçabilité complète}~: permettre l'audit de chaque étape
+          du processus investigatif~;
+    \item \textbf{Défendabilité}~: produire des conclusions résistant à la
+          contestation contradictoire.
+\end{enumerate}
+
+\subsection{Principe d'adaptabilité~: trois contextes}
+
+Le PIU emploie une terminologie neutre permettant son application dans trois
+contextes principaux~:
+\begin{itemize}
+    \item \textbf{Contexte particulier}~: investigation menée par un individu
+          pour ses intérêts propres~;
+    \item \textbf{Contexte organisationnel}~: investigation interne à une
+          entreprise ou institution~;
+    \item \textbf{Contexte judiciaire}~: expertise mandatée par une autorité
+          juridictionnelle.
+\end{itemize}
+
+Chaque étape comporte trois niveaux de profondeur (minimal, standard, avancé)
+s'ajustant selon la criticité du cas, conformément à la matrice de criticité
+du Tableau~\ref{tab:piu-criticite}.
+
+\subsection{Matrice de criticité}
+
+\begin{tableaucours}{p{3.5cm}p{2.8cm}p{2.8cm}p{2.8cm}}{%
+    \tableauHeader{Critère} &
+    \tableauHeader{Minimal} &
+    \tableauHeader{Standard} &
+    \tableauHeader{Avancé}
+}
+Enjeu financier & $<$ 10k & 10--100k & $>$ 100k \\
+Risque pénal & Nul & Contraventionnel & Correctionnel/Criminel \\
+Complexité technique & Faible & Moyenne & Haute \\
+Nombre parties prenantes & $<$ 5 & 5--20 & $>$ 20 \\
+Durée estimée & $<$ 1~semaine & 1~sem.~-- 3~mois & $>$ 3~mois \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~\ref{tab:piu-criticite}.
+Matrice de criticité et niveau de rigueur requis}\end{center}
+\label{tab:piu-criticite}
+
+\subsection{Architecture globale~: 5~phases, 17~étapes, 3~Quality Gates}
+
+Le PIU s'articule en cinq phases séquentielles comportant 17~étapes
+opérationnelles et trois points de contrôle qualité (\termecle{Quality Gates}).
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    phase/.style={
+        draw=CouleurPrimaire, fill=CouleurDef, rounded corners=4pt,
+        minimum width=9.5cm, minimum height=0.85cm,
+        font=\small\bfseries\color{CouleurPrimaire}, align=center
+    },
+    qg/.style={
+        draw=CouleurAccent, fill=CouleurAlerte, rounded corners=3pt,
+        minimum width=3.2cm, minimum height=0.7cm,
+        font=\footnotesize\bfseries\color{CouleurBordAlerte}, align=center
+    },
+    fl/.style={-{Stealth[length=5pt]}, thick, color=CouleurPrimaire}
+]
+\node[phase] (p1) at (0, 0)   {PHASE 1. Initialisation et Cadrage (E1--E3)};
+\node[qg]    (q1) at (5.5, -0.85) {QG1. Validation\\Pré-Opérationnelle};
+\node[phase] (p2) at (0, -1.7) {PHASE 2. Acquisition et Préservation (E4--E6)};
+\node[qg]    (q2) at (5.5, -2.55) {QG2. Intégrité\\Probatoire};
+\node[phase] (p3) at (0, -3.4) {PHASE 3. Investigation Analytique (E7--E10)};
+\node[qg]    (q3) at (5.5, -4.25) {QG3. Robustesse\\Analytique};
+\node[phase] (p4) at (0, -5.1) {PHASE 4. Formalisation et Transmission (E11--E13)};
+\node[phase] (p5) at (0, -6.0) {PHASE 5. Suivi Post-Transmission (E14--E17)};
+% Flèches
+\draw[fl] (p1) -- (p2);
+\draw[fl] (p2) -- (p3);
+\draw[fl] (p3) -- (p4);
+\draw[fl] (p4) -- (p5);
+% Boucle itérative
+\draw[fl, dashed, color=CouleurSecondaire]
+    (p3.east) -- ++(0.4,0) |- node[right, font=\tiny, color=CouleurSecondaire,
+    pos=0.25, align=left] {Itération\\si nécessaire} (p2.east);
+\end{tikzpicture}
+\caption{Architecture globale du Processus Investigatif Universel (PIU)}
+\label{fig:piu-architecture}
+\end{figure}
+
+\subsection{Principe des Quality Gates}
+
+Les \termecle{Quality Gates} (QG) constituent des points de contrôle
+obligatoires validant la conformité avant progression vers la phase suivante.
+Leur structure s'articule autour de critères graduels~:
+\begin{itemize}
+    \item \textbf{Critères obligatoires}~: applicables à tous les contextes~;
+    \item \textbf{Critères standard}~: pour cas moyennement complexes~;
+    \item \textbf{Critères avancés}~: pour investigations à haute criticité.
+\end{itemize}
+
+Un échec à un Quality Gate impose soit une remédiation immédiate, soit un retour
+aux étapes antérieures concernées. Trois décisions possibles~:
+\begin{description}
+    \item[\textcolor{CouleurBordLizbiz}{\textbf{VERT}}] Tous critères obligatoires
+          validés~: progression vers la phase suivante.
+    \item[\textcolor{CouleurAccent}{\textbf{ORANGE}}] Critère non bloquant
+          manquant~: progression conditionnelle avec plan de régularisation.
+    \item[\textcolor{CouleurBordAlerte}{\textbf{ROUGE}}] Critère bloquant non
+          validé~: suspension jusqu'à mise en conformité complète.
+\end{description}
+
+% ============================================================================
+\section{Phase~1~: Initialisation et Cadrage}
+\label{sec:piu-phase1}
+% ============================================================================
+
+La phase d'initialisation détermine la recevabilité de la demande investigative
+et établit les conditions opérationnelles de sa conduite.
+
+\subsection{Étape E1. Réception et Évaluation Préliminaire}
+
+\textbf{Objectif~:} Comprendre la nature de la demande et évaluer sa recevabilité
+avant tout engagement de ressources.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau minimal~:}
+\begin{itemize}
+    \item Réception de la demande d'investigation (formelle ou informelle)~;
+    \item Identification du commanditaire et vérification de sa légitimité~;
+    \item Compréhension sommaire des faits allégués~;
+    \item Évaluation première de la faisabilité technique et juridique.
+\end{itemize}
+
+\textbf{Niveau standard~:} En complément du niveau minimal~:
+\begin{itemize}
+    \item Demande de précisions écrites formelles au commanditaire~;
+    \item Vérification des autorisations légales préalables nécessaires~;
+    \item Estimation préliminaire des ressources humaines, techniques et
+          temporelles requises~;
+    \item Identification des contraintes réglementaires applicables
+          (Loi~2024/017~\cite{cameroun2024donnees}, Convention de Budapest~\cite{budapest2001} selon contexte).
+\end{itemize}
+
+\textbf{Niveau avancé~:} En complément des niveaux précédents~:
+\begin{itemize}
+    \item Analyse de risque multi-dimensionnelle (légal, réputationnel,
+          technique, financier)~;
+    \item Consultation de spécialistes pour évaluation de faisabilité~;
+    \item Étude de précédents similaires (jurisprudence, cas antérieurs)~;
+    \item Rédaction d'une note d'opportunité structurée.
+\end{itemize}
+
+\textbf{Livrable~:} \textit{Fiche d'Évaluation Initiale} comprenant~:
+description factuelle de la demande~; enjeux identifiés (financiers, juridiques,
+humains, réputationnels)~; obstacles prévisibles et risques~;
+recommandation préliminaire motivée (accepter / refuser / clarifier).
+
+\subsection{Étape E2. Décision d'Engagement}
+
+\textbf{Objectif~:} Valider formellement le lancement de l'investigation selon
+les critères de gouvernance appropriés au contexte.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau minimal~:}
+\begin{itemize}
+    \item Décision personnelle d'engagement documentée~;
+    \item Vérification d'absence de conflit d'intérêt personnel~;
+    \item Validation de la disponibilité temporelle et des ressources.
+\end{itemize}
+
+\textbf{Niveau standard~:}
+\begin{itemize}
+    \item Validation hiérarchique ou contractuelle formalisée~;
+    \item Signature d'un mandat d'investigation ou lettre de mission~;
+    \item Définition précise du périmètre d'investigation et des limitations~;
+    \item Établissement d'un budget prévisionnel et allocation de ressources~;
+    \item Détermination des délais et jalons intermédiaires.
+\end{itemize}
+
+\textbf{Niveau avancé~:}
+\begin{itemize}
+    \item Validation collégiale impliquant expertises multiples (technique,
+          juridique, éthique)~;
+    \item Obtention des autorisations formelles requises (mandat judiciaire,
+          réquisition~; art.~52 \loicam{2010/012}~\cite{cameroun2010a} en contexte camerounais)~;
+    \item Définition du niveau de classification sécuritaire~;
+    \item Constitution d'un comité de pilotage si investigation complexe.
+\end{itemize}
+
+\textbf{Livrable~:} \textit{Mandat d'Investigation} comprenant~: périmètre précis
+et exclusions explicites~; délais avec jalons intermédiaires~; budget et
+ressources allouées~; niveau d'autorité conféré~; obligations de confidentialité~;
+conditions de transmission finale.
+
+\subsection{Étape E3. Planification Opérationnelle}
+
+\textbf{Objectif~:} Structurer l'investigation en mobilisant les ressources
+adéquates et en anticipant les difficultés opérationnelles.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau minimal~:}
+\begin{itemize}
+    \item Auto-évaluation des compétences requises versus disponibles~;
+    \item Listage des outils et équipements nécessaires~;
+    \item Création d'un calendrier sommaire avec échéances principales.
+\end{itemize}
+
+\textbf{Niveau standard~:}
+\begin{itemize}
+    \item Constitution d'une équipe avec attribution claire des rôles~;
+    \item Rédaction d'un plan d'investigation structuré (axes, méthodologies,
+          jalons, hypothèses préliminaires)~;
+    \item Configuration et test des outils techniques~;
+    \item Mise en place d'un système de documentation et traçabilité.
+\end{itemize}
+
+\textbf{Niveau avancé~:}
+\begin{itemize}
+    \item Planification détaillée type gestion de projet (WBS, Gantt)~;
+    \item Analyse de risque opérationnelle exhaustive avec plan de contingence~;
+    \item Test et calibration des outils critiques~;
+    \item Création d'un environnement de travail sécurisé~;
+    \item Établissement de protocoles d'escalade pour situations critiques.
+\end{itemize}
+
+\textbf{Livrable~:} \textit{Plan d'Investigation v1.0} comprenant~: objectifs
+et critères de succès mesurables~; méthodologie générale~; ressources mobilisées~;
+échéancier prévisionnel~; procédures de gestion des imprévus.
+
+\subsection{Quality Gate~1. Validation Pré-Opérationnelle}
+
+\textbf{Objectif~:} Garantir que l'ensemble des conditions préalables au démarrage
+effectif sont satisfaites.
+
+\textbf{Critères obligatoires (tous contextes)~:}
+\begin{itemize}
+    \item Mandat d'investigation formalisé et validé par l'autorité compétente~;
+    \item Périmètre clairement défini, compris et accepté par toutes parties~;
+    \item Ressources minimales identifiées et effectivement disponibles~;
+    \item Plan d'investigation v1.0 rédigé et approuvé~;
+    \item Outils nécessaires opérationnels ou accessibles dans les délais.
+\end{itemize}
+
+\textbf{Critères standard~:}
+\begin{itemize}
+    \item Validation légale et/ou déontologique obtenue auprès des instances~;
+    \item Protocoles de documentation établis et compris de tous~;
+    \item Système de traçabilité configuré et testé.
+\end{itemize}
+
+\textbf{Critères avancés~:}
+\begin{itemize}
+    \item Plan de contingence documenté couvrant les risques identifiés~;
+    \item Tests opérationnels des outils techniques réalisés~;
+    \item Assurances et couvertures légales vérifiées si applicable.
+\end{itemize}
+
+\begin{boxPNC}
+\textbf{Application OPJ. Contexte camerounais, QG1~:}
+
+En contexte judiciaire camerounais, le passage au VERT du QG1 exige~:
+\begin{enumerate}
+    \item Réquisition judiciaire ou mandat du procureur (art.~52 \loicam{2010/012})~;
+    \item Disponibilité d'un kit forensique de base (write blocker,
+          FTK Imager, clé USB bootable)~;
+    \item Information du suspect de ses droits (art.~5 CPP Cameroun)
+          si l'investigation implique une perquisition.
+\end{enumerate}
+\end{boxPNC}
+
+% ============================================================================
+\section{Phase~2~: Acquisition et Préservation}
+\label{sec:piu-phase2}
+% ============================================================================
+
+La phase d'acquisition vise à constituer la base probatoire de l'investigation
+en garantissant l'intégrité et la recevabilité juridique des éléments collectés.
+
+\subsection{Étape E4. Collecte Systématique des Éléments Probatoires}
+
+\textbf{Objectif~:} Rassembler exhaustivement les éléments factuels pertinents
+en préservant leur intégrité et leur valeur probatoire.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau minimal~:}
+\begin{itemize}
+    \item Identification systématique des sources d'information disponibles~;
+    \item Collecte documentaire (contrats, correspondances, factures, notes)~;
+    \item Réalisation de photographies ou copies des éléments physiques~;
+    \item Rédaction de notes de constatation horodatées.
+\end{itemize}
+
+\textbf{Niveau standard~:}
+\begin{itemize}
+    \item Application d'un protocole de collecte standardisé et documenté~;
+    \item Documentation de chaque action~: date/heure, méthode, outils,
+          identité du collecteur, état initial, localisation~;
+    \item Attribution d'une numérotation séquentielle unique à chaque élément~;
+    \item Photographie de contexte (scène, emplacement) avant prélèvement.
+\end{itemize}
+
+\textbf{Niveau avancé~:}
+\begin{itemize}
+    \item Application stricte des protocoles \norme{ISO~27037}~\cite{iso27037} et
+          principes ACPO~\cite{acpo2012}~;
+    \item Création d'images forensiques bit-à-bit avec write blocker~;
+    \item Calcul d'empreintes cryptographiques (SHA-256 et SHA-512) pour
+          tous éléments numériques~;
+    \item Réalisation de prélèvements en présence de témoins assermentés
+          si contexte judiciaire.
+\end{itemize}
+
+\textbf{Livrable~:} \textit{Inventaire des Éléments Probatoires} comprenant~:
+liste numérotée~; description non ambiguë~; provenance et circonstances~;
+état initial~; empreintes cryptographiques~; chaîne de traçabilité initiale.
+
+\subsection{Étape E5. Sécurisation et Préservation}
+
+\textbf{Objectif~:} Garantir l'intégrité durable des éléments collectés et
+prévenir toute altération, perte ou accès non autorisé.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau minimal~:}
+\begin{itemize}
+    \item Création immédiate de copies de sauvegarde sur support physique distinct~;
+    \item Stockage sécurisé dans lieu physique protégé~;
+    \item Règle stricte~: interdiction de travailler directement sur originaux~;
+    \item Journal des accès (qui, quand, pourquoi).
+\end{itemize}
+
+\textbf{Niveau standard~:} Principe de sauvegarde 3-2-1~:
+\begin{itemize}
+    \item 3~copies de chaque élément~;
+    \item 2~types de supports différents (disque dur, cloud, support optique)~;
+    \item 1~copie en localisation géographique distincte~;
+    \item Chiffrement systématique des données sensibles (AES-256)~;
+    \item Vérification régulière (hebdomadaire) de l'intégrité par hash.
+\end{itemize}
+
+\textbf{Niveau avancé~:}
+\begin{itemize}
+    \item Utilisation de blockchain privée ou horodatage qualifié~;
+    \item Stockage en coffre-fort numérique certifié~;
+    \item Tests d'intégrité automatisés quotidiens~;
+    \item Plan de continuité opérationnelle documenté.
+\end{itemize}
+
+\textbf{Livrable~:} \textit{Registre de Préservation} comprenant~:
+certificats d'intégrité (hash avec algorithme)~; schéma de localisation des
+copies~; journal d'accès horodaté~; résultats des tests d'intégrité.
+
+\subsection{Étape E6. Identification et Cartographie des Parties Prenantes}
+
+\textbf{Objectif~:} Recenser exhaustivement toutes les personnes et entités ayant
+un lien direct ou indirect avec les faits investigués.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau minimal~:}
+\begin{itemize}
+    \item Listage des parties directement mentionnées~;
+    \item Distinction sommaire entre acteurs principaux et secondaires~;
+    \item Recueil des coordonnées disponibles~;
+    \item Notation des relations apparentes entre parties.
+\end{itemize}
+
+\textbf{Niveau standard~:}
+\begin{itemize}
+    \item Cartographie relationnelle détaillée (hiérarchiques, contractuels,
+          familiaux)~;
+    \item Classification par catégories~: parties directes~; témoins directs~;
+          témoins indirects~; experts techniques~; autorités de tutelle~;
+    \item Priorisation raisonnée pour la conduite des entretiens~;
+    \item OSINT systématique dans limites légales (cf. Chapitre~\ref{chap:etat-art}).
+\end{itemize}
+
+\textbf{Niveau avancé~:}
+\begin{itemize}
+    \item Analyse de réseau social formelle (SNA) avec logiciels dédiés~;
+    \item Profilage préliminaire adapté au contexte~;
+    \item Évaluation du risque de collusion ou de coordination entre parties.
+\end{itemize}
+
+\textbf{Livrable~:} \textit{Matrice des Parties Prenantes} avec pour chaque
+personne/entité~: identité et coordonnées~; rôle et catégorie~; niveau
+d'implication estimé (1--5)~; crédibilité préliminaire~; priorité d'entretien~;
+schéma relationnel visuel.
+
+\subsection{Quality Gate~2. Intégrité Probatoire}
+
+\textbf{Objectif~:} Vérifier que la base probatoire constituée est complète,
+intègre, traçable et juridiquement exploitable.
+
+\textbf{Critères obligatoires~:}
+\begin{itemize}
+    \item Inventaire probatoire exhaustif, numéroté de manière unique~;
+    \item Chaîne de traçabilité documentée sans interruption pour chaque élément~;
+    \item Sauvegardes multiples vérifiées et opérationnelles~;
+    \item Impossibilité technique de modification non tracée~;
+    \item Journal d'accès à jour, sans anomalie détectée.
+\end{itemize}
+
+\textbf{Critères standard~:}
+\begin{itemize}
+    \item Hash cryptographiques calculés et archivés dans localisation distincte~;
+    \item Tests d'intégrité périodiques réalisés (100\% des hash correspondants)~;
+    \item Conformité légale de toutes les méthodes de collecte validée.
+\end{itemize}
+
+\textbf{Rationale critique~:} Un élément probatoire non conforme à QG2 risque
+l'irrecevabilité juridique (vice de procédure), la contestabilité (doute sur
+authenticité) ou l'inexploitabilité (altération). La détection précoce évite
+l'invalidation tardive de l'ensemble du travail investigatif.
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Phase~2~: Acquisition et Préservation}
+
+$\mathcal{C}$~: La collecte exhaustive (E4 niveau avancé) peut inclure des
+données sans rapport avec l'affaire. La proportionnalité doit guider le
+périmètre de collecte.
+
+$\mathcal{R}$~: Le principe 3-2-1 (E5) et le hachage SHA-256+SHA-512 maximisent
+la fiabilité. L'impossibilité technique de modification non tracée est le
+critère QG2 le plus important.
+
+$\mathcal{O}$~: La chaîne de traçabilité continue et les hash documentés sont
+les preuves d'intégrité opposables en justice.
+
+\cro{$\downarrow$ proportionnalité}{$\uparrow\uparrow$ maximisée}{$\uparrow$ par la custody}
+\end{boxCRO}
+
+% ============================================================================
+\section{Phase~3~: Investigation Analytique}
+\label{sec:piu-phase3}
+% ============================================================================
+
+La phase d'investigation constitue le c\oe ur du processus, durant laquelle
+hypothèses explicatives sont générées, testées et confrontées aux éléments
+probatoires. Cette phase comporte une boucle itérative formalisée.
+
+\subsection{Étape E7. Interrogatoires et Collecte Testimoniale}
+
+\textbf{Objectif~:} Recueillir les témoignages, déclarations et expertises orales
+nécessaires à la compréhension approfondie des faits.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau minimal~:}
+\begin{itemize}
+    \item Conduite d'entretiens informels non structurés~;
+    \item Prise de notes manuscrites contemporaines~;
+    \item Recueil des déclarations spontanées~;
+    \item Conservation soigneuse des témoignages écrits volontairement fournis.
+\end{itemize}
+
+\textbf{Niveau standard~:}
+\begin{itemize}
+    \item Préparation de questionnaires structurés adaptés à chaque catégorie~;
+    \item Conduite d'entretiens semi-directifs (narration libre puis précisions)~;
+    \item Enregistrement audio avec consentement formel écrit~;
+    \item Rédaction de comptes rendus fidèles soumis à validation~;
+    \item Analyse de cohérence interne (chronologie, contradictions)~;
+    \item Documentation des refus de répondre.
+\end{itemize}
+
+\textbf{Niveau avancé~:}
+\begin{itemize}
+    \item Application de protocoles scientifiques~: méthode PEACE
+          (\textit{Preparation, Engage, Account, Closure, Evaluation})~;
+          entretien cognitif pour témoins de bonne foi~;
+    \item Enregistrement multi-modal (audio et vidéo) si approprié~;
+    \item Analyse linguistique approfondie des déclarations~;
+    \item Procédures d'audition formelles respectant strictement les droits
+          processuels (contexte judiciaire).
+\end{itemize}
+
+\textbf{Livrable~:} \textit{Corpus Testimonial} comprenant~: enregistrements
+archivés~; transcriptions intégrales horodatées~; comptes rendus synthétiques~;
+matrice d'évaluation de cohérence et crédibilité~; points de convergence et
+divergences~; éléments corroborant ou réfutant les hypothèses.
+
+\subsection{Étape E8. Génération d'Hypothèses Multiples}
+
+\textbf{Objectif~:} Construire de manière systématique plusieurs scénarios
+explicatifs distincts des faits, sans présupposé hiérarchique initial,
+afin d'éviter le biais de confirmation.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau minimal~:}
+\begin{itemize}
+    \item Formulation de 2 à 3 hypothèses principales spontanées~;
+    \item Description narrative sommaire de chaque scénario~;
+    \item Identification intuitive de l'hypothèse la plus probable.
+\end{itemize}
+
+\textbf{Niveau standard~:}
+\begin{itemize}
+    \item Génération systématique d'au moins 5~hypothèses distinctes incluant~:
+          hypothèse principale, alternatives crédibles, hypothèse nulle
+          (absence de fait délictuel), hypothèses improbables~;
+    \item Documentation du raisonnement sous-jacent à chaque hypothèse~;
+    \item Construction d'arbres de décision ou diagrammes causaux~;
+    \item Formulation de prédictions testables dérivées
+          (\textit{si H vraie, alors on devrait observer\ldots}).
+\end{itemize}
+
+\textbf{Niveau avancé~:}
+\begin{itemize}
+    \item Application formalisée de la méthode ACH
+          (\textit{Analysis of Competing Hypotheses}) \cite{heuer1999}~;
+    \item Modélisation bayésienne des probabilités a priori~;
+    \item Exercice de \textit{red teaming}~: simulation d'acteur adversaire~;
+    \item Analyse de précédents historiques similaires (benchmark).
+\end{itemize}
+
+\textbf{Livrable~:} \textit{Arbre d'Hypothèses v1.0} comprenant pour chaque
+hypothèse~: identifiant unique et intitulé non ambigu~; description narrative~;
+raisonnement explicite~; prédictions testables~; preuves pro/contra~;
+conditions de réfutation~; probabilité subjective initiale.
+
+\subsection{Étape E9. Confrontation Hypothèses/Preuves}
+
+\textbf{Objectif~:} Évaluer systématiquement la compatibilité de chaque hypothèse
+avec l'ensemble des éléments probatoires et témoignages collectés.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau standard~:}
+\begin{itemize}
+    \item Construction d'une matrice de compatibilité hypothèses $\times$ preuves~;
+    \item Pour chaque intersection, évaluation qualitative~:
+          \textbf{+} Cohérente~; \textbf{-} Incohérente~; \textbf{o} Neutre~;
+    \item Calcul de scores de cohérence par hypothèse~;
+    \item Identification des preuves discriminantes~;
+    \item Test empirique des prédictions dérivées (E8)~;
+    \item Hiérarchisation des hypothèses par score de cohérence.
+\end{itemize}
+
+\textbf{Niveau avancé~:}
+\begin{itemize}
+    \item Analyse bayésienne formelle~;
+    \item Simulation Monte-Carlo pour quantification des incertitudes~;
+    \item Organisation de sessions de \textit{peer review}~;
+    \item Processus de \textit{red team} cherchant activement à réfuter.
+\end{itemize}
+
+La figure suivante illustre un exemple de matrice de compatibilité~:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\matrix (m) [matrix of nodes,
+    nodes in empty cells,
+    column sep=0.6cm, row sep=0.3cm,
+    nodes={minimum width=1.2cm, minimum height=0.7cm,
+           draw=CouleurBordInfo, font=\small, align=center}]
+{
+    {} & {H1} & {H2} & {H3} & {H4} \\
+    {P1} & {\textcolor{red}{--}} & {\textcolor{CouleurBordLizbiz}{+}} &
+            {\textcolor{CouleurBordLizbiz}{+}} & {o} \\
+    {P2} & {o} & {\textcolor{CouleurBordLizbiz}{+}} &
+            {\textcolor{red}{--}} & {\textcolor{CouleurBordLizbiz}{+}} \\
+    {P3} & {\textcolor{CouleurBordLizbiz}{+}} & {o} &
+            {\textcolor{CouleurBordLizbiz}{+}} & {o} \\
+    {P4} & {\textcolor{red}{--}} & {\textcolor{red}{--}} & {o} &
+            {\textcolor{CouleurBordLizbiz}{+}} \\
+    {Score} & {1/4} & {2/4} & {2/4} & {3/4} \\
+};
+% Colorier la ligne d'en-tête
+\foreach \col in {2,3,4,5} {
+    \fill[CouleurPrimaire!20] (m-1-\col.north west) rectangle (m-1-\col.south east);
+}
+% Colorier la colonne d'en-tête
+\foreach \row in {2,3,4,5,6} {
+    \fill[CouleurPrimaire!20] (m-\row-1.north west) rectangle (m-\row-1.south east);
+}
+\end{tikzpicture}
+\caption{Exemple de matrice de compatibilité hypothèses/preuves~:
+\textbf{+} Cohérent~; \textbf{--} Incohérent~; \textbf{o} Neutre}
+\label{fig:matrice-ach}
+\end{figure}
+
+\textbf{Livrable~:} \textit{Matrice d'Analyse Hypothèses/Preuves} comprenant~:
+tableau croisé~; scores de cohérence~; liste des hypothèses réfutées~;
+classement hiérarchique~; lacunes probatoires~; recommandations de collecte.
+
+\subsection{Étape E9bis. Falsification Active}
+
+\textbf{Objectif~:} Appliquer le principe épistémologique de Popper~: tenter
+activement de réfuter chaque hypothèse plutôt que de chercher uniquement des
+confirmations.
+
+\textbf{Justification méthodologique~:} Le biais de confirmation constitue l'un
+des obstacles majeurs à l'objectivité investigative. La falsification active,
+inspirée de la philosophie des sciences de Karl Popper \cite{popper1973},
+impose la recherche délibérée d'observations qui, si découvertes, invalideraient
+l'hypothèse testée. Une hypothèse ayant résisté à de multiples tentatives
+sérieuses de falsification acquiert une robustesse épistémologique supérieure.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau minimal~:}
+\begin{itemize}
+    \item Pour chaque hypothèse post-E9~: formulation de la question~: « Quelle
+          observation prouverait de manière irréfutable que cette hypothèse est
+          fausse~? »~;
+    \item Vérification rapide dans le corpus probatoire~;
+    \item Documentation sommaire.
+\end{itemize}
+
+\textbf{Niveau standard~:}
+\begin{itemize}
+    \item Pour chaque hypothèse viable, processus structuré en 4~étapes~:
+          (1)~identification des observations critiques~;
+          (2)~recherche active dans les preuves existantes~;
+          (3)~planification de collecte additionnelle si non trouvées~;
+          (4)~documentation des tentatives (succès ou échec)~;
+    \item Calcul d'un indice de robustesse~: nombre de tentatives résistées.
+\end{itemize}
+
+\textbf{Niveau avancé~:}
+\begin{itemize}
+    \item Constitution d'une équipe \textit{Red Team} dédiée à la réfutation~;
+    \item Analyse contrefactuelle~: « Si l'hypothèse était fausse,
+          qu'observerait-on de différent~? »~;
+    \item Formalisation logique des tests de falsification.
+\end{itemize}
+
+\textbf{Livrable~:} \textit{Rapport de Falsification} comprenant pour chaque
+hypothèse testée~: conditions de falsification~; résultats~; score de robustesse~;
+liste des hypothèses définitivement éliminées.
+
+\subsection{Étape E10. Validation et Vérification}
+
+\textbf{Objectif~:} Soumettre les conclusions préliminaires émergentes à un
+processus rigoureux de validation multi-méthodes avant formalisation définitive.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau minimal~:}
+\begin{itemize}
+    \item Relecture personnelle critique du raisonnement~;
+    \item Vérification arithmétique des analyses quantitatives~;
+    \item Auto-évaluation des biais cognitifs potentiels.
+\end{itemize}
+
+\textbf{Niveau standard~:}
+\begin{itemize}
+    \item Validation par pairs~: présentation structurée à collègues~;
+    \item Test de cohérence globale~: narration complète et chronologique~;
+    \item Identification et documentation des limitations méthodologiques~;
+    \item Évaluation du niveau de certitude pour chaque conclusion.
+\end{itemize}
+
+\textbf{Niveau avancé~:}
+\begin{itemize}
+    \item Processus \textit{Red Team / Blue Team} formalisé~;
+    \item Réexécution à l'aveugle par expert tiers~;
+    \item Calcul d'intervalles de confiance statistiques~;
+    \item Simulation d'argumentation adverse.
+\end{itemize}
+
+\textbf{Livrable~:} \textit{Rapport de Validation} comprenant~: méthodes de
+validation employées~; objections identifiées et réponses~; limitations
+reconnues~; niveau de consensus~; certification de validation (signatures).
+
+\subsection{Quality Gate~3. Robustesse Analytique}
+
+\textbf{Objectif~:} S'assurer que les conclusions sont suffisamment robustes,
+documentées et défendables pour justifier leur formalisation.
+
+\textbf{Critères obligatoires~:}
+\begin{itemize}
+    \item Génération documentée d'au moins 5~hypothèses distinctes (E8)~;
+    \item Matrice de compatibilité hypothèses/preuves complétée (E9)~;
+    \item Tentatives de falsification documentées pour hypothèses principales~;
+    \item Application d'au moins une méthode de validation formelle (E10)~;
+    \item Limitations de l'investigation clairement identifiées~;
+    \item Traçabilité complète du raisonnement.
+\end{itemize}
+
+\textbf{Décision et gestion de l'itération~:}
+\begin{description}
+    \item[\textcolor{CouleurBordLizbiz}{\textbf{VERT}}] Progression vers Phase~4.
+    \item[\textcolor{CouleurAccent}{\textbf{ORANGE}}] Expertise complémentaire
+          ou re-analyse ciblée (5--10~jours).
+    \item[\textcolor{CouleurBordAlerte}{\textbf{ROUGE}}] Retour selon nature~:
+          lacunes testimoniales $\to$ E7~;
+          incohérences analytiques $\to$ E8--E9~;
+          preuves matérielles manquantes $\to$ E4--E6.
+\end{description}
+
+\begin{boiteRemarque}{Point critique sur l'itération}
+Le retour en Phase~2 ou la réitération de la Phase~3 n'est pas un échec
+méthodologique mais une \textbf{caractéristique normale} du processus
+investigatif. Les investigations de qualité nécessitent fréquemment 2 à 3
+passages dans la boucle analytique. Un taux de passage direct au QG3 de
+60--70\% est satisfaisant (versus 85--90\% pour QG1 et QG2).
+\end{boiteRemarque}
+
+% ============================================================================
+\section{Phase~4~: Formalisation et Transmission}
+\label{sec:piu-phase4}
+% ============================================================================
+
+La phase de formalisation transforme le travail investigatif en livrables
+structurés, adaptés au destinataire et juridiquement recevables.
+
+\subsection{Étape E11. Documentation Exhaustive et Consolidation}
+
+\textbf{Objectif~:} Rassembler, structurer et archiver l'intégralité des
+éléments du dossier dans un format pérenne et auditable.
+
+\textbf{Structure documentaire recommandée}. le dossier consolidé
+s'organise en cinq volumes~:
+\begin{description}
+    \item[\textbf{Volume~1. Synthèse}] Sommaire exécutif, chronologie
+          factuelle, conclusions principales (10--20~pages).
+    \item[\textbf{Volume~2. Analyses}] Méthodologie détaillée, hypothèses
+          étudiées, raisonnement analytique (50--200~pages).
+    \item[\textbf{Volume~3. Preuves}] Éléments probatoires numérotés avec
+          certificats d'intégrité et chaînes de traçabilité.
+    \item[\textbf{Volume~4. Témoignages}] Comptes rendus d'entretiens,
+          déclarations écrites, expertises externes.
+    \item[\textbf{Volume~5. Annexes}] Journal de bord, références,
+          documents de travail.
+\end{description}
+
+\textbf{Livrable~:} \textit{Dossier d'Investigation Complet} structuré,
+numéroté, indexé et archivé de manière pérenne.
+
+\subsection{Étape E12. Rédaction du Livrable Final}
+
+\textbf{Objectif~:} Produire un document de synthèse adapté au destinataire,
+présentant de manière claire, rigoureuse et défendable les conclusions.
+
+\subsubsection*{Structure recommandée du rapport}
+
+\textbf{Niveau~1. Synthèse Exécutive (2--4~pages)~:}
+\begin{enumerate}
+    \item Contexte et objet de la mission~;
+    \item Question(s) posée(s)~;
+    \item Conclusions principales numérotées~;
+    \item Niveau de confiance par conclusion (qualitatif ou quantitatif)~;
+    \item Recommandations actionables immédiates~;
+    \item Limitations assumées.
+\end{enumerate}
+
+\textbf{Niveau~2. Rapport Technique (20--100~pages)~:}
+\begin{enumerate}
+    \item Introduction et contexte approfondi~;
+    \item Méthodologie (référencement normes/standards)~;
+    \item Faits matériellement établis (chronologie détaillée)~;
+    \item Hypothèses étudiées avec arbre décisionnel~;
+    \item Analyse détaillée des preuves et témoignages~;
+    \item Raisonnement étape par étape~;
+    \item Incertitudes et limitations~;
+    \item Recommandations détaillées~;
+    \item Bibliographie.
+\end{enumerate}
+
+\textbf{Niveau~3. Dossier Probatoire (annexes)~:} Ensemble des pièces
+justificatives référencées dans le rapport technique.
+
+\subsubsection*{Principes rédactionnels fondamentaux}
+\begin{description}
+    \item[\textbf{Clarté}] Phrases courtes (15--20~mots maximum)~;
+          vocabulaire précis~; structure logique avec transitions explicites.
+    \item[\textbf{Objectivité}] Ton neutre (éviter « je pense »,
+          « il est évident »)~; différenciation rigoureuse entre faits établis,
+          interprétations et opinions~; limitations assumées.
+    \item[\textbf{Défendabilité}] Chaque affirmation appuyée par référence
+          probatoire~; raisonnement sans sauts inférentiels~;
+          traçabilité complète du raisonnement.
+    \item[\textbf{Adaptabilité}] Niveau de technicité ajusté selon
+          destinataire~; synthèse exécutive pour décideurs non techniques.
+\end{description}
+
+\subsection{Étape E13. Transmission Sécurisée du Livrable}
+
+\textbf{Objectif~:} Remettre le livrable de manière sécurisée, traçable,
+conforme aux exigences de confidentialité.
+
+\subsubsection*{Actions par niveau}
+
+\textbf{Niveau minimal~:}
+\begin{itemize}
+    \item Remise en main propre contre signature ou email sécurisé chiffré~;
+    \item Obtention d'un accusé de réception daté~;
+    \item Conservation de la preuve de transmission.
+\end{itemize}
+
+\textbf{Niveau standard~:}
+\begin{itemize}
+    \item Transmission sécurisée~: chiffrement bout-en-bout (GPG, S/MIME)~;
+    \item Bordereau de transmission détaillé et signé~;
+    \item Liste exhaustive des documents transmis.
+\end{itemize}
+
+\textbf{Niveau avancé~:}
+\begin{itemize}
+    \item Remise en présence de témoins (huissier si contexte critique)~;
+    \item Signature électronique qualifiée~;
+    \item Horodatage blockchain pour preuve d'antériorité immuable~;
+    \item Watermarking individualisé par destinataire.
+\end{itemize}
+
+\textbf{Livrable~:} \textit{Preuve de Transmission} comprenant bordereau signé,
+liste exhaustive des documents, modalités de transmission, accusé contresigné.
+
+% ============================================================================
+\section{Phase~5~: Suivi Post-Transmission}
+\label{sec:piu-phase5}
+% ============================================================================
+
+Cette phase, optionnelle pour investigations simples sans contentieux, devient
+essentielle dans les contextes judiciaires ou lorsque des contestations sont
+anticipées.
+
+\subsection{Étape E14. Préparation à la Défense Contradictoire}
+
+\textbf{Objectif~:} Anticiper les contestations possibles et préparer une défense
+rigoureuse et documentée des conclusions.
+
+\textbf{Actions~:} Constitution d'un dossier de défense comprenant~: analyse
+des vulnérabilités du rapport~; arguments adverses anticipés avec contre-arguments~;
+synthèses aide-mémoire par thème~; simulations d'interrogatoires contradictoires~;
+références scientifiques ou jurisprudentielles de soutien.
+
+\subsection{Étape E15. Maintenance Probatoire Continue}
+
+\textbf{Objectif~:} Préserver intégrité et accessibilité du dossier durant toute
+la procédure contentieuse ou administrative.
+
+\textbf{Actions~:} Surveillance active (tests d'intégrité mensuels)~;
+gestion rigoureuse des accès avec journal exhaustif~;
+mise à jour de la chaîne de traçabilité~;
+réponse aux demandes de clarification~;
+correction d'erreurs matérielles avec versioning strict.
+
+\subsection{Étape E16. Analyse des Contre-Expertises}
+
+\textbf{Objectif~:} Évaluer les rapports contradictoires produits par la partie
+adverse et préparer une réfutation méthodique.
+
+\textbf{Actions~:} Analyse méthodologique critique~;
+identification des erreurs factuelles~;
+discussion des divergences interprétatives légitimes~;
+rédaction d'un mémoire en réponse structuré~;
+proposition d'expertises complémentaires si nécessaire.
+
+\subsection{Étape E17. Clôture et Retour d'Expérience}
+
+\textbf{Objectif~:} Archiver définitivement le dossier, capitaliser les
+apprentissages et améliorer les processus futurs.
+
+\textbf{Actions~:} Débriefing structuré d'équipe~;
+rédaction d'un rapport de retour d'expérience (REX)~;
+archivage définitif conforme aux durées légales~;
+destruction sécurisée des données temporaires~;
+intégration des enseignements dans la base de connaissances~;
+mise à jour des procédures standard.
+
+\begin{boiteRemarque}{E17 n'est pas optionnelle}
+L'étape~E17 (\textit{Retour d'Expérience}) n'est pas optionnelle~: elle
+constitue le mécanisme d'amélioration continue permettant l'évolution et
+l'adaptation du processus aux nouveaux défis investigatifs. Une organisation
+qui ne fait pas de REX après chaque investigation majeure est condamnée à
+répéter les mêmes erreurs.
+\end{boiteRemarque}
+
+% ============================================================================
+\section{Cas Pratique~: L'Affaire de la Facture Suspecte}
+\label{sec:piu-rousseau}
+% ============================================================================
+
+\subsection{Contexte général}
+
+Le 15~mars~2025, Madame Claire ROUSSEAU, dirigeante de la société INNOV-TECH
+SARL (PME de 25~salariés), constate un débit de 47~850~\texteuro{} sur son relevé
+bancaire au profit de la société CONSULTING-PRO, dont elle n'a aucune
+connaissance. En vérifiant ses archives comptables, elle découvre une facture
+n°~CP-2025-089 datée du 28~février~2025, pour des « prestations de conseil
+stratégique »~: prestations qu'elle affirme n'avoir jamais commandées.
+
+Cette investigation illustre comment le PIU s'applique différemment selon trois
+contextes~:
+\begin{enumerate}
+    \item \textbf{Contexte particulier}~: Madame ROUSSEAU mène elle-même
+          l'investigation~;
+    \item \textbf{Contexte entreprise}~: INNOV-TECH mandate un audit interne~;
+    \item \textbf{Contexte judiciaire}~: un expert est désigné par le tribunal.
+\end{enumerate}
+
+\subsection{Application~: Contexte particulier (niveau minimal/standard)}
+
+\textbf{Phase~1~: Initialisation}
+
+\textbf{E1~-- Réception et Évaluation~:} Enjeu financier~: 47~850 (significatif)~;
+complexité~: moyenne~; faisabilité~: 10h/semaine disponibles~;
+risque~: fraude interne ou externe. Décision~: investigation personnelle
+préliminaire avant éventuel dépôt de plainte.
+
+\textbf{E2~-- Décision d'Engagement~:} Niveau minimal~: décision seule.
+Périmètre~: identifier l'origine de la facture et le responsable du paiement.
+Délai~: 3~semaines. Budget~: temps personnel + consultation avocat (2h).
+Pas de mandat formel, mais décision documentée dans un email à elle-même
+(traçabilité).
+
+\textbf{E3~-- Planification~:}
+\begin{enumerate}
+    \item Rassembler tous documents (facture, relevés, contrats,
+          correspondances)~;
+    \item Interroger ses employés (comptable, assistante administrative)~;
+    \item Rechercher informations sur CONSULTING-PRO (KBIS, site web)~;
+    \item Consulter avocat pour aspects juridiques.
+\end{enumerate}
+\textbf{QG1~:} Auto-évaluation VERT. Progression Phase~2.
+
+\textbf{Phase~2~: Acquisition}
+
+\textbf{E4~-- Collecte~:} Niveau standard~: facture CP-2025-089 (scan haute
+résolution, horodaté)~; relevé bancaire~; extrait KBIS de CONSULTING-PRO~;
+tous emails mentionnant « CONSULTING-PRO »~; registre courrier (pas de
+mention)~; contrats 2024--2025 (aucun avec CONSULTING-PRO). Numérotation~:
+EP001 à EP008.
+
+\textbf{E5~-- Sécurisation~:} 3~copies~: disque dur externe chiffré (BitLocker),
+cloud personnel sécurisé (ProtonDrive), copie papier en coffre. Hash SHA-256
+calculé et conservé séparément pour chaque fichier numérique. Règle~: jamais
+travailler sur originaux papier.
+
+\textbf{E6~-- Parties Prenantes~:} Sophie LEMOINE (comptable, a enregistré
+la facture)~; Julie MARTIN (assistante administrative)~; Marc DUBOIS (gérant
+CONSULTING-PRO selon KBIS)~; Me Paul BERNARD (avocat conseil).
+
+\textbf{QG2~:} 8~éléments numérotés~; 3~copies~; hash calculés~; journal
+d'accès manuscrit. VERT. Progression Phase~3.
+
+\textbf{Phase~3~: Investigation}
+
+\textbf{E7~-- Interrogatoires~:} Sophie LEMOINE (12~mars, 14h)~: déclare avoir
+reçu la facture par email le 1er~mars~; semblait régulière, tamponnée
+« bon à payer »~; ne connaît pas CONSULTING-PRO~; fournit l'email de réception
+(\texttt{contact@consulting-pro.fr}). Julie MARTIN (13~mars)~: aucune trace.
+Comptes rendus signés.
+
+\textbf{E8~-- Hypothèses~:}
+\begin{itemize}
+    \item \textbf{H1}~: Erreur administrative, facture légitime oubliée~;
+    \item \textbf{H2}~: Fraude externe, CONSULTING-PRO frauduleuse~;
+    \item \textbf{H3}~: Complicité interne, Sophie complice~;
+    \item \textbf{H4}~: Usurpation d'identité entreprise~;
+    \item \textbf{H5}~: Erreur de destinataire (facture destinée à homonyme).
+\end{itemize}
+
+\textbf{E9~-- Confrontation~:} H1 réfutée (gestion rigoureuse, aucun contrat)~;
+H2 cohérente (KBIS~: création 15~janvier~2025, très récent, suspect)~;
+H3 peu cohérente (Sophie sincère, 5~ans ancienneté, pas d'indice financier)~;
+H4 possible mais sans preuve~; H5 réfutée (facture mentionne INNOV-TECH
+avec SIRET correct). Score~: H2 dominant.
+
+\textbf{E9bis~-- Falsification~:} Pour H2~: si prestation réellement effectuée,
+il devrait exister~: contrat signé, correspondances préalables, livrables.
+Recherche approfondie~: rien trouvé. H2 renforcée.
+
+\textbf{E10~-- Validation~:} Consultation de Me BERNARD (avocat)~: confirme
+indices sérieux de fraude~; recommande dépôt de plainte.
+
+\textbf{QG3~:} 5~hypothèses générées~; matrice complétée~; falsification
+effectuée~; validation externe (avocat). VERT.
+
+\textbf{Phase~4~: Formalisation}
+
+\textbf{E11--E12~-- Rapport~:} Dossier simple (15~pages)~: synthèse
+(facture suspecte, aucune prestation commandée, indices de fraude externe)~;
+chronologie~; copies EP001--EP008~; comptes rendus d'entretiens~;
+conclusion~: fraude externe présumée (H2). Transmission~: avocat (chiffré)
++ commissariat (copie papier).
+
+\textbf{Phase~5~:} Maintien du dossier pour enquête policière éventuelle.
+Documentation de toutes les suites.
+
+\subsection{Application~: Contexte entreprise (niveau avancé)}
+
+Le 16~mars, Madame ROUSSEAU alerte son conseil d'administration. Décision
+collégiale~: audit interne approfondi. Mandat formel signé par le Président
+du CA. Équipe~: Jean DUPUIS (Dir.~Financier, lead)~+ Marie LECLERC (DRH)
++ Me Sophie MOREAU (Avocate). Budget~: 15~000. Délai~: 6~semaines.
+
+\textbf{Phase~2~-- Niveau avancé~:} Image forensique du serveur de messagerie
+(période janvier--mars~2025)~; extraction logs accès ERP comptable~;
+OSINT sur CONSULTING-PRO (révèle antécédents judiciaires de Marc DUBOIS~:
+escroquerie 2019)~; présence huissier pour constat de l'email suspect~;
+hash SHA-512 sur toutes images forensiques~; blockchain privée pour
+horodatage immuable.
+
+\textbf{Phase~3~-- Niveau avancé~:} Expertise IT sur l'email révèle~: spoofing
+(falsification de l'adresse expéditeur)~; headers techniques montrent origine
+depuis serveur russe~; PDF de la facture créé avec logiciel de retouche.
+Processus ACH formalisé~: 7~hypothèses, matrice quantitative bayésienne,
+tests de falsification systématiques. Conclusion~: H2 confirmée avec
+probabilité~$> 95\%$. Red Team interne~: consensus 100\%.
+
+\textbf{Phase~4~:} Rapport 85~pages en 3~volumes~; présentation orale au
+CA~; archivage légal 10~ans.
+
+\subsection{Application~: Contexte judiciaire (niveau avancé systématique)}
+
+Le 1er~avril~2025, le juge d'instruction désigne Madame Isabelle FONTAINE,
+expert judiciaire, pour répondre à deux questions~: (1)~la facture correspond-elle
+à une prestation réelle~? (2)~quelle est son origine~?
+
+\textbf{Phase~1~:} Vérification d'absence de conflit d'intérêt~; serment prêté.
+Mandat conforme~: ordonnance~; méthodologie~: \norme{ISO~27037} pour forensique,
+principes CNCEJ pour expertise judiciaire~; délai~: 4~mois.
+
+\textbf{Phase~2~:} Collecte contradictoire en présence des parties, avec
+greffier. Saisie contradictoire du serveur messagerie INNOV-TECH (15~avril)~;
+convocation de Marc DUBOIS (22~avril)~: refuse de produire tout document~;
+scellés judiciaires~; hash SHA-512 certifié par l'expert.
+
+\textbf{Phase~3~:} ACH formalisée avec documentation exhaustive~;
+conclusion~: H2 (fraude externe par phishing/spoofing) probabilité~$> 98\%$~;
+peer review par confrère expert.
+
+\textbf{Phase~4~:} Rapport d'expertise judiciaire (65~pages, normes CNCEJ)~:
+réponses aux questions du juge~:
+\begin{itemize}
+    \item \textit{Q1 -- La facture correspond-elle à une prestation réelle~?}
+          \textbf{R~: Non. Aucun élément probatoire ne démontre qu'une
+          prestation ait été effectuée.}
+    \item \textit{Q2 -- Origine de la facture~?}
+          \textbf{R~: Émission frauduleuse par CONSULTING-PRO via
+          techniques de phishing/spoofing.}
+\end{itemize}
+Dépôt au greffe le 25~juillet~; archivage 30~ans.
+
+\textbf{Phase~5~:} Contre-expertise privée de CONSULTING-PRO (prétend prestation
+orale)~: réfutée par l'expert (une prestation de 47k ne peut être exclusivement
+orale). Condamnation pénale de Marc DUBOIS (escroquerie).
+
+\subsection{Synthèse comparative des trois contextes}
+
+\begin{tableaucours}{p{2.8cm}p{3.2cm}p{3.2cm}p{3.2cm}}{%
+    \tableauHeader{Dimension} &
+    \tableauHeader{Particulier} &
+    \tableauHeader{Entreprise} &
+    \tableauHeader{Judiciaire}
+}
+Niveau rigueur & Minimal/Standard & Standard/Avancé & Avancé systématique \\
+Durée & 3~semaines & 6~semaines & 4~mois \\
+Ressources & 1~personne + avocat (2h) & Équipe~3 + outils forensiques &
+    Expert + consultant IT \\
+Coût estimé & 500~(avocat) & 15~000 & 8~000~(honoraires) \\
+Validation & Avocat & Red Team interne & Peer review + juge \\
+Livrable & Dossier 15p + plainte & Rapport 85p (3~vol.) &
+    Rapport expertise 65p (CNCEJ) \\
+Force probante & Moyenne & Élevée (interne) & Maximale (judiciaire) \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~6.1. Comparaison des trois applications
+contextuelles du PIU}\end{center}
+
+% ============================================================================
+\section{Recommandations d'Usage et Domaines d'Application}
+\label{sec:piu-recommandations}
+% ============================================================================
+
+\subsection{Principe fondamental}
+
+La qualité d'une investigation se mesure moins à la rapidité avec laquelle on
+parvient à des conclusions qu'à la robustesse avec laquelle ces conclusions
+résistent à la contestation contradictoire. Le PIU, par sa structure formelle
+intégrant falsification active, validation multi-méthodes et Quality Gates,
+vise cet objectif de défendabilité maximale.
+
+\subsection{Sélection du niveau de rigueur}
+
+Le praticien doit calibrer le niveau de rigueur selon la matrice de criticité
+(Tableau~\ref{tab:piu-criticite}). Une investigation à enjeu limité ne justifie
+pas systématiquement un niveau avancé (coût/bénéfice)~; une investigation à
+enjeu critique (pénal, financier majeur) ne peut se satisfaire d'un niveau
+minimal sans risquer l'invalidation ultérieure.
+
+\subsection{Domaines d'application}
+
+Bien que ce cours illustre le PIU dans un contexte de forensique numérique,
+la méthodologie s'applique à tout domaine investigatif~:
+\begin{itemize}
+    \item Investigations RH (harcèlement, discrimination)~;
+    \item Forensique numérique (cybercriminalité, fuites de données)~;
+    \item Investigations techniques (accidents, défaillances)~;
+    \item Investigations scientifiques (fraude académique)~;
+    \item Investigations journalistiques~;
+    \item Audits de conformité réglementaire.
+\end{itemize}
+
+\subsection{Documentation comme investissement}
+
+L'effort documentaire demandé à chaque étape (inventaires, matrices, journaux)
+peut sembler lourd mais constitue un \textbf{investissement essentiel}.
+En cas de contestation (Phase~5), la qualité de la documentation initiale
+détermine directement la capacité à défendre les conclusions, parfois plusieurs
+années après les faits.
+
+\begin{boxCRO}
+\textbf{Analyse CRO. Le PIU dans son ensemble}
+
+Le PIU est conçu pour maximiser $\mathcal{O}$ (opposabilité) tout en
+maintenant $\mathcal{R}$ (fiabilité) et en gérant $\mathcal{C}$ (confidentialité).
+
+Les Quality Gates sont les mécanismes d'assurance qualité qui garantissent
+que $\mathcal{R}$ et $\mathcal{O}$ ne sont pas compromises par la pression
+temporelle ou le biais de confirmation. La falsification active (E9bis) est
+le dispositif épistémologique qui protège $\mathcal{R}$ contre les biais.
+
+La confidentialité ($\mathcal{C}$) est gérée par les niveaux de rigueur~:
+le niveau avancé (contexte judiciaire) exige une protection maximale des
+données sensibles~; le niveau minimal (contexte particulier) accepte
+davantage de compromis proportionnels à l'enjeu.
+
+\cro{$\sim$ gérée par niveau}{$\uparrow\uparrow$ maximisée}{$\uparrow\uparrow$ objectif principal}
+\end{boxCRO}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+\begin{itemize}
+    \item Le \textbf{PIU} est un processus modulaire en \textbf{5~phases,
+          17~étapes et 3~Quality Gates}~: Initialisation (E1--E3) $\to$
+          Acquisition (E4--E6) $\to$ Investigation (E7--E10) $\to$
+          Formalisation (E11--E13) $\to$ Suivi (E14--E17).
+
+    \item La \textbf{matrice de criticité} calibre le niveau de rigueur (minimal
+          / standard / avancé) selon l'enjeu financier, pénal, technique,
+          le nombre de parties et la durée.
+
+    \item Les \textbf{Quality Gates} (QG1~: pré-opérationnel~;
+          QG2~: intégrité probatoire~; QG3~: robustesse analytique) sont
+          des points de contrôle obligatoires à trois niveaux~:
+          VERT (progression)~/ ORANGE (conditionnel)~/ ROUGE (suspension).
+
+    \item La \textbf{boucle itérative} entre Phase~2 et Phase~3 est normale~:
+          2 à 3 passages est satisfaisant~; un passage direct suggère un
+          manque d'approfondissement.
+
+    \item La \textbf{falsification active} (E9bis) -- principe poppérien --
+          est la protection contre le biais de confirmation. Chercher à
+          réfuter ses hypothèses, pas à les confirmer.
+
+    \item L'\textbf{affaire ROUSSEAU} illustre que le \emph{même} fait
+          (fraude externe H2 à 47~850) est atteint par trois niveaux de
+          rigueur, mais avec une force probante radicalement différente~:
+          suffisante pour une plainte, élevée pour une décision interne,
+          maximale pour une condamnation pénale.
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~6.1. Matrice de criticité \niveaubase}]
+Pour chacune des investigations suivantes, déterminez le niveau de rigueur
+approprié (minimal / standard / avancé) en justifiant votre réponse par
+la matrice de criticité~:
+\begin{enumerate}[(a)]
+    \item Soupçon de fraude interne de 450~000~FCFA dans une administration
+          publique camerounaise~; suspect unique~; durée estimée~: 2~mois.
+    \item Recherche de documents compromettants sur le PC d'un employé
+          licencié pour harcèlement moral~; aucune plainte déposée~;
+          enjeu~: décision de licenciement interne.
+    \item Investigation mandatée par le procureur sur une attaque ransomware
+          ayant paralysé un hôpital pendant 72h~; données patients exposées~;
+          plusieurs suspects identifiés dans 3~pays.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~6.2. Application du PIU \niveaumoyen}]
+Vous êtes mandaté par la direction de TRANSBOIS~SA (affaire MVOM,
+Chapitre~\ref{chap:gr-affaires}) pour conduire l'investigation interne
+sur l'attaque ransomware. Appliquez les étapes E1 à E6~:
+\begin{enumerate}[(a)]
+    \item Rédigez la \textit{Fiche d'Évaluation Initiale} (E1)~: enjeux,
+          risques, faisabilité.
+    \item Définissez le périmètre d'investigation (E2) et justifiez le niveau
+          de rigueur choisi.
+    \item Listez les 8~premières sources à collecter (E4) en les classant
+          par ordre de volatilité~; précisez la méthode de collecte pour
+          chacune.
+    \item Quels critères QG2 risquent d'être difficiles à satisfaire dans
+          ce contexte~? Proposez comment les atteindre.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~6.3. Falsification active \niveauexpert}]
+Dans l'investigation ROUSSEAU (contexte entreprise), l'hypothèse H2
+(fraude externe par phishing/spoofing) a été retenue avec une probabilité
+$> 95\%$.
+
+\begin{enumerate}[(a)]
+    \item Identifiez 4~observations critiques qui, si trouvées, auraient
+          définitivement réfuté H2 (conditions de falsification).
+    \item Comment calculer l'indice de robustesse de H2~? Quel score
+          attribuez-vous à cette hypothèse~?
+    \item Formulez l'analyse CRO de la décision d'inclure dans le rapport
+          l'analyse forensique des en-têtes email (révèle l'origine depuis
+          un serveur russe, potentiellement sensible géopolitiquement).
+    \item Dans quel cas aurait-il fallu activer le niveau ROUGE au QG3~?
+          Quelles étapes de retour auraient été nécessaires~?
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Bibliographie recommandée pour ce chapitre~:}
+\begin{itemize}
+    \item \norme{ISO/IEC~27037:2012}~: Guidelines for identification,
+          collection, acquisition and preservation of digital evidence.
+    \item \norme{NIST SP~800-86}~\cite{nist80086}~: Guide to Integrating Forensic Techniques
+          into Incident Response, 2006.
+    \item Heuer, R.~J.,
+          \textit{Psychology of Intelligence Analysis},
+          CIA, 1999 (méthode ACH). \cite{heuer1999}
+    \item Popper, K., \textit{La logique de la découverte scientifique},
+          Payot, 1973. \cite{popper1973}
+    \item ACPO, \textit{Good Practice Guide for Digital Evidence}, 2012.
+\end{itemize}
+\textbf{Transition.} Le Chapitre~\ref{chap:meth-std} compare le PIU aux
+standards internationaux (SANS FOR508, NIST, DFRWS~\cite{dfrws2001}, ACPO) pour en
+montrer la cohérence et les spécificités. Les Chapitres~\ref{chap:custody}
+et~\ref{chap:acq} approfondissent respectivement la chaîne de custody
+et les outils d'acquisition, deux dimensions essentielles de la Phase~2.
+\end{boxinfo}

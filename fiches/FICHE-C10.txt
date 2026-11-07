@@ -1,0 +1,234 @@
+NDAP SUKULU · IIN · fiche FICHE-C10
+Chapitre 10 : Cadre normatif global
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Que représente la Convention de Budapest de 2001 ?
+      a) Le premier traité international contre la cybercriminalité
+      b) Un standard technique de hachage
+      c) Une norme ISO
+      d) Un protocole réseau
+
+ 2. Quelle est la position du Cameroun vis-à-vis de la Convention de Budapest ?
+      a) Il n'en est pas signataire, mais sa loi 2010/012 s'en est inspirée
+      b) Il l'a ratifiée en premier
+      c) Il l'a rejetée définitivement
+      d) Il en est le dépositaire
+
+ 3. Que couvrent les articles 2 à 11 de la Convention de Budapest ?
+      a) Les infractions pénales à transposer en droit interne
+      b) Le budget de l'organisation
+      c) Les règles de vote
+      d) La composition du secrétariat
+
+ 4. Quel article de Budapest porte sur l'accès illégal à un système ?
+      a) L'article 2
+      b) L'article 29
+      c) L'article 35
+      d) L'article 16
+
+ 5. Quel article de Budapest, le plus utilisé en pratique, vise la fraude informatique ?
+      a) L'article 8
+      b) L'article 2
+      c) L'article 35
+      d) L'article 11
+
+ 6. Que permet l'article 16 de Budapest ?
+      a) La conservation rapide de données stockées
+      b) La destruction des données
+      c) L'accès libre à tout serveur
+      d) La vente des données
+
+ 7. Que vise l'article 29 de Budapest ?
+      a) La conservation urgente transfrontalière des données
+      b) La définition de l'accès illégal
+      c) La protection des mineurs
+      d) Le droit d'auteur
+
+ 8. En quoi la Convention de Malabo (2014) diffère-t-elle de Budapest ?
+      a) Elle est plus large, couvrant aussi la protection des données et les transactions électroniques
+      b) Elle est purement technique
+      c) Elle ne concerne que l'Europe
+      d) Elle remplace toutes les lois nationales
+
+ 9. Quelle infraction, absente de Budapest, Malabo criminalise-t-elle spécifiquement ?
+      a) L'usurpation d'identité
+      b) L'accès illégal
+      c) La fraude informatique
+      d) L'interception de données
+
+10. L'État requis a ratifié Malabo mais pas Budapest. Quel instrument invoquer ?
+
+      a) Malabo, chapitre V
+      b) Budapest, article 8
+      c) Aucun, c'est impossible
+      d) La loi camerounaise seule
+
+11. Si l'État requis a ratifié les deux conventions, laquelle privilégier ?
+      a) Budapest en priorité
+      b) Malabo en priorité
+      c) Aucune des deux
+      d) Les deux en même temps obligatoirement
+
+12. Qu'apporte le Protocole II de Budapest de 2022 ?
+      a) Une coopération renforcée et un accès plus rapide aux données, en 45 à 90 jours
+      b) La suppression de la Convention
+      c) Un nouveau format d'image disque
+      d) La fin de la coopération internationale
+
+13. Par quel canal un enquêteur active-t-il le réseau 24/7 d'INTERPOL ?
+      a) Le Bureau Central National, impossible à contourner
+      b) Directement l'éditeur du logiciel
+      c) Un message sur les réseaux sociaux
+      d) Son adresse personnelle
+
+14. Quel délai cible le chapitre donne-t-il pour une conservation urgente via le réseau 24/7 ?
+      a) De 24 à 72 heures
+      b) Dix-huit mois
+      c) Cinq ans
+      d) Une heure garantie
+
+15. Quel est l'ordre de grandeur du délai d'un MLAT classique ?
+      a) Environ dix-huit mois
+      b) Quelques minutes
+      c) Vingt-quatre heures
+      d) Instantané
+
+16. Quelle est la règle d'or de la coopération internationale en cybercriminalité ?
+      a) Conservation avant divulgation
+      b) Divulgation avant conservation
+      c) Destruction immédiate
+      d) Publication publique
+
+17. La protection des données personnelles est-elle couverte par Budapest ?
+      a) Non, elle en est absente et relevait d'autres instruments comme la Convention 108
+      b) Oui, c'est son objet principal
+      c) Oui, à l'article 2
+      d) Elle est interdite
+
+18. Quelle posture le chapitre recommande-t-il à l'enquêteur camerounais face à Budapest ?
+      a) Maîtriser Budapest comme si le Cameroun en était partie
+      b) L'ignorer puisque le Cameroun n'a pas signé
+      c) La combattre
+      d) Attendre une ratification
+
+19. Que relie le réseau I-24/7 d'INTERPOL ?
+      a) Les Bureaux Centraux Nationaux des pays membres
+      b) Les serveurs des GAFAM
+      c) Les comptes bancaires
+      d) Les ambassades uniquement
+
+20. Quel organisme assure la coopération policière à l'échelle africaine ?
+      a) AFRIPOL
+      b) L'OTAN
+      c) Le FBI
+      d) Europol
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Le Cameroun peut rejoindre la Convention de Budapest à tout moment.
+      Vrai / Faux
+
+22. Malabo est une convention purement pénale, plus étroite que Budapest.
+      Vrai / Faux
+
+23. Un enquêteur peut contourner le Bureau Central National pour activer le réseau 24/7.
+      Vrai / Faux
+
+24. Le Protocole II de Budapest raccourcit les délais par rapport au MLAT classique.
+      Vrai / Faux
+
+25. Il faut divulguer les données avant de demander leur conservation.
+      Vrai / Faux
+
+26. La loi 2010/012 s'est directement inspirée de la Convention de Budapest.
+      Vrai / Faux
+
+27. On invoque toujours le texte que l'État requis a effectivement ratifié.
+      Vrai / Faux
+
+28. L'article 8 de Budapest, sur la fraude informatique, est l'un des plus utilisés en pratique.
+      Vrai / Faux
+
+29. Le MLAT classique est une voie rapide, de l'ordre de quelques heures.
+      Vrai / Faux
+
+30. Malabo ajoute l'usurpation d'identité parmi les infractions, alors que Budapest ne la prévoit pas.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le premier traité international contre la cybercriminalité est la Convention de ______.
+
+32. La réponse africaine, plus large que Budapest, est la Convention de ______.
+
+33. La conservation urgente transfrontalière des données relève de l'article ______ de Budapest.
+
+34. Le point de contact national qui active le réseau 24/7 d'INTERPOL porte le sigle ______.
+
+35. L'organisation de coopération policière africaine se nomme ______.
+
+36. L'instrument classique d'entraide judiciaire, lent, porte le sigle anglais ______.
+
+37. La règle d'or impose la conservation avant la ______.
+
+38. L'accès illégal à un système est prévu par l'article ______ de Budapest.
+
+39. Le réseau mondial sécurisé d'INTERPOL se nomme I-______.
+
+40. Le texte camerounais inspiré de Budapest est la loi 2010/______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

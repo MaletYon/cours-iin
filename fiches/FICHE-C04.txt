@@ -1,0 +1,234 @@
+NDAP SUKULU · IIN · fiche FICHE-C04
+Chapitre 4 : Fondements théoriques
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Que dit le principe de Locard transposé au numérique ?
+      a) Tout processus informatique laisse des traces dans son environnement
+      b) Aucune action ne laisse de trace
+      c) Seuls les fichiers laissent des traces
+      d) Les traces sont toujours volontaires
+
+ 2. À quelle catégorie appartiennent les logs système et l'historique du navigateur ?
+      a) Traces secondaires, générées par l'environnement en réponse à l'action
+      b) Traces primaires
+      c) Traces tertiaires
+      d) Traces résiduelles
+
+ 3. Comment nomme-t-on les traces qui persistent dans l'espace non alloué après un effacement ?
+      a) Les traces résiduelles
+      b) Les traces primaires
+      c) Les traces tertiaires
+      d) Les traces secondaires
+
+ 4. Les alertes IDS/SIEM et les logs de pare-feu sont des traces de quel type ?
+      a) Tertiaires, générées par les outils de sécurité
+      b) Primaires
+      c) Résiduelles
+      d) Secondaires
+
+ 5. Que dit le chapitre de l'effacement de preuves au regard de Locard ?
+      a) L'effacement ne viole pas Locard, il laisse lui-même des traces
+      b) L'effacement supprime toute trace définitivement
+      c) L'effacement est indétectable
+      d) L'effacement viole les lois de la physique
+
+ 6. Quelle plage d'entropie indique un fichier chiffré ou compressé ?
+      a) Au-delà de 7,5 bits par octet
+      b) Entre 0 et 1
+      c) Entre 3,5 et 5
+      d) Exactement 2
+
+ 7. À quoi sert le fuzzy hashing, par exemple avec ssdeep ?
+      a) Mesurer la similarité entre binaires pour reconnaître une famille de malware
+      b) Chiffrer un disque
+      c) Compresser un fichier
+      d) Effacer des traces
+
+ 8. Le domaine medequip-portugal.com a une distance de Levenshtein très faible par rapport à medequip.pt. De quelle technique s'agit-il ?
+
+      a) Le typosquatting
+      b) Le beaconing
+      c) Le timestomping
+      d) Le sandboxing
+
+ 9. Que mesure la centralité de degré d'un nœud dans un réseau ?
+      a) Son rôle de hub de communication, par le nombre de ses liens
+      b) Sa distance au serveur
+      c) Son entropie
+      d) Son horodatage
+
+10. Que signale une forte centralité d'intermédiarité (betweenness) ?
+      a) Un pont critique dont la neutralisation fragmente le réseau
+      b) Un nœud isolé sans importance
+      c) Une victime
+      d) Un fichier chiffré
+
+11. À quoi sert PageRank en investigation d'emails ?
+      a) Identifier les personnes les plus influentes d'un réseau de communication
+      b) Calculer un hash
+      c) Chiffrer les messages
+      d) Supprimer les doublons
+
+12. Qu'ajoute un graphe temporel à un graphe classique ?
+      a) Une dimension de temps aux arêtes, pour reconstituer un chemin d'attaque
+      b) Un chiffrement des nœuds
+      c) Une compression des arêtes
+      d) Rien de particulier
+
+13. Laquelle est une propriété de sécurité d'une fonction de hachage ?
+      a) La résistance aux collisions
+      b) La réversibilité rapide
+      c) La compression avec perte
+      d) La divulgation de la clé
+
+14. Combien de phases compte le modèle DFRWS de 2001 ?
+      a) Six phases
+      b) Trois phases
+      c) Dix phases
+      d) Une seule phase
+
+15. Selon le NIST SP 800-86, que fait l'examination, par opposition à l'analysis ?
+      a) Elle documente ce qu'on trouve, sans l'interpréter
+      b) Elle tire des conclusions et teste des hypothèses
+      c) Elle plaide devant le tribunal
+      d) Elle chiffre les preuves
+
+16. Que désigne le rôle de DEFR dans la norme ISO/IEC 27037 ?
+      a) Le premier intervenant, responsable de la préservation initiale
+      b) L'avocat de la défense
+      c) Le juge d'instruction
+      d) Le fabricant de l'outil
+
+17. Que signifie que l'admissibilité est une conjonction stricte de ses conditions ?
+      a) L'absence d'une seule condition invalide toute la preuve
+      b) Une seule condition suffit
+      c) Les conditions sont facultatives
+      d) Deux conditions sur quatre suffisent
+
+18. Laquelle de ces phrases est une constatation, non une interprétation ?
+      a) Le hash MD5 de l'image correspond à celui de l'original
+      b) L'image est fidèle au disque et n'a pas été altérée
+      c) BELLO a préparé un détournement
+      d) L'attaque provenait de Roumanie
+
+19. En quoi consiste la méthode des hypothèses concurrentes (ACH) ?
+      a) Chercher à falsifier sa thèse en réfutant explicitement les hypothèses rivales
+      b) Confirmer sa thèse par tous les moyens
+      c) Ignorer les hypothèses alternatives
+      d) Choisir l'hypothèse la plus simple sans vérifier
+
+20. Que modélise le modèle Dolev-Yao ?
+      a) Un adversaire qui contrôle le réseau, utile pour justifier le chiffrement des preuves
+      b) Un algorithme de compression
+      c) Une méthode de sauvegarde
+      d) Un format d'image disque
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Le numérique laisse des traces à plusieurs niveaux simultanément pour une seule action.
+      Vrai / Faux
+
+22. L'investigateur déclare l'intégrité, il n'a pas besoin de la prouver par un hash.
+      Vrai / Faux
+
+23. La distance de Hamming se calcule entre deux chaînes de même longueur.
+      Vrai / Faux
+
+24. La principale limite du modèle DFRWS est son caractère strictement linéaire.
+      Vrai / Faux
+
+25. Un avocat peut attaquer une interprétation, mais non un hash qui correspond.
+      Vrai / Faux
+
+26. Respecter la norme ISO/IEC 27037 revient de facto à respecter les articles 52 à 59 de la loi 2010/012.
+      Vrai / Faux
+
+27. Un investigateur rigoureux cherche avant tout à confirmer son hypothèse de départ.
+      Vrai / Faux
+
+28. Le NIST a finalisé en 2024 des algorithmes comme CRYSTALS-Kyber et SPHINCS+ pour l'ère post-quantique.
+      Vrai / Faux
+
+29. Dans un graphe pondéré, le poids d'une arête peut représenter un montant transféré.
+      Vrai / Faux
+
+30. Un fichier texte ordinaire présente une entropie proche de 8 bits par octet.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le fondateur du principe « tout contact laisse une trace » est Edmond ______.
+
+32. L'outil de fuzzy hashing cité pour comparer des binaires s'appelle ______.
+
+33. L'outil qui génère les variantes d'un domaine pour détecter le typosquatting s'appelle ______.
+
+34. La norme internationale qui définit les rôles DEFR et DES est l'ISO/IEC ______.
+
+35. La méthode des hypothèses concurrentes porte le sigle anglais ______.
+
+36. L'algorithme post-quantique de chiffrement finalisé par le NIST se nomme CRYSTALS-______.
+
+37. La métrique de centralité qui identifie un pont critique du réseau est la centralité d'______.
+
+38. Le journal NTFS qui enregistre notamment l'horodatage d'une suppression se nomme $______.
+
+39. Le standard du NIST qui distingue Examination et Analysis est le NIST SP 800-______.
+
+40. Les quatre conditions d'admissibilité sont légalité, intégrité, pertinence et ______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

@@ -1,0 +1,49 @@
+%% ============================================================================
+%% Fichier  : annexes/Ann_B_outils.tex
+%% Titre    : Référentiel des outils
+%% Version  : 1.0 -- novembre 2026
+%% ============================================================================
+%% Alignée sur les annexes des autres cours de l'auteur (ACSI, INF3226).
+%% ============================================================================
+
+\chapter{Référentiel des Outils}
+\label{ann:outils}
+
+Cette annexe rassemble les outils mobilisés dans le cours et dans les labs de
+NDAP SUKULU. Les noms de logiciels sont des exemples~: les versions évoluent, et
+tout rapport cite l'outil \emph{et sa version}. Un outil se valide avant
+usage, sur des données de référence (ISO/IEC~27041).
+
+\section*{Préserver et acquérir}
+
+\begin{tableaucours}{L{3.6cm}L{6.2cm}L{2.6cm}}{%
+    \tableauHeader{Outil} &
+    \tableauHeader{Usage} &
+    \tableauHeader{Chapitre}
+}
+Bloqueur d'écriture matériel & Lire un support sans pouvoir y écrire & Ch.~\ref{chap:acq} \\
+\texttt{dc3dd}, \texttt{dd}, \texttt{ewfacquire} & Image brute ou E01, avec empreintes & Ch.~\ref{chap:acq} \\
+FTK Imager, Guymager & Imagerie avec interface graphique, vérification & Ch.~\ref{chap:acq} \\
+\texttt{sha256sum} & Calculer et vérifier une empreinte & Ch.~\ref{chap:custody} \\
+Formulaire de custody & Tracer chaque détention et chaque action & Ch.~\ref{chap:custody} \\
+\end{tableaucours}
+
+\section*{Mémoire, mobile, réseau}
+
+\begin{tableaucours}{L{3.6cm}L{6.2cm}L{2.6cm}}{%
+    \tableauHeader{Outil} &
+    \tableauHeader{Usage} &
+    \tableauHeader{Chapitre}
+}
+Volatility~3 & Analyser une capture de la mémoire vive & Ch.~\ref{chap:acq} \\
+ADB, outils d'extraction mobile & Acquisition logique d'un téléphone Android & Ch.~\ref{chap:acq} \\
+Wireshark, \texttt{tcpdump} & Capturer et lire le trafic réseau & Ch.~\ref{chap:acq} \\
+Autopsy, The Sleuth Kit & Explorer une image, récupérer des fichiers & Ch.~\ref{chap:acq} \\
+\texttt{foremost}, \texttt{scalpel} & Carving par signatures & Ch.~\ref{chap:acq} \\
+\end{tableaucours}
+
+\begin{boxalert}
+\textbf{Rappel.} Aucun outil n'est utilisé sur un système réel sans cadre
+légal ni autorisation écrite (loi n°~2010/012, art.~65, 69 et~86~;
+Annexe~\ref{ann:lois}).
+\end{boxalert}

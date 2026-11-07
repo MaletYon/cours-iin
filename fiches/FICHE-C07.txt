@@ -1,0 +1,234 @@
+NDAP SUKULU · IIN · fiche FICHE-C07
+Chapitre 7 : Méthodologies et standards internationaux
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Comment le chapitre décrit-il la relation entre le PIU et les standards ?
+      a) Le PIU structure, les standards légitiment, en complémentarité
+      b) Ils sont en concurrence directe
+      c) Les standards remplacent le PIU
+      d) Ils sont sans rapport
+
+ 2. Lequel est un problème que les standards résolvent ?
+      a) L'interopérabilité des preuves entre juridictions
+      b) La vitesse des disques
+      c) Le prix des licences
+      d) La taille des fichiers
+
+ 3. Qu'a établi le modèle DFRWS de 2001 ?
+      a) Le premier cadre formel en six phases avec un vocabulaire commun
+      b) Le chiffrement post-quantique
+      c) La forensique mobile
+      d) La blockchain
+
+ 4. Quelle phase du DFRWS est décrite comme la plus critique, car une erreur y est irréparable ?
+      a) La préservation
+      b) La présentation
+      c) L'analyse
+      d) L'identification
+
+ 5. Quelle norme est présentée comme la plus importante pour le travail de terrain ?
+      a) ISO/IEC 27037
+      b) ISO/IEC 27042
+      c) ISO 9001
+      d) RFC 3227
+
+ 6. Que désigne le rôle de DES dans la norme ISO 27037 ?
+      a) Le spécialiste en laboratoire, chargé de l'examination et de l'analysis
+      b) Le premier intervenant sur la scène
+      c) Le juge d'instruction
+      d) Le témoin principal
+
+ 7. Lequel fait partie des quatre principes d'ISO 27037 ?
+      a) La pertinence, soit une collecte ciblée et justifiée
+      b) La rapidité maximale
+      c) La discrétion totale
+      d) L'économie de hash
+
+ 8. Que couvre la norme ISO/IEC 27041 ?
+      a) La validation des méthodes d'investigation
+      b) La collecte sur le terrain
+      c) Le chiffrement des disques
+      d) La rédaction du rapport
+
+ 9. Que couvre la norme ISO/IEC 27042 ?
+      a) L'analyse et l'interprétation des preuves
+      b) La préservation initiale
+      c) La volatilité des données
+      d) La déontologie
+
+10. Quel est l'apport central du NIST SP 800-86 pour la forensique ?
+      a) L'intégration de la forensique dans la réponse aux incidents
+      b) La définition du bitcoin
+      c) La création du write blocker
+      d) L'invention du hachage
+
+11. Selon le NIST, que fait l'étape d'examination ?
+      a) Documenter ce qu'on trouve
+      b) Interpréter ce que cela signifie
+      c) Plaider au tribunal
+      d) Sceller les preuves
+
+12. Que précise la RFC 3227 ?
+      a) La priorité de collecte selon la volatilité des données
+      b) Le format des rapports
+      c) Les rôles DEFR et DES
+      d) Le prix des outils
+
+13. Selon l'ordre de volatilité, quelle donnée se collecte en premier ?
+      a) Les registres et le cache du processeur
+      b) Le disque dur
+      c) Les archives
+      d) Les sauvegardes hors site
+
+14. Sur un système allumé, la règle mnémotechnique RFC 3227 impose quel ordre ?
+
+      a) RAM avant disque, réseau avant fichiers
+      b) Disque avant RAM
+      c) Fichiers avant réseau
+      d) Archives en premier
+
+15. Que dit le premier principe ACPO ?
+      a) Aucune action ne doit modifier les données
+      b) Toute donnée doit être chiffrée
+      c) Le rapport doit faire cent pages
+      d) Le suspect doit avouer
+
+16. Que prévoit le deuxième principe ACPO quand une modification est inévitable ?
+      a) La personne doit être compétente et capable d'expliquer son action
+      b) Il faut effacer la trace
+      c) Il faut abandonner l'investigation
+      d) Il faut recommencer à zéro
+
+17. Sur qui le quatrième principe ACPO fait-il peser la responsabilité ?
+      a) Le responsable de l'investigation, pour toute l'équipe
+      b) Le fabricant de l'outil
+      c) Le témoin
+      d) Le greffier
+
+18. À quel domaine de méthode l'investigation sur un système en cours d'exécution correspond-elle ?
+      a) Le Live Forensics, conforme à RFC 3227
+      b) Le Dead Forensics
+      c) La stéganographie
+      d) Le pentest
+
+19. Que dit le chapitre de la conformité ISO 27037 et du droit camerounais ?
+      a) Respecter ISO 27037 revient de facto à respecter les articles 52 à 59 de la loi 2010/012
+      b) Les deux sont incompatibles
+      c) ISO 27037 est interdite au Cameroun
+      d) Le droit camerounais ignore la preuve numérique
+
+20. À quoi le standard SANS FOR508 est-il associé ?
+      a) La réponse aux incidents avancée et le threat hunting
+      b) La rédaction juridique
+      c) La volatilité des données
+      d) La protection des données personnelles
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Le modèle DFRWS est linéaire, alors qu'en pratique collecte et examen s'entrelacent.
+      Vrai / Faux
+
+22. L'erreur du DEFR, premier intervenant, est souvent irréparable.
+      Vrai / Faux
+
+23. Un avocat peut contester une analysis, mais non un hash qui correspond.
+      Vrai / Faux
+
+24. Sur un système allumé, il faut acquérir le disque avant de capturer la RAM.
+      Vrai / Faux
+
+25. Une preuve collectée selon ISO 27037 au Cameroun peut être recevable dans un tribunal étranger.
+      Vrai / Faux
+
+26. Les principes ACPO imposent de maintenir un audit trail complet.
+      Vrai / Faux
+
+27. Le principe de pertinence autorise à collecter tout, sans ciblage.
+      Vrai / Faux
+
+28. Le NIST SP 800-86 relie la forensique à la réponse aux incidents.
+      Vrai / Faux
+
+29. La norme ISO/IEC 27043 couvre les principes et le processus complet.
+      Vrai / Faux
+
+30. Les standards et le PIU sont en concurrence et s'excluent mutuellement.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. Le modèle DFRWS de 2001 comporte ______ phases (en chiffres).
+
+32. Le premier intervenant sur la scène, dans ISO 27037, porte le sigle ______.
+
+33. La référence technique qui fixe l'ordre de volatilité est la RFC ______.
+
+34. Le guide de référence déontologique britannique aux quatre principes s'appelle le guide ______.
+
+35. La distinction clé du NIST oppose l'examination à l'______.
+
+36. L'analyste en laboratoire, dans ISO 27037, porte le sigle ______.
+
+37. La norme ISO/IEC qui porte sur la validation des méthodes d'investigation est la 270______.
+
+38. Les exigences de saisie alignées sur ISO 27037 figurent aux articles 52 à 59 de la loi 2010/______.
+
+39. L'investigation sur un système éteint s'appelle le ______ Forensics.
+
+40. La procédure de saisie ISO 27037 exige un write blocker et le calcul d'un hash, au minimum le SHA-______.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

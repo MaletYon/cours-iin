@@ -1,0 +1,235 @@
+NDAP SUKULU · IIN · fiche FICHE-C01
+Chapitre 1 : Philosophie et fondements de l'investigation numérique
+
+Version papier, à utiliser en attendant l'ouverture du portail NDAP SUKULU.
+La fiche complète compte 40 questions. Répondez sur la grille en fin de fiche.
+Durée indicative : 60 minutes. Seuil de réussite : 60 %.
+Les corrections figurent dans le livret de correction du cours.
+
+========================================================================
+Questions à choix multiple (une seule bonne réponse)
+========================================================================
+
+ 1. Comment le chapitre définit-il l'investigation numérique ?
+      a) Une simple maîtrise d'outils comme Autopsy et Wireshark
+      b) Une discipline scientifique appliquée mobilisant informatique, droit, maths et philosophie
+      c) Une branche de l'informatique pure
+      d) Une activité purement juridique
+
+ 2. De quel philosophe le chapitre emprunte-t-il la notion de régime de vérité ?
+      a) Michel Foucault
+      b) René Descartes
+      c) Emmanuel Kant
+      d) Platon
+
+ 3. Quel régime dominait la période 1970 à 1990 ?
+      a) Le régime technique, avec l'expert isolé lisant des logs
+      b) Le régime juridique
+      c) Le régime standardisé
+      d) Le régime quantique
+
+ 4. Quel paradigme a introduit la chaîne de custody et fait du tribunal l'arbitre final ?
+      a) Le paradigme technique
+      b) Le paradigme juridique (1990-2000)
+      c) Le paradigme computationnel
+      d) Le paradigme quantique/ZK
+
+ 5. Selon Derrida, repris dans le chapitre, qu'est-ce qu'une trace ?
+      a) L'inscription d'une absence
+      b) Un fichier chiffré
+      c) Une signature manuscrite
+      d) Une preuve physique tangible
+
+ 6. Que désignent les quatre horodatages MAC-B d'un fichier NTFS ?
+      a) Modified, Accessed, Changed, Born
+      b) Memory, Access, Cache, Buffer
+      c) Master, Archive, Copy, Backup
+      d) Move, Add, Clone, Build
+
+ 7. Scénario. Pour un fichier, l'horodatage Born est postérieur à l'horodatage Modified. Qu'est-ce que cela suggère ?
+
+      a) Le fichier a été copié depuis un autre volume
+      b) Le fichier est corrompu
+      c) Le fichier est chiffré
+      d) Le fichier n'a jamais été ouvert
+
+ 8. Quel horodatage NTFS est le plus difficile à falsifier ?
+      a) Modified
+      b) Accessed
+      c) Changed (métadonnées, entrée MFT)
+      d) Tous se falsifient aussi facilement
+
+ 9. Quelle entropie, en bits par octet, caractérise un fichier chiffré ou compressé ?
+      a) Entre 0 et 1
+      b) Entre 3 et 5
+      c) Proche de 8 (entre 7,5 et 8)
+      d) Exactement 2
+
+10. Quelle entropie caractérise un fichier de texte naturel ou de code source ?
+      a) Entre 3 et 5 bits par octet
+      b) Proche de 8 bits par octet
+      c) Exactement 0
+      d) Toujours supérieure à celle d'un fichier chiffré
+
+11. Scénario. Une section d'un exécutable présente une entropie anormalement haute, proche de 8. Que soupçonnez-vous ?
+
+      a) Du code chiffré ou empaqueté (packer, shellcode)
+      b) Un simple fichier texte
+      c) Un fichier vide
+      d) Une image non compressée
+
+12. Dans un graphe G = (V, E), que représentent les sommets V en forensique ?
+      a) Les entités, comme personnes, machines, comptes, adresses IP
+      b) Les relations entre entités
+      c) Les horodatages
+      d) Les empreintes cryptographiques
+
+13. Quel type d'algorithme permet d'identifier les acteurs clés d'un réseau criminel ?
+      a) Les algorithmes de centralité, comme PageRank ou betweenness
+      b) Les algorithmes de tri
+      c) Les fonctions de hachage
+      d) La compression de données
+
+14. Quel principe mathématique justifie l'obsession pour la préservation de l'intégrité ?
+      a) La sensibilité aux conditions initiales (théorie du chaos)
+      b) Le théorème central limite
+      c) La loi des grands nombres
+      d) L'algèbre linéaire
+
+15. Lequel de ces phénomènes alimente la crise de la vérité numérique ?
+      a) La manipulation algorithmique, dont les deepfakes
+      b) La baisse du prix des disques durs
+      c) L'augmentation de la vitesse des réseaux
+      d) La standardisation des câbles USB
+
+16. Que montre la théorie de Kuhn appliquée à la forensique ?
+      a) La discipline progresse par ruptures paradigmatiques, pas par accumulation continue
+      b) La discipline ne change jamais
+      c) Seuls les outils comptent
+      d) La forensique est une science exacte figée
+
+17. Qu'énonce le paradoxe de l'authenticité invisible ?
+      a) Plus une preuve est authentique et vérifiable, plus elle tend à révéler son contenu
+      b) Une preuve authentique est toujours confidentielle
+      c) L'authenticité n'a aucun lien avec la confidentialité
+      d) La confidentialité garantit l'authenticité
+
+18. Que permettent les protocoles Zero-Knowledge Non-Repudiation ?
+      a) La vérification sans divulgation du contenu
+      b) Le chiffrement sans clé
+      c) La suppression définitive des preuves
+      d) La compression sans perte garantie
+
+19. Que dit l'énoncé du Trilemme CRO sur un protocole d'investigation ?
+      a) Aucun protocole ne peut maximiser simultanément C, R et O
+      b) Tout protocole maximise les trois à la fois
+      c) Seule l'opposabilité compte
+      d) Les trois indices sont toujours égaux
+
+20. Quelle triple identité le chapitre attribue-t-il à l'investigateur ?
+      a) Archéologue du digital, épistémologue pratique, éthicien appliqué
+      b) Programmeur, juriste, comptable
+      c) Policier, juge, avocat
+      d) Technicien, vendeur, formateur
+
+========================================================================
+Vrai ou faux
+========================================================================
+
+21. Selon le chapitre, un investigateur réduit à ses outils n'est qu'un artisan.
+      Vrai / Faux
+
+22. L'horodatage Accessed est très fiable, car Windows le met toujours à jour.
+      Vrai / Faux
+
+23. La falsification de l'horodatage Modified d'un fichier porte le nom de timestomping.
+      Vrai / Faux
+
+24. Contrairement à la preuve physique, la falsification d'une preuve numérique est souvent indétectable sans hachage.
+      Vrai / Faux
+
+25. La relation d'incertitude du paradoxe est une dérivation directe de la mécanique quantique.
+      Vrai / Faux
+
+26. L'entropie de Shannon permet de repérer des zones de disque potentiellement chiffrées.
+      Vrai / Faux
+
+27. Le chapitre enseigne surtout des procédures, car elles survivent aux changements de paradigme.
+      Vrai / Faux
+
+28. Un artefact isolé prend son sens forensique une fois replacé dans le contexte global de l'affaire.
+      Vrai / Faux
+
+29. Le rôle de l'investigateur comme archiviste du réel dépasse le seul cadre judiciaire.
+      Vrai / Faux
+
+30. Une preuve obtenue illégalement ou de façon disproportionnée est seulement irrecevable, sans autre conséquence.
+      Vrai / Faux
+
+========================================================================
+Textes à trous
+========================================================================
+
+31. La grandeur qui quantifie l'incertitude d'un système d'information s'appelle l'______ de Shannon.
+
+32. Dans un graphe G = (V, E), les arêtes E représentent les ______ entre entités.
+
+33. Le coefficient qui caractérise la sensibilité d'un système dans l'équation delta(t) = delta(0).e^(lambda.t) est l'exposant de ______.
+
+34. L'horodatage NTFS qui marque la date de création d'un fichier sur le volume se nomme ______.
+
+35. Les faux contenus audiovisuels générés par IA, cités comme menace pour la vérité, s'appellent les ______.
+
+36. La preuve paradigmatique du régime en formation depuis 2020 est la preuve à divulgation ______.
+
+37. Kuhn montre que les sciences progressent par ruptures ______, non par accumulation continue.
+
+38. Dans le Trilemme CRO, l'indice R mesure la ______ des preuves, soit leur intégrité et leur reproductibilité.
+
+39. Bien comprise, l'investigation numérique est décrite comme une praxis de ______.
+
+40. L'œuvre de Foucault dont s'inspire le cadre d'analyse s'intitule L'______ du savoir.
+
+========================================================================
+Grille de réponses   Nom : ............................  Matricule : ............
+========================================================================
+ 1. ............................................
+ 2. ............................................
+ 3. ............................................
+ 4. ............................................
+ 5. ............................................
+ 6. ............................................
+ 7. ............................................
+ 8. ............................................
+ 9. ............................................
+10. ............................................
+11. ............................................
+12. ............................................
+13. ............................................
+14. ............................................
+15. ............................................
+16. ............................................
+17. ............................................
+18. ............................................
+19. ............................................
+20. ............................................
+21. ............................................
+22. ............................................
+23. ............................................
+24. ............................................
+25. ............................................
+26. ............................................
+27. ............................................
+28. ............................................
+29. ............................................
+30. ............................................
+31. ............................................
+32. ............................................
+33. ............................................
+34. ............................................
+35. ............................................
+36. ............................................
+37. ............................................
+38. ............................................
+39. ............................................
+40. ............................................

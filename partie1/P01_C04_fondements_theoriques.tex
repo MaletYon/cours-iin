@@ -1,0 +1,725 @@
+% ============================================================================
+% Fichier  : partie1/P01_C04_fondements_theoriques.tex
+% Titre    : Fondements Theoriques
+% Auteur   : MINKA MI NGUIDJOÏ Thierry Emmanuel
+% Version  : 1.0 -- Juin 2026
+% ============================================================================
+
+\chapter{Fondements Théoriques}
+\label{chap:fond-theo}
+
+\epigraph{%
+    « La théorie sans la pratique est vaine~; la pratique sans la théorie
+    est aveugle. L'investigation numérique exige les deux. »%
+}{Adaptation d'Emmanuel Kant, \textit{Critique de la raison pure}}
+
+\niveauChapitre{Fondamental}{%
+    Mathématiques de niveau licence (probabilités, algèbre de base,
+    notions de complexité). Les résultats sont commentés pour être
+    accessibles sans démonstration exhaustive.%
+}
+
+\begin{boxobjectifs}
+\begin{itemize}
+    \item Maîtriser le \termecle{principe de Locard numérique}~\cite{locard1920} et
+          sa taxonomie des traces~: primaires, secondaires, tertiaires,
+          résiduelles.
+    \item Appliquer les trois outils de la théorie de l'information~:
+          entropie, distance de Hamming, distance de Levenshtein.
+    \item Modéliser un réseau criminel avec la théorie des graphes
+          (centralité de degré, d'intermédiarité, PageRank, graphes temporels).
+    \item Comprendre le modèle Dolev-Yao et en déduire les menaces
+          sur la preuve numérique.
+    \item Situer les modèles de processus (DFRWS, Casey, NIST, ISO~27037~\cite{iso27037})
+          dans leur cohérence et leurs différences.
+    \item Articuler fondements théoriques et Trilemme CRO.
+\end{itemize}
+\end{boxobjectifs}
+
+\bigskip
+
+% ============================================================================
+\section{Le Principe de Locard Numérique}
+\label{sec:locard}
+% ============================================================================
+
+\subsection{Origine et transposition au numérique}
+
+Édmond Locard (1877--1966), directeur du premier laboratoire de police
+scientifique au monde (Lyon, 1910), a formulé le principe fondateur de la
+criminalistique~: \textit{« Tout contact laisse une trace. »} Sa transposition
+au monde numérique est non triviale mais inévitable.
+
+\begin{boxdef}
+\textbf{Principe de Locard numérique}\index{Locard, principe numérique}.
+Tout processus informatique laisse des traces dans son environnement
+d'exécution. Ces traces sont automatiques, involontaires, et persistent au
+sein des systèmes de fichiers, des journaux, de la mémoire et du réseau,
+indépendamment de la volonté de l'acteur qui a engendré le processus.
+\end{boxdef}
+
+La différence cruciale avec le monde physique est que le numérique laisse
+des traces \textbf{à plusieurs niveaux simultanément}~: un simple clic sur
+un lien Web génère des entrées dans l'historique du navigateur, une requête
+DNS dans les journaux réseau, une connexion TCP dans les logs du routeur,
+un artefact de cache dans le répertoire temporaire, et potentiellement
+un enregistrement dans les bases de données du serveur distant.
+
+\subsection{Taxonomie des traces numériques}
+
+\begin{tableaucours}{p{3.2cm}p{4.2cm}p{4.8cm}}{%
+    \tableauHeader{Catégorie} &
+    \tableauHeader{Définition} &
+    \tableauHeader{Exemples concrets}
+}
+\textbf{Traces primaires} &
+    Générées directement par l'action incriminée &
+    Fichier créé, email envoyé, transaction MoMo exécutée, connexion RDP \\
+\textbf{Traces secondaires} &
+    Générées par l'environnement en réponse à l'action &
+    Logs système, historique navigateur, registre Windows, Prefetch,
+    métadonnées EXIF \\
+\textbf{Traces tertiaires} &
+    Générées par les outils de sécurité &
+    Alertes IDS/SIEM, logs pare-feu, journaux VPN, audit Active Directory \\
+\textbf{Traces résiduelles} &
+    Persistant après tentative d'effacement &
+    Fichiers dans l'espace non alloué, entrées MFT orphelines,
+    \textit{slack space}, \texttt{\$LogFile} NTFS \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.1. Taxonomie des traces numériques
+selon le principe de Locard}\end{center}
+
+\subsection{Locard dans les affaires étudiées}
+
+Le principe de Locard explique a posteriori pourquoi chaque grande affaire
+a pu être résolue~:
+\begin{itemize}
+    \item \textbf{BTK/Rader}~: les métadonnées Office sont des \emph{traces
+          secondaires}, générées automatiquement par Word, indépendamment
+          de toute intention de Rader.
+    \item \textbf{MVOM}~: la connexion RDP est une \emph{trace primaire} dans
+          les logs pare-feu~; le processus \texttt{svchost.exe} malveillant en
+          RAM est une \emph{trace secondaire} de son installation.
+    \item \textbf{WOURI}~: les transactions Bitcoin sont des \emph{traces
+          primaires} permanentes et immuables, Locard dans sa forme absolue.
+\end{itemize}
+
+\begin{boiteRemarque}{L'anti-forensique comme tentative de violation de Locard}
+Les techniques d'\termecle{anti-forensique}\index{anti-forensique} (suppression
+de fichiers, nettoyage des logs, chiffrement) ne violent pas Locard~: elles
+tentent de le contourner. Mais l'effacement lui-même laisse des traces~:
+les outils utilisés apparaissent dans le Prefetch Windows~; les entrées MFT
+supprimées persistent dans l'espace non alloué~; l'horodatage de la suppression
+est enregistré dans \texttt{\$LogFile}. La trace de la suppression est une
+trace secondaire au sens de Locard.
+\end{boiteRemarque}
+
+% ============================================================================
+\section{Théorie de l'Information~: l'Arsenal de Shannon}
+\label{sec:shannon-arsenal}
+% ============================================================================
+
+\subsection{L'entropie comme détecteur d'anomalie}
+
+La théorie de Shannon \cite{shannon1948} fournit trois outils directement
+opérationnels. L'entropie $H(X)$ a été introduite au Chapitre~\ref{chap:phi-fond}.
+Rappelons son calcul sur un fichier binaire~: on estime la distribution des
+256 valeurs d'octet possibles~:
+
+\begin{equation}
+H_{\text{fichier}} = -\sum_{b=0}^{255}
+\frac{n_b}{N}\,\log_2\!\left(\frac{n_b}{N}\right)
+\label{eq:shannon-fichier}
+\end{equation}
+
+où $n_b$ est le nombre d'occurrences de l'octet de valeur $b$ et $N$ le nombre
+total d'octets analysés.
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={Calcul de l'entropie d'un fichier, script Python forensique}]
+import math, collections
+
+def entropie(chemin, echantillon=65536):
+    with open(chemin, 'rb') as f:
+        d = f.read(echantillon)
+    n = len(d)
+    cpt = collections.Counter(d)
+    h = -sum((c/n)*math.log2(c/n) for c in cpt.values())
+    return h
+
+# Interprétation
+h = entropie('suspect.bin')
+if   h > 7.5: print('CHIFFRE ou COMPRESSE -- investigation approfondie')
+elif h > 6.0: print('Binaire compile -- normal pour un executable')
+elif h > 3.5: print('Texte ou donnees structurees -- normal')
+else        : print('Tres repetitif -- fichier sparse ou quasi vide')
+\end{lstlisting}
+
+\subsection{La distance de Hamming~: identifier les variantes de malware}
+
+La \termecle{distance de Hamming}\index{distance de Hamming} mesure le nombre
+de positions où deux chaînes binaires de même longueur diffèrent~:
+
+\begin{equation}
+d_H(x, y) = \sum_{i=1}^{n} \mathbf{1}[x_i \neq y_i]
+\label{eq:hamming}
+\end{equation}
+
+En pratique, les \termecle{fuzzy hashes}\index{fuzzy hash} (ssdeep, TLSH)
+calculent des distances approximatives sur des fichiers de taille variable~:
+une distance normalisée $d_H(x,y)/n < 0.15$ entre deux binaires indique
+une probable appartenance à la même famille de malware.
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={Fuzzy hashing avec ssdeep}]
+# Calculer le fuzzy hash d'un fichier
+ssdeep -b malware_suspect.exe
+
+# Comparer avec une référence (score 0-100, 100 = identiques)
+ssdeep -m malware_reference.exe malware_suspect.exe
+# Sortie : matches malware_reference.exe (88)
+# Score 88 : variante très probable de la même famille
+
+# Comparaison sur un répertoire entier
+ssdeep -r -m malware_reference.exe /dossier/suspects/
+\end{lstlisting}
+
+\subsection{La distance de Levenshtein~: typosquatting et comparaison de textes}
+
+La \termecle{distance de Levenshtein}\index{distance de Levenshtein} mesure
+le nombre minimum d'insertions, suppressions et substitutions pour transformer
+une chaîne en une autre~:
+
+\begin{equation}
+d_L(s, t) = \min_{\text{séq. d'opérations}} |\text{opérations}(s \to t)|
+\label{eq:levenshtein}
+\end{equation}
+
+Applications forensiques directes~:
+\begin{itemize}
+    \item \textbf{Typosquatting} (WOURI)~: le domaine frauduleux
+          \texttt{medequip-portugal.com} a une distance de Levenshtein très faible
+          par rapport au domaine légitime \texttt{medequip.pt}~; l'outil
+          \textit{dnstwist} automatise cette détection.
+    \item \textbf{Variantes de scripts}~: deux scripts avec $d_L$ faible ont
+          probablement le même auteur.
+    \item \textbf{Pseudonymes}~: deux noms très proches dans des bases de données
+          différentes peuvent désigner la même personne.
+\end{itemize}
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={Détection de typosquatting avec dnstwist}]
+# Génère toutes les variantes du domaine et vérifie celles enregistrées
+dnstwist --registered medequip.pt
+
+# Sortie typique :
+# Original*       medequip.pt           185.xx.xx.xx
+# Hyphenation     medequip-pt.com       91.xxx.xx.xx  <- SUSPECT
+# Transposition   meidquip.pt           [NON ENREGISTRE]
+\end{lstlisting}
+
+% ============================================================================
+\section{Théorie des Graphes en Investigation Numérique}
+\label{sec:graphes}
+% ============================================================================
+
+\subsection{Formalisation des réseaux criminels}
+
+Un réseau criminel ou de communication est modélisé par un
+\termecle{graphe orienté pondéré}\index{graphe!orienté pondéré}~:
+
+\begin{equation}
+G = (V, E, w), \quad
+E \subseteq V \times V, \quad
+w : E \to \mathbb{R}^+
+\label{eq:graphe-pondere}
+\end{equation}
+
+où $V$ est l'ensemble des entités (personnes, machines, comptes, adresses IP),
+$E$ l'ensemble des relations (communications, transferts, accès) et $w(u,v)$
+le poids de la relation (montant transféré, fréquence d'accès).
+
+\subsection{Métriques de centralité~: identifier les acteurs clés}
+
+\subsubsection{Centralité de degré}
+
+\begin{equation}
+C_D(v) = \frac{\deg(v)}{|V| - 1}
+\label{eq:centralite-degre}
+\end{equation}
+
+Un nœud à forte centralité de degré est un \textbf{hub de communication}.
+Dans WOURI, ATANGANA avait la centralité de degré la plus élevée.
+
+\subsubsection{Centralité d'intermédiarité (\textit{betweenness centrality})}
+
+\begin{equation}
+C_B(v) = \sum_{s \neq v \neq t}
+\frac{\sigma(s, t \mid v)}{\sigma(s, t)}
+\label{eq:centralite-betweenness}
+\end{equation}
+
+où $\sigma(s,t)$ est le nombre de chemins les plus courts entre $s$ et $t$,
+et $\sigma(s,t \mid v)$ ceux qui passent par $v$. Un acteur à forte centralité
+d'intermédiarité est un \textbf{pont critique}~: le neutraliser fragmente
+le réseau. Dans WOURI, NGUEMO était le pont entre la collecte des fonds
+(Cameroun) et le blanchiment (EAU).
+
+\subsubsection{PageRank forensique}
+
+\begin{equation}
+\mathrm{PR}(v) = \frac{1-d}{|V|} + d \sum_{u \in \mathcal{N}^{-}(v)}
+\frac{\mathrm{PR}(u)}{\mathrm{deg}^+(u)}, \quad d \approx 0.85
+\label{eq:pagerank}
+\end{equation}
+
+En investigation d'emails, PageRank identifie les personnes les plus influentes
+dans un réseau de communication~: celles dont les messages sont fréquemment
+répondus ou transférés (comme dans l'affaire Enron).
+
+\subsection{Graphes temporels~: la chronologie comme dimension analytique}
+
+Un \termecle{graphe temporel}\index{graphe!temporel} $G = (V, E, T)$ ajoute
+une dimension temporelle aux arêtes~:
+
+\begin{equation}
+E \subseteq V \times V \times T
+\label{eq:graphe-temporel}
+\end{equation}
+
+En forensique réseau, chaque connexion est un triplet
+$(\text{source}, \text{destination}, t)$. L'analyse du graphe temporel
+permet de \textbf{reconstituer un chemin d'attaque}~: deux événements $e_1$
+et $e_2$ sont causalement liés si $t(e_2) - t(e_1)$ est faible et si les
+entités impliquées se recoupent.
+
+\begin{lstlisting}[language=bash_forensique,
+    caption={Analyse de graphe criminel avec NetworkX}]
+import networkx as nx
+
+G = nx.DiGraph()
+# Arêtes : (source, destination, poids)
+edges = [
+    ('ATANGANA', 'OKAFOR',  {'w': 1, 'd': '2026-01'}),
+    ('OKAFOR',   'SOTRADI', {'w': 47, 'd': '2026-01-15'}),
+    ('SOTRADI',  'NGUEMO',  {'w': 47, 'd': '2026-01-15'}),
+    ('NGUEMO',   'HASSAN',  {'w': 45, 'd': '2026-01-15'}),
+]
+G.add_edges_from([(u,v,d) for u,v,d in edges])
+
+# Centralité d'intermédiarité
+btw = nx.betweenness_centrality(G)
+# -> NGUEMO et OKAFOR ont les valeurs les plus élevées
+
+# PageRank (acteur le plus 'central' dans le flux)
+pr = nx.pagerank(G, weight='w')
+\end{lstlisting}
+
+% ============================================================================
+\section{Le Modèle Dolev-Yao~: l'Adversaire Formel}
+\label{sec:dolev-yao}
+% ============================================================================
+
+\subsection{Définition}
+
+Le \termecle{modèle Dolev-Yao}\index{Dolev-Yao, modèle} \cite{dolevyao1983}
+est le cadre formel standard pour raisonner sur la sécurité d'un protocole
+cryptographique face à un adversaire actif~:
+
+\begin{boxdef}
+\textbf{Adversaire Dolev-Yao}. Un adversaire $\mathcal{A}$ qui~:
+\begin{enumerate}
+    \item peut \textbf{intercepter} tout message transitant sur le réseau~;
+    \item peut \textbf{modifier, rejouer, supprimer ou réordonner} tout message~;
+    \item peut \textbf{injecter} des messages en se faisant passer pour
+          n'importe quelle entité~;
+    \item \textbf{ne peut pas} casser les primitives cryptographiques
+          correctement utilisées (déchiffrer sans clé, forger une signature).
+\end{enumerate}
+\end{boxdef}
+
+\subsection{Implications forensiques}
+
+\textbf{Implication~1~:} toute preuve transmise sur un réseau non sécurisé
+est potentiellement compromise. La chaîne de custody numérique doit inclure
+la sécurisation des canaux de transmission (chiffrement + signature).
+
+\textbf{Implication~2~:} la non-répudiation est un problème difficile.
+Comment prouver qu'un message a bien été envoyé par Alice et non par
+$\mathcal{A}$ se faisant passer pour elle~? La réponse est la signature
+numérique asymétrique~: seul le détenteur de la clé privée d'Alice peut
+produire sa signature. C'est le fondement mathématique du protocole ZK-NR
+\cite{minka2025zknr} formalisé dans la Partie~VI du cours SEC4052.
+
+\subsection{Du modèle Dolev-Yao au Trilemme CRO}
+
+Dolev-Yao modélise ce que l'adversaire peut faire techniquement.
+Le Trilemme CRO généralise en ajoutant la dimension légale~:
+
+\begin{equation}
+\underbrace{\mathcal{C}}_{\text{protéger contre }\mathcal{A}} +
+\underbrace{\mathcal{R}}_{\text{résister à }\mathcal{A}} +
+\underbrace{\mathcal{O}}_{\text{prouver face au juge}}
+\;\leq\; 1 + \epsilon
+\label{eq:CRO-dolev}
+\end{equation}
+
+La relation~\eqref{eq:CRO-dolev} formalise l'impossibilité~: maximiser la
+protection contre $\mathcal{A}$ ($\mathcal{C}$ et $\mathcal{R}$ élevés) rend
+la preuve difficile à vérifier par des tiers ($\mathcal{O}$ contraint).
+Les protocoles ZK résolvent partiellement cette tension.
+
+% ============================================================================
+\section{Complexité Computationnelle et Sécurité Forensique}
+\label{sec:complexite}
+% ============================================================================
+
+\subsection{Problèmes difficiles et sécurité cryptographique}
+
+Toute la cryptographie moderne repose sur des problèmes
+\textbf{calculatoirement difficiles}. La notation $\mathcal{O}$-grand
+formalise la complexité~:
+
+\begin{equation}
+f(n) = \mathcal{O}(g(n)) \iff
+\exists\, c > 0,\; n_0 \geq 0 \;\text{ tels que }\;
+\forall n \geq n_0,\; f(n) \leq c\,g(n)
+\label{eq:big-O}
+\end{equation}
+
+Les deux problèmes difficiles fondamentaux~:
+\begin{enumerate}
+    \item \textbf{Factorisation d'entiers}~: étant donné $N = p \cdot q$,
+          retrouver $p$ et $q$. Complexité classique~:
+          $\mathcal{O}(e^{n^{1/3}})$. Fondement de RSA.
+    \item \textbf{Logarithme discret}~: étant donné $g^x \bmod p$,
+          retrouver $x$. Fondement de Diffie-Hellman et des courbes
+          elliptiques.
+\end{enumerate}
+
+\subsection{La menace quantique~: algorithme de Shor}
+
+L'algorithme de \termecle{Shor}\index{Shor, algorithme de} (1994) résout
+ces deux problèmes en temps polynomial sur un ordinateur quantique~:
+
+\begin{equation}
+T_{\text{Shor}}(n) = \mathcal{O}(n^3)
+\quad \text{vs} \quad
+T_{\text{classique}}(n) = \mathcal{O}(e^{n^{1/3}})
+\label{eq:shor}
+\end{equation}
+
+L'implication pour la forensique est directe~: les preuves collectées en 2026
+et chiffrées avec RSA ou ECDSA seront potentiellement déchiffrables dans
+10 à 15 ans. C'est la stratégie
+\termecle{Harvest Now, Decrypt Later}\index{Harvest Now Decrypt Later}~:
+un adversaire étatique collecte aujourd'hui des données chiffrées pour les
+déchiffrer demain.
+
+\begin{boxalert}
+\textbf{Migration post-quantique, obligation éthique pour les données
+longue durée.}
+
+Le NIST a publié en 2024 trois standards post-quantiques~:
+CRYSTALS-Kyber (FIPS~203, encapsulation de clés), CRYSTALS-Dilithium
+(FIPS~204) et SPHINCS+ (FIPS~205) pour les signatures~; FALCON est
+encore en cours de normalisation (UE~SEC4052, chapitre~26). Pour les investigations impliquant des données à longue
+durée de vie (terrorisme, protection de témoins, secrets industriels),
+le passage à ces algorithmes est une obligation éthique.
+\end{boxalert}
+
+\subsection{Fonctions à sens unique et hachage forensique}
+
+Le hachage cryptographique repose sur une
+\termecle{fonction à sens unique}\index{fonction à sens unique}~:
+
+\begin{equation}
+h : \{0,1\}^* \to \{0,1\}^n
+\label{eq:hash-def}
+\end{equation}
+
+facile à calculer ($\mathcal{O}(|m|)$), impossible à inverser sans clé.
+Trois propriétés de sécurité~:
+\begin{enumerate}
+    \item \textbf{Résistance à la préimage}~: étant donné $y$, infaisable
+          de trouver $x$ tel que $h(x) = y$.
+    \item \textbf{Résistance à la seconde préimage}~: étant donné $x$,
+          infaisable de trouver $x' \neq x$ tel que $h(x') = h(x)$.
+    \item \textbf{Résistance aux collisions}~: infaisable de trouver
+          $(x, x')$ tels que $h(x) = h(x')$.
+\end{enumerate}
+
+Ces propriétés fondent le \textbf{principe de preuve d'intégrité}~: si le
+hash de l'image forensique correspond au hash du disque original, aucune
+modification n'a eu lieu. L'investigateur ne \emph{déclare} pas l'intégrité~;
+le hash la \emph{prouve} mathématiquement.
+
+% ============================================================================
+\section{Modèles de Processus Forensique}
+\label{sec:modeles-processus}
+% ============================================================================
+
+\subsection{Panorama et positionnement}
+
+\begin{tableaucours}{p{2.4cm}p{2.0cm}p{5.5cm}p{1.8cm}}{%
+    \tableauHeader{Modèle} &
+    \tableauHeader{Origine} &
+    \tableauHeader{Contribution} &
+    \tableauHeader{Niveau}
+}
+DFRWS 2001 & Recherche & Premier modèle systématique~: 6~phases séquentielles & Conceptuel \\
+Casey 2004 & Académique & Modèle intégré~: 5~phases, contexte judiciaire fort & Académique \\
+\norme{NIST SP 800-86} & Gouvernement &
+    Intégration IR + forensique~; distinction Exam./Analysis & Opérationnel \\
+\norme{ISO/IEC 27037} & Normalisation &
+    Standard international~: rôles DEFR et DES définis & Normatif \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.2. Panorama des modèles de processus}
+\end{center}
+
+\subsection{Le modèle DFRWS (2001)}
+
+Le \termecle{DFRWS}\index{DFRWS} \cite{dfrws2001} a publié le premier modèle
+formel de processus en six phases~:
+\begin{enumerate}
+    \item \textbf{Identification}: reconnaître l'incident et définir son périmètre.
+    \item \textbf{Préservation}: isoler et protéger les preuves.
+    \item \textbf{Collection}: acquérir selon des méthodes documentées.
+    \item \textbf{Examination}: extraire les informations des preuves collectées.
+    \item \textbf{Analysis}: corréler pour reconstituer les événements.
+    \item \textbf{Presentation}: communiquer de façon défendable.
+\end{enumerate}
+
+La limite du DFRWS est son caractère \textbf{linéaire}~: un investigateur
+alterne en réalité entre Collection et Examination au fil des découvertes.
+
+\subsection{La distinction Examination / Analysis (NIST SP~800-86)}
+
+La contribution centrale de \norme{NIST SP~800-86} \cite{nist80086} est la
+distinction~:
+\begin{itemize}
+    \item \textbf{Examination}~: appliquer des méthodes systématiques pour
+          identifier et extraire. L'examinateur documente ce qu'il \emph{trouve},
+          pas ce que cela \emph{signifie}.
+    \item \textbf{Analysis}~: interpréter les données extraites, tester des
+          hypothèses, corréler les sources. L'analyste tire des conclusions.
+\end{itemize}
+
+Cette distinction est fondamentale~: un avocat peut attaquer une interprétation~;
+il ne peut pas attaquer un hash qui correspond.
+
+\subsection{ISO/IEC 27037~: standard international et rôles}
+
+\norme{ISO/IEC~27037:2012} définit deux rôles distincts~:
+\begin{itemize}
+    \item \textbf{DEFR} (\textit{Digital Evidence First Responder}).
+          premier intervenant sur la scène~; responsable de la préservation
+          initiale. Son erreur est irréparable.
+    \item \textbf{DES} (\textit{Digital Evidence Specialist}). analyste
+          en laboratoire~; responsable de l'examination et de l'analysis.
+\end{itemize}
+
+\begin{boxjuris}
+\textbf{Compatibilité ISO/IEC~27037 et droit camerounais~:}\\[0.3ex]
+La \loicam{2010/012}~\cite{cameroun2010a}, articles~52--59, impose~: présence des parties,
+copie réalisée en leur présence, documentation. Ces exigences sont
+\emph{substantiellement alignées} sur ISO/IEC~27037. Un investigateur
+respectant le standard international respecte de facto les articles~52--59.
+\end{boxjuris}
+
+% ============================================================================
+\section{Théorie de la Preuve Numérique}
+\label{sec:theorie-preuve}
+% ============================================================================
+
+\subsection{Conditions formelles d'admissibilité}
+
+La validité d'une preuve numérique $P$ peut être formalisée~:
+
+\begin{equation}
+\mathrm{Admissible}(P) \iff
+\underbrace{\mathrm{Légale}(P)}_{\text{obtention licite}}
+\;\wedge\;
+\underbrace{\mathrm{Intègre}(P)}_{\text{hash vérifié}}
+\;\wedge\;
+\underbrace{\mathrm{Authentique}(P)}_{\text{custody continue}}
+\;\wedge\;
+\underbrace{\mathrm{Pertinente}(P)}_{\text{lien avec les faits}}
+\label{eq:admissibilite}
+\end{equation}
+
+La conjonction ($\wedge$) est stricte~: l'absence d'une seule condition
+invalide la preuve entière.
+
+\subsection{La distinction constatation / interprétation}
+
+\begin{tableaucours}{p{5.5cm}p{5.5cm}}{%
+    \tableauHeader{Constatation (factuelle)} &
+    \tableauHeader{Interprétation (analytique)}
+}
+« Le fichier \texttt{faux\_bon.docx} a été créé le 03/02/2026 à 14h22. » &
+« BELLO a créé ce fichier pour préparer un détournement. » \\
+« \texttt{svchost.exe} (PID~4892) a \texttt{cmd.exe} comme parent. » &
+« Ce processus est anormal et indique une compromission. » \\
+« Le hash MD5 de l'image correspond au hash de l'original. » &
+« L'image est fidèle au disque et n'a pas été altérée. » \\
+« L'adresse IP source est 185.220.XX.XX. » &
+« L'attaque provenait de Roumanie. » \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.3. Distinction constatation/interprétation~:
+exemples tirés des affaires TANGUE et MVOM}\end{center}
+
+\subsection{La méthode des hypothèses concurrentes (ACH)}
+
+Un investigateur rigoureux ne cherche pas à \emph{confirmer} sa thèse~:
+il cherche à la \emph{falsifier}. Pour chaque conclusion~:
+
+\begin{equation}
+H_0 \;\text{(hypothèse principale)} \quad \text{vs} \quad
+H_1, H_2, \ldots, H_k \;\text{(hypothèses concurrentes)}
+\label{eq:hypotheses}
+\end{equation}
+
+Exemple dans MVOM~: $H_0$ = « Attaque par le groupe LockBit via RDP »..
+Hypothèse $H_1$~: « La connexion RDP était légitime (télétravail autorisé)
+et le ransomware a été introduit par un autre vecteur ». L'investigateur
+doit \textbf{explicitement réfuter} $H_1$, en vérifiant la liste des
+accès RDP autorisés, les contrats, les bulletins de salaire, avant
+de conclure à $H_0$.
+
+\begin{boiteRemarque}{La méthode ACH (\textit{Analysis of Competing Hypotheses})}
+Développée par Heuer pour la CIA \cite{heuer1999}, la méthode ACH formalise
+cette approche~: pour chaque hypothèse, construire une matrice hypothèses/preuves
+et calculer un score de cohérence. Une hypothèse qui explique toutes les preuves
+et ne peut être réfutée par aucune est la conclusion la plus solide. Ce principe
+est au cœur du Processus Investigatif Universel du
+Chapitre~\ref{chap:PIU}.
+\end{boiteRemarque}
+
+% ============================================================================
+\section{Synthèse~: Fondements Théoriques et Trilemme CRO}
+\label{sec:fondements-cro}
+% ============================================================================
+
+\begin{tableaucours}{p{3.5cm}p{2.8cm}p{4.8cm}}{%
+    \tableauHeader{Fondement} &
+    \tableauHeader{Dim. CRO principale} &
+    \tableauHeader{Contribution}
+}
+Locard numérique & $\mathcal{R}$ &
+    Garantit l'existence de traces~; justifie l'exhaustivité de la collecte \\
+Entropie de Shannon & $\mathcal{R}$ &
+    Détecte les anomalies~; identifie chiffrement et stéganographie \\
+Distance Hamming/Levenshtein & $\mathcal{R}$ &
+    Mesure la similarité~; identifie variants et falsifications \\
+Théorie des graphes & $\mathcal{O}$ &
+    Visualise les relations~; cartographie le réseau criminel \\
+Modèle Dolev-Yao & $\mathcal{C}$ &
+    Modélise la menace adversariale~; justifie le chiffrement des preuves \\
+Complexité / hash & $\mathcal{R} + \mathcal{O}$ &
+    Fonde mathématiquement l'intégrité et l'authenticité \\
+Théorie de la preuve & $\mathcal{O}$ &
+    Formalise l'admissibilité et la séparation constat/interprétation \\
+\end{tableaucours}
+\vspace{-0.8em}
+\begin{center}{\small\itshape Tableau~4.4. Fondements et dimensions CRO}
+\end{center}
+
+\begin{boxCRO}
+\textbf{La tension fondamentale~:} maximiser $\mathcal{O}$ (transparence,
+vérifiabilité) s'oppose à maximiser $\mathcal{C}$ (opacité, chiffrement).
+La résolution partielle est apportée par les preuves à divulgation nulle~:
+\textit{je prouve que je sais} sans révéler \textit{ce que je sais}.
+Ce pont entre $\mathcal{C}$ et $\mathcal{O}$ est le sujet de la Partie~VI du cours SEC4052.
+\end{boxCRO}
+
+\separateur
+
+\begin{boxresume}
+\textbf{Ce qu'il faut retenir de ce chapitre~:}
+
+\begin{itemize}
+    \item \textbf{Locard numérique}~: quatre niveaux de traces (primaires,
+          secondaires, tertiaires, résiduelles). L'anti-forensique laisse
+          elle-même des traces secondaires.
+    \item \textbf{Théorie de l'information}~: entropie ($H > 7.5$~: chiffré),
+          fuzzy hashes (ssdeep) pour les variantes de malware, dnstwist pour
+          le typosquatting.
+    \item \textbf{Graphes}~: $G = (V,E,w)$ modélise les réseaux criminels~;
+          la centralité d'intermédiarité identifie les ponts critiques~;
+          les graphes temporels reconstituent les chemins d'attaque.
+    \item \textbf{Dolev-Yao}~: adversaire omniscient sur le réseau, impuissant
+          contre la cryptographie correcte. Justifie le chiffrement des preuves
+          et la signature numérique.
+    \item \textbf{Complexité}~: l'algorithme de Shor réduit RSA/ECDSA à
+          $\mathcal{O}(n^3)$~; migration vers CRYSTALS-Dilithium/FALCON
+          obligatoire pour les données longue durée.
+    \item \textbf{Modèles de processus}~: DFRWS (6~phases), NIST SP~800-86
+          (Exam./Analysis), ISO~27037 (DEFR/DES). La distinction
+          constatation/interprétation est la règle d'or du rapport.
+    \item \textbf{Admissibilité formelle}~:
+          $\mathrm{Admissible}(P) \iff \mathrm{Légale} \wedge \mathrm{Intègre}
+          \wedge \mathrm{Authentique} \wedge \mathrm{Pertinente}$~;
+          la conjonction est stricte.
+\end{itemize}
+\end{boxresume}
+
+\bigskip
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~4.1. Entropie et interprétation \niveaubase}]
+Trois fichiers extraits d'une image forensique~:
+\begin{enumerate}[(a)]
+    \item \texttt{rapport\_finance.docx}~: entropie calculée = 4.7~bits/octet.
+    \item \texttt{backup\_2026.zip}~: entropie calculée = 7.9~bits/octet.
+    \item \texttt{systeme.dll}~: entropie calculée = 6.8~bits/octet.
+\end{enumerate}
+Pour chaque fichier~: interprétez l'entropie, indiquez si une investigation
+approfondie est justifiée, et précisez ce que vous chercheriez.
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~4.2. Graphe WOURI \niveaumoyen}]
+À partir des éléments de l'Opération WOURI (quatre suspects, deux victimes,
+flux de 47M et 32M~FCFA), construisez le graphe $G = (V, E, w)$~:
+\begin{enumerate}[(a)]
+    \item Définissez précisément $V$, $E$ et $w$.
+    \item Calculez la centralité de degré de chaque suspect.
+    \item Identifiez le suspect à la plus forte centralité d'intermédiarité
+          et justifiez pourquoi sa neutralisation fragmente le réseau.
+    \item Proposez quelle preuve supplémentaire permettrait d'ajouter une
+          arête directe entre ATANGANA et HASSAN dans le graphe.
+\end{enumerate}
+\end{boxexo}
+
+\begin{boxexo}[title={\ding{45}\quad Exercice~4.3. Admissibilité et ACH \niveauexpert}]
+Dans l'affaire MVOM, l'investigateur a écrit dans son rapport~:
+
+\medskip
+\textit{« Le processus \texttt{svchost.exe} (PID~4892) était clairement
+malveillant et a servi à l'installation du ransomware LockBit par les
+attaquants russes. »}
+\medskip
+
+\begin{enumerate}[(a)]
+    \item Identifiez au moins quatre problèmes dans cette phrase (distinctions
+          constatation/interprétation, degré de certitude, attribution).
+    \item Réécrivez-la en séparant strictement les constatations vérifiables
+          des interprétations, avec un niveau de confiance explicite.
+    \item Formulez la méthode ACH~: définissez $H_0$ et deux hypothèses
+          concurrentes~; proposez quelle preuve discriminerait entre $H_0$
+          et $H_1$.
+\end{enumerate}
+\end{boxexo}
+
+\bigskip
+
+\begin{boxinfo}
+\textbf{Transition.} Le Chapitre~\ref{chap:etat-art} dresse l'état de l'art
+de la discipline en 2025~: IA forensique, deepfake detection, forensique de
+conteneurs, roadmap des certifications. Il complète la Partie~I avant le
+plongeon opérationnel de la Partie~II, qui construit le Processus Investigatif
+Universel sur les fondements posés ici.
+\end{boxinfo}

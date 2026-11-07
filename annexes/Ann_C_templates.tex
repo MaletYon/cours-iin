@@ -1,0 +1,59 @@
+%% ============================================================================
+%% Fichier  : annexes/Ann_C_templates.tex
+%% Titre    : Modèles opérationnels
+%% Version  : 1.0 -- novembre 2026
+%% ============================================================================
+%% Alignée sur les annexes des autres cours de l'auteur (ACSI, INF3226).
+%% ============================================================================
+
+\chapter{Modèles Opérationnels}
+\label{ann:templates}
+
+Cette annexe rassemble les modèles à reproduire en mission. Chacun renvoie
+au chapitre où il est expliqué.
+
+\section*{Fiche de chaîne de custody}
+
+\begin{tableaucours}{L{4.0cm}L{8.4cm}}{%
+    \tableauHeader{Rubrique} &
+    \tableauHeader{Contenu}
+}
+Identification & Numéro de pièce, description, numéro de série, état apparent \\
+Saisie & Lieu, date et heure, personne, cadre légal (réquisition, perquisition) \\
+Acquisition & Outil et version, format, empreintes SHA-256 de l'original et de l'image \\
+Scellé & Numéro, date, signataires \\
+Mouvements & Date et heure, remis par, remis à, motif, empreinte vérifiée \\
+Restitution ou destruction & Décision, date, signataires \\
+\end{tableaucours}
+
+\section*{Procès-verbal d'acquisition}
+
+\begin{itemize}
+    \item Cadre~: autorité, réquisition, mission, personnes présentes.
+    \item Support~: description, photographies, état allumé ou éteint.
+    \item Ordre de volatilité respecté (RFC~3227) et justification des choix.
+    \item Outils, versions, paramètres~; empreintes calculées et vérifiées.
+    \item Incidents et écarts à la procédure, consignés au moment où ils surviennent.
+\end{itemize}
+
+\section*{Plan du rapport forensique}
+
+\begin{tableaucours}{L{3.6cm}L{8.8cm}}{%
+    \tableauHeader{Section} &
+    \tableauHeader{Contenu}
+}
+Synthèse & Deux à quatre pages, sans jargon~: questions, réponses, niveau de confiance \\
+Mission & Contexte et questions posées, telles quelles \\
+Méthode & Normes suivies, outils et versions, ordre des opérations \\
+Constatations & Faits numérotés, horodatés, avec leur source et leur annexe \\
+Analyse & Chronologie, niveau de confiance, hypothèses alternatives, limites \\
+Conclusions & Réponses aux questions~; la qualification juridique relève de l'autorité judiciaire \\
+Annexes & Pièces, empreintes, formulaires de custody \\
+\end{tableaucours}
+
+\section*{Les contrôles de qualité du PIU}
+
+Chaque phase du processus investigatif universel se ferme sur un contrôle
+de qualité (\textit{Quality Gate})~: le périmètre est-il écrit~? les empreintes
+sont-elles vérifiées~? chaque constatation a-t-elle sa source~? Le détail figure au
+Ch.~\ref{chap:PIU}.

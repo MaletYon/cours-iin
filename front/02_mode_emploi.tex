@@ -1,0 +1,129 @@
+% ==============================================================================
+% Fichier : front/02_mode_emploi.tex
+% Titre   : Mode d'emploi — TPIN
+% ==============================================================================
+
+\chapter*{Mode d'emploi de ce cours}
+\addcontentsline{toc}{chapter}{Mode d'emploi}
+\markboth{Mode d'emploi}{Mode d'emploi}
+
+\section*{Structure générale}
+
+Ce livre correspond à l'UE \textbf{SEC4031}. Il compte un prologue et trois
+parties, soit treize chapitres, pour 60~heures en présentiel réparties en
+trente séances de deux heures. Les fiches d'auto-évaluation de NDAP SUKULU
+se font hors de ces 60~heures.
+
+\begin{tableaucours}{L{1.4cm}L{5.4cm}L{4.4cm}L{1.6cm}}{%
+    \tableauHeader{Partie} &
+    \tableauHeader{Chapitres} &
+    \tableauHeader{Compétences visées} &
+    \tableauHeader{Séances}
+}
+Prologue & Scène de crime numérique (Ch.~\ref{chap:prologue}) & Appréhender
+la réalité du terrain & 1 et 2 \\
+I & Philosophie et fondements, histoire, grandes affaires, fondements
+théoriques, état de l'art (Ch.~\ref{chap:phi-fond} à~\ref{chap:etat-art}) &
+Comprendre l'origine et les bases théoriques de la discipline & 3 à 12 \\
+II & Processus investigatif universel, méthodologies et standards, chaîne
+de custody, acquisition (Ch.~\ref{chap:PIU} à~\ref{chap:acq}) & Conduire
+une investigation structurée et défendable & 13 à 22 \\
+III & Cadre normatif global, législation mondiale et régionale, droit
+camerounais et africain, déontologie (Ch.~\ref{chap:norm-glob}
+à~\ref{chap:deonto}) & Opérer dans la légalité et l'éthique & 23 à 30 \\
+\end{tableaucours}
+
+\begin{boxinfo}
+\textbf{La suite~: l'UE SEC4052.} \emph{Investigation Numérique Avancée}
+prolonge ce cours~: forensique opérationnelle (système, réseau, mobile,
+nuage, objets connectés, sources ouvertes, rapport, cas intégrateurs),
+anti-forensique et défis émergents, puis fondements cryptographiques de la
+preuve. Elle suppose acquis les gestes et les principes de SEC4031.
+\end{boxinfo}
+
+\section*{Les environnements visuels}
+
+\begin{boxdef}
+\textbf{Définition}. Introduit un terme technique avec sa définition formelle.
+Tous les termes définis sont indexés en fin d'ouvrage.
+\end{boxdef}
+
+\begin{boxobjectifs}
+Objectifs du chapitre. Liste les compétences mesurables attendues à l'issue
+du chapitre. Ces objectifs correspondent aux critères d'évaluation.
+\end{boxobjectifs}
+
+\begin{boxCRO}
+Analyse CRO. Évalue systématiquement une technique ou un protocole selon
+les trois dimensions du Trilemme : Confidentialité~($\mathcal{C}$),
+Fiabilité~($\mathcal{R}$), Opposabilité~($\mathcal{O}$).
+\end{boxCRO}
+
+\begin{boxscenario}{Titre du scénario}
+Scénario opérationnel. Présente un cas réel ou fictif ancré dans la réalité
+camerounaise ou africaine. Le cas MBONGO (fraude financière 12M~FCFA) sert
+de fil rouge du prologue à la Partie~II, puis dans le cours SEC4052.
+\end{boxscenario}
+
+\begin{boxPNC}
+Application OPJ/DGSN. Traduit le concept académique en procédure opérationnelle
+destinée aux Officiers de Police Judiciaire.
+\end{boxPNC}
+
+\begin{boxcustody}
+Chaîne de Custody. Détaille les étapes et formulaires nécessaires à la
+préservation de la valeur probante d'une preuve numérique.
+\end{boxcustody}
+
+\begin{boxartefact}{Nom de l'artefact}
+Artefact forensique. Décrit un artefact numérique spécifique : sa localisation
+sur le système, la valeur qu'il porte pour l'investigation, et sa fragilité.
+\end{boxartefact}
+
+\begin{boxjuris}
+Jurisprudence \& Droit applicable. Référence les textes de loi, articles et
+jurisprudences pertinents, avec accent sur le droit camerounais et africain.
+\end{boxjuris}
+
+\begin{boxalert}
+Attention. signale un risque procédural, légal ou technique pouvant
+invalider une investigation.
+\end{boxalert}
+
+\begin{boxresume}
+À retenir. Synthèse des points essentiels du chapitre.
+\end{boxresume}
+
+\begin{boxexo}
+Exercice. Travaux pratiques gradués. Chaque exercice porte un indicateur
+de niveau : \niveaubase\ fondamental, \niveaumoyen\ intermédiaire,
+\niveauexpert\ expert.
+\end{boxexo}
+
+\section*{Conventions typographiques}
+
+\begin{itemize}
+    \item Les \termecle{termes clés} apparaissent en \textbf{gras bleu marine}
+          et sont indexés automatiquement.
+    \item Les \sigle{ACRONYMES} utilisent des petites capitales.
+    \item Les références aux normes utilisent la commande \norme{ISO/IEC~27037}.
+    \item Les références aux lois camerounaises utilisent \loicam{2010/012}.
+    \item Les hachages cryptographiques sont formatés ainsi :
+          \hash{SHA-256}{\texttt{3a4b5c6d...}}.
+    \item L'impact CRO inline est noté : \cro{+0.8}{-0.3}{+0.6}.
+    \item L'ordre de volatilité est indiqué : \volatilite{1}{RAM}.
+\end{itemize}
+
+\section*{Matériel d'accompagnement}
+
+Ce cours est complété par :
+\begin{itemize}
+    \item \textbf{Images de pratique forensique}, images E01 préparées pour
+          les TP Autopsy.
+    \item \textbf{Captures réseau (.pcap)}, traces Wireshark pour les TP
+          de forensique réseau.
+    \item \textbf{Machines virtuelles}, VM Kali Linux et VM Windows avec
+          artefacts préinstallés (clé USB fournie en TP).
+    \item \textbf{Formulaires officiels}, formulaire de chaîne de custody
+          (Annexe~C), adapté du formulaire type DGSN.
+\end{itemize}
