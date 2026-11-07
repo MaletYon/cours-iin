@@ -1,0 +1,42 @@
+Created By AccessData(R) FTK(R) Imager 4.7.3.81
+
+Case Information:
+Acquired using: ADI4.7.3.81
+Case Number: DOS-2026-034
+Evidence Number: EV-001
+Unique Description: PC portable Dell Inspiron 15 3000, S/N GF8T3Y2
+Examiner: ATANGANA Luc (fictif)
+Notes: Affaire MBONGO, cas pédagogique fictif. Image allégée pour le lab.
+
+--------------------------------------------------------------
+Information for EV-001:
+
+Physical Evidentiary Item (Source) Information:
+[Device Info]
+ Source Type: Physical
+[Drive Geometry]
+ Bytes per Sector: 512
+ Sector Count: 560
+[Physical Drive Information]
+ Drive Model: TOSHIBA KBG40ZNS256G (image réduite)
+ Drive Serial Number: 9F2C_0A71_44B3
+ Write blocker: Tableau T35u, firmware 1.2.4 (matériel)
+[Computed Hashes]
+ MD5 checksum:    61f0bcfba53e46258c4efcb93cc00f43
+ SHA256 checksum: 8cf3398f483c71ae4fdb64553334c6a008fda3e5e2bab8d95a4fce683029905d
+
+Image Information:
+ Acquisition started:   Sun Mar 15 15:03:12 2026
+ Acquisition finished:  Sun Mar 15 15:50:38 2026
+ Segment list:
+  EV-001.001  MD5 4db5d63ef6797a843b237108b11b5ad4  SHA256 95d34f71755f160d467b504c8afb065bf7e46b61540239399696815a1a09a05a
+  EV-001.002  MD5 e1c3483b033e752ae42c3770d459b32f  SHA256 dc7ceef3b45ee56dffb1ed3ca98eb539daf002c1601d5acb846a59fb9c9e4a2f
+  EV-001.003  MD5 e083d535abb4107456d26d2e9501ff2a  SHA256 7e293ba63897adf48dd43fb3427997341ca9bb9fd3b4738843bb028d049f95aa
+  EV-001.004  MD5 2b6f51e0bfffcc87c69b2b59c6eeb2f1  SHA256 54464aa8cfda9573c9ccff9cf29547f753e31d6ab13a71dbceacbb4e225634a7
+  EV-001.005  MD5 bcfd7fbc9d06f27ae9f9c6619d6857f6  SHA256 dc0d9de12023066e062cbf61404c3afacbe6a79bf2e4aea2beddca20c8a88405
+
+Image Verification Results:
+ Verification started:  Sun Mar 15 15:50:58 2026
+ Verification finished: Sun Mar 15 15:53:38 2026
+ MD5 checksum:    61f0bcfba53e46258c4efcb93cc00f43 : verified
+ SHA256 checksum: 8cf3398f483c71ae4fdb64553334c6a008fda3e5e2bab8d95a4fce683029905d : verified

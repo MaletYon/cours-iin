@@ -35,11 +35,15 @@ Chaque chapitre est traité en deux séances en moyenne ; la séance qui clôt u
 
 ## NDAP SUKULU, la salle de classe compagnon
 
-*Ndap sukulu* signifie « la salle de classe » en bassa, et *Malet Yon* « ton enseignant ». NDAP SUKULU est l'environnement compagnon du cours : une fiche d'auto-évaluation de 40 questions par chapitre, corrigée automatiquement, et un tableau de bord de progression. Le code de cours est **SEC4031**.
+*Ndap sukulu* signifie « la salle de classe » en bassa, et *Malet Yon* « ton enseignant ». NDAP SUKULU est l'environnement d'évaluation du cours : une fiche de 20 questions tirées d'une banque de 100 par chapitre, et des labs (chaîne de custody, acquisition segmentée), minutés et en nombre de tentatives limité. Le code de cours est **SEC4031**.
 
-> **NDAP SUKULU en local.** La version téléchargeable et installable sur votre poste, avec un module autonome pour ce cours, est en cours de finalisation. En attendant, les fiches d'auto-évaluation de chaque chapitre (40 questions) sont fournies au format texte dans [`fiches/`](fiches/).
+| Utilisation | Où |
+|---|---|
+| En ligne | `https://maletyon.github.io/cours-iin/ndap-sukulu/` |
+| Sur un ordinateur, sans Internet | archive téléchargeable dans [`ndap-sukulu/`](ndap-sukulu/) |
+| Sur un téléphone (fiches seulement) | `https://maletyon.github.io/cours-iin/ndap-sukulu/telephone/` |
 
-Les labs d'acquisition propres à ce cours sont en préparation. Les labs d'analyse (disque, mémoire, réseau, mobile) sont ceux de SEC4052.
+La connexion se fait avec le matricule et le mot de passe remis par l'enseignant. Les copies sont remises à l'enseignant sous forme d'un fichier chiffré ; il les corrige et publie les résultats, que chacun consulte dans l'application. Le mode d'emploi complet, pour l'étudiant et pour l'enseignant, est dans [`ndap-sukulu/README.md`](ndap-sukulu/README.md). Les fiches de 40 questions au format texte restent disponibles dans [`fiches/`](fiches/).
 
 ## Compiler le livre
 

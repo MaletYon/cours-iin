@@ -1,0 +1,9 @@
+# Manifeste établi au moment du placement sous scellé, 15/03/2026 16:30
+# Affaire MBONGO, dossier DOS-2026-034, OPJ NKENG Éric (matricule fictif 4471-B)
+# SHA-256  nom du fichier
+f4aa87ff0ebb203bbbb521998777e3190312bab3ff7718bfee6306fade98e6c9  EV-001_extrait_RAM.bin
+e86a420fd3bd724fc124534da69818bf6266c153ed7bb50f8c84dd2ee7ea71ba  EV-001_netstat.txt
+a32e932f27455f2b0c1d5128d4968981f19cd83e40b82429906a2452e0d0aad3  EV-001_historique_Edge.csv
+69c9c20694cb86316d59e4d5f6ac068cd7c635e9f1441ffa9e4ccc35d8e0db85  EV-002_contacts.csv
+6ff0822e2de38e3229596c1ca682536a815906325de65d9ed342e5201b6bc25c  EV-003_mails_comptabilite.mbox
+423c8e1bd9725b178fa5a9d38691c30cbb8c345e9e006845c340356077fbfa98  EV-004_releve_UBA.csv

@@ -1,0 +1,11 @@
+IIN-LAB-02 · Vérifier une acquisition segmentée · affaire MBONGO (fictive)
+
+image\EV-001.001 à .005   segments de l'image brute du disque EV-001 (image réduite)
+EV-001.E01.txt            journal d'acquisition produit par FTK Imager
+
+Reconstituer l'image complète (invite de commandes, dans le dossier image) :
+    copy /b EV-001.001+EV-001.002+EV-001.003+EV-001.004+EV-001.005 EV-001_complete.dd
+Sous Linux ou macOS : cat EV-001.0* > EV-001_complete.dd
+
+Empreintes : Get-FileHash <fichier> -Algorithm SHA256   ou   certutil -hashfile <fichier> SHA256
+Travaillez sur une copie du dossier.

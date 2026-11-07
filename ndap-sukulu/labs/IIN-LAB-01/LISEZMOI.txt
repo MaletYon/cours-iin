@@ -1,0 +1,12 @@
+IIN-LAB-01 · Scellés et chaîne de custody · affaire MBONGO (fictive)
+
+scelles\               exports placés sous scellé le 15/03/2026
+MANIFESTE_SHA256.txt   empreintes relevées au moment du scellé
+collectes.csv          date et heure de collecte de chaque evidence
+registre_custody.csv   tous les transferts enregistrés depuis la saisie
+
+Calculer une empreinte sous Windows (PowerShell) :
+    Get-FileHash .\scelles\* -Algorithm SHA256
+ou, dans l'invite de commandes :
+    certutil -hashfile scelles\EV-004_releve_UBA.csv SHA256
+Sous Linux ou macOS : sha256sum scelles/*
