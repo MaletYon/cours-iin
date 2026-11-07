@@ -13,7 +13,7 @@ IIN = {
     "logo_d": "enspy",
     "n_jours": 30,
     "annee": "2026-2027",
-    "dossier": COURS + r"\SEC4031\Présentation",
+    "dossier": COURS + r"\ENSPY\SEC4031\Présentation",
     "fil_rouge": "MBONGO (prologue), ONAMBELE, TANGUE, MVOM (TRANSBOIS SA), WOURI",
     "parties": [
         ("Prologue", "La scène de crime numérique", "P00"),
