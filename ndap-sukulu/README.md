@@ -17,6 +17,7 @@ Trois façons, au choix :
 | **En ligne** (le plus simple) | Ouvrez `https://maletyon.github.io/SEC4031/ndap-sukulu/` dans Edge, Chrome ou Firefox. |
 | **Sur un ordinateur, sans Internet** | Téléchargez [`NDAP_SUKULU_IIN_ordinateur.zip`](NDAP_SUKULU_IIN_ordinateur.zip), décompressez-le, puis double-cliquez sur `NDAP_SUKULU_IIN.html`. Double-cliquez une fois sur `Creer_raccourci_Bureau.cmd` pour avoir une icône sur le Bureau. |
 | **Sur un téléphone** | Ouvrez `https://maletyon.github.io/SEC4031/ndap-sukulu/telephone/`, puis, dans le menu du navigateur, « Ajouter à l'écran d'accueil ». Les fiches fonctionnent ensuite sans réseau ; les labs ne sont proposés que sur ordinateur. |
+| **Si l'adresse est bloquée** par le réseau (page « Web Page Blocked », « connexion réinitialisée ») | Certains pare-feu d'école ou d'entreprise bloquent les sites `github.io`. Utilisez l'adresse de secours `https://raw.githack.com/MaletYon/SEC4031/main/ndap-sukulu/` (téléphone : ajoutez `telephone/` à la fin), ou téléchargez l'archive depuis GitHub : `https://github.com/MaletYon/SEC4031/raw/main/ndap-sukulu/NDAP_SUKULU_IIN_ordinateur.zip`, puis travaillez hors ligne. |
 
 ### 2. Se connecter
 

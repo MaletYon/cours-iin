@@ -42,6 +42,7 @@ Chaque chapitre est traité en deux séances en moyenne ; la séance qui clôt u
 | En ligne | `https://maletyon.github.io/cours-iin/ndap-sukulu/` |
 | Sur un ordinateur, sans Internet | archive téléchargeable dans [`ndap-sukulu/`](ndap-sukulu/) |
 | Sur un téléphone (fiches seulement) | `https://maletyon.github.io/cours-iin/ndap-sukulu/telephone/` |
+| Si votre réseau bloque `github.io` | adresse de secours `https://raw.githack.com/MaletYon/cours-iin/main/ndap-sukulu/`, ou [archive à télécharger](https://github.com/MaletYon/cours-iin/raw/main/ndap-sukulu/NDAP_SUKULU_IIN_ordinateur.zip) pour travailler hors ligne |
 
 La connexion se fait avec le matricule et le mot de passe remis par l'enseignant. Les copies sont remises à l'enseignant sous forme d'un fichier chiffré ; il les corrige et publie les résultats, que chacun consulte dans l'application. Le mode d'emploi complet, pour l'étudiant et pour l'enseignant, est dans [`ndap-sukulu/README.md`](ndap-sukulu/README.md). Les fiches de 40 questions au format texte restent disponibles dans [`fiches/`](fiches/).
 
