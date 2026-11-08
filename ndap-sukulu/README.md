@@ -53,7 +53,7 @@ L'enseignant travaille dans l'**espace enseignant**, une application séparée q
 3. **Contenus** (facultatif) : régler durées et tentatives, désactiver une évaluation, ajouter des questions ou des labs, puis « Publier les ajouts » pour obtenir `ajouts.js`.
 4. **Publier** : déposer `identifiants.js` (et `ajouts.js`) dans `Prototypes\Ndap Sukulu\cours\SEC4031\`, puis lancer :
    ```
-   py outils\construire.py SEC4031 --publier "<chemin du dépôt SEC4031>"
+   py outils\construire.py SEC4031 --publier "<chemin du dépôt cours-iin>"
    ```
    Le dossier `ndap-sukulu/` du dépôt est régénéré (version ordinateur, version téléphone, archive téléchargeable, ce fichier). La publication **est refusée** si un corrigé ou un fichier de l'espace enseignant s'y trouvait.
 5. **Mettre en ligne** : valider (`git add ndap-sukulu`, `git commit`) et pousser (`git push`). La première fois, activer GitHub Pages sur le dépôt : *Settings*, *Pages*, *Deploy from a branch*, branche `main`, dossier `/ (root)`. L'adresse est `https://maletyon.github.io/cours-iin/ndap-sukulu/`.
