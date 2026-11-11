@@ -1,0 +1,6 @@
+Affaire MBONGO, dossier DOS-2026-034. Note du chef d'investigation, 10 avril 2026.
+
+Avant de passer à l'analyse, je vous demande de préparer le Quality Gate 2 (intégrité
+probatoire) puis de relire la matrice de compatibilité de l'étape E9.
+Dans la matrice : C compatible, I incompatible, N neutre.
+(Pièce fictive établie pour le cours SEC4031. Noms, dates, adresses et montants fictifs.)

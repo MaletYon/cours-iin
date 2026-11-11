@@ -1,0 +1,15 @@
+IIN-LAB-06 · Quality Gate 2 et hypothèses concurrentes · affaire MBONGO (fictive)
+
+registre_empreintes.csv          empreinte de chaque evidence à l'acquisition et à la vérification
+copies_de_sauvegarde.csv         où se trouvent les copies de travail
+hypotheses.csv                   les six hypothèses de l'étape E8
+matrice_hypotheses_preuves.csv   compatibilité de chaque preuve avec chaque hypothèse
+note_du_chef_d_investigation.txt la demande
+
+Marche à suivre.
+
+1. Ouvrez registre_empreintes.csv dans le tableur et comparez les deux colonnes,
+   par exemple avec =SI(B2=C2;"OK";"ÉCART").
+2. Relisez la règle 3-2-1 puis regardez les supports et les lieux des copies.
+3. Dans la matrice, comptez les I de chaque colonne avec =NB.SI(C2:C9;"I"). On cherche
+   l'hypothèse la moins contredite, pas la plus confirmée.

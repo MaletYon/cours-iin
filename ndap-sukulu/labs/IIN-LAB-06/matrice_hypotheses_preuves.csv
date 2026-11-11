@@ -1,0 +1,9 @@
+preuve;libelle;H0;H1;H2;H3;H4;H5
+P1;Neuf virements vers TRANSFLUX sans bon de commande;I;C;C;C;C;C
+P2;Factures créées avec le modèle de fausse facture connu;I;C;C;C;I;C
+P3;Reversements de TRANSFLUX au compte personnel de M. MBONGO;I;C;C;I;I;I
+P4;Ordres saisis depuis le poste EV-001 pendant les heures de présence de M. MBONGO;N;C;C;I;N;N
+P5;Courriels entre M. MBONGO et le gérant de TRANSFLUX sur le partage des sommes;I;I;C;I;I;I
+P6;Aucune ouverture de session distante sur le poste EV-001;N;N;N;I;N;N
+P7;Les virements figurent bien dans la comptabilité de SONATRAV;C;C;C;C;C;C
+P8;Le gérant de TRANSFLUX a retiré des espèces après chaque virement;I;N;C;N;I;C

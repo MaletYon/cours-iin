@@ -1,0 +1,13 @@
+IIN-LAB-03 · métadonnées d'un lot de documents · affaire MBONGO (fictive)
+
+documents\         dix documents au format RTF (texte lisible)
+metadonnees.csv    export des métadonnées des dix documents
+note_du_juge.txt   la question posée
+
+Marche à suivre.
+
+1. Ouvrez metadonnees.csv dans le tableur. Triez par auteur, puis par dernier modificateur.
+2. Vérifiez sur pièce : un fichier RTF garde ses métadonnées en clair dans son bloc \info.
+   Ouvrez documents\lettre_anonyme.rtf avec le Bloc-notes, ou dans PowerShell :
+       Select-String -Path .\documents\*.rtf -Pattern 'operator [^}]*' -AllMatches
+3. Comparez les colonnes cree_le et modifie_le de chaque ligne.

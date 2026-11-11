@@ -1,0 +1,10 @@
+IIN-LAB-09 · qualifier les faits · affaire MBONGO (fictive)
+
+faits_etablis.csv         huit faits établis par l'enquête
+aide_memoire_textes.txt   articles cités au chapitre 12
+
+Marche à suivre.
+
+1. Lisez chaque fait. Demandez-vous d'abord quelle loi il concerne.
+2. Cherchez l'article dans l'aide-mémoire. Dressez un tableau : fait, loi, article.
+3. L'investigateur propose un rattachement. La qualification appartient au magistrat.

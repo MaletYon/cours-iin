@@ -1,0 +1,16 @@
+IIN-LAB-05 · empreintes, doublons et fichiers connus · affaire MBONGO (fictive)
+
+saisie\              douze fichiers extraits de la clé USB EV-005
+contrats\            deux versions d'un même contrat
+base_reference.csv   empreintes de fichiers déjà connus du laboratoire
+
+Marche à suivre.
+
+1. Empreinte de chaque fichier saisi, triée pour rapprocher les doublons (PowerShell) :
+       Get-FileHash .\saisie\* -Algorithm SHA256 | Sort-Object Hash | Format-Table Hash, Path
+2. Ouvrez base_reference.csv dans le tableur et cherchez-y chaque empreinte (Ctrl+F).
+   Le tableur écrit les empreintes en minuscules, PowerShell en majuscules : la casse ne compte pas.
+3. Comparez les deux contrats, octet par octet puis par leur empreinte :
+       fc.exe /b .\contrats\contrat_v1.txt .\contrats\contrat_v2.txt
+       Get-FileHash .\contrats\* -Algorithm SHA256
+   Sous Linux ou macOS : sha256sum saisie/* | sort, puis cmp -l sur les deux contrats.

@@ -1,0 +1,13 @@
+Aide-mémoire du chapitre 7 (extrait)
+
+RFC 3227, ordre de volatilité : on collecte d'abord ce qui disparaît le plus vite.
+Règle pratique sur un système allumé : RAM avant disque, réseau avant fichiers.
+
+Principes ACPO.
+ 1. Aucune action ne doit modifier les données.
+ 2. Si une modification est inévitable, la personne doit être compétente et capable d'expliquer son action.
+ 3. Une piste d'audit complète de toutes les actions est tenue.
+ 4. Le responsable de l'investigation répond de l'ensemble.
+
+ISO/IEC 27037 : DEFR, premier intervenant sur la scène. DES, spécialiste en laboratoire.
+(Pièce fictive établie pour le cours SEC4031. Noms, dates, adresses et montants fictifs.)

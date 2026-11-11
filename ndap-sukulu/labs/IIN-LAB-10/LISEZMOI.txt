@@ -1,0 +1,11 @@
+IIN-LAB-10 · relire un rapport · affaire MBONGO (fictive)
+
+projet_rapport.txt           brouillon à relire, phrases numérotées
+journal_des_hypotheses.csv   ce qui a été testé et réfuté
+regles_de_redaction.txt      règles du cours
+
+Marche à suivre.
+
+1. Lisez les règles, puis le brouillon, phrase par phrase.
+2. Pour chaque constatation : est-ce un fait observé, ou déjà une déduction ? Cite-t-elle sa preuve ?
+3. Ouvrez le journal des hypothèses dans le tableur.

@@ -1,0 +1,13 @@
+ref;fournisseur;pays;conventions_ratifiees_par_l_Etat_requis;donnees;date_demande_conservation;date_demande_divulgation;canal;conservation_confirmee_en_heures;reponse_recue_en_jours;issue
+D-01;Messagerie A;États-Unis;Budapest;métadonnées;2026-03-16;2026-03-28;BCN, réseau 24/7;30;95;données reçues
+D-02;Réseau social B;États-Unis;Budapest;contenu;2026-03-17;2026-04-05;BCN, réseau 24/7;52;;sans suite à ce jour
+D-03;Hébergeur C;France;Budapest;métadonnées;;2026-03-19;entraide classique (MLAT);;410;données effacées avant réponse
+D-04;Banque en ligne D;Sénégal;Budapest et Malabo;métadonnées;2026-03-18;2026-03-31;BCN, réseau 24/7;70;120;données reçues
+D-05;Opérateur E;Nigéria;Budapest;métadonnées;2026-03-19;2026-04-10;BCN, réseau 24/7;96;;sans suite à ce jour
+D-06;Messagerie F;États-Unis;Budapest;contenu;;2026-03-21;entraide classique (MLAT);;560;données reçues, partielles
+D-07;Portefeuille mobile G;Togo;Malabo;métadonnées;2026-03-20;2026-04-03;BCN, réseau 24/7;44;150;données reçues
+D-08;Hébergeur H;Allemagne;Budapest;contenu;2026-03-25;2026-03-22;entraide classique (MLAT);60;530;données reçues
+D-09;Nuage I;Irlande;Budapest;métadonnées;2026-03-21;2026-04-15;BCN, réseau 24/7;26;80;données reçues
+D-10;Place de marché J;Ghana;Budapest et Malabo;métadonnées;2026-03-22;2026-04-13;BCN, réseau 24/7;110;;sans suite à ce jour
+D-11;Messagerie K;Russie;aucune;contenu;;2026-03-24;entraide classique (MLAT);;;sans réponse
+D-12;Hébergeur L;Maurice;Budapest et Malabo;métadonnées;2026-03-23;2026-04-06;BCN, réseau 24/7;68;140;données reçues

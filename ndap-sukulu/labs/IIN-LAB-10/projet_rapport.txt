@@ -1,0 +1,18 @@
+Affaire MBONGO, dossier DOS-2026-034. PROJET de rapport d'investigation (brouillon d'un stagiaire)
+
+1. CONSTATATIONS
+  C1. Le disque du PC EV-001 a été acquis le 15 mars 2026 avec FTK Imager 4.7.3.81 (EV-001, journal d'acquisition).
+  C2. L'empreinte SHA-256 de l'image correspond à celle du journal d'acquisition (EV-001).
+  C3. M. MBONGO a manifestement voulu cacher ses agissements en vidant la corbeille (EV-001).
+  C4. Neuf ordres de virement vers TRANSFLUX SARL ont été saisis depuis la session j.mbongo (EV-001, EV-004).
+  C5. Le téléphone contient des échanges avec le gérant de TRANSFLUX.
+  C6. Ces échanges prouvent une entente frauduleuse ancienne entre les deux hommes (EV-002).
+  C7. Aucune ouverture de session distante n'apparaît dans les journaux du poste du 1er février au 15 mars (EV-001).
+
+2. ANALYSE
+  A1. Les ordres de virement ont été saisis pendant les heures de présence de M. MBONGO (C4, registre de présence).
+  A2. Je pense que M. MBONGO est le seul auteur possible.
+  A3. L'hypothèse d'un tiers utilisant sa session n'est pas appuyée par les journaux (C7).
+  A4. M. MBONGO est donc coupable de fraude informatique.
+
+(Pièce fictive établie pour le cours SEC4031. Noms, dates, adresses et montants fictifs.)

@@ -1,0 +1,9 @@
+fait;description
+F1;Le 2 février, le compte de la comptable est utilisé, sans son accord, pour consulter le module des virements. Rien n'est modifié.
+F2;Le 14 mars, les journaux du serveur comptable sont effacés et la base est rendue inaccessible pendant deux heures. Aucun gain n'en est tiré.
+F3;Du 6 février au 12 mars, neuf faux ordres de virement sont saisis pour faire sortir des fonds vers TRANSFLUX SARL.
+F4;Le 15 mars, l'OPJ perquisitionne le bureau et saisit le PC EV-001 et le téléphone EV-002.
+F5;Le 16 mars, M. MBONGO refuse de donner le code de son téléphone chiffré.
+F6;Le fichier des clients de SONATRAV a été copié lors de l'intrusion. La société n'en a informé personne.
+F7;SONATRAV conservait ce fichier chez un hébergeur étranger, sans aucun encadrement du transfert.
+F8;Le gérant de TRANSFLUX a constitué un fichier de salariés de SONATRAV à partir de données obtenues par tromperie.

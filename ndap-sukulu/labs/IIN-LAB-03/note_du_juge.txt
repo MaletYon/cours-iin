@@ -1,0 +1,7 @@
+Affaire MBONGO, dossier DOS-2026-034. Note du juge d'instruction, 20 mars 2026.
+
+Le cabinet NJOYA a reçu le 10 mars une lettre de menace non signée. Dix documents ont été
+extraits du serveur de fichiers de SONATRAV SA et du poste EV-001. Leurs métadonnées ont
+été exportées dans metadonnees.csv. Les fichiers eux-mêmes sont dans le dossier documents.
+Dites ce que les métadonnées établissent, et ce qu'elles n'établissent pas.
+(Pièce fictive établie pour le cours SEC4031. Noms, dates, adresses et montants fictifs.)

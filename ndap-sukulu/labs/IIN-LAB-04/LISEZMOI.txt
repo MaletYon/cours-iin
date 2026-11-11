@@ -1,0 +1,11 @@
+IIN-LAB-04 · graphe des flux financiers · affaire MBONGO (fictive)
+
+virements.csv        74 virements (date, émetteur, bénéficiaire, montant)
+note_enqueteur.txt   origine des données
+
+Marche à suivre.
+
+1. Ouvrez virements.csv dans le tableur. Dressez la liste des comptes distincts.
+2. Pour chaque compte, comptez ses contreparties distinctes : c'est son degré.
+3. Un tableau croisé dynamique (émetteur en ligne, bénéficiaire en colonne, somme des
+   montants) montre qui paie qui, et par où passe l'argent.

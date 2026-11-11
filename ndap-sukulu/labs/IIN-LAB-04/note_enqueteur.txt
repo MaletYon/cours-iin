@@ -1,0 +1,7 @@
+Affaire MBONGO, dossier DOS-2026-034. Note de l'enquêteur, 22 mars 2026.
+
+La banque a remis sur réquisition les virements émis du 5 janvier au 15 mars 2026 par
+SONATRAV SA et par les comptes qui ont reçu ses fonds. Chaque ligne est un virement.
+Lisez ce fichier comme un graphe : un compte est un nœud, un virement est une arête,
+le montant est le poids de l'arête.
+(Pièce fictive établie pour le cours SEC4031. Noms, dates, adresses et montants fictifs.)

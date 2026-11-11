@@ -1,0 +1,11 @@
+IIN-LAB-08 · coopération internationale · affaire MBONGO (fictive)
+
+demandes_internationales.csv   les douze demandes adressées à l'étranger, bilan de novembre 2027
+aide_memoire_cooperation.txt   règles et délais du chapitre 10
+
+Marche à suivre.
+
+1. Ouvrez le fichier des demandes dans le tableur.
+2. Comparez, ligne par ligne, la date de la demande de conservation et celle de la
+   demande de divulgation. Une conservation absente ou postérieure enfreint la règle d'or.
+3. Filtrez par canal puis calculez les délais (MOYENNE, NB.SI).

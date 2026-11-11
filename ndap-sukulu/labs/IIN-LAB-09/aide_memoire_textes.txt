@@ -1,0 +1,16 @@
+Aide-mémoire du chapitre 12 (extrait). Il ne remplace pas la lecture des textes.
+
+Loi n° 2010/012 relative à la cybersécurité et à la cybercriminalité
+  art. 52 à 59   perquisitions et saisies
+  art. 65        accès illicite et interception illégale (punissable même sans dommage)
+  art. 66 et 67  atteinte à l'intégrité des réseaux et des systèmes
+  art. 72        fraude informatique
+  art. 87        confiscation des outils (peine accessoire)
+  art. 88        refus de remettre la clé de déchiffrement
+
+Loi n° 2024/017 relative à la protection des données personnelles
+  art. 22        notification d'une violation de données
+  art. 27        sécurité obligatoire des données
+  art. 32        transfert international de données
+  art. 63        collecte frauduleuse de données personnelles
+(Pièce fictive établie pour le cours SEC4031. Noms, dates, adresses et montants fictifs.)

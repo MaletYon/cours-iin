@@ -1,0 +1,10 @@
+IIN-LAB-07 · ordre de volatilité · affaire MBONGO (fictive)
+
+journal_intervention.csv     ce qui a été fait le 15 mars, ligne par ligne
+aide_memoire_standards.txt   RFC 3227, principes ACPO, rôles ISO/IEC 27037
+
+Marche à suivre.
+
+1. Ouvrez le journal dans le tableur. Lisez-le dans l'ordre des heures.
+2. Pour chaque collecte, demandez-vous ce qui aurait disparu pendant qu'elle durait.
+3. Cherchez l'action qui modifie les données du poste, puis la ligne sans auteur.
