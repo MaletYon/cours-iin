@@ -12,7 +12,7 @@ SPEC = [
         ("20 min", "**ONAMBELE** : fraude Mobile Money et OSINT"),
         ("25 min", "**TANGUE** : huit artefacts, une convergence"),
         ("25 min", "**MVOM** : la Kill Chain d'un rançongiciel, la double victime"),
-        ("20 min", "**WOURI** : un réseau BEC sur trois pays"),
+        ("20 min", "**NKAM** : un réseau BEC sur trois pays"),
         ("10 min", "**Les leçons permanentes**"),
         ("20 min", "**Exercice** : reconstitution MVOM · fiche C03"),
     ]},
@@ -63,11 +63,11 @@ SPEC = [
      "left": {"head": "Victime", "items": ["D'accès frauduleux et d'atteinte au système (loi n° 2010/012)", "D'extorsion"]},
      "right": {"head": "Contrevenante (loi n° 2024/017)", "items": ["Sécurité des données insuffisante (**art. 27**)", "Violation non notifiée (**art. 22**)", "Absence de registre de traitement (art. 29, cité au chapitre)"]},
      "bottom": "Les deux procédures sont **indépendantes** et se traitent séparément."},
-    {"k": "scenario", "title": "Opération WOURI", "label": "Réseau BEC · Cameroun, Nigeria, Émirats", "text": [
+    {"k": "scenario", "title": "Opération NKAM", "label": "Réseau BEC · Cameroun, Nigeria, Émirats", "text": [
         "Usurpation du domaine d'un fournisseur pour détourner des virements : **SOTRADI SA** (47 M FCFA) et **AGROBOIS** (32 M FCFA).",
         "Rôles : ATANGANA, organisateur ; OKAFOR, technicien (Lagos) ; HASSAN, blanchisseur (Émirats) ; NGUEMO, mule.",
         "OKAFOR, jamais venu au Cameroun, est identifié **par l'OSINT seul** : LinkedIn, GitHub, Sherlock, corrélation blockchain."]},
-    {"k": "points", "title": "WOURI : la coopération en parallèle", "kicker": "Procédure", "items": [
+    {"k": "points", "title": "NKAM : la coopération en parallèle", "kicker": "Procédure", "items": [
         "OKAFOR : **notice bleue** INTERPOL via le BCN Cameroun ; entraide si des flux passent au Nigeria",
         "HASSAN : **conservation urgente** chez Binance par le portail LEA ; identification du titulaire",
         "Arrestation d'OKAFOR : **notice rouge**, après un mandat d'arrêt camerounais",
@@ -81,7 +81,7 @@ SPEC = [
         ["ONAMBELE", "Remonter la chaîne ; téléphone allumé selon le protocole"],
         ["TANGUE", "Aucun artefact seul ne suffit : la convergence"],
         ["MVOM", "La victime peut être contrevenante"],
-        ["WOURI", "Coopération dès l'identification ; portails LEA"],
+        ["NKAM", "Coopération dès l'identification ; portails LEA"],
     ]},
     {"k": "exercice", "title": "Reconstitution d'attaque", "duree": "20 minutes, en binôme",
      "text": "Variante MVOM : RDP depuis **91.192.X.X** le 03/04 à 23 h 47 (3 h 12) ; powershell lancé par cmd ; **4,7 Go** vers 185.220.Y.Y de 1 h 15 à 2 h 58 ; 87 % des fichiers en **.locked2026**.",
@@ -96,7 +96,7 @@ SPEC = [
         "**ONAMBELE** : la mule n'est qu'un maillon ; remonter la chaîne",
         "**TANGUE** : la convergence de huit artefacts",
         "**MVOM** : la Kill Chain reconstitue l'attaque ; la victime peut être contrevenante",
-        "**WOURI** : l'OSINT identifie, la coopération part dès l'identification",
+        "**NKAM** : l'OSINT identifie, la coopération part dès l'identification",
         "L'artefact décisif est rarement spectaculaire : une **métadonnée**, un **horodatage**, un **processus** anormal",
     ]},
     {"k": "maison", "lecture": ["Chapitre 3, sections 3.5 à 3.9", "Chapitre 4, sections 4.1 à 4.4"]},

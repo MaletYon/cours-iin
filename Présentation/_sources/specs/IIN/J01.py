@@ -15,7 +15,7 @@ SPEC = [
         "Un **prologue** opérationnel et **trois parties** : fondements, méthode, cadre juridique",
         "Deux séances par chapitre en moyenne ; une **fiche NDAP SUKULU** par chapitre, à la maison",
         "Un fil rouge : le **Trilemme CRO**, confidentialité, fiabilité, opposabilité",
-        "Des affaires camerounaises fictives aux mécanismes exacts : **MBONGO, TANGUE, MVOM, WOURI**",
+        "Des affaires camerounaises fictives aux mécanismes exacts : **MBONGO, TANGUE, MVOM, NKAM**",
         "Suite naturelle : **SEC4052**, investigation numérique avancée (analyse des artefacts)",
     ]},
     {"k": "chapitre", "num": "P00", "short": "Prologue", "part": "PROLOGUE OPÉRATIONNEL",

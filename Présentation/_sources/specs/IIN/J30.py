@@ -11,7 +11,7 @@ SPEC = [
     {"k": "agenda", "items": [
         ("15 min", "**Responsabilité personnelle** : pénale, ACPO 4, auto-évaluation"),
         ("15 min", "**Le témoignage d'expert** et le contre-interrogatoire"),
-        ("20 min", "**Trois décisions sous pression** : l'OPJ NKENG"),
+        ("20 min", "**Trois décisions sous pression** : l'OPJ OLINGA"),
         ("20 min", "**Exercice** : simulation d'audience · fiche C13"),
         ("40 min", "**Synthèse du cours** : 60 heures en dix idées · questions"),
         ("10 min", "**Suite** : SEC4052, NDAP SUKULU, évaluation"),
@@ -41,13 +41,13 @@ SPEC = [
         ("À l'audience", "Répondre aux questions **posées** ; ne pas sur-interpréter ; dire « je ne sais pas » quand c'est vrai."),
         ("Tenir", "Ne jamais modifier oralement une conclusion écrite : « **Mon rapport parle pour lui-même.** »"),
     ]},
-    {"k": "scenario", "title": "Trois décisions sous pression", "label": "L'OPJ NKENG · une affaire de marchés publics", "text": [
+    {"k": "scenario", "title": "Trois décisions sous pression", "label": "L'OPJ OLINGA · une affaire de marchés publics", "text": [
         "**Pression hiérarchique** : on lui demande de « clore vite » ; un responsable politique est proche du suspect. Vertu : le **courage**. Documenter la demande, poursuivre selon les règles, saisir le parquet si la pression s'accentue.",
         "**Preuve contraire** : les virements viennent d'un compte classé « témoin innocent ». Biais : la confirmation. Consigner, **rouvrir les hypothèses** (E8-E9), informer le parquet. Vertu : l'**intégrité**.",
-        "**Violation d'un collègue** : BITA a entendu un suspect sans avocat ni information des droits. Informer le parquet, documenter, proposer une **nouvelle audition régulière**. Se taire exposerait tout le dossier, et NKENG."],
+        "**Violation d'un collègue** : BITA a entendu un suspect sans avocat ni information des droits. Informer le parquet, documenter, proposer une **nouvelle audition régulière**. Se taire exposerait tout le dossier, et OLINGA."],
      "notes": "Le chapitre 13 rattache ce cas à l'affaire ONAMBELE, présentée au chapitre 3 comme une fraude Mobile Money : la présenter ici comme une affaire de marchés publics et signaler l'écart."},
     {"k": "exercice", "title": "Simulation d'audience", "duree": "20 minutes, à deux voix",
-     "text": "Vous êtes l'expert judiciaire de l'affaire WOURI. L'avocat de la défense vous interroge.",
+     "text": "Vous êtes l'expert judiciaire de l'affaire NKAM. L'avocat de la défense vous interroge.",
      "questions": [
         "« Votre rapport affirme que le courriel venait d'un serveur russe. En êtes-vous certain à 100 % ? »",
         "« Volatility 3 ne modifie-t-il pas lui-même la RAM pendant la capture ? »",

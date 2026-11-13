@@ -102,7 +102,7 @@ a pu être résolue~:
     \item \textbf{MVOM}~: la connexion RDP est une \emph{trace primaire} dans
           les logs pare-feu~; le processus \texttt{svchost.exe} malveillant en
           RAM est une \emph{trace secondaire} de son installation.
-    \item \textbf{WOURI}~: les transactions Bitcoin sont des \emph{traces
+    \item \textbf{NKAM}~: les transactions Bitcoin sont des \emph{traces
           primaires} permanentes et immuables, Locard dans sa forme absolue.
 \end{itemize}
 
@@ -199,7 +199,7 @@ d_L(s, t) = \min_{\text{séq. d'opérations}} |\text{opérations}(s \to t)|
 
 Applications forensiques directes~:
 \begin{itemize}
-    \item \textbf{Typosquatting} (WOURI)~: le domaine frauduleux
+    \item \textbf{Typosquatting} (NKAM)~: le domaine frauduleux
           \texttt{medequip-portugal.com} a une distance de Levenshtein très faible
           par rapport au domaine légitime \texttt{medequip.pt}~; l'outil
           \textit{dnstwist} automatise cette détection.
@@ -251,7 +251,7 @@ C_D(v) = \frac{\deg(v)}{|V| - 1}
 \end{equation}
 
 Un nœud à forte centralité de degré est un \textbf{hub de communication}.
-Dans WOURI, ATANGANA avait la centralité de degré la plus élevée.
+Dans NKAM, ATANGANA avait la centralité de degré la plus élevée.
 
 \subsubsection{Centralité d'intermédiarité (\textit{betweenness centrality})}
 
@@ -264,7 +264,7 @@ C_B(v) = \sum_{s \neq v \neq t}
 où $\sigma(s,t)$ est le nombre de chemins les plus courts entre $s$ et $t$,
 et $\sigma(s,t \mid v)$ ceux qui passent par $v$. Un acteur à forte centralité
 d'intermédiarité est un \textbf{pont critique}~: le neutraliser fragmente
-le réseau. Dans WOURI, NGUEMO était le pont entre la collecte des fonds
+le réseau. Dans NKAM, NGUEMO était le pont entre la collecte des fonds
 (Cameroun) et le blanchiment (EAU).
 
 \subsubsection{PageRank forensique}
@@ -681,8 +681,8 @@ Pour chaque fichier~: interprétez l'entropie, indiquez si une investigation
 approfondie est justifiée, et précisez ce que vous chercheriez.
 \end{boxexo}
 
-\begin{boxexo}[title={\ding{45}\quad Exercice~4.2. Graphe WOURI \niveaumoyen}]
-À partir des éléments de l'Opération WOURI (quatre suspects, deux victimes,
+\begin{boxexo}[title={\ding{45}\quad Exercice~4.2. Graphe NKAM \niveaumoyen}]
+À partir des éléments de l'Opération NKAM (quatre suspects, deux victimes,
 flux de 47M et 32M~FCFA), construisez le graphe $G = (V, E, w)$~:
 \begin{enumerate}[(a)]
     \item Définissez précisément $V$, $E$ et $w$.

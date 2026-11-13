@@ -24,7 +24,7 @@ SPEC = [
     ]},
     {"k": "quote", "kicker": "La règle de l'erreur 5", "text": "Si demain l'image E01 disparaît, les empreintes doivent subsister ailleurs pour certifier une copie de sauvegarde.", "author": "Section 8.5.5", "size": 26},
     {"k": "scenario", "title": "MBONGO : EV-001, le PC portable", "label": "DOS-2026-034 · 15/03/2026", "text": [
-        "**Dell Inspiron 15 3000, S/N GF8T3Y2**, noir, rayure de 3 cm, autocollant SONATRAV. Collecté par l'OPJ NKENG Éric, DCPJ Douala. Allumé, déverrouillé, Edge ouvert sur le portail UBA.",
+        "**Dell Inspiron 15 3000, S/N GF8T3Y2**, noir, rayure de 3 cm, autocollant SONATRAV. Collecté par l'OPJ OLINGA Éric, DCPJ Douala. Allumé, déverrouillé, Edge ouvert sur le portail UBA.",
         "14 h 22 photographies ; 14 h 24 RAM avec **FTK Imager 4.7.3.81** (16 Go) ; 14 h 41 netstat ; 14 h 43 arrêt propre ; 14 h 50 bloqueur logiciel.",
         "Acquisition E01 de 15 h 03 à 15 h 50. MD5 et SHA-256 **identiques** pour l'original et l'image. Scellé **DL-2026-0347** ; transfert au dépôt à 17 h 10, deux signatures."]},
     {"k": "scenario", "title": "MBONGO : EV-002, le téléphone", "label": "Samsung Galaxy A53", "text": [

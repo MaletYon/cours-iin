@@ -64,7 +64,7 @@ SPEC = [
         ["J05", "Histoire (1) : des prémices à la standardisation", "C02 §2.1-2.3"],
         ["J06", "Histoire (2) : big data, IA, Afrique, accélération", "C02 §2.4-2.7"],
         ["J07", "Grandes affaires (1) : BTK, Stuxnet, WannaCry, Enron", "C03 §3.1-3.4"],
-        ["J08", "Grandes affaires (2) : ONAMBELE, TANGUE, MVOM, WOURI", "C03 §3.5-3.9"],
+        ["J08", "Grandes affaires (2) : ONAMBELE, TANGUE, MVOM, NKAM", "C03 §3.5-3.9"],
         ["J09", "Locard numérique · Shannon · Graphes · Dolev-Yao", "C04 §4.1-4.4"],
         ["J10", "Complexité, modèles de processus, théorie de la preuve", "C04 §4.5-4.8"],
         ["J11", "État de l'art (1) : IA, deepfakes, cloud, IoT, mobile", "C05 §5.1-5.3"],
@@ -95,7 +95,7 @@ SPEC = [
     {"k": "cards", "title": "Le fil rouge camerounais", "kicker": "Des affaires fictives, des mécanismes exacts", "cols": 3, "items": [
         {"head": "MBONGO", "badge": "M", "text": "Douala, 12 M FCFA détournés. Un PC allumé « pour voir » : toutes les preuves écartées. Le cas d'ouverture."},
         {"head": "TANGUE · ONAMBELE", "badge": "T", "text": "Forensique de disque, arrestation de BELLO Armand ; décisions déontologiques d'ONAMBELE."},
-        {"head": "MVOM · WOURI", "badge": "W", "text": "Rançongiciel chez TRANSBOIS SA ; escroquerie BEC transfrontalière de 79 M FCFA et OSINT."},
+        {"head": "MVOM · NKAM", "badge": "W", "text": "Rançongiciel chez TRANSBOIS SA ; escroquerie BEC transfrontalière de 79 M FCFA et OSINT."},
     ]},
     {"k": "cards", "title": "Les outils du cours", "kicker": "Ce que vous retrouverez à chaque séance", "cols": 3, "items": [
         {"head": "Le Trilemme CRO", "badge": "C", "text": "Confidentialité, fiabilité, opposabilité : on ne maximise jamais les trois."},

@@ -85,6 +85,6 @@ SPEC = [
     {"k": "maison", "lecture": ["Chapitre 9, sections 9.4 et 9.5", "Préparer : sections 9.6 à 9.8"]},
     {"k": "fin", "next": "Jour 22 · Acquisition (3) : réseau et carving", "items": [
         "Wireshark : modes et filtres forensiques",
-        "Le cas WOURI dans une capture",
+        "Le cas NKAM dans une capture",
         "Le file carving et les magic bytes"]},
 ]

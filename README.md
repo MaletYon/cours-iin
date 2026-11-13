@@ -7,7 +7,7 @@ Auteur : MINKA MI NGUIDJOÏ Thierry Emmanuel, enseignant-chercheur (LIMSI, ENSPY
 
 > *Avant d'agir, comprendre ce que votre action va détruire.*
 
-Un dossier judiciaire ne se perd pas au tribunal : il se perd sur la scène de crime, dans les dix premières minutes. Ce cours enseigne les fondements, la méthode et le cadre juridique de l'investigation numérique. Il couvre la philosophie et l'histoire de la discipline, les grandes affaires, les fondements théoriques (Locard, Shannon, graphes, Dolev-Yao), le Processus Investigatif Universel, les standards internationaux (ISO/IEC 2703x, NIST SP 800-86, RFC 3227, ACPO), la chaîne de custody, les outils d'acquisition, les conventions de Budapest et de Malabo, le droit étranger, le droit camerounais (lois n° 2010/012 et n° 2024/017) et la déontologie. Le Trilemme CRO (confidentialité, fiabilité, opposabilité) sert de fil rouge. Les affaires camerounaises MBONGO, ONAMBELE, TANGUE, MVOM et WOURI sont fictives, mais leurs mécanismes juridiques et techniques sont exacts.
+Un dossier judiciaire ne se perd pas au tribunal : il se perd sur la scène de crime, dans les dix premières minutes. Ce cours enseigne les fondements, la méthode et le cadre juridique de l'investigation numérique. Il couvre la philosophie et l'histoire de la discipline, les grandes affaires, les fondements théoriques (Locard, Shannon, graphes, Dolev-Yao), le Processus Investigatif Universel, les standards internationaux (ISO/IEC 2703x, NIST SP 800-86, RFC 3227, ACPO), la chaîne de custody, les outils d'acquisition, les conventions de Budapest et de Malabo, le droit étranger, le droit camerounais (lois n° 2010/012 et n° 2024/017) et la déontologie. Le Trilemme CRO (confidentialité, fiabilité, opposabilité) sert de fil rouge. Les affaires camerounaises MBONGO, ONAMBELE, TANGUE, MVOM et NKAM sont fictives, mais leurs mécanismes juridiques et techniques sont exacts.
 
 L'analyse approfondie des artefacts (Windows, mémoire, réseau, mobile, nuage) relève de l'UE suivante, SEC4052 (Investigation numérique avancée).
 
@@ -35,7 +35,7 @@ Chaque chapitre est traité en deux séances en moyenne ; la séance qui clôt u
 
 ## NDAP SUKULU, la salle de classe compagnon
 
-*Ndap sukulu* signifie « la salle de classe » en bassa, et *Malet Yon* « ton enseignant ». NDAP SUKULU est l'environnement d'évaluation du cours : une fiche de 20 questions tirées d'une banque de 100 par chapitre, et des labs (chaîne de custody, acquisition segmentée), minutés et en nombre de tentatives limité. Le code de cours est **SEC4031**.
+*Ndap sukulu* signifie « la salle de classe » en bassa, et *Malet Yon* « ton enseignant ». NDAP SUKULU est l'environnement d'évaluation du cours : une fiche de 20 questions tirées d'une banque de 100 par chapitre, et dix labs sur l'affaire MBONGO (chaîne de custody, acquisition, métadonnées, graphe des flux, empreintes, PIU, ordre de volatilité, coopération internationale, qualification des faits, relecture d'un rapport), minutés et en nombre de tentatives limité. Le code de cours est **SEC4031**.
 
 | Utilisation | Où |
 |---|---|

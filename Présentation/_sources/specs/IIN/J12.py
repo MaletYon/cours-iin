@@ -33,7 +33,7 @@ SPEC = [
         ("Diffuser", "Un rapport utilisable par le **magistrat instructeur**."),
     ]},
     {"k": "table", "title": "La boîte à outils OSINT", "kicker": "Huit outils de référence", "head": ["Outil", "Usage", "Exemple"], "widths": [2.2, 3.2, 7.0], "rows": [
-        ["Sherlock", "Recherche de pseudo", "Tous les comptes de duke_cyber_ng (WOURI)"],
+        ["Sherlock", "Recherche de pseudo", "Tous les comptes de duke_cyber_ng (NKAM)"],
         ["WHOIS", "Titulaire d'un domaine", "Enregistrement d'un domaine d'hameçonnage"],
         ["crt.sh", "Certificats TLS", "Sous-domaines, sites d'hameçonnage (*.uba-cameroun.com)"],
         ["dnstwist", "Typosquatting", "Variantes d'un domaine légitime"],

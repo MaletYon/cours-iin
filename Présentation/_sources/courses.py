@@ -14,7 +14,7 @@ IIN = {
     "n_jours": 30,
     "annee": "2026-2027",
     "dossier": COURS + r"\ENSPY\SEC4031\Présentation",
-    "fil_rouge": "MBONGO (prologue), ONAMBELE, TANGUE, MVOM (TRANSBOIS SA), WOURI",
+    "fil_rouge": "MBONGO (prologue), ONAMBELE, TANGUE, MVOM (TRANSBOIS SA), NKAM",
     "parties": [
         ("Prologue", "La scène de crime numérique", "P00"),
         ("Partie I", "Fondements épistémologiques et historiques", "C01–C05"),
@@ -30,7 +30,7 @@ IIN = {
         5: ("Histoire (1) : des prémices à la standardisation", "C02 §2.1-2.3", [], []),
         6: ("Histoire (2) : big data, IA, Afrique, accélération", "C02 §2.4-2.7", ["C02"], []),
         7: ("Grandes affaires (1) : BTK, Stuxnet, WannaCry, Enron", "C03 §3.1-3.4", [], []),
-        8: ("Grandes affaires (2) : ONAMBELE, TANGUE, MVOM, WOURI", "C03 §3.5-3.9", ["C03"], []),
+        8: ("Grandes affaires (2) : ONAMBELE, TANGUE, MVOM, NKAM", "C03 §3.5-3.9", ["C03"], []),
         9: ("Locard numérique · Shannon · Graphes · Dolev-Yao", "C04 §4.1-4.4", [], []),
         10: ("Complexité, modèles de processus, théorie de la preuve", "C04 §4.5-4.8", ["C04"], []),
         11: ("État de l'art (1) : IA, deepfakes, cloud, IoT, mobile", "C05 §5.1-5.3", [], []),

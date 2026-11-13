@@ -120,13 +120,13 @@ Questions à choix multiple (une seule bonne réponse)
       c) Elle n'a aucune responsabilité
       d) Elle est seulement contrevenante
 
-19. De quel type d'attaque relève l'opération WOURI ?
+19. De quel type d'attaque relève l'opération NKAM ?
       a) Business Email Compromise (BEC), usurpation du domaine d'un fournisseur
       b) Un déni de service distribué
       c) Un ransomware
       d) Une injection SQL
 
-20. Dans l'opération WOURI, quel rôle tient l'individu chargé de recevoir et déplacer les fonds ?
+20. Dans l'opération NKAM, quel rôle tient l'individu chargé de recevoir et déplacer les fonds ?
       a) Le blanchisseur
       b) L'organisateur
       c) Le technicien

@@ -1,10 +1,10 @@
 ligne;heure;intervenant;action;cible
-L1;14:05;NKENG Éric;Arrivée sur les lieux, bureau de M. MBONGO;PC EV-001 allumé, session ouverte
-L2;14:08;NKENG Éric;Photographie de l'écran et des branchements;PC EV-001
-L3;14:12;NKENG Éric;Ouverture de l'explorateur et de deux documents du bureau pour voir leur contenu;PC EV-001
+L1;14:05;OLINGA Éric;Arrivée sur les lieux, bureau de M. MBONGO;PC EV-001 allumé, session ouverte
+L2;14:08;OLINGA Éric;Photographie de l'écran et des branchements;PC EV-001
+L3;14:12;OLINGA Éric;Ouverture de l'explorateur et de deux documents du bureau pour voir leur contenu;PC EV-001
 L4;14:20;ATANGANA Luc;Acquisition du disque à chaud vers un disque externe;PC EV-001
 L5;14:58;ATANGANA Luc;Relevé des connexions réseau actives (netstat);PC EV-001
 L6;15:02;;Débranchement du câble réseau;PC EV-001
 L7;15:10;ATANGANA Luc;Capture de la mémoire vive (RAM);PC EV-001
 L8;15:35;ATANGANA Luc;Extinction du poste;PC EV-001
-L9;15:40;NKENG Éric;Placement sous scellé et étiquetage;PC EV-001
+L9;15:40;OLINGA Éric;Placement sous scellé et étiquetage;PC EV-001

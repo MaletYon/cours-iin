@@ -14,7 +14,7 @@ SPEC = [
         ("20 min", "**Grille comparative** : quel droit, quelle voie"),
         ("15 min", "**Cinq étapes** pour qualifier une affaire transfrontalière"),
         ("20 min", "**Cas SONATRAV** : Cameroun, UE, États-Unis"),
-        ("30 min", "**Exercice** : tensions RGPD, stratégie WOURI · fiche C11"),
+        ("30 min", "**Exercice** : tensions RGPD, stratégie NKAM · fiche C11"),
     ]},
     {"k": "table", "title": "CEDEAO", "kicker": "Afrique de l'Ouest, 15 membres", "head": ["Texte", "Contenu et pertinence"], "widths": [4.0, 8.4], "rows": [
         ["Directive C/DIR/1/08/11 (cybercriminalité)", "Infractions harmonisées sur Budapest : accès illicite, interception, atteinte à l'intégrité ; base des demandes vers les membres"],
@@ -50,7 +50,7 @@ SPEC = [
         "Analyse CRO : article 23 d'abord, ou MLAT direct ?",
      ],
      "notes": "Corrigé (exercice 11.2). Art. 23, point d, avec art. 6(1)(e) ; données limitées au strict nécessaire. Mesure prévue par la loi, nécessaire, proportionnée, émanant d'une autorité judiciaire. MLAT avec conservation immédiate par le 24/7. Conservation, art. 23 pour l'urgent, MLAT pour la preuve opposable."},
-    {"k": "exercice", "title": "Stratégie juridique WOURI", "duree": "15 minutes, en binôme",
+    {"k": "exercice", "title": "Stratégie juridique NKAM", "duree": "15 minutes, en binôme",
      "text": "Hameçonnage depuis un compte **Outlook** (Irlande) ; VPN **NordVPN** (Panama, serveurs aux Pays-Bas) ; compte **HSBC Hong Kong** ; bitcoins vers **Paribu** (Turquie).",
      "questions": [
         "Cadre légal et instrument optimal pour chaque élément.",

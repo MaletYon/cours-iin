@@ -96,5 +96,5 @@ SPEC = [
     {"k": "fin", "next": "Jour 8 · Grandes affaires (2) : le Cameroun", "items": [
         "ONAMBELE et TANGUE",
         "MVOM : le rançongiciel de TRANSBOIS SA",
-        "WOURI : l'escroquerie transfrontalière"]},
+        "NKAM : l'escroquerie transfrontalière"]},
 ]

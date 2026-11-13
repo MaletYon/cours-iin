@@ -11,7 +11,7 @@ SPEC = [
     {"k": "agenda", "items": [
         ("15 min", "**Wireshark** : deux modes d'utilisation"),
         ("20 min", "**Les filtres forensiques** de référence"),
-        ("20 min", "**Cas WOURI** : reconstruire un BEC dans une capture"),
+        ("20 min", "**Cas NKAM** : reconstruire un BEC dans une capture"),
         ("20 min", "**File carving** : magic bytes, foremost, scalpel"),
         ("10 min", "**Choisir ses outils** selon la situation"),
         ("35 min", "**Exercice** : le pipeline MVOM complet · bilan Partie II · fiche C09"),
@@ -27,7 +27,7 @@ SPEC = [
         ["tcp.port == 4444", "Port de commande et contrôle typique"],
         ["frame contains \"password\" / \"Authorization\"", "Identifiants en clair"],
     ], "note": "Outils utiles : **Follow TCP Stream** et **Statistics → Conversations** (volumes anormaux)."},
-    {"k": "scenario", "title": "WOURI dans une capture", "label": "SOTRADI.pcap · reconstruction du BEC", "text": [
+    {"k": "scenario", "title": "NKAM dans une capture", "label": "SOTRADI.pcap · reconstruction du BEC", "text": [
         "Filtre **smtp** : un courriel entrant de **contact@medequip-portugal.com**. Follow TCP Stream : l'en-tête **Received** donne l'IP source réelle.",
         "Filtre **dns** : medequip-portugal.com a été enregistré le **12/01/2026**, trois jours avant le paiement (WHOIS).",
         "Constatation : « Le paquet n° 14 872 (2026-01-15, 14 h 28) contient un courriel SMTP depuis contact@medequip-portugal.com, émis par l'IP 91.XXX.XX.XX selon le champ Received. »"],

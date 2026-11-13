@@ -66,7 +66,7 @@ SPEC = [
     ], "side": {"head": "Pourquoi ?", "text": "Un téléphone connecté peut recevoir un effacement à distance en quelques secondes."}},
     {"k": "scenario", "title": "MBONGO, reconstitué correctement (1)", "label": "Affaire MBONGO · la bonne procédure", "text": [
         "PC Windows **allumé et déverrouillé**, téléphone Android écran actif. L'OPJ arrive avec une clé protégée en écriture contenant **FTK Imager Portable**.",
-        "Il photographie l'écran (portail UBA ouvert, heure visible) et le téléphone, **sans y toucher**. Mode avion : « 14 h 37 : téléphone passé en mode avion par OPJ NKENG ».",
+        "Il photographie l'écran (portail UBA ouvert, heure visible) et le téléphone, **sans y toucher**. Mode avion : « 14 h 37 : téléphone passé en mode avion par OPJ OLINGA ».",
         "Capture de la RAM : **RAM_MBONGO.mem**, 16 Go, sur une clé séparée, empreinte notée. **netstat -ano** : deux connexions vers UBA, une vers **185.62.X.X**, inconnue, notée."]},
     {"k": "scenario", "title": "MBONGO, reconstitué correctement (2)", "label": "Affaire MBONGO · le dossier tient", "text": [
         "Arrêt propre, retrait du disque, bloqueur activé. Acquisition **E01** en 47 minutes. Empreinte source **3d9c…**, empreinte image **3d9c…** : intégrité vérifiée.",

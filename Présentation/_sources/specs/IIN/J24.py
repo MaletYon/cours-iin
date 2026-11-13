@@ -61,7 +61,7 @@ SPEC = [
         "Trois actions **simultanées** : conservation chez Binance (portail LEA et BCN, cible 48 h) ; identification de l'IP par entraide urgente avec le Sénégal (art. 29, 7 à 14 jours) ; **analyse blockchain** sur Blockchair (immédiate).",
         "Erreurs fréquentes : divulgation **sans conservation** préalable ; demande **sans base légale** ; demande directe à un opérateur étranger hors canal officiel."]},
     {"k": "exercice", "title": "Choix de canal et conservation", "duree": "25 minutes, en binôme",
-     "text": "Opération WOURI : l'IP **91.XXX.XX.XX** (Pays-Bas) est à l'origine du courriel d'hameçonnage ; un compte Binance sert au blanchiment ; une adresse Bitcoin mène à une plateforme aux Émirats.",
+     "text": "Opération NKAM : l'IP **91.XXX.XX.XX** (Pays-Bas) est à l'origine du courriel d'hameçonnage ; un compte Binance sert au blanchiment ; une adresse Bitcoin mène à une plateforme aux Émirats.",
      "questions": [
         "Rédigez la demande de conservation urgente (art. 29) vers les Pays-Bas.",
         "Quels trois éléments font systématiquement rejeter une demande s'ils manquent ?",
